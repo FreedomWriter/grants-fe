@@ -6,7 +6,7 @@ import {
   REGISTER_POST_SUCCESS,
   REGISTER_POST_FAILURE,
   LOGOUT,
-} from "../actions/login.actions";
+} from "../actions/LoginActions";
 
 const initialState = {
   user: "",
