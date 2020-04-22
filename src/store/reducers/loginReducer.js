@@ -22,7 +22,7 @@ const loginReducer = (state = initialState, action) => {
       };
     case LOGIN_POST_SUCCESS:
       return {
-        ...action.payload,
+        user: { id: action.payload.id, username: action.payload.username },
         loggedIn: true,
 
         isLoading: false,
@@ -40,7 +40,7 @@ const loginReducer = (state = initialState, action) => {
       };
     case REGISTER_POST_SUCCESS:
       return {
-        ...action.payload,
+        user: { id: action.payload.id, username: action.payload.username },
         loggedIn: true,
 
         isLoading: false,
