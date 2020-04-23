@@ -5,4 +5,18 @@ on:
 jobs:
   coverage:
     name: "Test and publish test coverage"
-    runs-on: "ubuntu-latest\n- uses: actions/checkout@master\n\n\n- uses: actions/setup-node@master\n  with:\n    node-version: \"12\"\n\n\n- run: npm install\n\n\n- uses: paambaati/codeclimate-action@v2.4.0\n  env:\n\n    CC_TEST_REPORTER_ID: ${{ secrets.CodeClimateReporterId }}\n  with:\n\n    coverageCommand: npm run coverage\n\n    coverageLocations: \"./myapp/coverage/clover.xml:clover\"\n\n    debug: true"
+    runs-on: ubuntu-latest
+    steps:
+      - { uses: actions/checkout@master }
+      - { uses: actions/setup-node@master, with: { node-version: "12" } }
+      - { run: "npm install" }
+      - {
+          uses: paambaati/codeclimate-action@v2.4.0,
+          env: { CC_TEST_REPORTER_ID: "${{ secrets.CodeClimateReporterId }}" },
+          with:
+            {
+              coverageCommand: "npm run coverage",
+              coverageLocations: "./myapp/coverage/clover.xml:clover",
+              debug: true,
+            },
+        }
