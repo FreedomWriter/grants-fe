@@ -17,7 +17,7 @@ jobs:
           with:
             {
               coverageCommand: "npm run coverage",
-              coverageLocations: "./grants-fe/coverage/clover.xml:clover",
+              coverageLocations: "./coverage/clover.xml:clover",
               debug: true,
             },
         }
