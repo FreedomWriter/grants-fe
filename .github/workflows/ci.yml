@@ -10,13 +10,14 @@ jobs:
       - { uses: actions/checkout@master }
       - { uses: actions/setup-node@master, with: { node-version: "12" } }
       - { run: "npm install" }
+      - { run: "ls -l" }
       - {
           uses: paambaati/codeclimate-action@v2.4.0,
           env: { CC_TEST_REPORTER_ID: "${{ secrets.CodeClimateReporterId }}" },
           with:
             {
               coverageCommand: "npm run coverage",
-              coverageLocations: "./myapp/coverage/clover.xml:clover",
+              coverageLocations: "./grants-fe/coverage/clover.xml:clover",
               debug: true,
             },
         }
