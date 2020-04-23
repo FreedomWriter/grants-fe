@@ -10,8 +10,6 @@ const action = {
   },
 };
 
-console.log(`dlkfja;lkga;j`, action.payload.error);
-
 describe("login reducer", () => {
   test("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual({
@@ -91,7 +89,7 @@ describe("login reducer", () => {
     expect(
       reducer(undefined, {
         type: types.REGISTER_POST_FAILURE,
-        payload: action.payload,
+        payload: action.payload.error,
       })
     ).toEqual({
       user: "",
