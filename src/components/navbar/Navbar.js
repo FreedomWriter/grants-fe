@@ -22,6 +22,8 @@ export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   // should ultimately come from global state
   const [notifications, setNotifications] = useState(15);
   const [messages, setMessages] = useState(5);
@@ -45,6 +47,10 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+  console.log({ searchTerm });
   const menuId = "primary-search-account-menu";
 
   const mobileMenuId = "primary-search-account-menu-mobile";
@@ -61,13 +67,7 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton> */}
-          <Button
-            component={Link}
-            to="/"
-            className={classes.title}
-            variant="h6"
-            noWrap
-          >
+          <Button component={Link} to="/" className={classes.title}>
             Granted
           </Button>
           {/* searchbar was originally here */}
@@ -82,6 +82,7 @@ export default function PrimarySearchAppBar() {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
+              onChange={(e) => handleChange(e)}
               inputProps={{ "aria-label": "search" }}
             />
           </div>
