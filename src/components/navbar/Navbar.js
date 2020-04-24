@@ -21,6 +21,7 @@ export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
+  // should ultimately come from global state
   const [notifications, setNotifications] = useState(15);
   const [messages, setMessages] = useState(5);
 
