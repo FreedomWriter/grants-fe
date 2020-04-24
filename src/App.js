@@ -1,13 +1,14 @@
 import React from "react";
+import { ThemeProvider } from "@material-ui/core/styles";
+import theme from "./components/globals/theme";
 
 import Navbar from "./components/navbar/Navbar";
-import "./App.css";
 
 function App() {
   return (
-    <div className="App">
+    <ThemeProvider theme={theme}>
       <Navbar />
-    </div>
+    </ThemeProvider>
   );
 }
 
