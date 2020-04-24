@@ -12,6 +12,8 @@ export default function MobileMenu({
   mobileMenuId,
   handleMobileMenuClose,
   handleProfileMenuOpen,
+  messages,
+  notifications,
 }) {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   return (
@@ -26,16 +28,22 @@ export default function MobileMenu({
         onClose={handleMobileMenuClose}
       >
         <MenuItem>
-          <IconButton aria-label={`show 4 new mails`} color="inherit">
-            <Badge badgeContent={4} color="secondary">
+          <IconButton
+            aria-label={`show ${messages} new messages`}
+            color="inherit"
+          >
+            <Badge badgeContent={messages} color="secondary">
               <MailIcon />
             </Badge>
           </IconButton>
           <p>Messages</p>
         </MenuItem>
         <MenuItem>
-          <IconButton aria-label="show 11 new notifications" color="inherit">
-            <Badge badgeContent={11} color="secondary">
+          <IconButton
+            aria-label={`show ${notifications} new notifications`}
+            color="inherit"
+          >
+            <Badge badgeContent={notifications} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>

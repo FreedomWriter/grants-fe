@@ -21,6 +21,9 @@ export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
+  const [notifications, setNotifications] = useState(15);
+  const [messages, setMessages] = useState(5);
+
   const isMenuOpen = Boolean(anchorEl);
 
   const handleProfileMenuOpen = (event) => {
@@ -75,12 +78,12 @@ export default function PrimarySearchAppBar() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={messages} color="secondary">
                 <MailIcon />
               </Badge>
             </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+              <Badge badgeContent={notifications} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
@@ -113,6 +116,8 @@ export default function PrimarySearchAppBar() {
         mobileMenuId={mobileMenuId}
         handleMobileMenuClose={handleMobileMenuClose}
         handleProfileMenuOpen={handleProfileMenuOpen}
+        messages={messages}
+        notifications={notifications}
       />
       <MenuComponent
         anchorEl={anchorEl}
