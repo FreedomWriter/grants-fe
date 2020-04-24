@@ -11,6 +11,9 @@ export const useStyles = makeStyles((theme) => ({
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block",
+      color: theme.palette.common.white,
+      fontSize: "1.5em",
+      fontWeight: 300,
     },
   },
   search: {
