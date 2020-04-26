@@ -50,7 +50,12 @@ export default function PrimarySearchAppBar() {
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
-  console.log({ searchTerm });
+
+  const handleSubmit = () => {
+    console.log({ searchTerm });
+    setSearchTerm("");
+  };
+
   const menuId = "primary-search-account-menu";
 
   const mobileMenuId = "primary-search-account-menu-mobile";
@@ -72,12 +77,14 @@ export default function PrimarySearchAppBar() {
           </Button>
           {/* searchbar was originally here */}
           <div className={classes.grow} />
-          <div className={classes.search}>
+          <div className={classes.search} onClick={handleSubmit}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
+              data-testid="search"
               placeholder="Search…"
+              value={searchTerm}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -87,13 +94,27 @@ export default function PrimarySearchAppBar() {
             />
           </div>
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={messages} color="secondary">
+            <IconButton
+              aria-label={`show ${messages} new mails`}
+              color="inherit"
+            >
+              <Badge
+                data-testid="messageBadge"
+                badgeContent={messages}
+                color="secondary"
+              >
                 <MailIcon />
               </Badge>
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={notifications} color="secondary">
+            <IconButton
+              aria-label={`show ${notifications} new notifications`}
+              color="inherit"
+            >
+              <Badge
+                badgeContent={notifications}
+                color="secondary"
+                data-testid="notificationBadge"
+              >
                 <NotificationsIcon />
               </Badge>
             </IconButton>
