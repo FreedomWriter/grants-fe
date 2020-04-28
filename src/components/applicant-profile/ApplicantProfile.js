@@ -1,4 +1,4 @@
-import React from 'react'
+import React from './node_modules/react'
 import BioCard from './BioCard'
 import GrantsList from './grants-list/Grants'
 
