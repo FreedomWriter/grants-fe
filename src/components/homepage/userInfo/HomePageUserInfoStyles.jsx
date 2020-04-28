@@ -15,23 +15,17 @@ export const useStyles = makeStyles((theme: Theme) =>
     root: {
       maxWidth: 1345,
       background: color.accent,
-      // padding: "0",
     },
     media: {
+      margin: "auto",
       width: "200px",
-      height: "auto",
-      borderRadius: "20%",
+      height: "100px",
+      borderRadius: "5px",
+      overflow: "hidden",
     },
     header: {
       display: "flex",
       justifyContent: "space-between",
-    },
-    expand: {
-      transform: "rotate(0deg)",
-      marginLeft: "auto",
-      transition: theme.transitions.create("transform", {
-        duration: theme.transitions.duration.shortest,
-      }),
     },
     expandOpen: {
       transform: "rotate(180deg)",
@@ -40,7 +34,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: red[500],
     },
     title: {
-      // width: "100%",
       justifyContent: "left",
     },
     subheader: {
@@ -54,7 +47,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       height: "auto",
     },
     info: {
-      // display: "flex",
       flexDirection: "row",
       padding: "0 0 0 0",
       paddingBottom: "0px",
@@ -78,7 +70,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       lineHeight: "10px",
     },
     userRight: {
-      border: "1px solid white",
       width: "100%",
     },
   })

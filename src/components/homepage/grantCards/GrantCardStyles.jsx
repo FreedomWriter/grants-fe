@@ -15,7 +15,6 @@ export const useStyles = makeStyles((theme: Theme) =>
     root: {
       maxWidth: 1345,
       background: color.accent,
-      // padding: "0",
     },
     media: {
       height: 0,
@@ -45,18 +44,26 @@ export const useStyles = makeStyles((theme: Theme) =>
     subheader: {
       display: "inline-block",
     },
+
+    info: {
+      // flexDirection: "row",
+      padding: "0 0 0 0",
+      paddingBottom: "0px",
+      // height: "60px",
+      [theme.breakpoints.up("md")]: {
+        display: "flex",
+      },
+    },
     boxes: {
       backgroundColor: color.add1,
       color: color.primary,
       width: "100px",
       margin: "5px",
       height: "auto",
-    },
-    info: {
-      // display: "flex",
-      flexDirection: "row",
-      padding: "0 0 0 0",
-      paddingBottom: "0px",
+      [theme.breakpoints.up("md")]: {
+        height: "60px",
+        marginTop: "auto",
+      },
     },
     content: {
       width: "100%",
@@ -68,6 +75,14 @@ export const useStyles = makeStyles((theme: Theme) =>
       width: "100%",
       textAlign: "left",
       paddingLeft: "0px",
+    },
+    actionTop: {
+      display: "flex",
+      flexDirection: "column",
+      [theme.breakpoints.up("md")]: {
+        display: "block",
+        flexDirection: "column",
+      },
     },
   })
 );

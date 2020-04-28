@@ -32,7 +32,7 @@ export default function GrantCard(props) {
         className={classes.header}
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            G
+            {grant.title[0]}
           </Avatar>
         }
         action={
