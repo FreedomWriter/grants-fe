@@ -5,11 +5,13 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
+import { useStyles } from "./ApplicantForm.styles";
 export default function AddressForm() {
+  const classes = useStyles();
   return (
-    <>
+    <div className={classes.container}>
       <Typography variant="h6" gutterBottom>
-        Shipping address
+        Contact Information
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
@@ -35,11 +37,10 @@ export default function AddressForm() {
         <Grid item xs={12}>
           <TextField
             required
-            id="address1"
-            name="address1"
-            label="Address line 1"
+            id="sector"
+            name="sector"
+            label="Sector"
             fullWidth
-            autoComplete="billing address-line1"
           />
         </Grid>
         <Grid item xs={12}>
@@ -98,6 +99,6 @@ export default function AddressForm() {
           />
         </Grid>
       </Grid>
-    </>
+    </div>
   );
 }
