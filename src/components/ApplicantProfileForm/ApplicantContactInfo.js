@@ -8,8 +8,8 @@ import Checkbox from "@material-ui/core/Checkbox";
 import { useStyles } from "./ApplicantForm.styles";
 export default function ApplicantContactInfo({
   formState,
-  setFormState,
   handleChanges,
+  setFormState,
 }) {
   const classes = useStyles();
 
@@ -106,6 +106,7 @@ export default function ApplicantContactInfo({
             control={
               <Checkbox color="secondary" name="org" value={formState.org} />
             }
+            onClick={() => setFormState({ ...formState, org: !formState.org })}
             label="Are you part of an organization?"
           />
         </Grid>

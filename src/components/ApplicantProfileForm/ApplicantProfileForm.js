@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
 import Stepper from "@material-ui/core/Stepper";
@@ -9,44 +8,10 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import ApplicantContactInfo from "./ApplicantContactInfo";
 import OrgInformation from "./OrgInformation";
+import NonOrgInformation from "./NonOrgInformation";
 import Review from "./ReviewForm";
 
-const useStyles = makeStyles((theme) => ({
-  appBar: {
-    position: "relative",
-  },
-  layout: {
-    width: "auto",
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      width: 600,
-      marginLeft: "auto",
-      marginRight: "auto",
-    },
-  },
-  paper: {
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3),
-    padding: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      marginTop: theme.spacing(6),
-      marginBottom: theme.spacing(6),
-      padding: theme.spacing(3),
-    },
-  },
-  stepper: {
-    padding: theme.spacing(3, 0, 5),
-  },
-  buttons: {
-    display: "flex",
-    justifyContent: "flex-end",
-  },
-  button: {
-    marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1),
-  },
-}));
+import { useStyles } from "./ApplicantForm.styles";
 
 const steps = [
   "Contact Information",
@@ -65,7 +30,7 @@ export default function ApplicantProfileForm() {
     state: "",
     zip: "",
     country: "",
-    org: false,
+    org: true,
     orgName: "",
     foundingDate: "",
     website: "",
@@ -82,7 +47,6 @@ export default function ApplicantProfileForm() {
   const handleSubmit = () => {
     console.log(`Sumbit form values: `, formState);
   };
-  console.log({ formState });
 
   function getStepContent(step) {
     switch (step) {
@@ -91,11 +55,17 @@ export default function ApplicantProfileForm() {
           <ApplicantContactInfo
             formState={formState}
             handleChanges={handleChanges}
+            setFormState={setFormState}
           />
         );
       case 1:
-        return (
+        return formState.org ? (
           <OrgInformation handleChanges={handleChanges} formState={formState} />
+        ) : (
+          <NonOrgInformation
+            handleChanges={handleChanges}
+            formState={formState}
+          />
         );
       case 2:
         return (
@@ -114,7 +84,8 @@ export default function ApplicantProfileForm() {
   };
 
   const handleBack = () => {
-    setActiveStep(activeStep - 1);
+    activeStep === 1 && setFormState({ ...formState, org: false });
+    return setActiveStep(activeStep - 1);
   };
 
   return (
@@ -136,7 +107,7 @@ export default function ApplicantProfileForm() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
+                  Welcome to Granted.
                 </Typography>
                 <Typography variant="subtitle1">
                   Your order number is #2001539. We have emailed your order
