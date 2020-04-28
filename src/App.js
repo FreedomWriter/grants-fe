@@ -1,15 +1,18 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { BrowserRouter as Router } from "react-router-dom";
+import { ThemeProvider } from "@material-ui/core/styles";
+import theme from "./components/globals/theme.js";
+// import "./App.css";
 
 import Homepage from "./components/homepage/Homepage.jsx";
 
 function App() {
   return (
-    <div className="App">
-      <Homepage />
-      <header className="App-header"></header>
-    </div>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <Homepage />
+      </ThemeProvider>
+    </Router>
   );
 }
 

@@ -14,7 +14,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 //contact icons...
 import ChatRoundedIcon from "@material-ui/icons/ChatRounded";
 
-import { useStyles } from "./styles.jsx";
+import { useStyles } from "./GrantCardStyles.jsx";
 
 export default function GrantCard(props) {
   const grant = props.data;
@@ -41,20 +41,11 @@ export default function GrantCard(props) {
               <IconButton aria-label="add to favorites">
                 <FavoriteIcon />
               </IconButton>
-              {/* <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton> */}
               <IconButton aria-label="direct message">
                 <ChatRoundedIcon />
-                {/* <EmailRoundedIcon /> */}
-                {/* <LocalPostOfficeRoundedIcon /> */}
               </IconButton>
-              {/* <IconButton aria-label="settings">
-          <MoreVertIcon />
-        </IconButton> */}
             </CardActions>
             <CardActions disableSpacing>
-              {/* Quick Access Buttons */}
               <IconButton
                 className={clsx(classes.expand, {
                   [classes.expandOpen]: expanded,
@@ -69,8 +60,8 @@ export default function GrantCard(props) {
           </div>
         }
         title={
-          <CardContent className={classes.header}>
-            <CardContent className={classes.content}>
+          <CardContent className={classes.content}>
+            <CardContent className={classes.desc}>
               <Typography variant="body2" color="textSecondary" component="p">
                 {grant.title}
               </Typography>
@@ -86,22 +77,15 @@ export default function GrantCard(props) {
           </CardContent>
         }
         subheader={
-          <Typography variant="body2" color="textSecondary" component="p">
-            {/* <CardContent className={classes.info}>
-          <Typography className={classes.boxes}>Timeframe</Typography>
-          <Typography className={classes.boxes}>{grant.sector}</Typography>
-          <Typography className={classes.boxes}>Roles</Typography>
-        </CardContent> */}
-          </Typography>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            component="p"
+          ></Typography>
         }
       />
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          {/* <CardMedia
-        className={classes.media}
-        image={grant.image}
-        title={grant.title}
-      /> */}
           <Typography paragraph>Grant Details:</Typography>
           {grant.detailContent.map((detail) => {
             return <Typography key={grant.title}>{detail}</Typography>;

@@ -16,7 +16,8 @@ const Homepage = () => {
           // console.log(grant);
           return (
             <div className="Card-display" key={grant.id}>
-              <Card1 data={grant} />
+              {/* <Card1 data={grant} /> */}
+              <br />
               <GrantCard data={grant} />
             </div>
           );
