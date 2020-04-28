@@ -2,17 +2,12 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
 
 import { useStyles } from "./ApplicantForm.styles";
-export default function ApplicantContactInfo({
-  formState,
-  setFormState,
-  handleChanges,
-}) {
-  const classes = useStyles();
 
+export default function ReviewForm({ formState, setFormState, handleChanges }) {
+  const classes = useStyles();
   return (
     <div className={classes.container}>
       <Typography variant="h6" gutterBottom>
@@ -102,11 +97,43 @@ export default function ApplicantContactInfo({
           />
         </Grid>
         <Grid item xs={12}>
-          <FormControlLabel
-            control={
-              <Checkbox color="secondary" name="org" value={formState.org} />
-            }
-            label="Are you part of an organization?"
+          <TextField
+            className={classes.orgTextField}
+            required
+            value={formState.orgName}
+            id="orgName"
+            name="orgName"
+            label="Organization Name"
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            className={classes.orgTextField}
+            required
+            value={formState.foundingDate}
+            id="foundingDate"
+            name="foundingDate"
+            label="Founding Date"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            id="website"
+            name="website"
+            label="Organization Website"
+            className={classes.textArea}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextAreaAutosize
+            required
+            id="bio"
+            name="bio"
+            placeholder="Tell us about your organization..."
+            aria-label="Organization Bio"
+            rowsMin={6}
+            className={classes.textArea}
           />
         </Grid>
       </Grid>
