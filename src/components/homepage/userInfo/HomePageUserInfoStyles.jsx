@@ -1,20 +1,11 @@
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { red } from "@material-ui/core/colors";
 
-//These can be imported via globals...
-const color = {
-  primary: "#33658A",
-  accent: "#F6AE2D",
-  add1: "#B2F7EF",
-  add2: "#3A539B",
-};
-//..........
-
-export const useStyles = makeStyles((theme: Theme) =>
+export const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       maxWidth: 1345,
-      background: color.accent,
+      background: theme.palette.common.aqua,
     },
     media: {
       margin: "auto",
@@ -27,9 +18,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "space-between",
     },
-    expandOpen: {
-      transform: "rotate(180deg)",
-    },
     avatar: {
       backgroundColor: red[500],
     },
@@ -38,13 +26,6 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     subheader: {
       display: "inline-block",
-    },
-    boxes: {
-      backgroundColor: color.add1,
-      color: color.primary,
-      width: "100px",
-      margin: "5px",
-      height: "auto",
     },
     info: {
       flexDirection: "row",
@@ -65,7 +46,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     userInfo: {
       display: "flex",
       width: "100%",
-      backgroundColor: color.primary,
+      backgroundColor: theme.palette.primary.main,
       justifyContent: "center",
       lineHeight: "10px",
     },

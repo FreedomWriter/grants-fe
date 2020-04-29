@@ -1,7 +1,8 @@
 import React from "react";
 
-import Card1 from "./grantCards/Card1.jsx";
+// import Card1 from "./grantCards/Card1.jsx";
 import GrantCard from "./grantCards/GrantCard.jsx";
+import GrantCard2 from "./grantCards/GrantCard2.jsx";
 import UserInfo from "./userInfo/UserInfo.jsx";
 
 import { grants, userDetails } from "./dummydata/data.jsx";
@@ -24,6 +25,7 @@ const Homepage = () => {
               {/* <Card1 data={grant} /> */}
               <br />
               <GrantCard data={grant} />
+              {/* <GrantCard2 data={grant} /> */}
             </div>
           );
         })}

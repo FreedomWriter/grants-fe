@@ -85,7 +85,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     container: {
-      padding: "100px 0 0 0",
+      padding: "50px 0 0 0",
       border: "1px solid green",
     },
   })

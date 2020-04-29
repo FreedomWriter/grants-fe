@@ -16,7 +16,7 @@ import ChatRoundedIcon from "@material-ui/icons/ChatRounded";
 
 import { useStyles } from "./GrantCardStyles.jsx";
 
-export default function GrantCard(props) {
+export default function GrantCard2(props) {
   const grant = props.data;
   // console.log("GrantCard: ", grant);
   const classes = useStyles();
@@ -59,31 +59,36 @@ export default function GrantCard(props) {
             </CardActions>
           </div>
         }
-        title={
-          <div className={classes.content}>
-            <div className={classes.desc}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                {grant.title}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                {grant.detailMain}
-              </Typography>
-            </div>
-            <div className={classes.boxInfo} backgroundColor="primary.main">
-              <Typography className={classes.boxes}>Timeframe</Typography>
-              <Typography className={classes.boxes}>{grant.sector}</Typography>
-              <Typography className={classes.boxes}>Roles</Typography>
-            </div>
-          </div>
-        }
-        subheader={
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            component="p"
-          ></Typography>
-        }
+        // title={
+        //   // <CardContent className={classes.content}>
+        //   //   <CardContent className={classes.desc}>
+        //   //     <Typography variant="body2" color="textSecondary" component="p">
+        //   // grant.title
+        //   //     </Typography>
+        //   //     <Typography variant="body2" color="textSecondary" component="p">
+        //   //       {grant.detailMain}
+        //   //     </Typography>
+        //   //   </CardContent>
+        //   /* <CardContent className={classes.boxInfo}>
+        //       <Typography className={classes.boxes}>Timeframe</Typography>
+        //       <Typography className={classes.boxes}>{grant.sector}</Typography>
+        //       <Typography className={classes.boxes}>Roles</Typography>
+        //     </CardContent> */
+        //   // </CardContent>
+        // }
+        // subheader={
+        //   <Typography
+        //     variant="body2"
+        //     color="textSecondary"
+        //     component="p"
+        //   ></Typography>
+        // }
       />
+      <div className={classes.boxInfo}>
+        <Typography className={classes.boxes}>Timeframe</Typography>
+        <Typography className={classes.boxes}>{grant.sector}</Typography>
+        <Typography className={classes.boxes}>Roles</Typography>
+      </div>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Grant Details:</Typography>
