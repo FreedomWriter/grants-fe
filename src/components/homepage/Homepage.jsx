@@ -13,6 +13,8 @@ const Homepage = () => {
   const classes = useStyles();
   return (
     <div className={classes.container}>
+      {/* StylesProvider */}
+      {/* GlobalStyles */}
       <Container className="App-header">
         <UserInfo details={userDetails} />
         {grants.map((grant) => {
