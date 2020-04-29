@@ -10,6 +10,7 @@ export default function ApplicantContactInfo({
   formState,
   handleChanges,
   setFormState,
+  formHelperText,
 }) {
   const classes = useStyles();
 
@@ -21,6 +22,8 @@ export default function ApplicantContactInfo({
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
+            error={formHelperText.firstName ? true : false}
+            helperText={formHelperText.firstName}
             required
             id="firstName"
             name="firstName"
@@ -33,6 +36,8 @@ export default function ApplicantContactInfo({
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
+            error={formHelperText.lastName ? true : false}
+            helperText={formHelperText.lastName}
             required
             id="lastName"
             name="lastName"
@@ -45,6 +50,8 @@ export default function ApplicantContactInfo({
         </Grid>
         <Grid item xs={12}>
           <TextField
+            error={formHelperText.sector ? true : false}
+            helperText={formHelperText.sector}
             required
             id="sector"
             name="sector"
@@ -57,6 +64,8 @@ export default function ApplicantContactInfo({
 
         <Grid item xs={12} sm={6}>
           <TextField
+            error={formHelperText.city ? true : false}
+            helperText={formHelperText.city}
             required
             id="city"
             name="city"
@@ -69,6 +78,8 @@ export default function ApplicantContactInfo({
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
+            error={formHelperText.state ? true : false}
+            helperText={formHelperText.state}
             id="state"
             name="state"
             value={formState.state}
@@ -79,6 +90,8 @@ export default function ApplicantContactInfo({
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
+            error={formHelperText.zip ? true : false}
+            helperText={formHelperText.zip}
             required
             id="zip"
             name="zip"
@@ -91,6 +104,8 @@ export default function ApplicantContactInfo({
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
+            error={formHelperText.country ? true : false}
+            helperText={formHelperText.country}
             required
             id="country"
             name="country"

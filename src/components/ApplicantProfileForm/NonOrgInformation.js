@@ -5,7 +5,11 @@ import TextField from "@material-ui/core/TextField";
 import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
 
 import { useStyles } from "./ApplicantForm.styles";
-export default function OrgInformation({ handleChanges, formState }) {
+export default function OrgInformation({
+  handleChanges,
+  formState,
+  formHelperText,
+}) {
   const classes = useStyles();
   return (
     <div className={classes.container}>
@@ -13,32 +17,10 @@ export default function OrgInformation({ handleChanges, formState }) {
         Additional Information
       </Typography>
       <Grid container spacing={3}>
-        {/* <Grid item xs={12}>
-          <TextField
-            onChange={handleChanges}
-            className={classes.orgTextField}
-            required
-            id="orgName"
-            name="orgName"
-            value={formState.orgName}
-            label="Organization Name"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            onChange={handleChanges}
-            className={classes.orgTextField}
-            required
-            id="foundingDate"
-            name="foundingDate"
-            value={formState.foundingDate}
-            label="Founding Date"
-            // fullWidth
-          />
-        </Grid> */}
         <Grid item xs={12} sm={6}>
           <TextField
+            error={formHelperText.website ? true : undefined}
+            helperText={formHelperText.website}
             onChange={handleChanges}
             id="website"
             name="website"
@@ -58,7 +40,6 @@ export default function OrgInformation({ handleChanges, formState }) {
             aria-label="Organization Bio"
             rowsMin={6}
             className={classes.textArea}
-            // fullWidth
           />
         </Grid>
       </Grid>

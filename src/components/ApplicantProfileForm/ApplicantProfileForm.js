@@ -37,13 +37,100 @@ export default function ApplicantProfileForm() {
     bio: "",
   });
 
+  const [formHelperText, setFormHelperText] = useState({
+    firstName: undefined,
+    lastName: undefined,
+    sector: undefined,
+    city: undefined,
+    state: undefined,
+    zip: undefined,
+    country: undefined,
+    orgName: undefined,
+    foundingDate: undefined,
+    website: undefined,
+    bio: undefined,
+  });
+
+  console.log({ formState });
   const handleChanges = (e) => {
+    e.persist();
+
     setFormState({
       ...formState,
       [e.target.name]: e.target.value,
     });
+    const validator = async (formValue) => {
+      e.persist();
+      let valid = /(?=(?:.*?[a-z]){1})/i.test(formValue);
+      if (!valid) {
+        setFormHelperText({
+          ...formHelperText,
+          [e.target.name]: "Must be at least 2 characters long",
+        });
+      } else {
+        setFormHelperText({
+          ...formHelperText,
+          [e.target.name]: undefined,
+        });
+      }
+    };
+    switch (e.target.id) {
+      case "firstName":
+        // valid = /(?=(?:.*?[a-z]){2})/i.test(formState.firstName);
+        validator(formState.firstName);
+        break;
+      case "lastName":
+        validator(formState.lastName);
+        break;
+      case "sector":
+        validator(formState.sector);
+        break;
+      case "city":
+        validator(formState.city);
+        break;
+      case "state":
+        validator(formState.state);
+        break;
+      case "country":
+        validator(formState.country);
+        break;
+      case "orgName":
+        validator(formState.orgName);
+        break;
+      case "zip":
+        let valid = /(^\d{4}(?:[\s]?[-\s][\s]?\d{4})?$)/.test(formState.zip);
+        if (!valid) {
+          setFormHelperText({
+            ...formHelperText,
+            [e.target.name]: "Please enter a valid 6 digit US zipcode",
+          });
+        } else {
+          setFormHelperText({
+            ...formHelperText,
+            [e.target.name]: undefined,
+          });
+        }
+        break;
+      case "website":
+        let validWeb = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/i.test(
+          formState.website
+        );
+        if (!validWeb) {
+          setFormHelperText({
+            ...formHelperText,
+            [e.target.name]: "Please enter a valid website address",
+          });
+        } else {
+          setFormHelperText({
+            ...formHelperText,
+            [e.target.name]: undefined,
+          });
+        }
+        break;
+      default:
+        break;
+    }
   };
-
   const handleSubmit = () => {
     console.log(`Sumbit form values: `, formState);
   };
@@ -56,15 +143,21 @@ export default function ApplicantProfileForm() {
             formState={formState}
             handleChanges={handleChanges}
             setFormState={setFormState}
+            formHelperText={formHelperText}
           />
         );
       case 1:
         return formState.org ? (
-          <OrgInformation handleChanges={handleChanges} formState={formState} />
+          <OrgInformation
+            handleChanges={handleChanges}
+            formState={formState}
+            formHelperText={formHelperText}
+          />
         ) : (
           <NonOrgInformation
             handleChanges={handleChanges}
             formState={formState}
+            formHelperText={formHelperText}
           />
         );
       case 2:
@@ -73,6 +166,7 @@ export default function ApplicantProfileForm() {
             handleChanges={handleChanges}
             handleSubmit={handleSubmit}
             formState={formState}
+            formHelperText={formHelperText}
           />
         );
       default:
