@@ -19,10 +19,3 @@ export default createMuiTheme({
     },
   },
 });
-
-export const colors = {
-  primary: "#33658A",
-  accent: "#F6AE2D",
-  add1: "#B2F7EF",
-  add2: "#3A539B",
-};
