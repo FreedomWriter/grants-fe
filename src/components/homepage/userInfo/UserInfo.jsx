@@ -17,6 +17,7 @@ const UserInfo = (props) => {
       <CardContent className={classes.userRight}>
         <h2>Name: {user.fullname}</h2>
         <h3>username: {user.username}</h3>
+        <h3>roles: {user.role} </h3>
         <h3>Sector/Focus: {user.sector}</h3>
         <p>{user.desc}</p>
       </CardContent>

@@ -7,6 +7,7 @@ export const userDetails = {
   usertype: 1, //1 means grant applicant, 2 means grant writer
   image:
     "https://image.shutterstock.com/image-photo/young-scientist-looking-through-microscope-600w-524351890.jpg",
+  role: "writer",
 };
 
 export const grants = [
