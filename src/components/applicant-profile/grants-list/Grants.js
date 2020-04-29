@@ -1,25 +1,44 @@
-import React, { useState, useEffect } from './node_modules/react';
+import React from 'react'
+
+import GrantCard from './GrantCard'
 
 
 const Grants = () => {
-  const [grants, setGrants] = useState(['grant 1', 'grant 2', 'grant 3' ])
 
-  useEffect(() => {
-    if(!grants) {
-      props.getGrants(props.token)
+  const grants = [
+    {
+      grantId: 1,
+      grantName: 'grant name #1',
+      grantDescription: 'grant description #1'
+    },
+    {
+      grantId: 2,
+      grantName: 'grant name #2',
+      grantDescription: 'grant description #2'
+    },
+    {
+      grantId: 3,
+      grantName: 'grant name #3',
+      grantDescription: 'grant description #3'
     }
-    setGrants(props.grants)
-  },[])
+  ]
 
-  useEffect(() => {
-    setGrants(props.grants)
-  }, [props.grants])
+  // useEffect(() => {
+  //   if(!grants) {
+  //     props.getGrants(props.token)
+  //   }
+  //   setGrants(props.grants)
+  // },[])
+
+  // useEffect(() => {
+  //   setGrants(props.grants)
+  // }, [props.grants])
   
   return(
     <>
       <h1>Grants: </h1>
-      {grants && grants.map(grant => (
-        <div key={grant.id}>
+      {grants.map((grant) => (
+        <div key={grant.grantId}>
           <GrantCard grant={grant} />
         </div>
       ))}
