@@ -6,6 +6,11 @@ import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
@@ -22,11 +27,23 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
             margin: theme.spacing(3, 0, 2),
-        },
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        width: '100em',
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
 }));
 
 export default function RegisterForm() {
     const classes = useStyles();
+    const [userType, setUserType] = React.useState('');
+
+    const handleChange = (e) => {
+        setUserType(e.target.value);
+    };
 
     return (
         <div class='register'>
@@ -72,6 +89,22 @@ export default function RegisterForm() {
                                 autoComplete="email"
                             />
                         </Grid>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                            <InputLabel id="user-type">User Type</InputLabel>
+                            <Select
+                                labelId="user-types-label"
+                                id="user-types"
+                                value={userType}
+                                onChangle={handleChange}
+                                label="User Type"
+                            >
+                                <MenuItem value="">
+                                    <em>Select User Type</em>
+                                </MenuItem>
+                                <MenuItem value="grantWriter">Grant Writer</MenuItem>
+                                <MenuItem value="grantApplicant">Grant Applicant</MenuItem>
+                            </Select>
+                        </FormControl>
                         <Grid item xs={12}>
                             <TextField
                                 variant="outlined"
@@ -81,6 +114,18 @@ export default function RegisterForm() {
                                 label="Password"
                                 type="password"
                                 id="password"
+                                autoComplete="current-password"
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="confirm-password"
+                                label="Confirm Password"
+                                type="password"
+                                id="confirm-password"
                                 autoComplete="current-password"
                             />
                         </Grid>
