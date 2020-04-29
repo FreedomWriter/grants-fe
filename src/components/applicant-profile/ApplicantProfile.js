@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     height: '20rem'
     },
   grants: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     textAlign: 'center'    
   },
 

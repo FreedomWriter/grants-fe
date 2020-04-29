@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     '& > *': {
-      margin: theme.spacing(1),
+      margin: '0 auto'
     }
   },
   large: {
@@ -19,8 +19,12 @@ export default function LetterAvatars() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Avatar className={classes.large}>GA</Avatar>
-    </div>
+    <>
+      <div className={classes.root}>
+        <Avatar className={classes.large}>GA</Avatar>
+      </div>
+      <p>Visit Our Website:</p>
+      <p>www.writemygrants.net</p>
+    </>
   );
 }
