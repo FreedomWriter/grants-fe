@@ -30,7 +30,7 @@ export default function ApplicantProfileForm() {
     state: "",
     zip: "",
     country: "",
-    org: true,
+    org: false,
     orgName: "",
     foundingDate: "",
     website: "",
