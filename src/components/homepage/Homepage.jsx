@@ -7,9 +7,12 @@ import UserInfo from "./userInfo/UserInfo.jsx";
 import { grants, userDetails } from "./dummydata/data.jsx";
 import { Container } from "@material-ui/core";
 
+import { useStyles } from "./HomepageStyles.jsx";
+
 const Homepage = () => {
+  const classes = useStyles();
   return (
-    <div className="App">
+    <div className={classes.container}>
       <Container className="App-header">
         <UserInfo details={userDetails} />
         {grants.map((grant) => {

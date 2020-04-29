@@ -47,5 +47,6 @@ export const grants = [
       "Some Detail for 3",
       "Some detail for 4",
     ],
+    sector: "bio-med",
   },
 ];
