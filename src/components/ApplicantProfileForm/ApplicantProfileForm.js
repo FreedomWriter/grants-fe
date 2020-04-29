@@ -51,7 +51,6 @@ export default function ApplicantProfileForm() {
     bio: undefined,
   });
 
-  console.log({ formState });
   const handleChanges = (e) => {
     e.persist();
 

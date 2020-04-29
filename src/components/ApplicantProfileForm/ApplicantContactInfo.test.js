@@ -41,6 +41,20 @@ const setFormStateMock = jest.fn(function () {
   });
 });
 
+const formHelperText = {
+  firstName: undefined,
+  lastName: undefined,
+  sector: undefined,
+  city: undefined,
+  state: undefined,
+  zip: undefined,
+  country: undefined,
+  orgName: undefined,
+  foundingDate: undefined,
+  website: undefined,
+  bio: undefined,
+};
+
 beforeEach(() => {
   useStateMock.mockImplementation((init) => [init, setFormStateMock]);
 });
@@ -50,14 +64,22 @@ afterEach(() => {
 });
 
 test("contact information is visible", () => {
-  const { getByText } = render(<ApplicantContactInfo formState={formState} />);
+  const { getByText } = render(
+    <ApplicantContactInfo
+      formState={formState}
+      formHelperText={formHelperText}
+    />
+  );
   const header = getByText(/contact information/i);
   expect(header).toBeVisible();
 });
 
 test("inputs are visible", () => {
   const { getByLabelText } = render(
-    <ApplicantContactInfo formState={formState} />
+    <ApplicantContactInfo
+      formState={formState}
+      formHelperText={formHelperText}
+    />
   );
 
   const firstNameLabelText = getByLabelText(/first name/i);
@@ -81,6 +103,7 @@ test("form submit adds contact info to state", () => {
   const { getByLabelText } = render(
     <ApplicantContactInfo
       formState={formState}
+      formHelperText={formHelperText}
       //   setFormState={setFormStateMock}
     />
   );
