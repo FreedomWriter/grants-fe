@@ -75,7 +75,6 @@ export default function ApplicantProfileForm() {
     };
     switch (e.target.id) {
       case "firstName":
-        // valid = /(?=(?:.*?[a-z]){2})/i.test(formState.firstName);
         validator(formState.firstName);
         break;
       case "lastName":

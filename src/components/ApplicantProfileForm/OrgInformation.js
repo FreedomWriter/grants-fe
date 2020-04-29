@@ -41,7 +41,6 @@ export default function OrgInformation({
             id="foundingDate"
             name="foundingDate"
             value={formState.foundingDate}
-            // label="Founding Date"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
