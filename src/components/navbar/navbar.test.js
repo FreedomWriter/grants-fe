@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState as useStateMock } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { render } from "@testing-library/react";
 import Navbar from "./Navbar";
+import { jssPreset } from "@material-ui/core";
+
+// let searchTerms = ""
+
+// jest.mock("react", () => ({
+//   ...jest.requireActual("react"),
+//   useState: jest.fn()
+// }))
 
 test("inputs are visible", () => {
   let searchTerms = "";
   const { getByTestId } = render(
     <Router>
-      <Navbar searchTerms={searchTerms} />
+      <Navbar searchTerms={searchTerms} searchTerms={searchTerms} />
     </Router>
   );
 
