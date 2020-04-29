@@ -36,7 +36,7 @@ const Grants = () => {
   
   return(
     <>
-      <h1>Grants: </h1>
+      <h1>Grants We'd Like to Apply For: </h1>
       {grants.map((grant) => (
         <div key={grant.grantId}>
           <GrantCard grant={grant} />

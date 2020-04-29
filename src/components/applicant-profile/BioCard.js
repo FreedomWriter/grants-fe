@@ -14,3 +14,4 @@ const BioCard = () => {
 }
 
 export default BioCard
+
