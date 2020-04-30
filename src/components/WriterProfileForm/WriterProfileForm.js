@@ -6,18 +6,15 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import ApplicantContactInfo from "./ApplicantContactInfo";
-import OrgInformation from "./OrgInformation";
-import NonOrgInformation from "./NonOrgInformation";
-import Review from "./ApplicantReviewForm";
+import WriterContactInfoForm from "./WriterContactInfoForm";
+import WriterEducationForm from "./WriterEducationForm";
+import WriterWorkHistoryForm from "./WriterWorkHistoryForm";
+import WriterBioForm from "./WriterBioForm";
+import WriterReview from "./WriterReviewForm";
 
-import { useStyles } from "./ApplicantForm.styles";
+import { useStyles } from "./WriterForm.styles";
 
-const steps = [
-  "Contact Information",
-  "Additional Information",
-  "Review your profile",
-];
+const steps = ["", "", "", "", ""];
 
 export default function ApplicantProfileForm() {
   const classes = useStyles();
@@ -144,7 +141,7 @@ export default function ApplicantProfileForm() {
     switch (step) {
       case 0:
         return (
-          <ApplicantContactInfo
+          <WriterContactInfoForm
             formState={formState}
             handleChanges={handleChanges}
             setFormState={setFormState}
@@ -153,15 +150,8 @@ export default function ApplicantProfileForm() {
           />
         );
       case 1:
-        return formState.org ? (
-          <OrgInformation
-            handleChanges={handleChanges}
-            formState={formState}
-            formHelperText={formHelperText}
-            handleValidation={handleValidation}
-          />
-        ) : (
-          <NonOrgInformation
+        return (
+          <WriterEducationForm
             handleChanges={handleChanges}
             formState={formState}
             formHelperText={formHelperText}
@@ -170,7 +160,25 @@ export default function ApplicantProfileForm() {
         );
       case 2:
         return (
-          <Review
+          <WriterWorkHistoryForm
+            handleChanges={handleChanges}
+            formState={formState}
+            formHelperText={formHelperText}
+            handleValidation={handleValidation}
+          />
+        );
+      case 3:
+        return (
+          <WriterBioForm
+            handleChanges={handleChanges}
+            formState={formState}
+            formHelperText={formHelperText}
+            handleValidation={handleValidation}
+          />
+        );
+      case 4:
+        return (
+          <WriterReview
             handleChanges={handleChanges}
             handleSubmit={handleSubmit}
             formState={formState}
@@ -188,8 +196,7 @@ export default function ApplicantProfileForm() {
   };
 
   const handleBack = () => {
-    activeStep === 1 && setFormState({ ...formState, org: false });
-    return setActiveStep(activeStep - 1);
+    setActiveStep(activeStep - 1);
   };
 
   return (
