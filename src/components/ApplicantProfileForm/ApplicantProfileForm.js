@@ -21,6 +21,7 @@ const steps = [
 
 export default function ApplicantProfileForm() {
   const classes = useStyles();
+  // active step keeps track of which child component will render
   const [activeStep, setActiveStep] = useState(0);
   const [formState, setFormState] = useState({
     firstName: "",
@@ -37,6 +38,7 @@ export default function ApplicantProfileForm() {
     bio: "",
   });
 
+  // state for handling error text when input validation is not met
   const [formHelperText, setFormHelperText] = useState({
     firstName: undefined,
     lastName: undefined,
@@ -52,12 +54,15 @@ export default function ApplicantProfileForm() {
   });
 
   const handleChanges = (e) => {
+    //persisting the event to ensure it makes it to validation
     e.persist();
 
     setFormState({
       ...formState,
       [e.target.name]: e.target.value,
     });
+
+    // validation function handles all inputs where the only validation is that the string must be greater than 2
     const validator = async (formValue) => {
       e.persist();
       let valid = /(?=(?:.*?[a-z]){1})/i.test(formValue);
@@ -73,6 +78,7 @@ export default function ApplicantProfileForm() {
         });
       }
     };
+    // handling input validation
     switch (e.target.id) {
       case "firstName":
         validator(formState.firstName);
@@ -133,6 +139,7 @@ export default function ApplicantProfileForm() {
     console.log(`Sumbit form values: `, formState);
   };
 
+  // children components render different forms as user moves through the registration process
   function getStepContent(step) {
     switch (step) {
       case 0:
@@ -211,6 +218,7 @@ export default function ApplicantProfileForm() {
                 }
                 className={classes.button}
               >
+                {/* dynamically render button based on active steps */}
                 {activeStep === steps.length - 1 ? "Submit Profile" : "Next"}
               </Button>
             </div>

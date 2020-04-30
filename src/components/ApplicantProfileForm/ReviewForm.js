@@ -14,6 +14,7 @@ export default function ReviewForm({ formState, setFormState, handleChanges }) {
         setFormState={setFormState}
         handleChanges={handleChanges}
       />
+      {/* render appropariate additional information based on formState.org boolean */}
       {formState.org ? (
         <OrgInformation
           formState={formState}
