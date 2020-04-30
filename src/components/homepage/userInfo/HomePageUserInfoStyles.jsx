@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       maxWidth: 1345,
-      background: theme.palette.common.aqua,
+      // background: theme.palette.common.aqua,
     },
     media: {
       margin: "auto",
@@ -46,7 +46,7 @@ export const useStyles = makeStyles((theme) =>
     userInfo: {
       display: "flex",
       width: "100%",
-      backgroundColor: theme.palette.primary.main,
+      border: `1px solid ${theme.palette.primary.main}`,
       justifyContent: "center",
       lineHeight: "10px",
     },

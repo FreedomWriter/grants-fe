@@ -16,6 +16,12 @@ import ChatRoundedIcon from "@material-ui/icons/ChatRounded";
 
 import { useStyles } from "./GrantCardStyles.jsx";
 
+import { connect } from "react-redux";
+import {
+  getUserInfo,
+  getGrantsInfo,
+} from "../../../store/actions/HomepageActions.js";
+
 export default function GrantCard(props) {
   const grant = props.data;
   // console.log("GrantCard: ", grant);
@@ -38,14 +44,18 @@ export default function GrantCard(props) {
         action={
           <div>
             <CardActions className={classes.actionTop}>
-              <IconButton aria-label="add to favorites">
+              <IconButton
+                aria-label="add to favorites"
+                className={classes.buttons}
+              >
                 <FavoriteIcon />
               </IconButton>
-              <IconButton aria-label="direct message">
+              <IconButton
+                aria-label="direct message"
+                className={classes.buttons}
+              >
                 <ChatRoundedIcon />
               </IconButton>
-            </CardActions>
-            <CardActions disableSpacing>
               <IconButton
                 className={clsx(classes.expand, {
                   [classes.expandOpen]: expanded,
@@ -65,9 +75,9 @@ export default function GrantCard(props) {
               <Typography variant="body2" color="textSecondary" component="p">
                 {grant.title}
               </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
+              {/* <Typography variant="body2" color="textSecondary" component="p">
                 {grant.detailMain}
-              </Typography>
+              </Typography> */}
             </div>
             <div className={classes.boxInfo} backgroundColor="primary.main">
               <Typography className={classes.boxes}>Timeframe</Typography>

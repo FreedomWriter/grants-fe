@@ -1,11 +1,15 @@
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { red } from "@material-ui/core/colors";
 
 export const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       maxWidth: 1345,
-      background: theme.palette.secondary.main,
+      border: `1px solid ${theme.palette.secondary.main}`,
+      height: "200px",
+      boxShadow: "30px",
+      [theme.breakpoints.up("md")]: {
+        height: "auto",
+      },
     },
     media: {
       height: 0,
@@ -26,7 +30,7 @@ export const useStyles = makeStyles((theme) =>
       transform: "rotate(180deg)",
     },
     avatar: {
-      backgroundColor: red[500],
+      backgroundColor: theme.palette.primary.main,
     },
     title: {
       width: "10%",
@@ -45,13 +49,15 @@ export const useStyles = makeStyles((theme) =>
     },
     boxes: {
       backgroundColor: theme.palette.common.aqua,
+      display: "flex",
+      justifyContent: "center",
       color: theme.palette.primary,
       width: "100px",
       margin: "5px",
       height: "auto",
       [theme.breakpoints.up("md")]: {
         height: "60px",
-        marginTop: "auto",
+        alignItems: "center",
       },
     },
     content: {
@@ -72,6 +78,9 @@ export const useStyles = makeStyles((theme) =>
         display: "block",
         flexDirection: "column",
       },
+    },
+    buttons: {
+      marginLeft: "8px",
     },
   })
 );

@@ -21,12 +21,11 @@ export const grants = [
     closedDate: "05/29/2020",
     image:
       "https://image.shutterstock.com/image-photo/cropped-image-male-female-hands-600w-1510838900.jpg",
-    detailMain: "Some main detail for Grant #1",
+    detailMain:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim facilisis gravida neque convallis a cras semper auctor. Amet porttitor eget dolor morbi non arcu risus quis. Ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper. Massa tincidunt dui ut ornare lectus sit amet est. Mattis enim ut tellus elementum.",
     detailContent: [
-      "Some details for 1",
-      "Some details for 2",
-      "Some Detail for 3",
-      "Some detail for 4",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim facilisis gravida neque convallis a cras semper auctor. Amet porttitor eget dolor morbi non arcu risus quis. Ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper. Massa tincidunt dui ut ornare lectus sit amet est. Mattis enim ut tellus elementum.",
+      "Extra Details 2",
     ],
     sector: "science",
     roles: "",

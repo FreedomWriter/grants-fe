@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./components/globals/theme";
 
@@ -11,6 +11,7 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
         <Navbar />
+        {/* <Route exact path={"/Homepage"} component={Homepage} /> */}
         <Homepage />
       </ThemeProvider>
     </Router>
