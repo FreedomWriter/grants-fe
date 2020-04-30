@@ -54,18 +54,21 @@ export default function ApplicantProfileForm() {
   });
 
   const handleChanges = (e) => {
-    //persisting the event to ensure it makes it to validation
-    e.persist();
-
     setFormState({
       ...formState,
       [e.target.name]: e.target.value,
     });
+  };
+  const handleSubmit = () => {
+    console.log(`Sumbit form values: `, formState);
+  };
 
+  const handleValidation = (e) => {
     // validation function handles all inputs where the only validation is that the string must be greater than 2
     const validator = async (formValue) => {
+      //persisting the event to ensure it makes it to validation
       e.persist();
-      let valid = /(?=(?:.*?[a-z]){1})/i.test(formValue);
+      let valid = /(?=(?:.*?[a-z]){2})/i.test(formValue);
       if (!valid) {
         setFormHelperText({
           ...formHelperText,
@@ -102,7 +105,7 @@ export default function ApplicantProfileForm() {
         validator(formState.orgName);
         break;
       case "zip":
-        let valid = /(^\d{4}(?:[\s]?[-\s][\s]?\d{4})?$)/.test(formState.zip);
+        let valid = /(^\d{5}(?:[\s]?[-\s][\s]?\d{4})?$)/.test(formState.zip);
         if (!valid) {
           setFormHelperText({
             ...formHelperText,
@@ -135,9 +138,6 @@ export default function ApplicantProfileForm() {
         break;
     }
   };
-  const handleSubmit = () => {
-    console.log(`Sumbit form values: `, formState);
-  };
 
   // children components render different forms as user moves through the registration process
   function getStepContent(step) {
@@ -149,6 +149,7 @@ export default function ApplicantProfileForm() {
             handleChanges={handleChanges}
             setFormState={setFormState}
             formHelperText={formHelperText}
+            handleValidation={handleValidation}
           />
         );
       case 1:
@@ -157,12 +158,14 @@ export default function ApplicantProfileForm() {
             handleChanges={handleChanges}
             formState={formState}
             formHelperText={formHelperText}
+            handleValidation={handleValidation}
           />
         ) : (
           <NonOrgInformation
             handleChanges={handleChanges}
             formState={formState}
             formHelperText={formHelperText}
+            handleValidation={handleValidation}
           />
         );
       case 2:
@@ -172,6 +175,8 @@ export default function ApplicantProfileForm() {
             handleSubmit={handleSubmit}
             formState={formState}
             formHelperText={formHelperText}
+            setFormState={setFormState}
+            handleValidation={handleValidation}
           />
         );
       default:

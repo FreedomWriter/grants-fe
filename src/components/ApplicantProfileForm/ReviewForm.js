@@ -5,7 +5,13 @@ import NonOrgInformation from "./NonOrgInformation";
 
 import { useStyles } from "./ApplicantForm.styles";
 
-export default function ReviewForm({ formState, setFormState, handleChanges }) {
+export default function ReviewForm({
+  formState,
+  setFormState,
+  handleChanges,
+  formHelperText,
+  handleValidation,
+}) {
   const classes = useStyles();
   return (
     <div className={classes.container}>
@@ -13,6 +19,8 @@ export default function ReviewForm({ formState, setFormState, handleChanges }) {
         formState={formState}
         setFormState={setFormState}
         handleChanges={handleChanges}
+        formHelperText={formHelperText}
+        handleValidation={handleValidation}
       />
       {/* render appropariate additional information based on formState.org boolean */}
       {formState.org ? (
@@ -20,12 +28,16 @@ export default function ReviewForm({ formState, setFormState, handleChanges }) {
           formState={formState}
           setFormState={setFormState}
           handleChanges={handleChanges}
+          formHelperText={formHelperText}
+          handleValidation={handleValidation}
         />
       ) : (
         <NonOrgInformation
           formState={formState}
           setFormState={setFormState}
           handleChanges={handleChanges}
+          formHelperText={formHelperText}
+          handleValidation={handleValidation}
         />
       )}
     </div>

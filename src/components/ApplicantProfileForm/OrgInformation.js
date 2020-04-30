@@ -9,6 +9,7 @@ export default function OrgInformation({
   handleChanges,
   formState,
   formHelperText,
+  handleValidation,
 }) {
   const classes = useStyles();
   return (
@@ -19,6 +20,7 @@ export default function OrgInformation({
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
+            onBlur={handleValidation}
             error={formHelperText.orgName ? true : undefined}
             helperText={formHelperText.orgName}
             onChange={handleChanges}
@@ -33,18 +35,26 @@ export default function OrgInformation({
         </Grid>
         <Grid item xs={12}>
           <TextField
-            helperText={"Organizations Founding Date *"}
+            onBlur={handleValidation}
+            error={formHelperText.foundingDate ? true : undefined}
+            helperText={
+              formHelperText.foundingDate
+                ? formHelperText.foundingDate
+                : "Organizations Founding Date *"
+            }
             onChange={handleChanges}
             className={classes.orgTextField}
-            type="date"
+            // type="date"
             required
             id="foundingDate"
             name="foundingDate"
             value={formState.foundingDate}
+            label="Founding Date"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
+            onBlur={handleValidation}
             error={formHelperText.website ? true : undefined}
             helperText={formHelperText.website}
             onChange={handleChanges}
