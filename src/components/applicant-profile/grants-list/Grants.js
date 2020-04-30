@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Paper from '@material-ui/core/Paper';
+import { useStyles } from '../ApplicantProfile.styles'
 
 import GrantCard from './GrantCard'
 
 
 const Grants = () => {
+  const classes = useStyles();
 
   const grants = [
     {
@@ -37,11 +40,13 @@ const Grants = () => {
   return(
     <>
       <h2>Grants We'd Like to Apply For: </h2>
-      {grants.map((grant) => (
-        <div key={grant.grantId}>
-          <GrantCard grant={grant} />
-        </div>
-      ))}
+      <Paper className={classes.profilepaper}>
+        {grants.map((grant) => (
+          <div key={grant.grantId}>
+            <GrantCard grant={grant} />
+          </div>
+        ))}
+      </Paper>
     </>
   )
 }

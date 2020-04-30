@@ -11,8 +11,8 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
         <Navbar />
+        <ApplicantProfile />
       </ThemeProvider>
-      <ApplicantProfile />
     </Router>
   );
 }

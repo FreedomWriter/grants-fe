@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +21,7 @@ export default function LetterAvatars() {
   return (
     <>
       <div className={classes.root}>
-        <Avatar className={classes.large}>GA</Avatar>
+        <AccountCircleIcon className={classes.large} />
       </div>
       <p>Visit Our Website:</p>
       <p>www.writemygrants.net</p>
