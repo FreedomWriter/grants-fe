@@ -112,19 +112,6 @@ export default function OrgInformation({
                         Edit
                       </Button>
                     </Grid>
-
-                    {/* <Grid item>
-                      <Button
-                        onClick={() =>
-                          console.log(
-                            `You want to edit ${writersCollege.college}which has the id of ${writersCollege.id}`
-                          )
-                        }
-                        className={classes.editButton}
-                      >
-                        Edit
-                      </Button>
-                    </Grid> */}
                   </Grid>
                 );
               })}
@@ -138,16 +125,33 @@ export default function OrgInformation({
             helperText={
               formHelperText.foundingDate
                 ? formHelperText.foundingDate
-                : "Organizations Founding Date *"
+                : "Start Date *"
             }
             onChange={handleChanges}
             className={classes.orgTextField}
             // type="date"
             required
-            id="foundingDate"
-            name="foundingDate"
+            id="startDate"
+            name="startDate"
             value={formState.foundingDate}
-            label="Founding Date"
+            label="Start Date"
+          />
+          <TextField
+            onBlur={handleValidation}
+            error={formHelperText.foundingDate ? true : undefined}
+            helperText={
+              formHelperText.foundingDate
+                ? formHelperText.foundingDate
+                : "End Date *"
+            }
+            onChange={handleChanges}
+            className={classes.orgTextField}
+            // type="date"
+            required
+            id="endDate"
+            name="endDate"
+            value={formState.foundingDate}
+            label="End Date"
           />
         </Grid>
         <Grid item xs={12}>
@@ -158,12 +162,12 @@ export default function OrgInformation({
             onChange={handleChanges}
             id="website"
             name="website"
-            label="Organization Website"
+            label="Website"
             value={formState.website}
             className={classes.orgTextField}
           />
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <TextAreaAutosize
             onChange={handleChanges}
             required
@@ -175,7 +179,7 @@ export default function OrgInformation({
             rowsMin={6}
             className={classes.textArea}
           />
-        </Grid>
+        </Grid> */}
       </Grid>
     </div>
   );

@@ -14,23 +14,23 @@ export default function ApplicantContactInfo({
   const classes = useStyles();
   console.log({ contactFormState });
 
-  useEffect(() => {
-    contactFormState.firstName &&
-      contactFormState.lastName &&
-      contactFormState.city &&
-      contactFormState.state &&
-      contactFormState.zip &&
-      contactFormState.country &&
-      setDisableButton(false);
-  }, [
-    contactFormState.firstName,
-    contactFormState.lastName,
-    contactFormState.city,
-    contactFormState.state,
-    contactFormState.zip,
-    contactFormState.country,
-    setDisableButton,
-  ]);
+  // useEffect(() => {
+  //   contactFormState.firstName &&
+  //     contactFormState.lastName &&
+  //     contactFormState.city &&
+  //     contactFormState.state &&
+  //     contactFormState.zip &&
+  //     contactFormState.country &&
+  //     setDisableButton(false);
+  // }, [
+  //   contactFormState.firstName,
+  //   contactFormState.lastName,
+  //   contactFormState.city,
+  //   contactFormState.state,
+  //   contactFormState.zip,
+  //   contactFormState.country,
+  //   setDisableButton,
+  // ]);
   return (
     <div className={classes.container}>
       <Typography variant="h6" gutterBottom>

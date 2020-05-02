@@ -34,7 +34,7 @@ export default function ApplicantProfileForm() {
     website: "",
     bio: "",
   });
-  const [disableButton, setDisableButton] = useState(true);
+  const [disableButton, setDisableButton] = useState(false);
   const [contactFormState, setContactFormState] = useState({
     firstName: "",
     lastName: "",
