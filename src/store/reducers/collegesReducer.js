@@ -2,6 +2,7 @@ import {
   COLLEGES_GET_START,
   COLLEGES_GET_SUCCESS,
   COLLEGES_GET_FAILURE,
+  CLEAR_COLLEGE_LIST,
 } from "../actions/collegeActions";
 
 const initialState = {
@@ -26,6 +27,11 @@ const collegesReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
         isLoading: false,
+      };
+    // CLEAR_COLLEGE_LIST used to avoid making api calls
+    case CLEAR_COLLEGE_LIST:
+      return {
+        colleges: [],
       };
 
     default:

@@ -49,6 +49,10 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
   },
+  editButton: {
+    marginTop: theme.spacing(3),
+    // marginLeft: theme.spacing(1),
+  },
   hide: {
     marginRight: "15000px",
   },

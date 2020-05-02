@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getColleges } from "../../store/actions/collegeActions";
+import {
+  getColleges,
+  clearCollegeList,
+} from "../../store/actions/collegeActions";
 
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -8,6 +11,8 @@ import TextField from "@material-ui/core/TextField";
 import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
 import FormControl from "@material-ui/core/FormControl";
 import InputBase from "@material-ui/core/InputBase";
+
+import Button from "@material-ui/core/Button";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import FormHelperText from "@material-ui/core/FormHelperText";
 
@@ -22,8 +27,12 @@ export default function OrgInformation({
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const [writersColleges, setWritersColleges] = useState([]);
+
   useEffect(() => {
     async function fetchData() {
+      // once user has typed 3 characters in, api request for colleges fires
+      //consider using local state
       formState.searchCollege !== undefined &&
         formState.searchCollege.length >= 3 &&
         (await dispatch(getColleges(formState.searchCollege)));
@@ -32,7 +41,7 @@ export default function OrgInformation({
   }, [dispatch, formState.searchCollege]);
 
   const colleges = useSelector((state) => state.collegeList.colleges);
-  console.log(`formState.college: `, formState.college);
+
   return (
     <div className={classes.container}>
       <Typography variant="h6" gutterBottom>
@@ -43,41 +52,82 @@ export default function OrgInformation({
           <Grid item xs={12}>
             <FormControl className={classes.formControl}>
               <InputBase
-                placeholder={
-                  formState.college
-                    ? `${formState.college}`
-                    : "Enter A School Name..."
-                }
+                placeholder="Enter A School Name..."
                 onBlur={handleValidation}
                 error={formHelperText.searchCollege ? true : undefined}
                 onChange={handleChanges}
                 required
                 id="searchCollege"
                 name="searchCollege"
-                value={
-                  formState.college
-                    ? formState.college
-                    : formState.searchCollege
-                }
+                value={formState.searchCollege || ""}
                 label="Enter School Name"
                 className={classes.orgTextField}
                 inputProps={{ "aria-label": "search" }}
               />
-              {!formState.college &&
+
+              {/* renders a list of options for the user to select from using data pulled from api */}
+              {formState.searchCollege &&
                 colleges &&
                 colleges.map((college) => (
                   <option
                     key={college.id}
                     arial-label={college.name}
                     value={college.name}
-                    onClick={() =>
-                      setFormState({ ...formState, college: college.name })
-                    }
+                    onClick={() => {
+                      setWritersColleges([
+                        ...writersColleges,
+                        { id: college.id, college: college.name },
+                      ]);
+                      setFormState({
+                        ...formState,
+                        college: undefined,
+                        searchCollege: undefined,
+                      });
+                      return dispatch(clearCollegeList());
+                    }}
                   >
                     {college.name}
                   </option>
                 ))}
             </FormControl>
+            {writersColleges &&
+              writersColleges.map((writersCollege, i) => {
+                return (
+                  <Grid item container key={writersCollege.id + (i + 1)}>
+                    <Grid item>
+                      <h2>Edit/Add Component</h2>
+                      <p>{`${i + 1} ${writersCollege.college}`}</p>
+                      <Button
+                        onClick={() =>
+                          console.log(
+                            `You want to edit ${
+                              writersCollege.college
+                            } which has the id of ${
+                              writersCollege.id
+                            } and a key of ${writersCollege.id + (i + 1)}`
+                          )
+                        }
+                        className={classes.editButton}
+                      >
+                        Edit
+                      </Button>
+                    </Grid>
+
+                    {/* <Grid item>
+                      <Button
+                        onClick={() =>
+                          console.log(
+                            `You want to edit ${writersCollege.college}which has the id of ${writersCollege.id}`
+                          )
+                        }
+                        className={classes.editButton}
+                      >
+                        Edit
+                      </Button>
+                    </Grid> */}
+                  </Grid>
+                );
+              })}
           </Grid>
         </Grid>
 
