@@ -14,7 +14,7 @@ import WriterReview from "./WriterReviewForm";
 
 import { useStyles } from "./WriterForm.styles";
 
-const steps = ["", "", "", "", ""];
+const steps = ["Contact", "Education", "Work History", "Bio", "Review"];
 
 export default function ApplicantProfileForm() {
   const classes = useStyles();
