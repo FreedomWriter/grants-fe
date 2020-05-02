@@ -48,6 +48,8 @@ export default function ApplicantProfileForm() {
     foundingDate: undefined,
     website: undefined,
     bio: undefined,
+    college: undefined,
+    searchCollege: undefined,
   });
 
   const handleChanges = (e) => {
@@ -156,6 +158,7 @@ export default function ApplicantProfileForm() {
             formState={formState}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
+            setFormState={setFormState}
           />
         );
       case 2:
@@ -207,7 +210,11 @@ export default function ApplicantProfileForm() {
           <Typography component="h1" variant="h4" align="center">
             Create Profile
           </Typography>
-          <Stepper activeStep={activeStep} className={classes.stepper}>
+          <Stepper
+            activeStep={activeStep}
+            className={classes.stepper}
+            alternativeLabel
+          >
             {steps.map((label) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
