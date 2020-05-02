@@ -1,11 +1,8 @@
 import React from "react";
-import ApplicantContactInfo from "./WriterContactInfoForm";
-import OrgInformation from "./WriterEducationForm";
-import WriterContactInfo from "./WriterContactInfoForm";
-import WriterEducation from "./WriterEducationForm";
-import WriterWorkHistory from "./WriterWorkHistoryForm";
+import WriterContactInfoForm from "./WriterContactInfoForm";
+import WriterEducationForm from "./WriterEducationForm";
+import WriterWorkHistoryForm from "./WriterWorkHistoryForm";
 import WriterBioForm from "./WriterBioForm";
-import WriterReview from "./WriterReviewForm";
 
 import { useStyles } from "./WriterForm.styles";
 
@@ -18,24 +15,29 @@ export default function ReviewForm({
 }) {
   return (
     <>
-      <WriterContactInfo
+      <WriterContactInfoForm
         formState={formState}
         handleChanges={handleChanges}
         setFormState={setFormState}
         formHelperText={formHelperText}
         handleValidation={handleValidation}
       />
-      <WriterEducation
+      <WriterEducationForm
         handleChanges={handleChanges}
         formState={formState}
         formHelperText={formHelperText}
         handleValidation={handleValidation}
       />
-      <WriterReview
+      <WriterWorkHistoryForm
         handleChanges={handleChanges}
         formState={formState}
         formHelperText={formHelperText}
-        setFormState={setFormState}
+        handleValidation={handleValidation}
+      />
+      <WriterBioForm
+        handleChanges={handleChanges}
+        formState={formState}
+        formHelperText={formHelperText}
         handleValidation={handleValidation}
       />
     </>

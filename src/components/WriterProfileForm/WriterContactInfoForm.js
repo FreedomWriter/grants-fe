@@ -51,21 +51,6 @@ export default function ApplicantContactInfo({
             autoComplete="lname"
           />
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            onBlur={handleValidation}
-            error={formHelperText.sector ? true : false}
-            helperText={formHelperText.sector}
-            required
-            id="sector"
-            name="sector"
-            label="Sector"
-            value={formState.sector}
-            onChange={handleChanges}
-            fullWidth
-          />
-        </Grid>
-
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}

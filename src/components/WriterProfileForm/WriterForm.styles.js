@@ -9,7 +9,11 @@ export const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   orgTextField: {
-    width: "50%",
+    width: "100%",
+  },
+  search: {
+    width: "100%",
+    borderBottom: `1px solid grey`,
   },
   appBar: {
     position: "relative",
@@ -35,7 +39,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   stepper: {
-    padding: theme.spacing(3, 0, 5),
+    // padding: theme.spacing(3, 0, 5),
   },
   buttons: {
     display: "flex",
@@ -44,5 +48,8 @@ export const useStyles = makeStyles((theme) => ({
   button: {
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
+  },
+  hide: {
+    marginRight: "15000px",
   },
 }));
