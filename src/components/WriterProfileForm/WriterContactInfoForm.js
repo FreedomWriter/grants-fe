@@ -1,20 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 
 import { useStyles } from "./WriterForm.styles";
 export default function ApplicantContactInfo({
-  formState,
-  handleChanges,
-  setFormState,
+  contactFormState,
+  handleContactChanges,
   formHelperText,
   handleValidation,
+  setDisableButton,
 }) {
   const classes = useStyles();
+  console.log({ contactFormState });
 
+  useEffect(() => {
+    contactFormState.firstName &&
+      contactFormState.lastName &&
+      contactFormState.city &&
+      contactFormState.state &&
+      contactFormState.zip &&
+      contactFormState.country &&
+      setDisableButton(false);
+  }, [
+    contactFormState.firstName,
+    contactFormState.lastName,
+    contactFormState.city,
+    contactFormState.state,
+    contactFormState.zip,
+    contactFormState.country,
+    setDisableButton,
+  ]);
   return (
     <div className={classes.container}>
       <Typography variant="h6" gutterBottom>
@@ -30,8 +46,8 @@ export default function ApplicantContactInfo({
             id="firstName"
             name="firstName"
             label="First name"
-            value={formState.firstName}
-            onChange={handleChanges}
+            value={contactFormState.firstName}
+            onChange={handleContactChanges}
             fullWidth
             autoComplete="fname"
           />
@@ -45,8 +61,8 @@ export default function ApplicantContactInfo({
             id="lastName"
             name="lastName"
             label="Last name"
-            value={formState.lastName}
-            onChange={handleChanges}
+            value={contactFormState.lastName}
+            onChange={handleContactChanges}
             fullWidth
             autoComplete="lname"
           />
@@ -60,8 +76,8 @@ export default function ApplicantContactInfo({
             id="city"
             name="city"
             label="City"
-            value={formState.city}
-            onChange={handleChanges}
+            value={contactFormState.city}
+            onChange={handleContactChanges}
             fullWidth
             autoComplete="billing address-level2"
           />
@@ -73,8 +89,8 @@ export default function ApplicantContactInfo({
             helperText={formHelperText.state}
             id="state"
             name="state"
-            value={formState.state}
-            onChange={handleChanges}
+            value={contactFormState.state}
+            onChange={handleContactChanges}
             label="State/Province/Region"
             fullWidth
           />
@@ -88,8 +104,8 @@ export default function ApplicantContactInfo({
             id="zip"
             name="zip"
             label="Zip / Postal code"
-            value={formState.zip}
-            onChange={handleChanges}
+            value={contactFormState.zip}
+            onChange={handleContactChanges}
             fullWidth
             autoComplete="billing postal-code"
           />
@@ -102,8 +118,8 @@ export default function ApplicantContactInfo({
             required
             id="country"
             name="country"
-            value={formState.country}
-            onChange={handleChanges}
+            value={contactFormState.country}
+            onChange={handleContactChanges}
             label="Country"
             fullWidth
             autoComplete="billing country"

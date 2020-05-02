@@ -34,6 +34,15 @@ export default function ApplicantProfileForm() {
     website: "",
     bio: "",
   });
+  const [disableButton, setDisableButton] = useState(true);
+  const [contactFormState, setContactFormState] = useState({
+    firstName: "",
+    lastName: "",
+    city: "",
+    state: "",
+    zip: "",
+    country: "",
+  });
 
   // state for handling error text when input validation is not met
   const [formHelperText, setFormHelperText] = useState({
@@ -55,6 +64,13 @@ export default function ApplicantProfileForm() {
   const handleChanges = (e) => {
     setFormState({
       ...formState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleContactChanges = (e) => {
+    setContactFormState({
+      ...contactFormState,
       [e.target.name]: e.target.value,
     });
   };
@@ -83,28 +99,24 @@ export default function ApplicantProfileForm() {
     // handling input validation
     switch (e.target.id) {
       case "firstName":
-        validator(formState.firstName);
+        validator(contactFormState.firstName);
         break;
       case "lastName":
-        validator(formState.lastName);
-        break;
-      case "sector":
-        validator(formState.sector);
+        validator(contactFormState.lastName);
         break;
       case "city":
-        validator(formState.city);
+        validator(contactFormState.city);
         break;
       case "state":
-        validator(formState.state);
+        validator(contactFormState.state);
         break;
       case "country":
-        validator(formState.country);
-        break;
-      case "orgName":
-        validator(formState.orgName);
+        validator(contactFormState.country);
         break;
       case "zip":
-        let valid = /(^\d{5}(?:[\s]?[-\s][\s]?\d{4})?$)/.test(formState.zip);
+        let valid = /(^\d{5}(?:[\s]?[-\s][\s]?\d{4})?$)/.test(
+          contactFormState.zip
+        );
         if (!valid) {
           setFormHelperText({
             ...formHelperText,
@@ -144,11 +156,12 @@ export default function ApplicantProfileForm() {
       case 0:
         return (
           <WriterContactInfoForm
-            formState={formState}
-            handleChanges={handleChanges}
+            contactFormState={contactFormState}
+            handleContactChanges={handleContactChanges}
             setFormState={setFormState}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
+            setDisableButton={setDisableButton}
           />
         );
       case 1:
@@ -159,6 +172,7 @@ export default function ApplicantProfileForm() {
             formHelperText={formHelperText}
             handleValidation={handleValidation}
             setFormState={setFormState}
+            setDisableButton={setDisableButton}
           />
         );
       case 2:
@@ -168,6 +182,7 @@ export default function ApplicantProfileForm() {
             formState={formState}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
+            setDisableButton={setDisableButton}
           />
         );
       case 3:
@@ -177,6 +192,7 @@ export default function ApplicantProfileForm() {
             formState={formState}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
+            setDisableButton={setDisableButton}
           />
         );
       case 4:
@@ -188,6 +204,7 @@ export default function ApplicantProfileForm() {
             formHelperText={formHelperText}
             setFormState={setFormState}
             handleValidation={handleValidation}
+            setDisableButton={setDisableButton}
           />
         );
       default:
@@ -202,6 +219,7 @@ export default function ApplicantProfileForm() {
     setActiveStep(activeStep - 1);
   };
 
+  // buttonIsDisabled(contactFormState);
   return (
     <>
       <CssBaseline />
@@ -232,6 +250,7 @@ export default function ApplicantProfileForm() {
               <Button
                 variant="contained"
                 color="primary"
+                disabled={disableButton}
                 // dynamically rendering which submit handler is applied
                 onClick={
                   activeStep === steps.length - 1 ? handleSubmit : handleNext
