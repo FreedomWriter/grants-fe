@@ -2,6 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import MomentUtils from "@date-io/moment";
 import * as serviceWorker from "./serviceWorker";
 
 import { Provider } from "react-redux";
@@ -12,7 +15,9 @@ import { store, persistor } from "./store";
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <App />
+      <MuiPickersUtilsProvider utils={MomentUtils}>
+        <App />
+      </MuiPickersUtilsProvider>
     </PersistGate>
   </Provider>,
   document.getElementById("root")

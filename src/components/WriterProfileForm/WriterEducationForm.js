@@ -32,14 +32,38 @@ export default function OrgInformation({
     async function fetchData() {
       // once user has typed 3 characters in, api request for colleges fires
       //consider using local state
-      // educationFormState.searchCollege !== "" &&
-      educationFormState.searchCollege.length >= 3 &&
+      educationFormState.searchCollege !== "" &&
+        educationFormState.searchCollege.length >= 3 &&
         (await dispatch(getColleges(educationFormState.searchCollege)));
     }
     fetchData();
   }, [dispatch, educationFormState.searchCollege]);
 
   const colleges = useSelector((state) => state.collegeList.colleges);
+
+  const handleCollegeSubmit = () => {
+    setWritersColleges([
+      ...writersColleges,
+      {
+        id: Date.now(),
+        college: educationFormState.college,
+        startDate: educationFormState.startDate,
+        endDate: educationFormState.endDate,
+        stillAttending: educationFormState.stillAttending,
+        anticipatedGraduation: educationFormState.anticipatedGraduation,
+        degree: educationFormState.degree,
+      },
+    ]);
+    setEducationFormState({
+      college: "",
+      searchCollege: "",
+      startDate: "",
+      endDate: "",
+      stillAttending: true,
+      anticipatedGraduation: "",
+      degree: "",
+    });
+  };
 
   return (
     <div className={classes.container}>
@@ -97,29 +121,29 @@ export default function OrgInformation({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.foundingDate ? true : undefined}
+            error={formHelperText.startDate ? true : undefined}
             helperText={
-              formHelperText.foundingDate
-                ? formHelperText.foundingDate
+              formHelperText.startDate
+                ? formHelperText.startDate
                 : "Start Date MM/YY*"
             }
             onChange={handleEducationChanges}
             className={classes.orgTextField}
-            // type="date"
+            type="date"
             required
             id="startDate"
             name="startDate"
-            value={educationFormState.foundingDate}
+            value={educationFormState.startDate}
             label="Start Date"
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.foundingDate ? true : undefined}
+            error={formHelperText.endDate ? true : undefined}
             helperText={
-              formHelperText.foundingDate
-                ? formHelperText.foundingDate
+              formHelperText.endDate
+                ? formHelperText.endDate
                 : "End Date  MM/YY*"
             }
             onChange={handleEducationChanges}
@@ -128,13 +152,13 @@ export default function OrgInformation({
             required
             id="endDate"
             name="endDate"
-            value={educationFormState.foundingDate}
+            value={educationFormState.endDate}
             label="End Date"
           />
         </Grid>
         <Grid item xs={12}>
           {" "}
-          <Button size="small" color="primary">
+          <Button size="small" color="primary" onClick={handleCollegeSubmit}>
             Submit
           </Button>
         </Grid>
