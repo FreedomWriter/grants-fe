@@ -56,4 +56,18 @@ export const useStyles = makeStyles((theme) => ({
   hide: {
     marginRight: "15000px",
   },
+  cardRoot: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)",
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
 }));

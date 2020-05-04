@@ -43,6 +43,15 @@ export default function ApplicantProfileForm() {
     zip: "",
     country: "",
   });
+  const [educationFormState, setEducationFormState] = useState({
+    college: "",
+    searchCollege: "",
+    startDate: "",
+    endDate: "",
+    stillAttending: true,
+    anticipatedGraduation: "",
+    degree: "",
+  });
 
   // state for handling error text when input validation is not met
   const [formHelperText, setFormHelperText] = useState({
@@ -57,8 +66,6 @@ export default function ApplicantProfileForm() {
     foundingDate: undefined,
     website: undefined,
     bio: undefined,
-    college: undefined,
-    searchCollege: undefined,
   });
 
   const handleChanges = (e) => {
@@ -71,6 +78,13 @@ export default function ApplicantProfileForm() {
   const handleContactChanges = (e) => {
     setContactFormState({
       ...contactFormState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleEducationChanges = (e) => {
+    setEducationFormState({
+      ...educationFormState,
       [e.target.name]: e.target.value,
     });
   };
@@ -167,11 +181,11 @@ export default function ApplicantProfileForm() {
       case 1:
         return (
           <WriterEducationForm
-            handleChanges={handleChanges}
-            formState={formState}
+            handleEducationChanges={handleEducationChanges}
+            educationFormState={educationFormState}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
-            setFormState={setFormState}
+            setEducationFormState={setEducationFormState}
             setDisableButton={setDisableButton}
           />
         );
