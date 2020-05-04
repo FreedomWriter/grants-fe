@@ -91,34 +91,6 @@ export default function OrgInformation({
                   </option>
                 ))}
             </FormControl>
-<<<<<<< HEAD
-=======
-            {writersColleges &&
-              writersColleges.map((writersCollege, i) => {
-                return (
-                  <Grid item container key={writersCollege.id + (i + 1)}>
-                    <Grid item>
-                      <h2>Edit/Add Component</h2>
-                      <p>{`${i + 1} ${writersCollege.college}`}</p>
-                      <Button
-                        onClick={() =>
-                          console.log(
-                            `You want to edit ${
-                              writersCollege.college
-                            } which has the id of ${
-                              writersCollege.id
-                            } and a key of ${writersCollege.id + (i + 1)}`
-                          )
-                        }
-                        className={classes.editButton}
-                      >
-                        Edit
-                      </Button>
-                    </Grid>
-                  </Grid>
-                );
-              })}
->>>>>>> 0424d8f... starting to work on dates for education
           </Grid>
         </Grid>
 
@@ -129,11 +101,7 @@ export default function OrgInformation({
             helperText={
               formHelperText.foundingDate
                 ? formHelperText.foundingDate
-<<<<<<< HEAD
                 : "Start Date MM/YY*"
-=======
-                : "Start Date *"
->>>>>>> 0424d8f... starting to work on dates for education
             }
             onChange={handleEducationChanges}
             className={classes.orgTextField}
@@ -141,36 +109,13 @@ export default function OrgInformation({
             required
             id="startDate"
             name="startDate"
-<<<<<<< HEAD
             value={educationFormState.foundingDate}
             label="Start Date"
-=======
-            value={formState.foundingDate}
-            label="Start Date"
-          />
-          <TextField
-            onBlur={handleValidation}
-            error={formHelperText.foundingDate ? true : undefined}
-            helperText={
-              formHelperText.foundingDate
-                ? formHelperText.foundingDate
-                : "End Date *"
-            }
-            onChange={handleChanges}
-            className={classes.orgTextField}
-            // type="date"
-            required
-            id="endDate"
-            name="endDate"
-            value={formState.foundingDate}
-            label="End Date"
->>>>>>> 0424d8f... starting to work on dates for education
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-<<<<<<< HEAD
             error={formHelperText.foundingDate ? true : undefined}
             helperText={
               formHelperText.foundingDate
@@ -178,15 +123,6 @@ export default function OrgInformation({
                 : "End Date  MM/YY*"
             }
             onChange={handleEducationChanges}
-=======
-            error={formHelperText.website ? true : undefined}
-            helperText={formHelperText.website}
-            onChange={handleChanges}
-            id="website"
-            name="website"
-            label="Website"
-            value={formState.website}
->>>>>>> 0424d8f... starting to work on dates for education
             className={classes.orgTextField}
             // type="date"
             required
@@ -196,7 +132,6 @@ export default function OrgInformation({
             label="End Date"
           />
         </Grid>
-<<<<<<< HEAD
         <Grid item xs={12}>
           {" "}
           <Button size="small" color="primary">
@@ -212,21 +147,6 @@ export default function OrgInformation({
               );
             })}
         </Grid>
-=======
-        {/* <Grid item xs={12}>
-          <TextAreaAutosize
-            onChange={handleChanges}
-            required
-            id="bio"
-            name="bio"
-            value={formState.bio}
-            placeholder="Tell us about your organization..."
-            aria-label="Organization Bio"
-            rowsMin={6}
-            className={classes.textArea}
-          />
-        </Grid> */}
->>>>>>> 0424d8f... starting to work on dates for education
       </Grid>
     </div>
   );
