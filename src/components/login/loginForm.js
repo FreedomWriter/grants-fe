@@ -10,6 +10,7 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = (props) => {
     const [user, setUser] = useState({
-        username: '',
+        email: '',
         password: ''
     });
     
@@ -43,6 +44,16 @@ const Login = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        axiosWithAuth()
+            .post('api url', user)
+            .then(res => {
+                console.log('login response', res.data)
+                localStorage.setItem('token', res.data.token);
+                props.history.push('/')
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     const classes = useStyles();
@@ -54,27 +65,29 @@ const Login = (props) => {
                 <Typography component="h1" variant="h5">
                     Login
                 </Typography>
-                <form className={classes.form} autoComplete="off" onSubmit={handleSubmit}>
-                    <TextField
+                <ValidatorForm className={classes.form} autoComplete="off" onSubmit={handleSubmit}>
+                    <TextValidator
                         variant="outlined"
                         margin="normal"
-                        required
                         fullWidth
-                        id="email"
                         label="Email Address"
                         name="email"
                         autoFocus
+                        value={user.email}
+                        validators={['required', 'isEmail']}
+                        errorMessages={['This field is required', 'Invalid Email']}
                         onChange={handleChange}
                     />
-                    <TextField
+                    <TextValidator
                         variant="outlined"
                         margin="normal"
-                        required
                         fullWidth
                         name="password"
                         label="Password"
                         type="password"
-                        id="password"
+                        value={user.password}
+                        validators={['required']}
+                        errorMessages={['This field is required']}
                         onChange={handleChange}
                     />
                     <FormControlLabel
@@ -102,7 +115,7 @@ const Login = (props) => {
                             </Link>
                         </Grid>
                     </Grid>
-                </form>
+                </ValidatorForm>
             </div>
         </Container>
     );
