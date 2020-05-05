@@ -13,6 +13,7 @@ import { store, persistor } from "./store";
 
 ReactDOM.render(
   <Provider store={store}>
+<<<<<<< HEAD
     <React.StrictMode>
       <PersistGate persistor={persistor}>
         <Router>
@@ -20,6 +21,11 @@ ReactDOM.render(
         </Router>
       </PersistGate>
     </React.StrictMode>
+=======
+    <PersistGate persistor={persistor}>
+      <App />
+    </PersistGate>
+>>>>>>> 4cb946a5e9542b6a038e3cca4770077365e7cbfc
   </Provider>,
   document.getElementById("root")
 );
