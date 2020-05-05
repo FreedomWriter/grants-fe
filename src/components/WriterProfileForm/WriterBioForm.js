@@ -15,43 +15,9 @@ export default function WriterBioForm({
   return (
     <div className={classes.container}>
       <Typography variant="h6" gutterBottom>
-        Bio and Background
+        Personalize Your Profile And Stand Out
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <TextField
-            onBlur={handleValidation}
-            error={formHelperText.orgName ? true : undefined}
-            helperText={formHelperText.orgName}
-            onChange={handleChanges}
-            className={classes.orgTextField}
-            required
-            id="orgName"
-            name="orgName"
-            value={formState.orgName}
-            label="Organization Name"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            onBlur={handleValidation}
-            error={formHelperText.foundingDate ? true : undefined}
-            helperText={
-              formHelperText.foundingDate
-                ? formHelperText.foundingDate
-                : "Organizations Founding Date *"
-            }
-            onChange={handleChanges}
-            className={classes.orgTextField}
-            // type="date"
-            required
-            id="foundingDate"
-            name="foundingDate"
-            value={formState.foundingDate}
-            label="Founding Date"
-          />
-        </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
@@ -60,7 +26,7 @@ export default function WriterBioForm({
             onChange={handleChanges}
             id="website"
             name="website"
-            label="Organization Website"
+            label="Your Website"
             value={formState.website}
             className={classes.textArea}
           />
@@ -72,8 +38,8 @@ export default function WriterBioForm({
             id="bio"
             name="bio"
             value={formState.bio}
-            placeholder="Tell us about your organization..."
-            aria-label="Organization Bio"
+            placeholder="This is your chance to shine..."
+            aria-label="Grant Writers Bio"
             rowsMin={6}
             className={classes.textArea}
           />

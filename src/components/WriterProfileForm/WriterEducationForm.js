@@ -11,6 +11,11 @@ import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import InputBase from "@material-ui/core/InputBase";
 import Button from "@material-ui/core/Button";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
 
 import { useStyles } from "./WriterForm.styles";
 
@@ -27,6 +32,16 @@ export default function OrgInformation({
   const dispatch = useDispatch();
 
   const [writersColleges, setWritersColleges] = useState([]);
+  const [addEducation, setAddEducation] = useState(false);
+
+  const possibleDegrees = [
+    "Associate degree",
+    "Bachelor's degree",
+    "Master's degree",
+    "Doctoral degree",
+    "Vocational Certificate",
+    "Other",
+  ];
 
   useEffect(() => {
     async function fetchData() {
@@ -73,7 +88,7 @@ export default function OrgInformation({
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Grid item xs={12}>
-            <FormControl className={classes.formControl}>
+            <FormControl className={classes.orgTextField}>
               <InputBase
                 placeholder="Enter A School Name..."
                 onBlur={handleValidation}
@@ -91,7 +106,6 @@ export default function OrgInformation({
                     : ""
                 }
                 label="Enter School Name"
-                className={classes.orgTextField}
                 inputProps={{ "aria-label": "search" }}
               />
 
@@ -125,7 +139,7 @@ export default function OrgInformation({
             helperText={
               formHelperText.startDate
                 ? formHelperText.startDate
-                : "Start Date MM/YY*"
+                : "Start Date*"
             }
             onChange={handleEducationChanges}
             className={classes.orgTextField}
@@ -134,7 +148,7 @@ export default function OrgInformation({
             id="startDate"
             name="startDate"
             value={educationFormState.startDate}
-            label="Start Date"
+            aria-label="Start Date"
           />
         </Grid>
         <Grid item xs={12}>
@@ -144,17 +158,64 @@ export default function OrgInformation({
             helperText={
               formHelperText.endDate
                 ? formHelperText.endDate
-                : "End Date  MM/YY*"
+                : educationFormState.stillAttending
+                ? "Anticipated Graduation Date*"
+                : "End Date*"
             }
             onChange={handleEducationChanges}
             className={classes.orgTextField}
-            // type="date"
+            type="date"
             required
             id="endDate"
             name="endDate"
             value={educationFormState.endDate}
-            label="End Date"
+            aria-label="End Date"
           />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                color="secondary"
+                name="stillAttending"
+                checked={educationFormState.stillAttending}
+              />
+            }
+            onClick={() =>
+              setEducationFormState({
+                ...educationFormState,
+                stillAttending: !educationFormState.stillAttending,
+              })
+            }
+            label="Currently Enrolled"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl className={classes.orgTextField}>
+            <InputLabel id="degree-earned-label">Degree Awarded</InputLabel>
+            <Select
+              labelId="degree-earned-label"
+              id="degree"
+              name="degree"
+              value={educationFormState.degree}
+              onChange={handleEducationChanges}
+            >
+              {possibleDegrees.map((posDegree) => (
+                <MenuItem
+                  key={posDegree}
+                  value={posDegree}
+                  onClick={() =>
+                    setEducationFormState({
+                      ...educationFormState,
+                      degree: posDegree,
+                    })
+                  }
+                >
+                  {posDegree}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </Grid>
         <Grid item xs={12}>
           {" "}

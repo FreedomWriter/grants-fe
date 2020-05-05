@@ -48,9 +48,18 @@ export default function ApplicantProfileForm() {
     searchCollege: "",
     startDate: "",
     endDate: "",
-    stillAttending: true,
+    stillAttending: false,
     anticipatedGraduation: "",
     degree: "",
+  });
+
+  const [workHistoryFormState, setWorkHistoryFormState] = useState({
+    company: "",
+    position: "",
+    startDate: "",
+    endDate: "",
+    currentPosition: true,
+    responsibilites: "",
   });
 
   // state for handling error text when input validation is not met
@@ -62,8 +71,6 @@ export default function ApplicantProfileForm() {
     state: undefined,
     zip: undefined,
     country: undefined,
-    orgName: undefined,
-    foundingDate: undefined,
     website: undefined,
     bio: undefined,
   });
@@ -83,6 +90,13 @@ export default function ApplicantProfileForm() {
   };
 
   const handleEducationChanges = (e) => {
+    setEducationFormState({
+      ...educationFormState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleWorkHistoryChanges = (e) => {
     setEducationFormState({
       ...educationFormState,
       [e.target.name]: e.target.value,
@@ -192,8 +206,9 @@ export default function ApplicantProfileForm() {
       case 2:
         return (
           <WriterWorkHistoryForm
-            handleChanges={handleChanges}
-            formState={formState}
+            handleWorkHistoryChanges={handleWorkHistoryChanges}
+            workHistoryFormState={workHistoryFormState}
+            setWorkHistoryFormState={setWorkHistoryFormState}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
             setDisableButton={setDisableButton}
@@ -214,11 +229,19 @@ export default function ApplicantProfileForm() {
           <WriterReview
             handleChanges={handleChanges}
             handleSubmit={handleSubmit}
+            contactFormState={contactFormState}
+            handleContactChanges={handleContactChanges}
+            setEducationFormState={setEducationFormState}
+            setDisableButton={setDisableButton}
+            handleEducationChanges={handleEducationChanges}
+            educationFormState={educationFormState}
             formState={formState}
             formHelperText={formHelperText}
             setFormState={setFormState}
             handleValidation={handleValidation}
-            setDisableButton={setDisableButton}
+            handleWorkHistoryChanges={handleWorkHistoryChanges}
+            workHistoryFormState={workHistoryFormState}
+            setWorkHistoryFormState={setWorkHistoryFormState}
           />
         );
       default:

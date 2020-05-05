@@ -4,35 +4,47 @@ import WriterEducationForm from "./WriterEducationForm";
 import WriterWorkHistoryForm from "./WriterWorkHistoryForm";
 import WriterBioForm from "./WriterBioForm";
 
-import { useStyles } from "./WriterForm.styles";
-
 export default function ReviewForm({
   formState,
   setFormState,
   handleChanges,
   formHelperText,
   handleValidation,
+  contactFormState,
+  handleContactChanges,
+  setDisableButton,
+  handleEducationChanges,
+  setEducationFormState,
+  educationFormState,
+  handleWorkHistoryChanges,
+  workHistoryFormState,
+  setWorkHistoryFormState,
 }) {
   return (
     <>
       <WriterContactInfoForm
-        formState={formState}
-        handleChanges={handleChanges}
+        contactFormState={contactFormState}
+        handleContactChanges={handleContactChanges}
         setFormState={setFormState}
         formHelperText={formHelperText}
         handleValidation={handleValidation}
+        setDisableButton={setDisableButton}
       />
       <WriterEducationForm
-        handleChanges={handleChanges}
-        formState={formState}
+        handleEducationChanges={handleEducationChanges}
+        educationFormState={educationFormState}
         formHelperText={formHelperText}
         handleValidation={handleValidation}
+        setEducationFormState={setEducationFormState}
+        setDisableButton={setDisableButton}
       />
       <WriterWorkHistoryForm
-        handleChanges={handleChanges}
-        formState={formState}
+        handleWorkHistoryChanges={handleWorkHistoryChanges}
+        workHistoryFormState={workHistoryFormState}
+        setWorkHistoryFormState={setWorkHistoryFormState}
         formHelperText={formHelperText}
         handleValidation={handleValidation}
+        setDisableButton={setDisableButton}
       />
       <WriterBioForm
         handleChanges={handleChanges}

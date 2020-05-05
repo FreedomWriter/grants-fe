@@ -1,19 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
+import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
 
 import { useStyles } from "./WriterForm.styles";
 export default function ApplicantContactInfo({
   formState,
-  handleChanges,
-  setFormState,
+  handleWorkHistoryChanges,
+  setWorkHistoryFormState,
+  workHistoryFormState,
   formHelperText,
   handleValidation,
 }) {
   const classes = useStyles();
+
+  const [writersWorkHistory, setWritersWorkHistory] = useState([]);
+
+  const handleWorkHistorySubmit = () => {
+    setWritersWorkHistory([
+      ...writersWorkHistory,
+      {
+        college: workHistoryFormState.company,
+        startDate: workHistoryFormState.startDate,
+        endDate: workHistoryFormState.endDate,
+        position: workHistoryFormState.position,
+        currentPosition: workHistoryFormState.currentPosition,
+        responsibilites: workHistoryFormState.responsibilites,
+      },
+    ]);
+    setWorkHistoryFormState({
+      company: "",
+      position: "",
+      startDate: "",
+      endDate: "",
+      currentPosition: false,
+      responsibilites: "",
+    });
+  };
 
   return (
     <div className={classes.container}>
@@ -21,108 +48,107 @@ export default function ApplicantContactInfo({
         Work History
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.firstName ? true : false}
-            helperText={formHelperText.firstName}
+            error={formHelperText.endDate ? true : undefined}
+            onChange={handleWorkHistoryChanges}
+            className={classes.orgTextField}
             required
-            id="firstName"
-            name="firstName"
-            label="First name"
-            value={formState.firstName}
-            onChange={handleChanges}
-            fullWidth
-            autoComplete="fname"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            onBlur={handleValidation}
-            error={formHelperText.lastName ? true : false}
-            helperText={formHelperText.lastName}
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            value={formState.lastName}
-            onChange={handleChanges}
-            fullWidth
-            autoComplete="lname"
+            id="company"
+            name="company"
+            value={workHistoryFormState.company}
+            label="Company"
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.sector ? true : false}
-            helperText={formHelperText.sector}
+            error={formHelperText.position ? true : undefined}
+            onChange={handleWorkHistoryChanges}
+            className={classes.orgTextField}
             required
-            id="sector"
-            name="sector"
-            label="Sector"
-            value={formState.sector}
-            onChange={handleChanges}
-            fullWidth
+            id="position"
+            name="position"
+            value={workHistoryFormState.position}
+            label="Position"
           />
         </Grid>
-
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.city ? true : false}
-            helperText={formHelperText.city}
+            error={formHelperText.startDate ? true : undefined}
+            helperText={
+              formHelperText.startDate
+                ? formHelperText.startDate
+                : "Start Date*"
+            }
+            onChange={handleWorkHistoryChanges}
+            className={classes.orgTextField}
+            type="date"
             required
-            id="city"
-            name="city"
-            label="City"
-            value={formState.city}
-            onChange={handleChanges}
-            fullWidth
-            autoComplete="billing address-level2"
+            id="startDate"
+            name="startDate"
+            value={workHistoryFormState.startDate}
+            aria-label="Start Date"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            onBlur={handleValidation}
-            error={formHelperText.state ? true : false}
-            helperText={formHelperText.state}
-            id="state"
-            name="state"
-            value={formState.state}
-            onChange={handleChanges}
-            label="State/Province/Region"
-            fullWidth
+        {!workHistoryFormState.currentPosition && (
+          <Grid item xs={12}>
+            <TextField
+              onBlur={handleValidation}
+              error={formHelperText.endDate ? true : undefined}
+              onChange={handleWorkHistoryChanges}
+              className={classes.orgTextField}
+              type="date"
+              required
+              id="endDate"
+              name="endDate"
+              value={workHistoryFormState.endDate}
+              aria-label="End Date"
+            />
+          </Grid>
+        )}
+        <Grid item xs={12}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                color="secondary"
+                name="currentPosition"
+                checked={workHistoryFormState.currentPosition}
+              />
+            }
+            onClick={() =>
+              setWorkHistoryFormState({
+                ...workHistoryFormState,
+                currentPosition: !workHistoryFormState.currentPosition,
+              })
+            }
+            label="Current Position?"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            onBlur={handleValidation}
-            error={formHelperText.zip ? true : false}
-            helperText={formHelperText.zip}
+        <Grid item xs={12}>
+          <TextAreaAutosize
+            onChange={handleWorkHistoryChanges}
             required
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
-            value={formState.zip}
-            onChange={handleChanges}
-            fullWidth
-            autoComplete="billing postal-code"
+            id="responsibilities"
+            name="responsibilities"
+            value={workHistoryFormState.responsibilities}
+            placeholder="What were your responsibilites..."
+            aria-label="Position responsibilities"
+            rowsMin={6}
+            className={classes.textArea}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            onBlur={handleValidation}
-            error={formHelperText.country ? true : false}
-            helperText={formHelperText.country}
-            required
-            id="country"
-            name="country"
-            value={formState.country}
-            onChange={handleChanges}
-            label="Country"
-            fullWidth
-            autoComplete="billing country"
-          />
+        <Grid item xs={12}>
+          {" "}
+          <Button
+            size="small"
+            color="primary"
+            onClick={handleWorkHistorySubmit}
+          >
+            Submit
+          </Button>
         </Grid>
       </Grid>
     </div>

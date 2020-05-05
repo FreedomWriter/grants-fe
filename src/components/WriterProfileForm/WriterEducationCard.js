@@ -13,7 +13,7 @@ export default function WriterEducationCard({ writersCollege, i }) {
     <Card
       className={classes.cardRoot}
       variant="outlined"
-      key={writersCollege.id + (i + 1)}
+      key={writersCollege.college + writersCollege.startDate + Math.random()}
     >
       <CardContent>
         <Typography
@@ -21,18 +21,18 @@ export default function WriterEducationCard({ writersCollege, i }) {
           color="textSecondary"
           gutterBottom
         >
-          You attended
+          Attended
         </Typography>
         <Typography variant="h5" component="h2">
           {writersCollege.college}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          adjective
+          Earned: {writersCollege.degree}
         </Typography>
         <Typography variant="body2" component="p">
-          well meaning and kindly.
+          Start Date: {writersCollege.startDate}
           <br />
-          {'"a benevolent smile"'}
+          Start Date: {writersCollege.endDate}
         </Typography>
       </CardContent>
       <CardActions>
