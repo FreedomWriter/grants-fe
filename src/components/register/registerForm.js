@@ -56,7 +56,7 @@ export default function RegisterForm(props) {
     ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
         if(value !== values.password){
             return false;
-            console.log(value)
+            // console.log(value)
         }
         return true
     });
@@ -70,6 +70,7 @@ export default function RegisterForm(props) {
 
     const handleSelectChange = (e) => {
         setValues({
+            ...values,
             userType: e.target.value 
         })
     }
