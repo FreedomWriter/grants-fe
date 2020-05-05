@@ -1,36 +1,46 @@
 import {
-  GET_GRANTS_START,
-  GET_GRANTS_SUCCESS,
-  GET_GRANTS_ERROR
+  GET_PROFILEINFO_START,
+  GET_PROFILEINFO_SUCCESS,
+  GET_PROFILEINFO_ERROR
 } from '../actions/ApplicantActions';
 
 const initialState = {
-  getGrantsStart: false,
-  getGrantsError: false,
-  postGrantstart: false,
+  grants: [
+    {grant_id: 1, grant_name: 'grant 1'},
+    {grant_id: 2, grant_name: 'grant 2'},
+    {grant_id: 3, grant_name: 'grant 3'}
+  ],
+  applicantProfileDetails: {
+    id: null,
+    name: null,
+    organization: null,
+    sector: null,
+    biography: null
+  },
+  isLoading: false
 };
 
-const reducer = (state = initialState, action) => {
+const applicantReducer = (state = initialState, action) => {
   switch (action.type) {
-
-    case GET_GRANTS_START:
+    case GET_PROFILEINFO_START:
       return {
         ...state,
-        getGrantsStart: true
+        isLoading: true
       };
 
-    case GET_GRANTS_SUCCESS:
+    case GET_PROFILEINFO_SUCCESS:
       return {
         ...state,
-        getGrantsStart: false,
-        grants: action.payload
+        grants: action.payload.grants,
+        applicantProfileDetails: action.payload.applicantProfileDetails,
+        isLoading: false
       };
 
-    case GET_GRANTS_ERROR:
+    case GET_PROFILEINFO_ERROR:
       return {
         ...state,
-        getGrantsStart: false,
-        getGrantsError: true
+        error: action.payload,
+        isLoading: false
       };
 
     default:

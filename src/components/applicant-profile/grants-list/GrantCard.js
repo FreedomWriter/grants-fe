@@ -3,8 +3,7 @@ import React from 'react'
 const GrantCard = props => {
   return (
     <div>
-      <h3>{props.grant.grantName}</h3>
-      <p>{props.grant.grantDescription}</p>
+      <h3>{props.grant.grant_name}</h3>
     </div>
   )
 }

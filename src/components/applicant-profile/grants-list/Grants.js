@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+
 import Paper from '@material-ui/core/Paper';
 import { useStyles } from '../ApplicantProfile.styles'
 
@@ -8,44 +10,27 @@ import GrantCard from './GrantCard'
 const Grants = () => {
   const classes = useStyles();
 
-  const grants = [
-    {
-      grantId: 1,
-      grantName: 'grant name #1',
-      grantDescription: 'grant description #1'
-    },
-    {
-      grantId: 2,
-      grantName: 'grant name #2',
-      grantDescription: 'grant description #2'
-    },
-    {
-      grantId: 3,
-      grantName: 'grant name #3',
-      grantDescription: 'grant description #3'
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.login.user)
+
+  useEffect(() => {
+    if(user) {
+      const { id } = user;
+      dispatch(getProfileInfo(id))
     }
-  ]
+  },[dispatch, user])
 
-  // useEffect(() => {
-  //   if(!grants) {
-  //     props.getGrants(props.token)
-  //   }
-  //   setGrants(props.grants)
-  // },[])
-
-  // useEffect(() => {
-  //   setGrants(props.grants)
-  // }, [props.grants])
+  const grants = useSelector((state) => state.profileInfo.grants)
   
   return(
     <>
       <h2>Grants We'd Like to Apply For: </h2>
       <Paper className={classes.profilepaper}>
-        {grants.map((grant) => (
-          <div key={grant.grantId}>
+        {grants.map((grant) => {
+          <div key={grant.grant_id}>
             <GrantCard grant={grant} />
           </div>
-        ))}
+        })}
       </Paper>
     </>
   )

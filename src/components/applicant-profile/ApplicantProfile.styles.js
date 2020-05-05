@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   leftpanel: {
-    padding: theme.spacing(1),
+    padding: '45px 0',
     textAlign: 'center',
     },
   bioname: {
@@ -26,9 +26,9 @@ export const useStyles = makeStyles((theme) => ({
     margin: '1rem auto',
     width: '90%',
     display: 'grid',
-    gridTemplateColumns: '0.65fr 1.35fr',
+    gridTemplateColumns: '0.5fr 1.5fr',
     gridTemplateRows: '1fr',
-    gap: '1px 90px',
+    gap: '1px 75px',
   }
 
 }));
