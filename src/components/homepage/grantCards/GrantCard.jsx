@@ -79,7 +79,7 @@ export default function GrantCard(props) {
                 {grant.detailMain}
               </Typography> */}
             </div>
-            <div className={classes.boxInfo} backgroundColor="primary.main">
+            <div className={classes.boxInfo}>
               <Typography className={classes.boxes}>Timeframe</Typography>
               <Typography className={classes.boxes}>{grant.sector}</Typography>
               <Typography className={classes.boxes}>Roles</Typography>
