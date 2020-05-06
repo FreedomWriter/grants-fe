@@ -1,9 +1,7 @@
 import React from "react";
 import { useStyles } from "./WriterForm.styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 export default function WriterEducationCard({ writersCollege, i }) {
@@ -35,9 +33,6 @@ export default function WriterEducationCard({ writersCollege, i }) {
           Start Date: {writersCollege.endDate}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Add Another School</Button>
-      </CardActions>
     </Card>
   );
 }

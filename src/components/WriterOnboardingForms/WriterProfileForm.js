@@ -34,6 +34,7 @@ export default function ApplicantProfileForm() {
     website: "",
     bio: "",
   });
+  //change this value to `true` to disable the button until user completes form
   const [disableButton, setDisableButton] = useState(false);
   const [contactFormState, setContactFormState] = useState({
     firstName: "",

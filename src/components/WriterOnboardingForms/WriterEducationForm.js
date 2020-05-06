@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getColleges,
-  clearCollegeList,
-} from "../../store/actions/collegeActions";
+import { getColleges } from "../../store/actions/collegeActions";
 
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -27,12 +24,18 @@ export default function OrgInformation({
   formHelperText,
   handleValidation,
   setEducationFormState,
+  setDisableButton,
 }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
   const [writersColleges, setWritersColleges] = useState([]);
   const [addEducation, setAddEducation] = useState(false);
+
+  useEffect(() => {
+    // disables button on render
+    setDisableButton(true);
+  }, [setDisableButton]);
 
   const possibleDegrees = [
     "Associate degree",
@@ -78,6 +81,7 @@ export default function OrgInformation({
       anticipatedGraduation: "",
       degree: "",
     });
+    setDisableButton(false);
   };
 
   return (
@@ -108,8 +112,16 @@ export default function OrgInformation({
                 label="Enter School Name"
                 inputProps={{ "aria-label": "search" }}
               />
-
-              {/* renders a list of options for the user to select from using data pulled from api */}
+              {/* handles the edge case where a users school is not listed in the api rendering the list of schools */}
+              {educationFormState.searchCollege &&
+                colleges &&
+                colleges.length === 0 &&
+                setEducationFormState({
+                  ...educationFormState,
+                  college: educationFormState.searchCollege,
+                  searchCollege: "",
+                })}
+              {/* renders a list of options of colleges for the user to select from using data pulled from api */}
               {educationFormState.searchCollege &&
                 colleges &&
                 colleges.map((college) => (
@@ -200,20 +212,22 @@ export default function OrgInformation({
               value={educationFormState.degree}
               onChange={handleEducationChanges}
             >
-              {possibleDegrees.map((posDegree) => (
-                <MenuItem
-                  key={posDegree}
-                  value={posDegree}
-                  onClick={() =>
-                    setEducationFormState({
-                      ...educationFormState,
-                      degree: posDegree,
-                    })
-                  }
-                >
-                  {posDegree}
-                </MenuItem>
-              ))}
+              {possibleDegrees.map((posDegree) => {
+                return (
+                  <MenuItem
+                    key={posDegree}
+                    value={posDegree}
+                    onClick={() =>
+                      setEducationFormState({
+                        ...educationFormState,
+                        degree: posDegree,
+                      })
+                    }
+                  >
+                    {posDegree}
+                  </MenuItem>
+                );
+              })}
             </Select>
           </FormControl>
         </Grid>
