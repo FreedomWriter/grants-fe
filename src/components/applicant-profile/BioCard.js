@@ -8,8 +8,8 @@ const BioCard = () => {
   return (
     <>
       <Grid className={classes.bioname}>
-        <h3>Org Name</h3>
-        <h4>Sector: sector name</h4>
+        <p className={classes.bioheader}>Org Name</p>
+        <p className={classes.sector}>Sector: sector name</p>
       </Grid>
       <Paper className={classes.profilepaper} >
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet venenatis urna cursus. Gravida neque convallis a cras semper. Habitasse platea dictumst quisque sagittis purus sit amet volutpat. Tempus imperdiet nulla malesuada pellentesque elit eget gravida cum. Porttitor eget dolor morbi non arcu risus quis varius. Lectus proin nibh nisl condimentum id venenatis a condimentum vitae. At tellus at urna condimentum mattis. Vitae suscipit tellus mauris a diam maecenas. Donec massa sapien faucibus et molestie ac.</p>
