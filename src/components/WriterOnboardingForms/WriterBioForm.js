@@ -14,7 +14,7 @@ export default function WriterBioForm({
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" gutterBottom color="primary">
         Personalize Your Profile And Stand Out
       </Typography>
       <Grid container spacing={3}>

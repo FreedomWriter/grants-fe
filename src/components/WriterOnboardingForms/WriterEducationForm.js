@@ -24,19 +24,15 @@ export default function OrgInformation({
   formHelperText,
   handleValidation,
   setEducationFormState,
-  setDisableButton,
+  enableButton,
+  writersColleges,
+  setWritersColleges,
 }) {
   const classes = useStyles();
+
   const dispatch = useDispatch();
 
-  const [writersColleges, setWritersColleges] = useState([]);
-  const [addEducation, setAddEducation] = useState(false);
-
-  useEffect(() => {
-    // disables button on render
-    setDisableButton(false);
-  }, [setDisableButton]);
-
+  /* used to render a drop down list of possible degrees */
   const possibleDegrees = [
     "Associate degree",
     "Bachelor's degree",
@@ -48,8 +44,8 @@ export default function OrgInformation({
 
   useEffect(() => {
     async function fetchData() {
-      // once user has typed 3 characters in, api request for colleges fires
-      //consider using local state
+      /* once user has typed 3 characters in, api request for colleges fires, rendering a list of known colleges which match the text the user has typed */
+      /* conditional ensures the user has typed at least 3 characters before sending - should be REFACTOR to pull an initial subset of the data and switch to filtering to avoid multiple api calls*/
       educationFormState.searchCollege !== "" &&
         educationFormState.searchCollege.length >= 3 &&
         (await dispatch(getColleges(educationFormState.searchCollege)));
@@ -57,13 +53,14 @@ export default function OrgInformation({
     fetchData();
   }, [dispatch, educationFormState.searchCollege]);
 
+  /* colleges pulled from state  (returned from api) */
   const colleges = useSelector((state) => state.collegeList.colleges);
 
+  /* currently sets users values to writersColleges state, which holds an array, allowing for multiple colleges per writer and clears educationFormState, REFACTOR ties into refactor in WriterProfileForm.js line 66  */
   const handleCollegeSubmit = () => {
     setWritersColleges([
       ...writersColleges,
       {
-        id: Date.now(),
         college: educationFormState.college,
         startDate: educationFormState.startDate,
         endDate: educationFormState.endDate,
@@ -81,7 +78,7 @@ export default function OrgInformation({
       anticipatedGraduation: "",
       degree: "",
     });
-    setDisableButton(false);
+    enableButton();
   };
 
   return (
@@ -101,7 +98,7 @@ export default function OrgInformation({
                 required
                 id="searchCollege"
                 name="searchCollege"
-                // if the user has selected a college, this field will hold that value, if not but they have entered search text, it will hold the search text value. if neither exist, the field will be an empty string
+                /* if the user has selected a college, this field will hold that value, if not but they have entered search text, it will hold the search text value. if neither exist, the field will be an empty string */
                 value={
                   educationFormState.college
                     ? educationFormState.college
@@ -143,7 +140,6 @@ export default function OrgInformation({
             </FormControl>
           </Grid>
         </Grid>
-
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}

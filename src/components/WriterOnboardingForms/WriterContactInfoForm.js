@@ -14,6 +14,7 @@ export default function ApplicantContactInfo({
   const classes = useStyles();
 
   useEffect(() => {
+    /* once the user has filled out all required form, `Next` button will be enabled (button is rendered in WriterProfileForm.js. need to explore a more performant solution */
     contactFormState.firstName &&
       contactFormState.lastName &&
       contactFormState.city &&
@@ -30,6 +31,7 @@ export default function ApplicantContactInfo({
     contactFormState.country,
     setDisableButton,
   ]);
+
   return (
     <div className={classes.container}>
       <Typography variant="h6" gutterBottom>
@@ -92,6 +94,7 @@ export default function ApplicantContactInfo({
             onChange={handleContactChanges}
             label="State/Province/Region"
             fullWidth
+            autoComplete="billing state"
           />
         </Grid>
         <Grid item xs={12} sm={6}>

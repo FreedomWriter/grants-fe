@@ -24,6 +24,11 @@ export default function ApplicantProfileForm() {
   /* change this value to `true` to disable the button until user completes form - currently set to false for development purposes */
   const [disableButton, setDisableButton] = useState(false);
 
+  /* enableButton passed down as props to avoid `index.js:1 Warning: Cannot update a component (`ApplicantProfileForm`) while rendering a different component (`OrgInformation`). To locate the bad setState() call inside `OrgInformation`, follow the stack trace` when trying to enable the button in children forms by passing and invoking: `setDisableButton(false)` */
+  const enableButton = () => setDisableButton(false);
+
+  /* ********************* BEGIN FORM STATE AND SETTERS ********************* */
+
   /* states for each form rendered from this component. rendered here in the parent so the final review form will have access */
   const [contactFormState, setContactFormState] = useState({
     firstName: "",
@@ -58,6 +63,9 @@ export default function ApplicantProfileForm() {
     bio: "",
   });
 
+  /* because users may have attended more than one school, we are currently using a separate state to handle this. REFACTOR to use psuedo POST to global state */
+  const [writersColleges, setWritersColleges] = useState([]);
+
   /* state for handling error text when input validation is not met */
   const [formHelperText, setFormHelperText] = useState({
     firstName: undefined,
@@ -70,6 +78,10 @@ export default function ApplicantProfileForm() {
     website: undefined,
     bio: undefined,
   });
+
+  /* ********************* END FORM STATE AND SETTERS ********************* */
+
+  /* ********************* BEGIN CHANGE HANDLERS ********************* */
 
   /* multiple change handlers because each one sets state for a different form. rendered here in the parent so the final review form will have access */
   const handleBioChanges = (e) => {
@@ -100,10 +112,27 @@ export default function ApplicantProfileForm() {
     });
   };
 
+  /* ********************* END CHANGE HANDLERS ********************* */
+
+  /* ********************* BEGIN SUBMIT HANDLERS ********************* */
+
   /* submit all form values after rendering WriterReviewForm - handler is invoked dynamically based on which form user is currently viewing */
   const handleSubmit = () => {
     console.log(`Sumbit form values: `);
   };
+
+  const handleNext = () => {
+    setActiveStep(activeStep + 1);
+    setDisableButton(true);
+  };
+
+  const handleBack = () => {
+    setActiveStep(activeStep - 1);
+  };
+
+  /* ********************* END SUBMIT HANDLERS ********************* */
+
+  /* ********************* BEGIN INPUT VALIDATION ********************* */
 
   const handleValidation = (e) => {
     // validation function handles all inputs where the only validation is that the string must be greater than 2
@@ -177,6 +206,10 @@ export default function ApplicantProfileForm() {
     }
   };
 
+  /* ********************* END INPUT VALIDATION ********************* */
+
+  /* ********************* BEGIN STEP HANDLER ********************* */
+
   /* children components render different forms as user moves through the registration process. getStepContent is invoked in the return of this component and passed the activeStep slice of state which is being changed by the handle submit of the back and next buttons */
   function getStepContent(step) {
     switch (step) {
@@ -198,7 +231,9 @@ export default function ApplicantProfileForm() {
             formHelperText={formHelperText}
             handleValidation={handleValidation}
             setEducationFormState={setEducationFormState}
-            setDisableButton={setDisableButton}
+            enableButton={enableButton}
+            writersColleges={writersColleges}
+            setWritersColleges={setWritersColleges}
           />
         );
       case 2:
@@ -239,19 +274,17 @@ export default function ApplicantProfileForm() {
             handleWorkHistoryChanges={handleWorkHistoryChanges}
             workHistoryFormState={workHistoryFormState}
             setWorkHistoryFormState={setWorkHistoryFormState}
+            enableButton={enableButton}
+            writersColleges={writersColleges}
+            setWritersColleges={setWritersColleges}
           />
         );
       default:
         throw new Error("Unknown step");
     }
   }
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
-  };
 
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
+  /* ********************* END STEP HANDLER ********************* */
 
   return (
     <>

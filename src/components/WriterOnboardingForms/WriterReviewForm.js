@@ -18,6 +18,9 @@ export default function ReviewForm({
   handleWorkHistoryChanges,
   workHistoryFormState,
   setWorkHistoryFormState,
+  enableButton,
+  writersColleges,
+  setWritersColleges,
 }) {
   return (
     <>
@@ -34,7 +37,9 @@ export default function ReviewForm({
         formHelperText={formHelperText}
         handleValidation={handleValidation}
         setEducationFormState={setEducationFormState}
-        setDisableButton={setDisableButton}
+        enableButton={enableButton}
+        writersColleges={writersColleges}
+        setWritersColleges={setWritersColleges}
       />
       <WriterWorkHistoryForm
         handleWorkHistoryChanges={handleWorkHistoryChanges}
