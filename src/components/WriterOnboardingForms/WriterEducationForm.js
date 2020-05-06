@@ -233,8 +233,8 @@ export default function OrgInformation({
             Submit
           </Button>
         </Grid>
-
         <Grid item xs={12}>
+          {/* if the user has submitted information for one school/degree a card is displayed rendering that information so the user has a visual cue that the submission was successful while still allowing additional college information */}
           {writersColleges &&
             writersColleges.map((writersCollege, i) => {
               return (
