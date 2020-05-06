@@ -100,7 +100,7 @@ export default function ApplicantProfileForm() {
     });
   };
 
-  /* submit all form values after rendering WriterReviewForm - handler is invoked dynamically based on which form user is currently viewing*/
+  /* submit all form values after rendering WriterReviewForm - handler is invoked dynamically based on which form user is currently viewing */
   const handleSubmit = () => {
     console.log(`Sumbit form values: `);
   };
@@ -177,7 +177,7 @@ export default function ApplicantProfileForm() {
     }
   };
 
-  // children components render different forms as user moves through the registration process
+  /* children components render different forms as user moves through the registration process. getStepContent is invoked in the return of this component and passed the activeStep slice of state which is being changed by the handle submit of the back and next buttons */
   function getStepContent(step) {
     switch (step) {
       case 0:
@@ -274,6 +274,7 @@ export default function ApplicantProfileForm() {
             ))}
           </Stepper>
           <>
+            {/* switch statement controlling which child form component is rendering based on the activeStep state */}
             {getStepContent(activeStep)}
             <div className={classes.buttons}>
               {activeStep !== 0 && (
@@ -285,7 +286,7 @@ export default function ApplicantProfileForm() {
                 variant="contained"
                 color="primary"
                 disabled={disableButton}
-                // dynamically rendering which submit handler is applied
+                /* dynamically rendering which submit handler is applied, as long as the user has more steps to complete the button will handle next. Once the user moves fully through the process the button will handle submitting the values */
                 onClick={
                   activeStep === steps.length - 1 ? handleSubmit : handleNext
                 }
