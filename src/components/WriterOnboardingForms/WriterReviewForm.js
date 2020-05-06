@@ -5,11 +5,10 @@ import WriterWorkHistoryForm from "./WriterWorkHistoryForm";
 import WriterBioForm from "./WriterBioForm";
 
 export default function ReviewForm({
-  formState,
-  setFormState,
-  handleChanges,
-  formHelperText,
+  bioFormState,
+  handleBioChanges,
   handleValidation,
+  formHelperText,
   contactFormState,
   handleContactChanges,
   setDisableButton,
@@ -25,7 +24,6 @@ export default function ReviewForm({
       <WriterContactInfoForm
         contactFormState={contactFormState}
         handleContactChanges={handleContactChanges}
-        setFormState={setFormState}
         formHelperText={formHelperText}
         handleValidation={handleValidation}
         setDisableButton={setDisableButton}
@@ -47,8 +45,8 @@ export default function ReviewForm({
         setDisableButton={setDisableButton}
       />
       <WriterBioForm
-        handleChanges={handleChanges}
-        formState={formState}
+        handleBioChanges={handleBioChanges}
+        bioFormState={bioFormState}
         formHelperText={formHelperText}
         handleValidation={handleValidation}
       />

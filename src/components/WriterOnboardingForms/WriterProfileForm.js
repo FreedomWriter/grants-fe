@@ -20,22 +20,11 @@ export default function ApplicantProfileForm() {
   const classes = useStyles();
   // active step keeps track of which child component will render
   const [activeStep, setActiveStep] = useState(0);
-  const [formState, setFormState] = useState({
-    firstName: "",
-    lastName: "",
-    sector: "",
-    city: "",
-    state: "",
-    zip: "",
-    country: "",
-    org: false,
-    orgName: "",
-    foundingDate: "",
-    website: "",
-    bio: "",
-  });
-  //change this value to `true` to disable the button until user completes form
+
+  /* change this value to `true` to disable the button until user completes form - currently set to false for development purposes */
   const [disableButton, setDisableButton] = useState(false);
+
+  /* states for each form rendered from this component. rendered here in the parent so the final review form will have access */
   const [contactFormState, setContactFormState] = useState({
     firstName: "",
     lastName: "",
@@ -44,6 +33,7 @@ export default function ApplicantProfileForm() {
     zip: "",
     country: "",
   });
+
   const [educationFormState, setEducationFormState] = useState({
     college: "",
     searchCollege: "",
@@ -63,7 +53,12 @@ export default function ApplicantProfileForm() {
     responsibilites: "",
   });
 
-  // state for handling error text when input validation is not met
+  const [bioFormState, setBioFormState] = useState({
+    website: "",
+    bio: "",
+  });
+
+  /* state for handling error text when input validation is not met */
   const [formHelperText, setFormHelperText] = useState({
     firstName: undefined,
     lastName: undefined,
@@ -76,9 +71,10 @@ export default function ApplicantProfileForm() {
     bio: undefined,
   });
 
-  const handleChanges = (e) => {
-    setFormState({
-      ...formState,
+  /* multiple change handlers because each one sets state for a different form. rendered here in the parent so the final review form will have access */
+  const handleBioChanges = (e) => {
+    setBioFormState({
+      ...bioFormState,
       [e.target.name]: e.target.value,
     });
   };
@@ -103,13 +99,15 @@ export default function ApplicantProfileForm() {
       [e.target.name]: e.target.value,
     });
   };
+
+  /* submit all form values after rendering WriterReviewForm - handler is invoked dynamically based on which form user is currently viewing*/
   const handleSubmit = () => {
-    console.log(`Sumbit form values: `, formState);
+    console.log(`Sumbit form values: `);
   };
 
   const handleValidation = (e) => {
     // validation function handles all inputs where the only validation is that the string must be greater than 2
-    const validator = async (formValue) => {
+    const validator = (formValue) => {
       //persisting the event to ensure it makes it to validation
       e.persist();
       let valid = /(?=(?:.*?[a-z]){2})/i.test(formValue);
@@ -125,7 +123,7 @@ export default function ApplicantProfileForm() {
         });
       }
     };
-    // handling input validation
+    /* handling input validation based on input id and setting error message to be rendered via helperText*/
     switch (e.target.id) {
       case "firstName":
         validator(contactFormState.firstName);
@@ -160,7 +158,7 @@ export default function ApplicantProfileForm() {
         break;
       case "website":
         let validWeb = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/i.test(
-          formState.website
+          bioFormState.website
         );
         if (!validWeb) {
           setFormHelperText({
@@ -187,7 +185,6 @@ export default function ApplicantProfileForm() {
           <WriterContactInfoForm
             contactFormState={contactFormState}
             handleContactChanges={handleContactChanges}
-            setFormState={setFormState}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
             setDisableButton={setDisableButton}
@@ -218,8 +215,8 @@ export default function ApplicantProfileForm() {
       case 3:
         return (
           <WriterBioForm
-            handleChanges={handleChanges}
-            formState={formState}
+            handleBioChanges={handleBioChanges}
+            bioFormState={bioFormState}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
             setDisableButton={setDisableButton}
@@ -228,17 +225,16 @@ export default function ApplicantProfileForm() {
       case 4:
         return (
           <WriterReview
-            handleChanges={handleChanges}
-            handleSubmit={handleSubmit}
+            handleBioChanges={handleBioChanges}
             contactFormState={contactFormState}
             handleContactChanges={handleContactChanges}
             setEducationFormState={setEducationFormState}
             setDisableButton={setDisableButton}
             handleEducationChanges={handleEducationChanges}
             educationFormState={educationFormState}
-            formState={formState}
+            bioFormState={bioFormState}
             formHelperText={formHelperText}
-            setFormState={setFormState}
+            setBioFormState={setBioFormState}
             handleValidation={handleValidation}
             handleWorkHistoryChanges={handleWorkHistoryChanges}
             workHistoryFormState={workHistoryFormState}
@@ -257,7 +253,6 @@ export default function ApplicantProfileForm() {
     setActiveStep(activeStep - 1);
   };
 
-  // buttonIsDisabled(contactFormState);
   return (
     <>
       <CssBaseline />
@@ -266,6 +261,7 @@ export default function ApplicantProfileForm() {
           <Typography component="h1" variant="h4" align="center">
             Create Profile
           </Typography>
+          {/* the stepper handles visual marker the user sees that shows them their progress in the process */}
           <Stepper
             activeStep={activeStep}
             className={classes.stepper}

@@ -9,7 +9,6 @@ import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
 
 import { useStyles } from "./WriterForm.styles";
 export default function ApplicantContactInfo({
-  formState,
   handleWorkHistoryChanges,
   setWorkHistoryFormState,
   workHistoryFormState,

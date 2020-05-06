@@ -12,7 +12,6 @@ export default function ApplicantContactInfo({
   setDisableButton,
 }) {
   const classes = useStyles();
-  console.log({ contactFormState });
 
   useEffect(() => {
     contactFormState.firstName &&

@@ -6,8 +6,8 @@ import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
 
 import { useStyles } from "./WriterForm.styles";
 export default function WriterBioForm({
-  handleChanges,
-  formState,
+  handleBioChanges,
+  bioFormState,
   formHelperText,
   handleValidation,
 }) {
@@ -23,21 +23,21 @@ export default function WriterBioForm({
             onBlur={handleValidation}
             error={formHelperText.website ? true : undefined}
             helperText={formHelperText.website}
-            onChange={handleChanges}
+            onChange={handleBioChanges}
             id="website"
             name="website"
             label="Your Website"
-            value={formState.website}
+            value={bioFormState.website}
             className={classes.textArea}
           />
         </Grid>
         <Grid item xs={12}>
           <TextAreaAutosize
-            onChange={handleChanges}
+            onChange={handleBioChanges}
             required
             id="bio"
             name="bio"
-            value={formState.bio}
+            value={bioFormState.bio}
             placeholder="This is your chance to shine..."
             aria-label="Grant Writers Bio"
             rowsMin={6}

@@ -34,7 +34,7 @@ export default function OrgInformation({
 
   useEffect(() => {
     // disables button on render
-    setDisableButton(true);
+    setDisableButton(false);
   }, [setDisableButton]);
 
   const possibleDegrees = [
