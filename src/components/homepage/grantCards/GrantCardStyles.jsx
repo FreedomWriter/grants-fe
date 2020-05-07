@@ -5,19 +5,18 @@ export const useStyles = makeStyles((theme) =>
     root: {
       maxWidth: 1345,
       border: `1px solid ${theme.palette.secondary.main}`,
-      height: "200px",
       boxShadow: "30px",
       [theme.breakpoints.up("md")]: {
         height: "auto",
       },
     },
-    media: {
-      height: 0,
-      paddingTop: "56.25%", // 16:9
-    },
     header: {
       display: "flex",
       justifyContent: "space-between",
+      flexDirection: "column",
+      [theme.breakpoints.up("sm")]: {
+        flexDirection: "row",
+      },
     },
     expand: {
       transform: "rotate(0deg)",
@@ -30,21 +29,30 @@ export const useStyles = makeStyles((theme) =>
       transform: "rotate(180deg)",
     },
     avatar: {
-      backgroundColor: theme.palette.primary.main,
-    },
-    title: {
-      width: "10%",
-      justifyContent: "left",
-    },
-    subheader: {
-      display: "inline-block",
-    },
-
-    boxInfo: {
-      padding: "0 0 0 0",
-      paddingBottom: "0px",
+      display: "none",
       [theme.breakpoints.up("md")]: {
         display: "flex",
+        backgroundColor: theme.palette.primary.main,
+      },
+    },
+    title: {
+      textAlign: "center",
+      [theme.breakpoints.up("md")]: {
+        textAlign: "left",
+      },
+      [theme.breakpoints.between("sm", "md")]: {
+        textAlign: "left",
+        maxWidth: "200px",
+      },
+    },
+    boxInfo: {
+      display: "flex",
+      flexDirection: "row",
+      padding: "0 0 0 0",
+      paddingBottom: "0px",
+      [theme.breakpoints.between("sm", "md")]: {
+        display: "flex",
+        flexDirection: "column",
       },
     },
     boxes: {
@@ -56,7 +64,6 @@ export const useStyles = makeStyles((theme) =>
       margin: "5px",
       height: "auto",
       [theme.breakpoints.up("md")]: {
-        height: "60px",
         alignItems: "center",
       },
     },
@@ -65,6 +72,10 @@ export const useStyles = makeStyles((theme) =>
       textAlign: "left",
       padding: "0px",
       display: "flex",
+      flexDirection: "column",
+      [theme.breakpoints.up("sm")]: {
+        flexDirection: "row",
+      },
     },
     desc: {
       width: "100%",
@@ -73,9 +84,11 @@ export const useStyles = makeStyles((theme) =>
     },
     actionTop: {
       display: "flex",
-      flexDirection: "column",
-      [theme.breakpoints.up("md")]: {
-        display: "block",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      margin: "auto",
+      [theme.breakpoints.between("sm", "md")]: {
+        // display: "block",
         flexDirection: "column",
       },
     },

@@ -65,6 +65,45 @@ export const grantDetails = {
       ],
       sector: "bio-med",
     },
+    {
+      id: 3,
+      title: "NEA Our Town, FY2021",
+      number: "2020NEA01OT",
+      agency: "NEA",
+      status: "posted",
+      postedDate: "05/06/2020",
+      closedDate: "08/06/2020",
+      image:
+        "https://images.freeimages.com/images/large-previews/b0b/american-flag-1547938.jpg",
+      detailMain: "Some main detail for Grant #3",
+      detailContent: [
+        "Some details for 1",
+        "Some details for 2",
+        "Some Detail for 3",
+        "Some detail for 4",
+      ],
+      sector: "R&D",
+    },
+
+    {
+      id: 4,
+      title: "	Academy for Women Entrepreneurs - AWE 2020",
+      number: "PAS-MOROCCO-FY20-06",
+      agency: "USDA-NRCS",
+      status: "posted",
+      postedDate: "05/06/2020",
+      closedDate: "07/06/2020",
+      image:
+        "https://images.freeimages.com/images/large-previews/b0b/american-flag-1547938.jpg",
+      detailMain: "Some main detail for Grant #4",
+      detailContent: [
+        "Some details for 1",
+        "Some details for 2",
+        "Some Detail for 3",
+        "Some detail for 4",
+      ],
+      sector: "R&D",
+    },
   ],
   writerGrants: [{}],
 };

@@ -42,42 +42,39 @@ export default function GrantCard(props) {
           </Avatar>
         }
         action={
-          <div>
-            <CardActions className={classes.actionTop}>
-              <IconButton
-                aria-label="add to favorites"
-                className={classes.buttons}
-              >
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton
-                aria-label="direct message"
-                className={classes.buttons}
-              >
-                <ChatRoundedIcon />
-              </IconButton>
-              <IconButton
-                className={clsx(classes.expand, {
-                  [classes.expandOpen]: expanded,
-                })}
-                onClick={handleExpandClick}
-                aria-expanded={expanded}
-                aria-label="show more"
-              >
-                <ExpandMoreIcon />
-              </IconButton>
-            </CardActions>
-          </div>
+          <CardActions className={classes.actionTop}>
+            <IconButton
+              aria-label="add to favorites"
+              className={classes.buttons}
+            >
+              <FavoriteIcon />
+            </IconButton>
+            <IconButton aria-label="direct message" className={classes.buttons}>
+              <ChatRoundedIcon />
+            </IconButton>
+            <IconButton
+              className={clsx(classes.expand, {
+                [classes.expandOpen]: expanded,
+              })}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </CardActions>
         }
         title={
           <div className={classes.content}>
             <div className={classes.desc}>
-              <Typography variant="body2" color="textSecondary" component="p">
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                component="p"
+                className={classes.title}
+              >
                 {grant.title}
               </Typography>
-              {/* <Typography variant="body2" color="textSecondary" component="p">
-                {grant.detailMain}
-              </Typography> */}
             </div>
             <div className={classes.boxInfo}>
               <Typography className={classes.boxes}>Timeframe</Typography>

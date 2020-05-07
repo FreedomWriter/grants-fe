@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 // import Card1 from "./grantCards/Card1.jsx";
 import GrantCard from "./grantCards/GrantCard.jsx";
-import UserInfo from "./userInfo/UserInfo.jsx";
+import UserCardWriter from "./userCard/UserCardWriter.jsx";
+import UserCardApplicant from "./userCard/UserCardApplicant.jsx";
 
 import { Container } from "@material-ui/core";
 
@@ -16,6 +17,7 @@ import {
 import HomePageReducer from "../../store/reducers/HomePageReducer.js";
 
 const Homepage = () => {
+  //
   //======Access necessary actions for Homepage======
   const dispatch = useDispatch(); //can use all actions.
   useEffect(() => {
@@ -46,15 +48,16 @@ const Homepage = () => {
 
   const classes = useStyles();
 
+  console.log("user.type:", user.type === "writer");
   return (
     <div className={classes.container}>
       {/* StylesProvider */}
       {/* GlobalStyles */}
-      <Container className="App-header">
-        {!status.isLoadingUser ? (
-          <UserInfo details={user} />
+      <Container className={classes.appHeader}>
+        {user.type === "writer" ? ( //this is always going following the true...
+          <UserCardWriter details={user} />
         ) : (
-          <h3>Loading information....</h3>
+          <UserCardApplicant details={user} />
         )}
         {grants.map((grant) => {
           // console.log(grant);
@@ -70,18 +73,4 @@ const Homepage = () => {
   );
 };
 
-/*
-const mapStateToProps = (state) => ({
-  error: state.error,
-  isLoadingUser: state.isLoadingUser,
-  isLoadingGrants: state.isLoadingGrants,
-  userStateInfo: state.userInfo,
-  grantsInfo: state.grantsInfo,
-  reFetch: state.reFetch,
-});
-
-export default connect(mapStateToProps, { getUserInfo, getGrantsInfo })(
-  Homepage
-);
-*/
 export default Homepage;

@@ -69,7 +69,7 @@ export const getUserInfo = (info) => (dispatch) => {
     .then((res) => {
       console.log("getUserInfo>res: ", res);
       console.log("getUserInfo>info: ", info);
-      dispatch({ type: GET_USER_INFO_SUCCESS, payload: userDetails[0] });
+      dispatch({ type: GET_USER_INFO_SUCCESS, payload: userDetails[1] });
     })
     .catch((err) => {
       console.log("getUserInfo>err: ", err);
