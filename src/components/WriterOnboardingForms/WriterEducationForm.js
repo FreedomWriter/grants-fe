@@ -93,7 +93,7 @@ export default function WriterEducationForm({
               <InputBase
                 placeholder="Enter A School Name..."
                 onBlur={handleValidation}
-                error={formHelperText.searchCollege ? true : undefined}
+                error={formHelperText.searchCollege && true}
                 onChange={handleEducationChanges}
                 required
                 id="searchCollege"
@@ -143,7 +143,7 @@ export default function WriterEducationForm({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.startDate ? true : undefined}
+            error={formHelperText.startDate && true}
             helperText={
               formHelperText.startDate
                 ? formHelperText.startDate
@@ -162,7 +162,7 @@ export default function WriterEducationForm({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.endDate ? true : undefined}
+            error={formHelperText.endDate && true}
             helperText={
               formHelperText.endDate
                 ? formHelperText.endDate
@@ -205,7 +205,11 @@ export default function WriterEducationForm({
               labelId="degree-earned-label"
               id="degree"
               name="degree"
-              value={educationFormState.degree}
+              value={
+                educationFormState.degree
+                  ? educationFormState.degree
+                  : possibleDegrees[possibleDegrees.length - 1]
+              }
               onChange={handleEducationChanges}
             >
               {possibleDegrees.map((posDegree) => {
