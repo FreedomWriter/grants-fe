@@ -44,11 +44,15 @@ export default function WriterEducationForm({
 
   useEffect(() => {
     async function fetchData() {
-      /* once user has typed 3 characters in, api request for colleges fires, rendering a list of known colleges which match the text the user has typed */
-      /* conditional ensures the user has typed at least 3 characters before sending - should be REFACTOR to pull an initial subset of the data and switch to filtering to avoid multiple api calls*/
-      educationFormState.searchCollege !== "" &&
-        educationFormState.searchCollege.length >= 3 &&
-        (await dispatch(getColleges(educationFormState.searchCollege)));
+      try {
+        /* once user has typed 3 characters in, api request for colleges fires, rendering a list of known colleges which match the text the user has typed */
+        /* conditional ensures the user has typed at least 3 characters before sending - should be REFACTOR to pull an initial subset of the data and switch to filtering to avoid multiple api calls*/
+        educationFormState.searchCollege !== "" &&
+          educationFormState.searchCollege.length >= 3 &&
+          (await dispatch(getColleges(educationFormState.searchCollege)));
+      } catch (err) {
+        console.log(err);
+      }
     }
     fetchData();
   }, [dispatch, educationFormState.searchCollege]);
@@ -119,24 +123,27 @@ export default function WriterEducationForm({
                   searchCollege: "",
                 })}
               {/* renders a list of options of colleges for the user to select from using data pulled from api */}
-              {educationFormState.searchCollege &&
-                colleges &&
-                colleges.map((college) => (
-                  <option
-                    key={college.id}
-                    arial-label={college.name}
-                    value={college.name}
-                    onClick={() => {
-                      setEducationFormState({
-                        ...educationFormState,
-                        college: college.name,
-                        searchCollege: "",
-                      });
-                    }}
-                  >
-                    {college.name}
-                  </option>
-                ))}
+              <div data-testid="colleges-options">
+                {" "}
+                {educationFormState.searchCollege &&
+                  colleges &&
+                  colleges.map((college) => (
+                    <option
+                      key={college.id}
+                      arial-label={college.name}
+                      value={college.name}
+                      onClick={() => {
+                        setEducationFormState({
+                          ...educationFormState,
+                          college: college.name,
+                          searchCollege: "",
+                        });
+                      }}
+                    >
+                      {college.name}
+                    </option>
+                  ))}
+              </div>
             </FormControl>
           </Grid>
         </Grid>

@@ -5,7 +5,7 @@ import {
   CLEAR_COLLEGE_LIST,
 } from "../actions/collegeActions";
 
-const initialState = {
+export const initialState = {
   colleges: [],
   isLoading: false,
 };
