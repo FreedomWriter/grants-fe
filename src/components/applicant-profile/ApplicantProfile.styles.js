@@ -5,10 +5,10 @@ export const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   leftpanel: {
-    padding: '45px 0',
+    padding: '25px 0',
     textAlign: 'center',
     },
-  bioname: {
+  biosection: {
     display: 'grid',
     gridTemplateColumns: '1.2fr 0.8fr',
     gridTemplateRows: '1fr',
@@ -21,8 +21,10 @@ export const useStyles = makeStyles((theme) => ({
   bioheader: {
     [theme.breakpoints.down("xs")]: {
     fontSize: '2rem',
-    margin: '0'
     }
+  },
+  sector: {
+    margin: '1em'
   },
   grants: {
     width: "90%",
@@ -30,7 +32,7 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
     gridTemplateColumns: '2fr',
     gridTemplateRows: '1fr',
-    width: '70%'
+    width: '85%'
     }
   },
   profilepaper: {
@@ -47,7 +49,7 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       gridTemplateColumns: '2fr',
       gridTemplateRows: '1fr',
-      width: '70%'
+      width: '85%'
     }
   }
 
