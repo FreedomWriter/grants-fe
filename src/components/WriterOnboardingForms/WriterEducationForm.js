@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getColleges } from "../../store/actions/collegeActions";
 
@@ -18,7 +18,7 @@ import { useStyles } from "./WriterForm.styles";
 
 import WriterEducationCard from "./WriterEducationCard";
 
-export default function OrgInformation({
+export default function WriterEducationForm({
   handleEducationChanges,
   educationFormState,
   formHelperText,

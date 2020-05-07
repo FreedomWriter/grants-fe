@@ -24,7 +24,7 @@ export default function ApplicantContactInfo({
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.firstName ? true : false}
+            error={formHelperText.firstName && true}
             helperText={formHelperText.firstName}
             required
             id="firstName"
@@ -39,7 +39,7 @@ export default function ApplicantContactInfo({
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.lastName ? true : false}
+            error={formHelperText.lastName && true}
             helperText={formHelperText.lastName}
             required
             id="lastName"
@@ -54,7 +54,7 @@ export default function ApplicantContactInfo({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.sector ? true : false}
+            error={formHelperText.sector && true}
             helperText={formHelperText.sector}
             required
             id="sector"
@@ -69,7 +69,7 @@ export default function ApplicantContactInfo({
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.city ? true : false}
+            error={formHelperText.city && true}
             helperText={formHelperText.city}
             required
             id="city"
@@ -84,7 +84,7 @@ export default function ApplicantContactInfo({
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.state ? true : false}
+            error={formHelperText.state && true}
             helperText={formHelperText.state}
             id="state"
             name="state"
@@ -97,7 +97,7 @@ export default function ApplicantContactInfo({
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.zip ? true : false}
+            error={formHelperText.zip && true}
             helperText={formHelperText.zip}
             required
             id="zip"
@@ -112,7 +112,7 @@ export default function ApplicantContactInfo({
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.country ? true : false}
+            error={formHelperText.country && true}
             helperText={formHelperText.country}
             required
             id="country"

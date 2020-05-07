@@ -1,62 +1,51 @@
 import React, { useState as useStateMock } from "react";
 import { render, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import ApplicantContactInfo from "./WriterContactInfo";
-import ApplicantProfileForm from "./WriterProfileForm";
+import WriterContactInfo from "./WriterContactInfoForm.js";
+import WriterProfileForm from "./WriterProfileForm.js";
 
-let formState = {
+let contactFormState = {
   firstName: "",
   lastName: "",
-  sector: "",
   city: "",
   state: "",
   zip: "",
   country: "",
-  org: false,
-  orgName: "",
-  foundingDate: "",
-  website: "",
-  bio: "",
 };
 
 jest.mock("react", () => ({
   ...jest.requireActual("react"),
   useState: jest.fn(),
 }));
-
-const setFormStateMock = jest.fn(function () {
-  return (formState = {
+const enableButton = jest.fn(() => false);
+const setContactFormStateMock = jest.fn(function () {
+  return (contactFormState = {
     firstName: "Blupe",
     lastName: "Fiasco",
-    sector: "Disruption",
     city: "Metropolis",
     state: "Chaos",
     zip: 90210,
     country: "No Country for Blue Men",
-    org: false,
-    orgName: "",
-    foundingDate: "",
-    website: "",
-    bio: "",
   });
 });
 
+// let enableButton = false;
+
+// const setDisableButtonMock = jest.fn(function () {
+//   return true
+// });
+
 const formHelperText = {
   firstName: undefined,
-  lastName: undefined,
   sector: undefined,
   city: undefined,
   state: undefined,
   zip: undefined,
   country: undefined,
-  orgName: undefined,
-  foundingDate: undefined,
-  website: undefined,
-  bio: undefined,
 };
 
 beforeEach(() => {
-  useStateMock.mockImplementation((init) => [init, setFormStateMock]);
+  useStateMock.mockImplementation((init) => [init, setContactFormStateMock]);
 });
 
 afterEach(() => {
@@ -65,9 +54,10 @@ afterEach(() => {
 
 test("contact information is visible", () => {
   const { getByText } = render(
-    <ApplicantContactInfo
-      formState={formState}
+    <WriterContactInfo
+      contactFormState={contactFormState}
       formHelperText={formHelperText}
+      enableButton={enableButton}
     />
   );
   const header = getByText(/contact information/i);
@@ -76,15 +66,15 @@ test("contact information is visible", () => {
 
 test("inputs are visible", () => {
   const { getByLabelText } = render(
-    <ApplicantContactInfo
-      formState={formState}
+    <WriterContactInfo
+      contactFormState={contactFormState}
       formHelperText={formHelperText}
+      enableButton={enableButton}
     />
   );
 
   const firstNameLabelText = getByLabelText(/first name/i);
   const lastNameLabelText = getByLabelText(/last Name/i);
-  const sectorLabelText = getByLabelText(/sector/i);
   const cityLabelText = getByLabelText(/city/i);
   const stateLabelText = getByLabelText(/state/i);
   const zipLabelText = getByLabelText(/Zip/i);
@@ -92,7 +82,6 @@ test("inputs are visible", () => {
 
   expect(firstNameLabelText).toBeVisible();
   expect(lastNameLabelText).toBeVisible();
-  expect(sectorLabelText).toBeVisible();
   expect(cityLabelText).toBeVisible();
   expect(stateLabelText).toBeVisible();
   expect(zipLabelText).toBeVisible();
@@ -101,17 +90,16 @@ test("inputs are visible", () => {
 
 test("form submit adds contact info to state", () => {
   const { getByLabelText } = render(
-    <ApplicantContactInfo
-      formState={formState}
+    <WriterContactInfo
+      contactFormState={contactFormState}
       formHelperText={formHelperText}
-      //   setFormState={setFormStateMock}
+      enableButton={enableButton}
     />
   );
-  const { getByText } = render(<ApplicantProfileForm />);
+  const { getByText } = render(<WriterProfileForm />);
 
   const firstNameLabelText = getByLabelText(/first name/i);
   const lastNameLabelText = getByLabelText(/last Name/i);
-  const sectorLabelText = getByLabelText(/sector/i);
   const cityLabelText = getByLabelText(/city/i);
   const stateLabelText = getByLabelText(/state/i);
   const zipLabelText = getByLabelText(/Zip/i);
@@ -119,9 +107,6 @@ test("form submit adds contact info to state", () => {
 
   fireEvent.change(firstNameLabelText, { target: { value: "Blupe" } });
   fireEvent.change(lastNameLabelText, { target: { value: "Fiasco" } });
-  fireEvent.change(sectorLabelText, {
-    target: { value: "Disruption" },
-  });
   fireEvent.change(cityLabelText, { target: { value: "Metropolis" } });
   fireEvent.change(stateLabelText, { target: { value: "Chaos" } });
   fireEvent.change(zipLabelText, {
@@ -132,18 +117,12 @@ test("form submit adds contact info to state", () => {
   });
   userEvent.click(getByText(/next/i));
 
-  expect(formState).toEqual({
+  expect(contactFormState).toEqual({
     firstName: "Blupe",
     lastName: "Fiasco",
-    sector: "Disruption",
     city: "Metropolis",
     state: "Chaos",
     zip: 90210,
     country: "No Country for Blue Men",
-    org: false,
-    orgName: "",
-    foundingDate: "",
-    website: "",
-    bio: "",
   });
 });

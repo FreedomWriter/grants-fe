@@ -16,7 +16,7 @@ import { useStyles } from "./WriterForm.styles";
 
 const steps = ["Contact", "Education", "Work History", "Bio", "Review"];
 
-export default function ApplicantProfileForm() {
+export default function WriterProfileForm() {
   const classes = useStyles();
   // active step keeps track of which child component will render
   const [activeStep, setActiveStep] = useState(0);

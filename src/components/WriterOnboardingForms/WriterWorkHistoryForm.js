@@ -19,6 +19,7 @@ export default function ApplicantContactInfo({
 
   const [writersWorkHistory, setWritersWorkHistory] = useState([]);
 
+  /* similar implementation to how multiple colleges are being handled - needs similar REFACTOR */
   const handleWorkHistorySubmit = () => {
     setWritersWorkHistory([
       ...writersWorkHistory,
@@ -140,7 +141,6 @@ export default function ApplicantContactInfo({
           />
         </Grid>
         <Grid item xs={12}>
-          {" "}
           <Button
             size="small"
             color="primary"
