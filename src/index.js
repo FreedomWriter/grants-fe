@@ -13,13 +13,9 @@ import { store, persistor } from "./store";
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <PersistGate persistor={persistor}>
-        <Router>
-          <App />          
-        </Router>
-      </PersistGate>
-    </React.StrictMode>
+    <PersistGate persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );
