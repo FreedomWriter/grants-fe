@@ -3,6 +3,11 @@ import {
 } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => ({
+    paperClass: {
+        [theme.breakpoints.up("lg")]: {
+            marginTop: "5%",
+        },
+    },
     userPicture: {
         width: "100%",
     },
@@ -13,7 +18,10 @@ export const useStyles = makeStyles((theme) => ({
         textAlign: "center",
     },
     userServices: {
-        width: "auto",
+        width: "90%",
+    },
+    writerWebsite: {
+        textAlign: "center",
     },
     root: {
         minWidth: "0",
