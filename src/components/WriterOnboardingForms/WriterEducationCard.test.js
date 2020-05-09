@@ -132,7 +132,7 @@ test("can render with redux with custom initial state", () => {
 //   });
 // });
 
-// // let enableButton = false;
+let enableButton = false;
 
 // // const setDisableButtonMock = jest.fn(function () {
 // //   return true
@@ -168,29 +168,48 @@ test("can render with redux with custom initial state", () => {
 //   expect(header).toBeVisible();
 // });
 
-// test("inputs are visible", () => {
-//   const { getByLabelText } = render(
-//     <WriterEducationForm
-//       educationFormState={educationFormState}
-//       formHelperText={formHelperText}
-//       enableButton={enableButton}
-//     />
-//   );
+test("inputs are visible", () => {
+  const { getByLabelText, getByTestId } = render(
+    <WriterEducationForm
+      educationFormState={educationFormStateMock}
+      formHelperText={formHelperTextMock}
+      enableButton={enableButton}
+    />,
+    {
+      initialState: {
+        collegeList: {
+          colleges: [
+            { "school.name": "Howard College", id: 225520 },
+            { "school.name": "Howard University", id: 131520 },
+            { "school.name": "Howard Payne University", id: 225548 },
+            { "school.name": "Howard Community College", id: 162779 },
+            { "school.name": "Specs Howard School of Media Arts", id: 172325 },
+            {
+              "school.name": "Howell Cheney THS/CT Aero Tech School",
+              id: 417248,
+            },
+          ],
+        },
+        isLoading: false,
+      },
+    }
+  );
 
-//   const firstNameLabelText = getByLabelText(/first name/i);
-//   const lastNameLabelText = getByLabelText(/last Name/i);
-//   const cityLabelText = getByLabelText(/city/i);
-//   const stateLabelText = getByLabelText(/state/i);
-//   const zipLabelText = getByLabelText(/Zip/i);
-//   const countryLabelText = getByLabelText(/country/i);
+  // const educationLabelText = getByLabelText(/education/i);
+  const schoolLabelText = getByTestId("schoolname");
+  const startDateLabelText = getByLabelText(/start date/i);
+  const endDateLabelText = getByLabelText(/end date/i);
+  // const zipLabelText = getByLabelText(/Zip/i);
+  // const countryLabelText = getByLabelText(/country/i);
+  const collegeDropdowns = getByTestId("colleges-options");
 
-//   expect(firstNameLabelText).toBeVisible();
-//   expect(lastNameLabelText).toBeVisible();
-//   expect(cityLabelText).toBeVisible();
-//   expect(stateLabelText).toBeVisible();
-//   expect(zipLabelText).toBeVisible();
-//   expect(countryLabelText).toBeVisible();
-// });
+  // expect(educationLabelText).toBeVisible();
+  expect(schoolLabelText).toBeVisible();
+  expect(startDateLabelText).toBeVisible();
+  expect(endDateLabelText).toBeVisible();
+  // expect(zipLabelText).toBeVisible();
+  expect(collegeDropdowns).toBeVisible();
+});
 
 // test("form submit adds contact info to state", () => {
 //   const { getByLabelText, getByText } = render(

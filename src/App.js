@@ -5,6 +5,7 @@ import theme from "./components/globals/theme";
 
 import Navbar from "./components/navbar/Navbar";
 import WriterProfileForm from "./components/WriterOnboardingForms/WriterProfileForm";
+import ApplicantProfileForm from "./components/ApplicantOnboardingForm/ApplicantProfileForm";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <Navbar />
         <WriterProfileForm />
+        {/* <ApplicantProfileForm /> */}
       </ThemeProvider>
     </Router>
   );

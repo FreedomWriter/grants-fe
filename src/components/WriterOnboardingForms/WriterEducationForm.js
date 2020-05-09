@@ -32,6 +32,9 @@ export default function WriterEducationForm({
 
   const dispatch = useDispatch();
 
+  /* colleges pulled from state  (returned from api) */
+  const colleges = useSelector((state) => state.collegeList.colleges);
+
   /* used to render a drop down list of possible degrees */
   const possibleDegrees = [
     "Associate degree",
@@ -43,12 +46,16 @@ export default function WriterEducationForm({
   ];
 
   useEffect(() => {
+    // let firstThree = colleges[0].substring(0, 3);
     async function fetchData() {
       try {
         /* once user has typed 3 characters in, api request for colleges fires, rendering a list of known colleges which match the text the user has typed */
         /* conditional ensures the user has typed at least 3 characters before sending - should be REFACTOR to pull an initial subset of the data and switch to filtering to avoid multiple api calls*/
+
         educationFormState.searchCollege !== "" &&
           educationFormState.searchCollege.length >= 3 &&
+          // educationFormState.searchCollege.substring(0, 3) !==
+          //   educationFormState.searchCollege.substring(0, 3) &&
           (await dispatch(getColleges(educationFormState.searchCollege)));
       } catch (err) {
         console.log(err);
@@ -56,9 +63,6 @@ export default function WriterEducationForm({
     }
     fetchData();
   }, [dispatch, educationFormState.searchCollege]);
-
-  /* colleges pulled from state  (returned from api) */
-  const colleges = useSelector((state) => state.collegeList.colleges);
 
   /* currently sets users values to writersColleges state, which holds an array, allowing for multiple colleges per writer and clears educationFormState, REFACTOR ties into refactor in WriterProfileForm.js line 66  */
   const handleCollegeSubmit = () => {
@@ -95,6 +99,7 @@ export default function WriterEducationForm({
           <Grid item xs={12}>
             <FormControl className={classes.orgTextField}>
               <InputBase
+                data-testid="schoolname"
                 placeholder="Enter A School Name..."
                 onBlur={handleValidation}
                 error={formHelperText.searchCollege && true}
@@ -123,7 +128,7 @@ export default function WriterEducationForm({
                   searchCollege: "",
                 })}
               {/* renders a list of options of colleges for the user to select from using data pulled from api */}
-              <div data-testid="colleges-options">
+              <Grid item data-testid="colleges-options">
                 {" "}
                 {educationFormState.searchCollege &&
                   colleges &&
@@ -143,7 +148,7 @@ export default function WriterEducationForm({
                       {college.name}
                     </option>
                   ))}
-              </div>
+              </Grid>
             </FormControl>
           </Grid>
         </Grid>

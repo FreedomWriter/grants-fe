@@ -22,7 +22,7 @@ export default function WriterProfileForm() {
   const [activeStep, setActiveStep] = useState(0);
 
   /* change this value to `true` to disable the button until user completes form - currently set to false for development purposes */
-  const [disableButton, setDisableButton] = useState(false);
+  const [disableButton, setDisableButton] = useState(true);
 
   /* enableButton passed down as props to avoid `index.js:1 Warning: Cannot update a component (`ApplicantProfileForm`) while rendering a different component (`OrgInformation`). To locate the bad setState() call inside `OrgInformation`, follow the stack trace` when trying to enable the button in children forms by passing and invoking: `setDisableButton(false)` */
   const enableButton = () => setDisableButton(false);
@@ -220,7 +220,7 @@ export default function WriterProfileForm() {
             handleContactChanges={handleContactChanges}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
-            setDisableButton={setDisableButton}
+            enableButton={enableButton}
           />
         );
       case 1:
