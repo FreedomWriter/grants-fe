@@ -34,7 +34,7 @@ export default function ApplicantContactInfo({
 
   return (
     <div className={classes.container}>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" gutterBottom color="primary">
         Contact Information
       </Typography>
       <Grid container spacing={3}>
@@ -86,6 +86,7 @@ export default function ApplicantContactInfo({
             onBlur={handleValidation}
             error={formHelperText.state && true}
             helperText={formHelperText.state}
+            required
             id="state"
             name="state"
             value={contactFormState.state}

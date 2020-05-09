@@ -16,6 +16,8 @@ import Select from "@material-ui/core/Select";
 
 import { useStyles } from "./WriterForm.styles";
 
+import { v4 as uuidv4 } from "uuid";
+
 import WriterEducationCard from "./WriterEducationCard";
 
 export default function WriterEducationForm({
@@ -29,6 +31,7 @@ export default function WriterEducationForm({
   handleCollegeSubmit,
   setDisableCollegeSubmitButton,
   disableCollegeSubmitButton,
+  enableButton,
 }) {
   const classes = useStyles();
 
@@ -39,16 +42,15 @@ export default function WriterEducationForm({
 
   /* used to render a drop down list of possible degrees */
   const possibleDegrees = [
-    "Associate degree",
-    "Bachelor's degree",
-    "Master's degree",
-    "Doctoral degree",
-    "Vocational Certificate",
-    "Other",
+    { id: uuidv4(), deg: "Associate degree" },
+    { id: uuidv4(), deg: "Bachelor's degree" },
+    { id: uuidv4(), deg: "Master's degree" },
+    { id: uuidv4(), deg: "Doctoral degree" },
+    { id: uuidv4(), deg: "Vocational Certificate" },
+    { id: uuidv4(), deg: "Other" },
   ];
-
   useEffect(() => {
-    // let firstThree = colleges[0].substring(0, 3);
+    enableButton();
     async function fetchData() {
       try {
         /* once user has typed 3 characters in, api request for colleges fires, rendering a list of known colleges which match the text the user has typed */
@@ -88,11 +90,12 @@ export default function WriterEducationForm({
     educationFormState.anticipatedGraduation,
     educationFormState.endDate,
     setDisableCollegeSubmitButton,
+    enableButton,
   ]);
 
   return (
     <div className={classes.container}>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" gutterBottom color="primary">
         Education
       </Typography>
       <Grid container spacing={3}>
@@ -228,12 +231,12 @@ export default function WriterEducationForm({
               {possibleDegrees.map((posDegree) => {
                 return (
                   <MenuItem
-                    key={posDegree}
-                    value={posDegree}
+                    key={posDegree.id}
+                    value={posDegree.deg}
                     onClick={() =>
                       setEducationFormState({
                         ...educationFormState,
-                        degree: posDegree,
+                        degree: posDegree.deg,
                       })
                     }
                   >

@@ -24,11 +24,16 @@ export default function WriterProfileForm() {
   const [activeStep, setActiveStep] = useState(0);
 
   /* change this value to `true` to disable the button until user completes form - currently set to false for development purposes */
-  const [disableButton, setDisableButton] = useState(false);
+  const [disableButton, setDisableButton] = useState(true);
 
   const [disableCollegeSubmitButton, setDisableCollegeSubmitButton] = useState(
     true
   );
+
+  const [
+    disableWorkHistorySubmitButton,
+    setDisableWorkHistorySubmitButton,
+  ] = useState(true);
 
   /* enableButton passed down as props to avoid `index.js:1 Warning: Cannot update a component (`ApplicantProfileForm`) while rendering a different component (`OrgInformation`). To locate the bad setState() call inside `OrgInformation`, follow the stack trace` when trying to enable the button in children forms by passing and invoking: `setDisableButton(false)` */
   const enableButton = () => setDisableButton(false);
@@ -58,8 +63,8 @@ export default function WriterProfileForm() {
   const [workHistoryFormState, setWorkHistoryFormState] = useState({
     company: "",
     position: "",
-    startDate: "",
-    endDate: "",
+    workStartDate: "",
+    workEndDate: "",
     currentPosition: true,
     responsibilites: "",
   });
@@ -67,7 +72,7 @@ export default function WriterProfileForm() {
   const [bioFormState, setBioFormState] = useState({
     website: "",
     bio: "",
-    servicesOffered: [],
+    servicesOffered: "",
   });
 
   /* because users may have attended more than one school, we are currently using a separate state to handle this. REFACTOR to use psuedo POST to global state */
@@ -84,6 +89,11 @@ export default function WriterProfileForm() {
     country: undefined,
     website: undefined,
     bio: undefined,
+    company: undefined,
+    postion: undefined,
+    responsibilites: undefined,
+    workStartDate: undefined,
+    workEndDate: undefined,
   });
 
   const [writersWorkHistory, setWritersWorkHistory] = useState([]);
@@ -115,8 +125,8 @@ export default function WriterProfileForm() {
   };
 
   const handleWorkHistoryChanges = (e) => {
-    setEducationFormState({
-      ...educationFormState,
+    setWorkHistoryFormState({
+      ...workHistoryFormState,
       [e.target.name]: e.target.value,
     });
   };
@@ -172,9 +182,9 @@ export default function WriterProfileForm() {
       ...writersWorkHistory,
       {
         id: uuidv4(),
-        college: workHistoryFormState.company,
-        startDate: workHistoryFormState.startDate,
-        endDate: workHistoryFormState.endDate,
+        company: workHistoryFormState.company,
+        workStartDate: workHistoryFormState.workStartDate,
+        workEndDate: workHistoryFormState.workEndDate,
         position: workHistoryFormState.position,
         currentPosition: workHistoryFormState.currentPosition,
         responsibilites: workHistoryFormState.responsibilites,
@@ -193,6 +203,13 @@ export default function WriterProfileForm() {
   const handleWriterBioSubmit = () => {
     console.log(`Bio submit!!!!!!!!!`);
   };
+
+  console.log({ contactFormState });
+  console.log({ educationFormState });
+  console.log({ writersColleges });
+  console.log({ workHistoryFormState });
+  console.log({ writersWorkHistory });
+  console.log({ bioFormState });
 
   /* ********************* END SUBMIT HANDLERS ********************* */
 
@@ -232,6 +249,15 @@ export default function WriterProfileForm() {
         break;
       case "country":
         validator(contactFormState.country);
+        break;
+      case "company":
+        validator(workHistoryFormState.company);
+        break;
+      case "position":
+        validator(workHistoryFormState.position);
+        break;
+      case "responsibilites":
+        validator(workHistoryFormState.responsibilites);
         break;
       case "zip":
         let valid = /(^\d{5}(?:[\s]?[-\s][\s]?\d{4})?$)/.test(
@@ -300,6 +326,7 @@ export default function WriterProfileForm() {
             setWritersColleges={setWritersColleges}
             disableCollegeSubmitButton={disableCollegeSubmitButton}
             setDisableCollegeSubmitButton={setDisableCollegeSubmitButton}
+            enableButton={enableButton}
           />
         );
       case 2:
@@ -310,16 +337,21 @@ export default function WriterProfileForm() {
             setWorkHistoryFormState={setWorkHistoryFormState}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
-            setDisableButton={setDisableButton}
+            enableButton={enableButton}
             handleWorkHistorySubmit={handleWorkHistorySubmit}
             writersWorkHistory={writersWorkHistory}
             setWritersWorkHistory={setWritersWorkHistory}
+            disableWorkHistorySubmitButton={disableWorkHistorySubmitButton}
+            setDisableWorkHistorySubmitButton={
+              setDisableWorkHistorySubmitButton
+            }
           />
         );
       case 3:
         return (
           <WriterBioForm
             handleBioChanges={handleBioChanges}
+            setBioFormState={setBioFormState}
             bioFormState={bioFormState}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
@@ -352,6 +384,10 @@ export default function WriterProfileForm() {
             handleWriterBioSubmit={handleWriterBioSubmit}
             disableCollegeSubmitButton={disableCollegeSubmitButton}
             setDisableCollegeSubmitButton={setDisableCollegeSubmitButton}
+            disableWorkHistorySubmitButton={disableWorkHistorySubmitButton}
+            setDisableWorkHistorySubmitButton={
+              setDisableWorkHistorySubmitButton
+            }
           />
         );
       default:
@@ -366,7 +402,12 @@ export default function WriterProfileForm() {
       <CssBaseline />
       <main className={classes.layout}>
         <Paper className={classes.paper}>
-          <Typography component="h1" variant="h4" align="center">
+          <Typography
+            component="h1"
+            variant="h4"
+            align="center"
+            color="primary"
+          >
             Create Profile
           </Typography>
           {/* the stepper handles visual marker the user sees that shows them their progress in the process */}

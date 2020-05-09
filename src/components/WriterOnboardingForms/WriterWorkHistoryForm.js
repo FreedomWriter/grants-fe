@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
 
-import { v4 as uuidv4 } from "uuid";
+import WriterWorkCard from "./WriterWorkCard";
 
 import { useStyles } from "./WriterForm.styles";
 export default function ApplicantContactInfo({
@@ -17,21 +17,53 @@ export default function ApplicantContactInfo({
   formHelperText,
   handleValidation,
   handleWorkHistorySubmit,
-  // writersWorkHistory,
+  writersWorkHistory,
   // setWritersWorkHistory
+  enableButton,
+  disableWorkHistorySubmitButton,
+  setDisableWorkHistorySubmitButton,
 }) {
   const classes = useStyles();
 
+  useEffect(() => {
+    enableButton();
+    /* handles whether the button to submit a work history is disabled based on required fields */
+    if (
+      workHistoryFormState.company.length > 1 &&
+      workHistoryFormState.workStartDate.length > 1 &&
+      workHistoryFormState.position.length > 1 &&
+      workHistoryFormState.responsibilites.length > 1
+    ) {
+      if (workHistoryFormState.currentPosition === true) {
+        return setDisableWorkHistorySubmitButton(false);
+      } else if (workHistoryFormState.workEndDate.length > 5) {
+        return setDisableWorkHistorySubmitButton(false);
+      } else {
+        return setDisableWorkHistorySubmitButton(true);
+      }
+    } else {
+      setDisableWorkHistorySubmitButton(true);
+    }
+  }, [
+    enableButton,
+    workHistoryFormState.company,
+    workHistoryFormState.workStartDate,
+    workHistoryFormState.position,
+    workHistoryFormState.responsibilites,
+    workHistoryFormState.workEndDate,
+    workHistoryFormState.currentPosition,
+    setDisableWorkHistorySubmitButton,
+  ]);
   return (
     <div className={classes.container}>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" gutterBottom color="primary">
         Work History
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.endDate ? true : undefined}
+            error={formHelperText.workEndDate ? true : undefined}
             onChange={handleWorkHistoryChanges}
             className={classes.orgTextField}
             required
@@ -57,34 +89,34 @@ export default function ApplicantContactInfo({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.startDate ? true : undefined}
+            error={formHelperText.workStartDate ? true : undefined}
             helperText={
-              formHelperText.startDate
-                ? formHelperText.startDate
+              formHelperText.workStartDate
+                ? formHelperText.workStartDate
                 : "Start Date*"
             }
             onChange={handleWorkHistoryChanges}
             className={classes.orgTextField}
             type="date"
             required
-            id="startDate"
-            name="startDate"
-            value={workHistoryFormState.startDate}
-            aria-label="Start Date"
+            id="workStartDate"
+            name="workStartDate"
+            value={workHistoryFormState.workStartDate}
+            aria-label="workStartDate"
           />
         </Grid>
         {!workHistoryFormState.currentPosition && (
           <Grid item xs={12}>
             <TextField
               onBlur={handleValidation}
-              error={formHelperText.endDate ? true : undefined}
+              error={formHelperText.workEndDate ? true : undefined}
               onChange={handleWorkHistoryChanges}
               className={classes.orgTextField}
               type="date"
               required
-              id="endDate"
-              name="endDate"
-              value={workHistoryFormState.endDate}
+              id="workEndDate"
+              name="workEndDate"
+              value={workHistoryFormState.workEndDate}
               aria-label="End Date"
             />
           </Grid>
@@ -111,11 +143,11 @@ export default function ApplicantContactInfo({
           <TextAreaAutosize
             onChange={handleWorkHistoryChanges}
             required
-            id="responsibilities"
-            name="responsibilities"
-            value={workHistoryFormState.responsibilities}
+            id="responsibilites"
+            name="responsibilites"
+            value={workHistoryFormState.responsibilites}
             placeholder="What were your responsibilites..."
-            aria-label="Position responsibilities"
+            aria-label="Position responsibilites"
             rowsMin={6}
             className={classes.textArea}
           />
@@ -124,10 +156,23 @@ export default function ApplicantContactInfo({
           <Button
             size="small"
             color="primary"
+            disabled={disableWorkHistorySubmitButton}
             onClick={handleWorkHistorySubmit}
           >
             Submit
           </Button>
+        </Grid>
+        <Grid item xs={12}>
+          {/* if the user has submitted information for one job a card is displayed rendering that information so the user has a visual cue that the submission was successful while still allowing additional work information */}
+          {writersWorkHistory &&
+            writersWorkHistory.map((writersWork) => {
+              return (
+                <WriterWorkCard
+                  writersWork={writersWork}
+                  key={writersWork.id}
+                />
+              );
+            })}
         </Grid>
       </Grid>
     </div>
