@@ -202,13 +202,6 @@ export default function WriterProfileForm() {
     console.log(`Bio submit!!!!!!!!!`);
   };
 
-  // console.log({ contactFormState });
-  // console.log({ educationFormState });
-  // console.log({ writersColleges });
-  // console.log({ workHistoryFormState });
-  // console.log({ writersWorkHistory });
-  console.log({ bioFormState });
-
   /* ********************* END SUBMIT HANDLERS ********************* */
 
   /* ********************* BEGIN INPUT VALIDATION ********************* */
@@ -428,6 +421,7 @@ export default function WriterProfileForm() {
                   Back
                 </Button>
               )}
+
               <Button
                 variant="contained"
                 color="primary"

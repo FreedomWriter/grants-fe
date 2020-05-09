@@ -18,7 +18,6 @@ export default function ApplicantContactInfo({
   handleValidation,
   handleWorkHistorySubmit,
   writersWorkHistory,
-  // setWritersWorkHistory
   enableButton,
   disableWorkHistorySubmitButton,
   setDisableWorkHistorySubmitButton,
