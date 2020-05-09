@@ -21,6 +21,11 @@ export default function ReviewForm({
   enableButton,
   writersColleges,
   setWritersColleges,
+  handleCollegeSubmit,
+  handleWorkHistorySubmit,
+  handleWriterBioSubmit,
+  disableCollegeSubmitButton,
+  setDisableCollegeSubmitButton,
 }) {
   return (
     <>
@@ -32,6 +37,7 @@ export default function ReviewForm({
         setDisableButton={setDisableButton}
       />
       <WriterEducationForm
+        handleCollegeSubmit={handleCollegeSubmit}
         handleEducationChanges={handleEducationChanges}
         educationFormState={educationFormState}
         formHelperText={formHelperText}
@@ -40,8 +46,11 @@ export default function ReviewForm({
         enableButton={enableButton}
         writersColleges={writersColleges}
         setWritersColleges={setWritersColleges}
+        disableCollegeSubmitButton={disableCollegeSubmitButton}
+        setDisableCollegeSubmitButton={setDisableCollegeSubmitButton}
       />
       <WriterWorkHistoryForm
+        handleWorkHistorySubmit={handleWorkHistorySubmit}
         handleWorkHistoryChanges={handleWorkHistoryChanges}
         workHistoryFormState={workHistoryFormState}
         setWorkHistoryFormState={setWorkHistoryFormState}
@@ -54,6 +63,7 @@ export default function ReviewForm({
         bioFormState={bioFormState}
         formHelperText={formHelperText}
         handleValidation={handleValidation}
+        handleWriterBioSubmit={handleWriterBioSubmit}
       />
     </>
   );

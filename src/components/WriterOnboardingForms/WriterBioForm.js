@@ -12,6 +12,7 @@ export default function WriterBioForm({
   handleValidation,
 }) {
   const classes = useStyles();
+
   return (
     <div className={classes.container}>
       <Typography variant="h6" gutterBottom color="primary">

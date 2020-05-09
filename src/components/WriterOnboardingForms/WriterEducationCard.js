@@ -4,15 +4,11 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
-export default function WriterEducationCard({ writersCollege, i }) {
+export default function WriterEducationCard({ writersCollege }) {
   const classes = useStyles();
 
   return (
-    <Card
-      className={classes.cardRoot}
-      variant="outlined"
-      key={writersCollege.college + writersCollege.startDate + Math.random()}
-    >
+    <Card className={classes.cardRoot} variant="outlined">
       <CardContent>
         <Typography
           className={classes.title}

@@ -12,6 +12,8 @@ import WriterWorkHistoryForm from "./WriterWorkHistoryForm";
 import WriterBioForm from "./WriterBioForm";
 import WriterReview from "./WriterReviewForm";
 
+import { v4 as uuidv4 } from "uuid";
+
 import { useStyles } from "./WriterForm.styles";
 
 const steps = ["Contact", "Education", "Work History", "Bio", "Review"];
@@ -22,7 +24,11 @@ export default function WriterProfileForm() {
   const [activeStep, setActiveStep] = useState(0);
 
   /* change this value to `true` to disable the button until user completes form - currently set to false for development purposes */
-  const [disableButton, setDisableButton] = useState(true);
+  const [disableButton, setDisableButton] = useState(false);
+
+  const [disableCollegeSubmitButton, setDisableCollegeSubmitButton] = useState(
+    true
+  );
 
   /* enableButton passed down as props to avoid `index.js:1 Warning: Cannot update a component (`ApplicantProfileForm`) while rendering a different component (`OrgInformation`). To locate the bad setState() call inside `OrgInformation`, follow the stack trace` when trying to enable the button in children forms by passing and invoking: `setDisableButton(false)` */
   const enableButton = () => setDisableButton(false);
@@ -61,6 +67,7 @@ export default function WriterProfileForm() {
   const [bioFormState, setBioFormState] = useState({
     website: "",
     bio: "",
+    servicesOffered: [],
   });
 
   /* because users may have attended more than one school, we are currently using a separate state to handle this. REFACTOR to use psuedo POST to global state */
@@ -78,6 +85,8 @@ export default function WriterProfileForm() {
     website: undefined,
     bio: undefined,
   });
+
+  const [writersWorkHistory, setWritersWorkHistory] = useState([]);
 
   /* ********************* END FORM STATE AND SETTERS ********************* */
 
@@ -128,6 +137,61 @@ export default function WriterProfileForm() {
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
+  };
+
+  /* currently sets users values to writersColleges state, which holds an array, allowing for multiple colleges per writer and clears educationFormState, REFACTOR ties into refactor in WriterProfileForm.js line 66  */
+  const handleCollegeSubmit = () => {
+    setWritersColleges([
+      ...writersColleges,
+      {
+        id: uuidv4(),
+        college: educationFormState.college,
+        startDate: educationFormState.startDate,
+        endDate: educationFormState.endDate,
+        stillAttending: educationFormState.stillAttending,
+        anticipatedGraduation: educationFormState.anticipatedGraduation,
+        degree: educationFormState.degree,
+      },
+    ]);
+    setEducationFormState({
+      college: "",
+      searchCollege: "",
+      startDate: "",
+      endDate: "",
+      stillAttending: true,
+      anticipatedGraduation: "",
+      degree: "",
+    });
+
+    enableButton();
+  };
+
+  /* similar implementation to how multiple colleges are being handled - needs similar REFACTOR */
+  const handleWorkHistorySubmit = () => {
+    setWritersWorkHistory([
+      ...writersWorkHistory,
+      {
+        id: uuidv4(),
+        college: workHistoryFormState.company,
+        startDate: workHistoryFormState.startDate,
+        endDate: workHistoryFormState.endDate,
+        position: workHistoryFormState.position,
+        currentPosition: workHistoryFormState.currentPosition,
+        responsibilites: workHistoryFormState.responsibilites,
+      },
+    ]);
+    setWorkHistoryFormState({
+      company: "",
+      position: "",
+      startDate: "",
+      endDate: "",
+      currentPosition: false,
+      responsibilites: "",
+    });
+  };
+
+  const handleWriterBioSubmit = () => {
+    console.log(`Bio submit!!!!!!!!!`);
   };
 
   /* ********************* END SUBMIT HANDLERS ********************* */
@@ -226,14 +290,16 @@ export default function WriterProfileForm() {
       case 1:
         return (
           <WriterEducationForm
+            handleCollegeSubmit={handleCollegeSubmit}
             handleEducationChanges={handleEducationChanges}
             educationFormState={educationFormState}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
             setEducationFormState={setEducationFormState}
-            enableButton={enableButton}
             writersColleges={writersColleges}
             setWritersColleges={setWritersColleges}
+            disableCollegeSubmitButton={disableCollegeSubmitButton}
+            setDisableCollegeSubmitButton={setDisableCollegeSubmitButton}
           />
         );
       case 2:
@@ -245,6 +311,9 @@ export default function WriterProfileForm() {
             formHelperText={formHelperText}
             handleValidation={handleValidation}
             setDisableButton={setDisableButton}
+            handleWorkHistorySubmit={handleWorkHistorySubmit}
+            writersWorkHistory={writersWorkHistory}
+            setWritersWorkHistory={setWritersWorkHistory}
           />
         );
       case 3:
@@ -255,6 +324,7 @@ export default function WriterProfileForm() {
             formHelperText={formHelperText}
             handleValidation={handleValidation}
             setDisableButton={setDisableButton}
+            handleWriterBioSubmit={handleWriterBioSubmit}
           />
         );
       case 4:
@@ -277,6 +347,11 @@ export default function WriterProfileForm() {
             enableButton={enableButton}
             writersColleges={writersColleges}
             setWritersColleges={setWritersColleges}
+            handleCollegeSubmit={handleCollegeSubmit}
+            handleWorkHistorySubmit={handleWorkHistorySubmit}
+            handleWriterBioSubmit={handleWriterBioSubmit}
+            disableCollegeSubmitButton={disableCollegeSubmitButton}
+            setDisableCollegeSubmitButton={setDisableCollegeSubmitButton}
           />
         );
       default:

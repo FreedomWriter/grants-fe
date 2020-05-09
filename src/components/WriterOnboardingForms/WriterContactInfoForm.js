@@ -50,7 +50,6 @@ export default function ApplicantContactInfo({
             value={contactFormState.firstName}
             onChange={handleContactChanges}
             fullWidth
-            autoComplete="fname"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -65,7 +64,6 @@ export default function ApplicantContactInfo({
             value={contactFormState.lastName}
             onChange={handleContactChanges}
             fullWidth
-            autoComplete="lname"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -94,7 +92,6 @@ export default function ApplicantContactInfo({
             onChange={handleContactChanges}
             label="State/Province/Region"
             fullWidth
-            autoComplete="billing state"
           />
         </Grid>
         <Grid item xs={12} sm={6}>

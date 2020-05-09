@@ -7,6 +7,8 @@ import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
 
+import { v4 as uuidv4 } from "uuid";
+
 import { useStyles } from "./WriterForm.styles";
 export default function ApplicantContactInfo({
   handleWorkHistoryChanges,
@@ -14,33 +16,11 @@ export default function ApplicantContactInfo({
   workHistoryFormState,
   formHelperText,
   handleValidation,
+  handleWorkHistorySubmit,
+  // writersWorkHistory,
+  // setWritersWorkHistory
 }) {
   const classes = useStyles();
-
-  const [writersWorkHistory, setWritersWorkHistory] = useState([]);
-
-  /* similar implementation to how multiple colleges are being handled - needs similar REFACTOR */
-  const handleWorkHistorySubmit = () => {
-    setWritersWorkHistory([
-      ...writersWorkHistory,
-      {
-        college: workHistoryFormState.company,
-        startDate: workHistoryFormState.startDate,
-        endDate: workHistoryFormState.endDate,
-        position: workHistoryFormState.position,
-        currentPosition: workHistoryFormState.currentPosition,
-        responsibilites: workHistoryFormState.responsibilites,
-      },
-    ]);
-    setWorkHistoryFormState({
-      company: "",
-      position: "",
-      startDate: "",
-      endDate: "",
-      currentPosition: false,
-      responsibilites: "",
-    });
-  };
 
   return (
     <div className={classes.container}>

@@ -24,9 +24,11 @@ export default function WriterEducationForm({
   formHelperText,
   handleValidation,
   setEducationFormState,
-  enableButton,
   writersColleges,
   setWritersColleges,
+  handleCollegeSubmit,
+  setDisableCollegeSubmitButton,
+  disableCollegeSubmitButton,
 }) {
   const classes = useStyles();
 
@@ -54,40 +56,39 @@ export default function WriterEducationForm({
 
         educationFormState.searchCollege !== "" &&
           educationFormState.searchCollege.length >= 3 &&
-          // educationFormState.searchCollege.substring(0, 3) !==
-          //   educationFormState.searchCollege.substring(0, 3) &&
           (await dispatch(getColleges(educationFormState.searchCollege)));
       } catch (err) {
         console.log(err);
       }
     }
-    fetchData();
-  }, [dispatch, educationFormState.searchCollege]);
 
-  /* currently sets users values to writersColleges state, which holds an array, allowing for multiple colleges per writer and clears educationFormState, REFACTOR ties into refactor in WriterProfileForm.js line 66  */
-  const handleCollegeSubmit = () => {
-    setWritersColleges([
-      ...writersColleges,
-      {
-        college: educationFormState.college,
-        startDate: educationFormState.startDate,
-        endDate: educationFormState.endDate,
-        stillAttending: educationFormState.stillAttending,
-        anticipatedGraduation: educationFormState.anticipatedGraduation,
-        degree: educationFormState.degree,
-      },
-    ]);
-    setEducationFormState({
-      college: "",
-      searchCollege: "",
-      startDate: "",
-      endDate: "",
-      stillAttending: true,
-      anticipatedGraduation: "",
-      degree: "",
-    });
-    enableButton();
-  };
+    /* handles whether the button to submit a college is disabled based on required fields */
+    if (
+      educationFormState.college.length > 1 &&
+      educationFormState.startDate.length > 1 &&
+      educationFormState.degree.length > 1
+    ) {
+      if (educationFormState.endDate.length > 5) {
+        return setDisableCollegeSubmitButton(false);
+      } else if (educationFormState.anticipatedGraduation.length > 5) {
+        return setDisableCollegeSubmitButton(false);
+      } else {
+        return setDisableCollegeSubmitButton(true);
+      }
+    } else {
+      setDisableCollegeSubmitButton(true);
+    }
+    fetchData();
+  }, [
+    dispatch,
+    educationFormState.searchCollege,
+    educationFormState.college,
+    educationFormState.startDate,
+    educationFormState.degree,
+    educationFormState.anticipatedGraduation,
+    educationFormState.endDate,
+    setDisableCollegeSubmitButton,
+  ]);
 
   return (
     <div className={classes.container}>
@@ -245,16 +246,24 @@ export default function WriterEducationForm({
         </Grid>
         <Grid item xs={12}>
           {" "}
-          <Button size="small" color="primary" onClick={handleCollegeSubmit}>
+          <Button
+            size="small"
+            color="primary"
+            disabled={disableCollegeSubmitButton}
+            onClick={handleCollegeSubmit}
+          >
             Submit
           </Button>
         </Grid>
         <Grid item xs={12}>
           {/* if the user has submitted information for one school/degree a card is displayed rendering that information so the user has a visual cue that the submission was successful while still allowing additional college information */}
           {writersColleges &&
-            writersColleges.map((writersCollege, i) => {
+            writersColleges.map((writersCollege) => {
               return (
-                <WriterEducationCard writersCollege={writersCollege} i={i} />
+                <WriterEducationCard
+                  writersCollege={writersCollege}
+                  key={writersCollege.id}
+                />
               );
             })}
         </Grid>
