@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
@@ -18,6 +18,7 @@ export default function WriterBioForm({
   bioFormState,
   formHelperText,
   handleValidation,
+  enableButton,
 }) {
   const classes = useStyles();
 
@@ -26,6 +27,19 @@ export default function WriterBioForm({
     { id: uuidv4(), skill: "Researcher Only" },
     { id: uuidv4(), skill: "Writer and Researcher" },
   ];
+
+  useEffect(() => {
+    // enableButton();
+
+    /* handles whether the button to submit a college is disabled based on required fields */
+    if (
+      bioFormState.bio.length > 5 &&
+      bioFormState.servicesOffered.length > 1
+    ) {
+      enableButton();
+    } else {
+    }
+  }, [bioFormState.bio, enableButton, bioFormState.servicesOffered]);
 
   return (
     <div className={classes.container}>
@@ -48,11 +62,13 @@ export default function WriterBioForm({
         </Grid>
         <Grid item xs={12}>
           <FormControl className={classes.orgTextField}>
-            <InputLabel id="degree-earned-label">Degree Awarded</InputLabel>
+            <InputLabel id="services-offered-labes">
+              Services Offered
+            </InputLabel>
             <Select
-              labelId="degree-earned-label"
-              id="degree"
-              name="degree"
+              labelId="services-offered-labes"
+              id="servicesOffered"
+              name="servicesOffered"
               value={
                 bioFormState.servicesOffered
                   ? bioFormState.servicesOffered
@@ -61,6 +77,7 @@ export default function WriterBioForm({
               onChange={handleBioChanges}
             >
               {possibleSkills.map((posSkill) => {
+                console.log({ posSkill });
                 return (
                   <MenuItem
                     key={posSkill.id}

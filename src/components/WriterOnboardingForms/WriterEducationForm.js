@@ -240,7 +240,7 @@ export default function WriterEducationForm({
                       })
                     }
                   >
-                    {posDegree}
+                    {posDegree.deg}
                   </MenuItem>
                 );
               })}

@@ -89,12 +89,7 @@ export default function ApplicantContactInfo({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.workStartDate ? true : undefined}
-            helperText={
-              formHelperText.workStartDate
-                ? formHelperText.workStartDate
-                : "Start Date*"
-            }
+            helperText={"Start Date*"}
             onChange={handleWorkHistoryChanges}
             className={classes.orgTextField}
             type="date"

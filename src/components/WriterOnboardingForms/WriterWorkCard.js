@@ -30,11 +30,7 @@ export default function WriterEducationCard({ writersWork }) {
             ? `Current Position`
             : `Start Date: ${writersWork.endDate}`}
         </Typography>
-        <Typography
-          variant="paragraph"
-          className={classes.pos}
-          color="textSecondary"
-        >
+        <Typography className={classes.pos} color="textSecondary">
           Responsibilites: {writersWork.responsibilites}
         </Typography>
       </CardContent>

@@ -11,7 +11,6 @@ export default function ReviewForm({
   formHelperText,
   contactFormState,
   handleContactChanges,
-  setDisableButton,
   handleEducationChanges,
   setEducationFormState,
   educationFormState,
@@ -26,6 +25,9 @@ export default function ReviewForm({
   handleWriterBioSubmit,
   disableCollegeSubmitButton,
   setDisableCollegeSubmitButton,
+  disableWorkHistorySubmitButton,
+  setDisableWorkHistorySubmitButton,
+  setBioFormState,
 }) {
   return (
     <>
@@ -34,36 +36,40 @@ export default function ReviewForm({
         handleContactChanges={handleContactChanges}
         formHelperText={formHelperText}
         handleValidation={handleValidation}
-        setDisableButton={setDisableButton}
+        enableButton={enableButton}
       />
       <WriterEducationForm
-        handleCollegeSubmit={handleCollegeSubmit}
-        handleEducationChanges={handleEducationChanges}
         educationFormState={educationFormState}
-        formHelperText={formHelperText}
-        handleValidation={handleValidation}
         setEducationFormState={setEducationFormState}
-        enableButton={enableButton}
+        handleEducationChanges={handleEducationChanges}
         writersColleges={writersColleges}
         setWritersColleges={setWritersColleges}
-        disableCollegeSubmitButton={disableCollegeSubmitButton}
+        handleCollegeSubmit={handleCollegeSubmit}
         setDisableCollegeSubmitButton={setDisableCollegeSubmitButton}
+        disableCollegeSubmitButton={disableCollegeSubmitButton}
+        formHelperText={formHelperText}
+        handleValidation={handleValidation}
+        enableButton={enableButton}
       />
       <WriterWorkHistoryForm
-        handleWorkHistorySubmit={handleWorkHistorySubmit}
-        handleWorkHistoryChanges={handleWorkHistoryChanges}
         workHistoryFormState={workHistoryFormState}
         setWorkHistoryFormState={setWorkHistoryFormState}
+        handleWorkHistoryChanges={handleWorkHistoryChanges}
+        handleWorkHistorySubmit={handleWorkHistorySubmit}
+        disableWorkHistorySubmitButton={disableWorkHistorySubmitButton}
+        setDisableWorkHistorySubmitButton={setDisableWorkHistorySubmitButton}
         formHelperText={formHelperText}
         handleValidation={handleValidation}
-        setDisableButton={setDisableButton}
+        enableButton={enableButton}
       />
       <WriterBioForm
-        handleBioChanges={handleBioChanges}
         bioFormState={bioFormState}
+        setBioFormState={setBioFormState}
+        handleBioChanges={handleBioChanges}
+        handleWriterBioSubmit={handleWriterBioSubmit}
         formHelperText={formHelperText}
         handleValidation={handleValidation}
-        handleWriterBioSubmit={handleWriterBioSubmit}
+        enableButton={enableButton}
       />
     </>
   );

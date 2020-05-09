@@ -92,8 +92,6 @@ export default function WriterProfileForm() {
     company: undefined,
     postion: undefined,
     responsibilites: undefined,
-    workStartDate: undefined,
-    workEndDate: undefined,
   });
 
   const [writersWorkHistory, setWritersWorkHistory] = useState([]);
@@ -204,11 +202,11 @@ export default function WriterProfileForm() {
     console.log(`Bio submit!!!!!!!!!`);
   };
 
-  console.log({ contactFormState });
-  console.log({ educationFormState });
-  console.log({ writersColleges });
-  console.log({ workHistoryFormState });
-  console.log({ writersWorkHistory });
+  // console.log({ contactFormState });
+  // console.log({ educationFormState });
+  // console.log({ writersColleges });
+  // console.log({ workHistoryFormState });
+  // console.log({ writersWorkHistory });
   console.log({ bioFormState });
 
   /* ********************* END SUBMIT HANDLERS ********************* */
@@ -355,39 +353,38 @@ export default function WriterProfileForm() {
             bioFormState={bioFormState}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
-            setDisableButton={setDisableButton}
+            enableButton={enableButton}
             handleWriterBioSubmit={handleWriterBioSubmit}
           />
         );
       case 4:
         return (
           <WriterReview
-            handleBioChanges={handleBioChanges}
             contactFormState={contactFormState}
             handleContactChanges={handleContactChanges}
-            setEducationFormState={setEducationFormState}
-            setDisableButton={setDisableButton}
-            handleEducationChanges={handleEducationChanges}
             educationFormState={educationFormState}
-            bioFormState={bioFormState}
-            formHelperText={formHelperText}
-            setBioFormState={setBioFormState}
-            handleValidation={handleValidation}
-            handleWorkHistoryChanges={handleWorkHistoryChanges}
-            workHistoryFormState={workHistoryFormState}
-            setWorkHistoryFormState={setWorkHistoryFormState}
-            enableButton={enableButton}
+            setEducationFormState={setEducationFormState}
+            handleEducationChanges={handleEducationChanges}
             writersColleges={writersColleges}
             setWritersColleges={setWritersColleges}
             handleCollegeSubmit={handleCollegeSubmit}
-            handleWorkHistorySubmit={handleWorkHistorySubmit}
-            handleWriterBioSubmit={handleWriterBioSubmit}
-            disableCollegeSubmitButton={disableCollegeSubmitButton}
             setDisableCollegeSubmitButton={setDisableCollegeSubmitButton}
+            disableCollegeSubmitButton={disableCollegeSubmitButton}
+            workHistoryFormState={workHistoryFormState}
+            setWorkHistoryFormState={setWorkHistoryFormState}
+            handleWorkHistoryChanges={handleWorkHistoryChanges}
+            handleWorkHistorySubmit={handleWorkHistorySubmit}
             disableWorkHistorySubmitButton={disableWorkHistorySubmitButton}
             setDisableWorkHistorySubmitButton={
               setDisableWorkHistorySubmitButton
             }
+            bioFormState={bioFormState}
+            setBioFormState={setBioFormState}
+            handleBioChanges={handleBioChanges}
+            handleWriterBioSubmit={handleWriterBioSubmit}
+            formHelperText={formHelperText}
+            handleValidation={handleValidation}
+            enableButton={enableButton}
           />
         );
       default:
