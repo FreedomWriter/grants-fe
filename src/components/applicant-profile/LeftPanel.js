@@ -1,13 +1,13 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Button from "@material-ui/core/Button";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
-    '& > *': {
-      margin: '0 auto'
+    display: "flex",
+    "& > *": {
+      margin: "0 auto"
     }
   },
   large: {
@@ -26,12 +26,8 @@ export default function LetterAvatars() {
           <AccountCircleIcon className={classes.large} />
         </div>
         <div>
-          <Button
-                variant="contained"
-                color="primary"
-                href="#"
-              >
-                Direct Message
+          <Button variant="contained" color="primary" href="#">
+            Direct Message
           </Button>
         </div>
         <div>Visit Our Website:</div>

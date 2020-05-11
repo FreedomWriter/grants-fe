@@ -1,11 +1,11 @@
-import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import BioCard from './BioCard'
-import Grants from './grants-list/Grants'
-import LeftPanel from './LeftPanel'
+import React from "react";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import BioCard from "./BioCard";
+import Grants from "./grants-list/Grants";
+import LeftPanel from "./LeftPanel";
 
-import { useStyles } from './ApplicantProfile.styles'
+import { useStyles } from "./ApplicantProfile.styles";
 
 export default function ApplicantProfile() {
   const classes = useStyles();
