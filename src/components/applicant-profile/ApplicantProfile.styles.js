@@ -35,6 +35,9 @@ export const useStyles = makeStyles((theme) => ({
     width: '85%'
     }
   },
+  grantblock: {
+    marginTop: "10px"
+  },
   profilepaper: {
     padding: theme.spacing(1),
     backgroundColor: 'lightGray'
