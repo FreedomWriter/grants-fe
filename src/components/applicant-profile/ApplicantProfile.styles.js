@@ -1,18 +1,24 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   leftpanel: {
     padding: '25px 0',
     textAlign: 'center',
-    },
+    '& div': {
+      marginBottom: '5%'
+    }
+  },
   biosection: {
     display: 'grid',
     gridTemplateColumns: '1.2fr 0.8fr',
     gridTemplateRows: '1fr',
     gap: '1px 1px',
+    '& h1': {
+      margin: '0'
+    },
+    '& h2': {
+      fontWeight: 'normal'
+    },
     [theme.breakpoints.down("xs")]: {
     gridTemplateColumns: '2fr',
     textAlign: 'center'
@@ -40,7 +46,14 @@ export const useStyles = makeStyles((theme) => ({
   },
   profilepaper: {
     padding: theme.spacing(1),
-    backgroundColor: 'lightGray'
+    backgroundColor: 'lightGray',
+    '& p': {
+      margin: '0',
+      padding: '2%'
+    },
+    '& h4': {
+      margin: '5% 0 0'
+    }
   },
   profile: {
     margin: '1rem auto',
@@ -55,5 +68,4 @@ export const useStyles = makeStyles((theme) => ({
       width: '85%'
     }
   }
-
 }));

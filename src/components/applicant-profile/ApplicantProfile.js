@@ -2,7 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import BioCard from './BioCard'
-import GrantsList from './grants-list/Grants'
+import Grants from './grants-list/Grants'
 import LeftPanel from './LeftPanel'
 
 import { useStyles } from './ApplicantProfile.styles'
@@ -12,7 +12,7 @@ export default function ApplicantProfile() {
 
   return (
     <div className={classes.root}>
-      <Grid justify="center" className={classes.profile}>
+      <Grid className={classes.profile}>
         <div className={classes.leftpanel}>
           <LeftPanel />
         </div>
@@ -20,9 +20,9 @@ export default function ApplicantProfile() {
           <BioCard />
         </div>
       </Grid>
-      <Grid justify="center" className={classes.grants}>
+      <Grid className={classes.grants}>
         <div>
-          <GrantsList />
+          <Grants />
         </div>
       </Grid>
     </div>

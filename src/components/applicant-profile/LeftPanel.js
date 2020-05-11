@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import Typography from '@material-ui/core/Typography'
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
@@ -22,20 +21,22 @@ export default function LetterAvatars() {
 
   return (
     <>
-      <div className={classes.root}>
-        <AccountCircleIcon className={classes.large} />
-      </div>
-      <Button
-            variant="contained"
-            color="primary"
-            href="#"
-          >
-            Direct Message
-      </Button>
-      <Typography variant='subtitle1'>
+      <div className={classes.leftpanel}>
+        <div>
+          <AccountCircleIcon className={classes.large} />
+        </div>
+        <div>
+          <Button
+                variant="contained"
+                color="primary"
+                href="#"
+              >
+                Direct Message
+          </Button>
+        </div>
         <div>Visit Our Website:</div>
-        <div>www.writemygrants.net</div>
-      </Typography>
+        <a href="#">www.writemygrants.net</a>
+      </div>
     </>
   );
 }
