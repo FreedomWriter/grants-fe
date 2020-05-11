@@ -175,7 +175,6 @@ export default function WriterEducationForm({
           <TextField
             InputLabelProps={{ shrink: true }}
             onBlur={handleValidation}
-            data-testid="end-anticipated"
             error={formHelperText.endDate && true}
             helperText={formHelperText.endDate && formHelperText.endDate}
             onChange={handleEducationChanges}
@@ -198,7 +197,8 @@ export default function WriterEducationForm({
               <Checkbox
                 color="secondary"
                 name="stillAttending"
-                checked={educationFormState.stillAttending ? true : false}
+                checked={educationFormState.stillAttending}
+                value={educationFormState.stillAttending}
               />
             }
             onClick={() =>
@@ -214,7 +214,6 @@ export default function WriterEducationForm({
           <FormControl className={classes.orgTextField}>
             <InputLabel id="degree-earned-label">Degree Awarded</InputLabel>
             <Select
-              data-testid="degreeEarned"
               labelId="degree-earned-label"
               id="degree"
               name="degree"

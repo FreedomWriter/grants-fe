@@ -1,20 +1,15 @@
 import React, { useState as useStateMock } from "react";
 import { axe } from "jest-axe";
 import { createStore } from "redux";
-import { render as rtlRender, screen, wait } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render as rtlRender, screen } from "@testing-library/react";
 import WriterEducationForm from "./WriterEducationForm.js";
+import WriterReviewForm from "./WriterReviewForm.js";
 import { initialState as initialReducerState } from "../../store/reducers/collegesReducer";
 import reducer from "../../store/reducers/collegesReducer";
 
 import { Provider } from "react-redux";
-import renderer from "react-test-renderer";
-import configureStore from "redux-mock-store";
 
-import axiosMock from "axios";
-import WriterEducationCard from "./WriterEducationCard.js";
-
-const enableButton = jest.fn(() => {});
+const enableButton = jest.fn(() => true);
 const setDisableCollegeSubmitButton = jest.fn(() => {});
 
 let educationFormStateMock = {
@@ -27,13 +22,49 @@ let educationFormStateMock = {
   degree: "",
 };
 
+let contactFormState = {
+  firstName: "",
+  lastName: "",
+  city: "",
+  state: "",
+  zip: "",
+  country: "",
+};
+const setDisableWorkHistorySubmitButtonMock = jest.fn(function () {
+  return false;
+});
+
+const setDisableCollegeSubmitButtonMock = jest.fn(() => false);
+const bioFormStateMock = {
+  website: "",
+  bio: "",
+  servicesOffered: "",
+};
+const workHistoryFormStateMock = {
+  company: "",
+  position: "",
+  workStartDate: "",
+  workEndDate: "",
+  currentPosition: true,
+  responsibilites: "",
+};
+
+const formHelperText = {
+  firstName: undefined,
+  sector: undefined,
+  city: undefined,
+  state: undefined,
+  zip: undefined,
+  country: undefined,
+};
+
 const setEducationFormStateMock = jest.fn(function () {
   return (educationFormStateMock = {
     college: "Howard University",
     searchCollege: undefined,
     startDate: "2010-01-01",
     endDate: "2010-01-02",
-    stillAttending: true,
+    stillAttending: "true",
     anticipatedGraduation: "",
     degree: "Doctoral degree",
   });
@@ -135,7 +166,7 @@ test("can render with redux with custom initial state, shows college options whe
 });
 
 test("form submit adds contact info to state", async () => {
-  const { getByLabelText, getByTestId } = render(
+  const { getByLabelText, getByPlaceholderText } = render(
     <WriterEducationForm
       educationFormState={educationFormStateMock}
       formHelperText={formHelperTextMock}
@@ -162,51 +193,22 @@ test("form submit adds contact info to state", async () => {
       },
     }
   );
-  // const { getByText } = rtlRender(<WriterEducationCard />);
-  /************************* MOCK WRITERS COLLEGE STATE TO TEST THAT THE CARD RENDERS  */
-  // writersCollege={writersCollege}
-  // key={writersCollege.id}
 
-  const searchCollegeLabelText = getByTestId(/schoolname/i);
+  const searchCollegeLabelText = getByPlaceholderText(
+    /Enter A School Name.../i
+  );
   const startDateLabelText = getByLabelText(/Start Date/i);
-  const endDateLabelText = getByTestId(/end-anticipated*/i);
+  const endDateLabelText = getByLabelText(/Anticipated Graduation Date/i);
   const currentlyEnrolledLabelText = getByLabelText(/Currently Enrolled/i);
-  const degreeEarnedLabelText = getByTestId(/degreeEarned/i);
-  //   const countryLabelText = getByLabelText(/country/i);
+  const degreeEarnedLabelText = getByLabelText(/degree/i);
 
-  // userEvent.click(searchCollegeLabelText, {
-  //   target: { value: "Howard University" },
-  // });
-  userEvent.selectOptions(startDateLabelText, {
-    target: { value: "2010-01-01" },
-  });
-  userEvent.selectOptions(endDateLabelText, {
-    target: { value: "2010-01-02" },
-  });
-  userEvent.click(currentlyEnrolledLabelText, {
-    target: { value: false },
-  });
-  // userEvent.selectOptions(degreeEarnedLabelText, {
-  //   target: { value: "Doctoral degree" },
-  // });
-
-  // console.log(searchCollegeLabelText);
-  // userEvent.click(getByText(/next/i));
-  // await wait(() =>
-  //   useStateMock.mockImplementation((init) => [init, setEducationFormStateMock])
-  // );
-  // setEducationFormStateMock.mockImplementation(() =>
-  //   Promise.resolve({ success: true })
-  // );
-
-  // console.log(setEducationFormStateMock.getMockImplementation());
   expect(educationFormStateMock).toEqual({
-    college: "Howard University",
+    college: searchCollegeLabelText.value,
     searchCollege: undefined,
     startDate: startDateLabelText.value,
     endDate: endDateLabelText.value,
-    stillAttending: true,
+    stillAttending: currentlyEnrolledLabelText.value.toString(),
     anticipatedGraduation: "",
-    degree: "Doctoral degree",
+    degree: degreeEarnedLabelText.innerHTML,
   });
 });
