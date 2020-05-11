@@ -14,7 +14,11 @@ export const useStyles = makeStyles((theme) => ({
     gridTemplateRows: '1fr',
     gap: '1px 1px',
     '& h1': {
-      margin: '0'
+      marginBlockEnd: '0.83em',
+      marginBlockStart: '0.4em',
+      [theme.breakpoints.down("xs")]: {
+        margin: '0'
+      }
     },
     '& h2': {
       fontWeight: 'normal'
@@ -49,10 +53,17 @@ export const useStyles = makeStyles((theme) => ({
     backgroundColor: 'lightGray',
     '& p': {
       margin: '0',
-      padding: '2%'
+      padding: '1%',
+      [theme.breakpoints.down("xs")]: {
+        margin: '0',
+        padding: '2%'
+      }
     },
     '& h4': {
-      margin: '5% 0 0'
+      margin: '1% 0 0',
+      [theme.breakpoints.down("xs")]: {
+        margin: '5% 0 0',
+      }
     }
   },
   profile: {
