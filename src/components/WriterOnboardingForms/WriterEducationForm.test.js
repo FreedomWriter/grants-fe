@@ -3,7 +3,6 @@ import { axe } from "jest-axe";
 import { createStore } from "redux";
 import { render as rtlRender, screen } from "@testing-library/react";
 import WriterEducationForm from "./WriterEducationForm.js";
-import WriterReviewForm from "./WriterReviewForm.js";
 import { initialState as initialReducerState } from "../../store/reducers/collegesReducer";
 import reducer from "../../store/reducers/collegesReducer";
 
@@ -20,42 +19,6 @@ let educationFormStateMock = {
   stillAttending: true,
   anticipatedGraduation: "",
   degree: "",
-};
-
-let contactFormState = {
-  firstName: "",
-  lastName: "",
-  city: "",
-  state: "",
-  zip: "",
-  country: "",
-};
-const setDisableWorkHistorySubmitButtonMock = jest.fn(function () {
-  return false;
-});
-
-const setDisableCollegeSubmitButtonMock = jest.fn(() => false);
-const bioFormStateMock = {
-  website: "",
-  bio: "",
-  servicesOffered: "",
-};
-const workHistoryFormStateMock = {
-  company: "",
-  position: "",
-  workStartDate: "",
-  workEndDate: "",
-  currentPosition: true,
-  responsibilites: "",
-};
-
-const formHelperText = {
-  firstName: undefined,
-  sector: undefined,
-  city: undefined,
-  state: undefined,
-  zip: undefined,
-  country: undefined,
 };
 
 const setEducationFormStateMock = jest.fn(function () {
