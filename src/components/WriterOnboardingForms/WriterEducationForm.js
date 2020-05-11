@@ -27,7 +27,6 @@ export default function WriterEducationForm({
   handleValidation,
   setEducationFormState,
   writersColleges,
-  setWritersColleges,
   handleCollegeSubmit,
   setDisableCollegeSubmitButton,
   disableCollegeSubmitButton,
@@ -115,9 +114,9 @@ export default function WriterEducationForm({
                 value={
                   educationFormState.college
                     ? educationFormState.college
-                    : educationFormState.searchCollege
-                    ? educationFormState.searchCollege
-                    : ""
+                    : educationFormState.searchCollege &&
+                      educationFormState.searchCollege
+                  // : ""
                 }
                 label="Enter School Name"
                 inputProps={{ "aria-label": "search" }}
@@ -158,13 +157,10 @@ export default function WriterEducationForm({
         </Grid>
         <Grid item xs={12}>
           <TextField
+            InputLabelProps={{ shrink: true }}
             onBlur={handleValidation}
             error={formHelperText.startDate && true}
-            helperText={
-              formHelperText.startDate
-                ? formHelperText.startDate
-                : "Start Date*"
-            }
+            helperText={formHelperText.startDate && formHelperText.startDate}
             onChange={handleEducationChanges}
             className={classes.orgTextField}
             type="date"
@@ -172,20 +168,16 @@ export default function WriterEducationForm({
             id="startDate"
             name="startDate"
             value={educationFormState.startDate}
-            aria-label="Start Date"
+            label="Start Date"
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
+            InputLabelProps={{ shrink: true }}
             onBlur={handleValidation}
+            data-testid="end-anticipated"
             error={formHelperText.endDate && true}
-            helperText={
-              formHelperText.endDate
-                ? formHelperText.endDate
-                : educationFormState.stillAttending
-                ? "Anticipated Graduation Date*"
-                : "End Date*"
-            }
+            helperText={formHelperText.endDate && formHelperText.endDate}
             onChange={handleEducationChanges}
             className={classes.orgTextField}
             type="date"
@@ -193,7 +185,11 @@ export default function WriterEducationForm({
             id="endDate"
             name="endDate"
             value={educationFormState.endDate}
-            aria-label="End Date"
+            label={
+              educationFormState.stillAttending
+                ? "Anticipated Graduation Date*"
+                : "End Date*"
+            }
           />
         </Grid>
         <Grid item xs={12}>
@@ -202,7 +198,7 @@ export default function WriterEducationForm({
               <Checkbox
                 color="secondary"
                 name="stillAttending"
-                checked={educationFormState.stillAttending}
+                checked={educationFormState.stillAttending ? true : false}
               />
             }
             onClick={() =>
@@ -218,13 +214,14 @@ export default function WriterEducationForm({
           <FormControl className={classes.orgTextField}>
             <InputLabel id="degree-earned-label">Degree Awarded</InputLabel>
             <Select
+              data-testid="degreeEarned"
               labelId="degree-earned-label"
               id="degree"
               name="degree"
               value={
                 educationFormState.degree
                   ? educationFormState.degree
-                  : possibleDegrees[possibleDegrees.length - 1]
+                  : possibleDegrees[possibleDegrees.length - 1].deg
               }
               onChange={handleEducationChanges}
             >

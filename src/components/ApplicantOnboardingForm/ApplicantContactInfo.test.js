@@ -57,10 +57,12 @@ const formHelperText = {
 
 beforeEach(() => {
   useStateMock.mockImplementation((init) => [init, setFormStateMock]);
+  jest.spyOn(console, "error").mockImplementation(() => {});
 });
 
 afterEach(() => {
   jest.clearAllMocks();
+  console.error.mockRestore();
 });
 
 test("contact information is visible", () => {

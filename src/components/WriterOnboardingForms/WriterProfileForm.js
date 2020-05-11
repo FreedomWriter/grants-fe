@@ -12,6 +12,8 @@ import WriterWorkHistoryForm from "./WriterWorkHistoryForm";
 import WriterBioForm from "./WriterBioForm";
 import WriterReview from "./WriterReviewForm";
 
+import { handleValidation } from "./FormValidation";
+
 import { v4 as uuidv4 } from "uuid";
 
 import { useStyles } from "./WriterForm.styles";

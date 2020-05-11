@@ -72,12 +72,11 @@ export default function WriterBioForm({
               value={
                 bioFormState.servicesOffered
                   ? bioFormState.servicesOffered
-                  : possibleSkills[possibleSkills.length - 1]
+                  : possibleSkills[possibleSkills.length - 1].skill
               }
               onChange={handleBioChanges}
             >
               {possibleSkills.map((posSkill) => {
-                console.log({ posSkill });
                 return (
                   <MenuItem
                     key={posSkill.id}

@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 
 import { useStyles } from "./WriterForm.styles";
+
 export default function ApplicantContactInfo({
   contactFormState,
   handleContactChanges,

@@ -88,6 +88,7 @@ export default function ApplicantContactInfo({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
+            data-testid="start-date"
             helperText={"Start Date*"}
             onChange={handleWorkHistoryChanges}
             className={classes.orgTextField}
@@ -137,6 +138,7 @@ export default function ApplicantContactInfo({
           <TextAreaAutosize
             onChange={handleWorkHistoryChanges}
             required
+            data-testid="responsibilites"
             id="responsibilites"
             name="responsibilites"
             value={workHistoryFormState.responsibilites}
