@@ -3,7 +3,7 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import loginReducer from "./loginReducer";
-import collegesReducer from "./collegesReducer";
+import applicantReducer from "./applicantReducer";
 
 const persistConfig = {
   key: "root",
@@ -12,7 +12,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   login: loginReducer,
-  collegeList: collegesReducer,
+  profileInfo: applicantReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
