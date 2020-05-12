@@ -12,7 +12,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   login: loginReducer,
-  profileInfo: applicantReducer
+  profileInfo: applicantReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
