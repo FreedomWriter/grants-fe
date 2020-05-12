@@ -2,7 +2,7 @@ import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import BioCard from "./BioCard";
-import Grants from "./grants-list/Grants";
+import Grants from "./Grants";
 import LeftPanel from "./LeftPanel";
 
 import { useStyles } from "./ApplicantProfile.styles";

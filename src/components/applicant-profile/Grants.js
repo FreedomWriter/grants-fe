@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Paper from "@material-ui/core/Paper";
-import { useStyles } from "../ApplicantProfile.styles";
+import { useStyles } from "./ApplicantProfile.styles";
 
 const Grants = () => {
   const classes = useStyles();
