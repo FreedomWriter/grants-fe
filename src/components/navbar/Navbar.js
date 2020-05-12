@@ -72,9 +72,11 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton>
+
           <Button component={Link} to="/" className={classes.title}>
             Granted
           </Button>
+
           {/* searchbar was originally here */}
           <div className={classes.grow} />
           <div className={classes.search} onClick={handleSubmit}>
