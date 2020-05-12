@@ -11,8 +11,6 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
         <Navbar />
-        {/* <Route exact path={"/Homepage"} component={Homepage} /> */}
-        <Homepage />
       </ThemeProvider>
     </Router>
   );

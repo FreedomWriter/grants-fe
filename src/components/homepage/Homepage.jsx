@@ -17,7 +17,6 @@ import {
 import HomePageReducer from "../../store/reducers/HomePageReducer.js";
 
 const Homepage = () => {
-  //
   //======Access necessary actions for Homepage======
   const dispatch = useDispatch(); //can use all actions.
   useEffect(() => {
