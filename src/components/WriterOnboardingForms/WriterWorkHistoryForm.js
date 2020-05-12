@@ -62,7 +62,7 @@ export default function ApplicantContactInfo({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.workEndDate ? true : undefined}
+            error={formHelperText.company ? true : undefined}
             onChange={handleWorkHistoryChanges}
             className={classes.orgTextField}
             required
@@ -87,9 +87,8 @@ export default function ApplicantContactInfo({
         </Grid>
         <Grid item xs={12}>
           <TextField
+            InputLabelProps={{ shrink: true }}
             onBlur={handleValidation}
-            data-testid="start-date"
-            helperText={"Start Date*"}
             onChange={handleWorkHistoryChanges}
             className={classes.orgTextField}
             type="date"
@@ -97,12 +96,13 @@ export default function ApplicantContactInfo({
             id="workStartDate"
             name="workStartDate"
             value={workHistoryFormState.workStartDate}
-            aria-label="workStartDate"
+            label="Work Start Date"
           />
         </Grid>
         {!workHistoryFormState.currentPosition && (
           <Grid item xs={12}>
             <TextField
+              InputLabelProps={{ shrink: true }}
               onBlur={handleValidation}
               error={formHelperText.workEndDate ? true : undefined}
               onChange={handleWorkHistoryChanges}
@@ -112,7 +112,7 @@ export default function ApplicantContactInfo({
               id="workEndDate"
               name="workEndDate"
               value={workHistoryFormState.workEndDate}
-              aria-label="End Date"
+              label="Work End Date"
             />
           </Grid>
         )}
@@ -123,6 +123,7 @@ export default function ApplicantContactInfo({
                 color="secondary"
                 name="currentPosition"
                 checked={workHistoryFormState.currentPosition}
+                value={workHistoryFormState.currentPosition}
               />
             }
             onClick={() =>
@@ -131,7 +132,7 @@ export default function ApplicantContactInfo({
                 currentPosition: !workHistoryFormState.currentPosition,
               })
             }
-            label="Current Position?"
+            label="Current ?"
           />
         </Grid>
         <Grid item xs={12}>
@@ -143,7 +144,7 @@ export default function ApplicantContactInfo({
             name="responsibilites"
             value={workHistoryFormState.responsibilites}
             placeholder="What were your responsibilites..."
-            aria-label="Position responsibilites"
+            aria-label="responsibilites"
             rowsMin={6}
             className={classes.textArea}
           />

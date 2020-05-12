@@ -97,19 +97,6 @@ test("inputs are visible", () => {
   expect(countryLabelText).toBeVisible();
 });
 
-// test("accessible -  WriterContactInfo pass axe", async () => {
-//   const { container, debug } = render(
-//     <ApplicantContactInfo
-//       formState={formState}
-//       formHelperText={formHelperText}
-//       //   setFormState={setFormStateMock}
-//     />
-//   );
-
-//   debug(container);
-//   expect(await axe(container)).toHaveNoViolations();
-// });
-
 test("form submit adds contact info to state", () => {
   const { getByLabelText } = render(
     <ApplicantContactInfo
