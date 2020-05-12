@@ -8,7 +8,6 @@ import Navbar from "./components/navbar/Navbar";
 // import ApplicantProfileForm from "./components/ApplicantProfileForm/ApplicantProfileForm";
 import WriterProfile from "./components/writer-profile/writerProfile.js";
 import Homepage from "./components/homepage/Homepage.jsx";
-import WriterProfile from "./components/writer-profile/writerProfile.js";
 
 function App() {
   return (
