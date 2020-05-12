@@ -1,10 +1,12 @@
 // import React from "react";
+// import { BrowserRouter as Router } from "react-router-dom";
 // import { render } from "@testing-library/react";
-import App from "./App";
+import Homepage from "./Homepage.jsx";
 
-describe("App Testing...", () => {
+console.log();
+
+describe("HomePage Testing...", () => {
   test("test to return true", () => {
     expect(true).toBeTruthy();
   });
-  test("renders without crashing", () => {});
 });
