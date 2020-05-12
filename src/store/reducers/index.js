@@ -3,6 +3,7 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import loginReducer from "./loginReducer";
+import HomePageReducer from "./HomePageReducer";
 import applicantReducer from "./applicantReducer";
 
 const persistConfig = {
@@ -12,6 +13,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   login: loginReducer,
+  homePage: HomePageReducer,
   profileInfo: applicantReducer,
 });
 

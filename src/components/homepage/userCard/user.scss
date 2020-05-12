@@ -1,0 +1,23 @@
+.user-info {
+  background-color: rgba(2, 0, 145, 0.726);
+  display: flex;
+  padding-top: 50px;
+  justify-content: center;
+  line-height: 10px;
+
+  h2 {
+    color: white;
+  }
+  img {
+    width: 200px;
+    height: auto;
+    border-radius: 20%;
+  }
+
+  .user-left {
+    border: 1px solid white;
+  }
+  .user-right {
+    border: 1px solid grey;
+  }
+}
