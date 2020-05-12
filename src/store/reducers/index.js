@@ -13,7 +13,10 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   login: loginReducer,
+<<<<<<< HEAD
   homePage: HomePageReducer,
+=======
+>>>>>>> master
   profileInfo: applicantReducer,
 });
 

@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import ApplicantContactInfo from "./ApplicantContactInfo";
 import OrgInformation from "./OrgInformation";
 import NonOrgInformation from "./NonOrgInformation";
-import Review from "./ReviewForm";
+import Review from "./ApplicantReviewForm";
 
 import { useStyles } from "./ApplicantForm.styles";
 
@@ -218,6 +218,7 @@ export default function ApplicantProfileForm() {
               <Button
                 variant="contained"
                 color="primary"
+                // dynamically rendering which submit handler is applied
                 onClick={
                   activeStep === steps.length - 1 ? handleSubmit : handleNext
                 }
