@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./components/globals/theme";
 
+import ApplicantProfile from "./components/applicant-profile/ApplicantProfile";
 import Navbar from "./components/navbar/Navbar";
 import ApplicantProfileForm from "./components/ApplicantProfileForm/ApplicantProfileForm";
 import Homepage from "./components/homepage/Homepage.jsx";
