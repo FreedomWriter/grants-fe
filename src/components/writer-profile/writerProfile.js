@@ -15,37 +15,12 @@ import { fetchWriters } from "../../store/actions/writerProfileAction.js";
 
 const GlobalCSS = withStyles({
   "@global": {
-    ".MuiPaper-elevation3": {
-      width: "80%",
-      height: "auto",
-      marginTop: "30%",
-      marginBottom: "20%",
-      marginLeft: "10%",
-      display: "grid",
-      gridTemplateColumns: "1.3fr 2.8fr",
-      gridTemplateRows: "0.6fr 0.8fr",
-      gap: "5px 5px",
-    },
     ".MuiPaper-elevation2": {
       width: "80%",
       height: "auto",
       marginTop: "5%",
       marginBottom: "5%",
       marginLeft: "10%",
-    },
-    ".MuiSvgIcon-fontSizeLarge": {
-      margin: "20%",
-      width: "2em",
-      height: "2em",
-    },
-    ".MuiLink-underlineHover": {
-      minWidth: "0",
-      marginLeft: "10%",
-      width: "50px",
-      padding: "0",
-      fontSize: "0.8rem",
-      textAlign: "center",
-      whiteSpace: "nowrap",
     },
   },
 })(() => null);
@@ -97,16 +72,24 @@ export default function WriterProfile() {
   return (
     <StylesProvider>
       <GlobalCSS />
-      <Paper elevation={3}>
+      <Paper classes={{ root: classes.rootPaper }} elevation={3}>
         {" "}
         <div>
-          <AccountCircleIcon fontSize="large" />
-          <Typography variant="subtitle2" className={classes.userName}>
+          <AccountCircleIcon
+            classes={{ root: classes.rootIcon }}
+            fontSize="large"
+          />
+          <Typography
+            variant="subtitle2"
+            classes={{
+              root: classes.rootUserName,
+            }}
+          >
             {" "}
             John Doe
           </Typography>
           <Button
-            classes={{ root: classes.root, label: classes.label }}
+            classes={{ root: classes.rootButton, label: classes.labelButton }}
             variant="contained"
             color="primary"
             href="#contained-buttons"
@@ -114,7 +97,11 @@ export default function WriterProfile() {
             Direct Message
           </Button>
 
-          <Link href="#" onClick={preventDefault}>
+          <Link
+            classes={{ root: classes.rootLink }}
+            href="#"
+            onClick={preventDefault}
+          >
             Visit my website
           </Link>
         </div>
