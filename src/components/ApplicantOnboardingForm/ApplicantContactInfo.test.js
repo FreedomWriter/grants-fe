@@ -1,5 +1,6 @@
 import React, { useState as useStateMock } from "react";
 import { render, fireEvent } from "@testing-library/react";
+import { axe } from "jest-axe";
 import userEvent from "@testing-library/user-event";
 import ApplicantContactInfo from "./ApplicantContactInfo";
 import ApplicantProfileForm from "./ApplicantProfileForm";
@@ -31,13 +32,8 @@ const setFormStateMock = jest.fn(function () {
     sector: "Disruption",
     city: "Metropolis",
     state: "Chaos",
-    zip: 90210,
+    zip: "90210",
     country: "No Country for Blue Men",
-    org: false,
-    orgName: "",
-    foundingDate: "",
-    website: "",
-    bio: "",
   });
 });
 
@@ -57,10 +53,12 @@ const formHelperText = {
 
 beforeEach(() => {
   useStateMock.mockImplementation((init) => [init, setFormStateMock]);
+  jest.spyOn(console, "error").mockImplementation(() => {});
 });
 
 afterEach(() => {
   jest.clearAllMocks();
+  console.error.mockRestore();
 });
 
 test("contact information is visible", () => {
@@ -133,17 +131,12 @@ test("form submit adds contact info to state", () => {
   userEvent.click(getByText(/next/i));
 
   expect(formState).toEqual({
-    firstName: "Blupe",
-    lastName: "Fiasco",
-    sector: "Disruption",
-    city: "Metropolis",
-    state: "Chaos",
-    zip: 90210,
-    country: "No Country for Blue Men",
-    org: false,
-    orgName: "",
-    foundingDate: "",
-    website: "",
-    bio: "",
+    firstName: firstNameLabelText.value,
+    lastName: lastNameLabelText.value,
+    sector: sectorLabelText.value,
+    city: cityLabelText.value,
+    state: stateLabelText.value,
+    zip: zipLabelText.value,
+    country: countryLabelText.value,
   });
 });
