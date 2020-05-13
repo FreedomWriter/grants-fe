@@ -165,16 +165,13 @@ test("form submit adds contact info to state", () => {
   const countryLabelText = getByLabelText(/country/i);
 
   expect(getByText(/next/i)).toBeDisabled();
-  // firstNameLabelText.value = "Nupe";
+
   expect(firstNameLabelText.value).toBe("Blupe");
   expect(lastNameLabelText.value).toBe("Fiasco");
   expect(cityLabelText.value).toBe("Metropolis");
   expect(stateLabelText.value).toBe("Chaos");
   expect(zipLabelText.value).toBe("90210");
   expect(countryLabelText.value).toBe("No Country for Blue Men");
-
-  // expect(contactFormState).toEqual({ you: "thought" });
-  // expect(getByText(/next/i)).not.toBeDisabled();
 });
 
 test("Review form reflects user Contact Info input", () => {

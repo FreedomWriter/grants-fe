@@ -122,17 +122,18 @@ export default function ApplicantContactInfo({
               <Checkbox
                 color="secondary"
                 name="currentPosition"
+                inputProps={{}}
                 checked={workHistoryFormState.currentPosition}
                 value={workHistoryFormState.currentPosition}
               />
             }
-            onClick={() =>
+            onChange={() =>
               setWorkHistoryFormState({
                 ...workHistoryFormState,
                 currentPosition: !workHistoryFormState.currentPosition,
               })
             }
-            label="Current ?"
+            label="Current?"
           />
         </Grid>
         <Grid item xs={12}>

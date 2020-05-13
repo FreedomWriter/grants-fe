@@ -1,8 +1,9 @@
 import React, { useState as useStateMock } from "react";
 import { axe } from "jest-axe";
-import { render, wait } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import WriterWorkHistoryForm from "./WriterWorkHistoryForm.js";
+import WriterWorkCard from "./WriterWorkCard";
 
 const enableButton = jest.fn(() => {});
 const setDisableWorkHistorySubmitButtonMock = jest.fn(() => {});
@@ -16,7 +17,7 @@ let writerWorkFormStateMock = {
   responsibilites: "",
 };
 
-const setWriterWorkFormStateMock = jest.fn(function () {
+let setWriterWorkFormStateMock = jest.fn(function () {
   return (writerWorkFormStateMock = {
     company: "Life",
     position: "Human",
@@ -105,7 +106,7 @@ test("inputs are visible", () => {
   expect(responsibilitiesLabelText).toBeVisible();
 });
 
-test("form submit adds Current Position to state", () => {
+test("form submit adds Current Position to state and renders that state to WritersWorkCard", () => {
   const { getByLabelText, queryByLabelText, debug } = render(
     <WriterWorkHistoryForm
       workHistoryFormState={writerWorkFormStateMock}
@@ -143,44 +144,15 @@ test("form submit adds Current Position to state", () => {
     currentPosition: true,
     responsibilites: responsibilitiesLabelText.value,
   });
-});
 
-test("form submit adds Past Position to state", () => {
-  const { getByLabelText, queryByLabelText } = render(
-    <WriterWorkHistoryForm
-      workHistoryFormState={writerWorkFormStateMock}
-      formHelperText={formHelperTextMock}
-      enableButton={enableButton}
-      setDisableWorkHistorySubmitButton={setDisableWorkHistorySubmitButtonMock}
-    />
+  const { getByTestId, getByText } = render(
+    <WriterWorkCard writersWork={writerWorkFormStateMock} />
   );
-
-  const companyLabelText = getByLabelText(/company/i);
-  const positionLabelText = getByLabelText(/position/i);
-  const workStartDateLabelText = getByLabelText(/work start date/i);
-  const responsibilitiesLabelText = getByLabelText(/responsibilites/i);
-  const workEndDateLabelText = queryByLabelText(/work end date/i);
-  //   userEvent.check();
-
-  userEvent.type(companyLabelText, {
-    target: { value: "Life" },
-  });
-  userEvent.type(positionLabelText, {
-    target: { value: "Human" },
-  });
-  userEvent.selectOptions(workStartDateLabelText, {
-    target: { value: "1980-01-18" },
-  });
-  userEvent.type(responsibilitiesLabelText, {
-    target: { value: "Just a human, doing human things." },
-  });
-
-  expect(writerWorkFormStateMock).toEqual({
-    company: companyLabelText.value,
-    position: positionLabelText.value,
-    workStartDate: workStartDateLabelText.value,
-    workEndDate: "",
-    currentPosition: true,
-    responsibilites: responsibilitiesLabelText.value,
-  });
+  const companyHeader = getByTestId(/company-header/i);
+  const companyWorkedFor = getByText(/life/i);
+  const positionHeader = getByTestId(/position-header/i);
+  expect(companyHeader).toBeVisible();
+  expect(companyWorkedFor).toBeVisible();
+  expect(positionHeader).toBeVisible();
+  expect(positionHeader.innerHTML).toBe("Position: Human");
 });

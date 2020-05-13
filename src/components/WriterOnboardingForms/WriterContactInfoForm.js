@@ -35,7 +35,7 @@ export default function ApplicantContactInfo({
 
   return (
     <div className={classes.container}>
-      <Typography variant="h6" gutterBottom color="primary">
+      <Typography component="h2" variant="h6" gutterBottom color="primary">
         Contact Information
       </Typography>
       <Grid container spacing={3}>
