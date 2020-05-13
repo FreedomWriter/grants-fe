@@ -56,9 +56,9 @@ export default function MobileMenu({
             aria-haspopup="true"
             color="inherit"
           >
-            <AccountCircle />
+            {/* <AccountCircle /> */}
           </IconButton>
-          <p>Profile</p>
+          <p>More Options</p>
         </MenuItem>
       </Menu>
     </>

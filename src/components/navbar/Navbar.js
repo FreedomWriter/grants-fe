@@ -73,7 +73,7 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton>
 
-          <Button component={Link} to="/" className={classes.title}>
+          <Button component={Link} to="/Homepage" className={classes.title}>
             Granted
           </Button>
 
