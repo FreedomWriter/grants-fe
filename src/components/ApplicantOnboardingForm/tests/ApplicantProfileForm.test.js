@@ -42,6 +42,13 @@ test("form header is visible", () => {
   expect(formHeader).toBeVisible();
 });
 
+test("Next Button is visible", () => {
+  const { getByText } = render(<ApplicantProfileForm />);
+  const nextButton = getByText(/next/i);
+
+  expect(nextButton).toBeVisible();
+});
+
 /* ********************** Button currently not disable FIX IT ********************** */
 
 test("Next Button is not disabled", () => {

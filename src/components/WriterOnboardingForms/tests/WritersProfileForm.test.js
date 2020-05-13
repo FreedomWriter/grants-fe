@@ -2,6 +2,10 @@ import React from "react";
 import { axe } from "jest-axe";
 import { render } from "@testing-library/react";
 import WriterProfileForm from "../WriterProfileForm.js";
+import WriterContactInfoForm from "../WriterContactInfoForm";
+
+let contactFormStateMock = {};
+let formHelperTextMock = {};
 
 test("accessible -  WriterProfileForm pass axe", async () => {
   const { container } = render(<WriterProfileForm />);
@@ -34,4 +38,15 @@ test("Next Button is disabled", () => {
   const nextButton = getByText(/next/i);
 
   expect(nextButton).toBeDisabled();
+});
+
+test("Applicant Profile Form to be visible", () => {
+  const { container } = render(
+    <WriterContactInfoForm
+      contactFormState={contactFormStateMock}
+      formHelperText={formHelperTextMock}
+    />
+  );
+
+  expect(container).toBeVisible();
 });
