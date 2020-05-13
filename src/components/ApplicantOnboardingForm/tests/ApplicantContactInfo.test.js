@@ -61,6 +61,16 @@ afterEach(() => {
   console.error.mockRestore();
 });
 
+test("accessible -  ApplicantContactInfo pass axe", async () => {
+  const { container } = render(
+    <ApplicantContactInfo
+      formState={formState}
+      formHelperText={formHelperText}
+    />
+  );
+  expect(await axe(container)).toHaveNoViolations();
+});
+
 test("contact information is visible", () => {
   const { getByText } = render(
     <ApplicantContactInfo

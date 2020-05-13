@@ -1,8 +1,8 @@
-import React, { useState as useStateMock } from "react";
+import React from "react";
 import { axe } from "jest-axe";
-import { render, getByPlaceholderText } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render } from "@testing-library/react";
 import ApplicantProfileForm from "../ApplicantProfileForm.js";
+import ApplicantContactInfo from "../ApplicantContactInfo";
 
 beforeEach(() => {
   jest.spyOn(console, "error").mockImplementation(() => {});
@@ -12,11 +12,26 @@ afterEach(() => {
   console.error.mockRestore();
 });
 
+let formStateMock = {};
+
+let formHelperTextMock = {};
+
 /* ********************** Figure out autocomplete a11y error issue ********************** */
 
 test("accessible -  WriterProfileForm pass axe", async () => {
   const { container } = render(<ApplicantProfileForm />);
   expect(await axe(container)).toHaveNoViolations();
+});
+
+test("Applicant Profile Form to be visible", () => {
+  const { container } = render(
+    <ApplicantContactInfo
+      formHelperText={formHelperTextMock}
+      formState={formStateMock}
+    />
+  );
+
+  expect(container).toBeVisible();
 });
 
 test("form header is visible", () => {
