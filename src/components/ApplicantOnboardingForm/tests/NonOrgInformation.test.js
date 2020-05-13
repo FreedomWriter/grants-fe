@@ -4,26 +4,9 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import NonOrgInformation from "../NonOrgInformation.js";
 
-let formStateMock = {
-  website: "",
-  bio: "",
-  servicesOffered: "",
-};
+let formStateMock = {};
 
-let formHelperTextMock = {
-  firstName: undefined,
-  lastName: undefined,
-  sector: undefined,
-  city: undefined,
-  state: undefined,
-  zip: undefined,
-  country: undefined,
-  website: undefined,
-  bio: undefined,
-  company: undefined,
-  postion: undefined,
-  responsibilites: undefined,
-};
+let formHelperTextMock = {};
 
 jest.mock("react", () => ({
   ...jest.requireActual("react"),

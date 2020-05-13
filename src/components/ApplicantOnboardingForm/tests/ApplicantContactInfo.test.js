@@ -5,20 +5,8 @@ import userEvent from "@testing-library/user-event";
 import ApplicantContactInfo from "../ApplicantContactInfo";
 import ApplicantProfileForm from "../ApplicantProfileForm";
 
-let formState = {
-  firstName: "",
-  lastName: "",
-  sector: "",
-  city: "",
-  state: "",
-  zip: "",
-  country: "",
-  org: false,
-  orgName: "",
-  foundingDate: "",
-  website: "",
-  bio: "",
-};
+let formState = {};
+const formHelperText = {};
 
 jest.mock("react", () => ({
   ...jest.requireActual("react"),
@@ -36,20 +24,6 @@ const setFormStateMock = jest.fn(function () {
     country: "No Country for Blue Men",
   });
 });
-
-const formHelperText = {
-  firstName: undefined,
-  lastName: undefined,
-  sector: undefined,
-  city: undefined,
-  state: undefined,
-  zip: undefined,
-  country: undefined,
-  orgName: undefined,
-  foundingDate: undefined,
-  website: undefined,
-  bio: undefined,
-};
 
 beforeEach(() => {
   useStateMock.mockImplementation((init) => [init, setFormStateMock]);
