@@ -2,8 +2,8 @@ import React, { useState as useStateMock } from "react";
 import { render, fireEvent } from "@testing-library/react";
 import { axe } from "jest-axe";
 import userEvent from "@testing-library/user-event";
-import ApplicantContactInfo from "./ApplicantContactInfo";
-import ApplicantProfileForm from "./ApplicantProfileForm";
+import ApplicantContactInfo from "../ApplicantContactInfo";
+import ApplicantProfileForm from "../ApplicantProfileForm";
 
 let formState = {
   firstName: "",
@@ -102,7 +102,6 @@ test("form submit adds contact info to state", () => {
     <ApplicantContactInfo
       formState={formState}
       formHelperText={formHelperText}
-      //   setFormState={setFormStateMock}
     />
   );
   const { getByText } = render(<ApplicantProfileForm />);
