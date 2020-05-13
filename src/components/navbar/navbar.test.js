@@ -7,7 +7,7 @@ test("inputs are visible", () => {
   let searchTerms = "";
   const { getByTestId } = render(
     <Router>
-      <Navbar searchTerms={searchTerms} searchTerms={searchTerms} />
+      <Navbar searchTerms={searchTerms} />
     </Router>
   );
 
