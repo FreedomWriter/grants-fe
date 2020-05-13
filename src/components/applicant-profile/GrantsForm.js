@@ -21,7 +21,7 @@ export default function GrantsForm() {
             required
             id="grantName"
             name="grantName"
-            label="Grant name"
+            label="Grant Name"
             fullWidth
           />
         </Grid>
