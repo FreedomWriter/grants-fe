@@ -12,7 +12,6 @@ export default function MenuComponent({
 }) {
   const history = useHistory();
 
-  /* ************************ TEMPORARY USERTYPE ASSIGNMENT ************************ */
   const user = useSelector((state) => {
     return state.onboarding.user;
   });
