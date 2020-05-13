@@ -1,4 +1,4 @@
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+// import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 export const APPLICANT_ONBOARDING_POST_START =
   "APPLICANT_ONBOARDING_POST_START";
@@ -7,11 +7,9 @@ export const APPLICANT_ONBOARDING_POST_SUCCESS =
 export const APPLICANT_ONBOARDING_POST_FAILURE =
   "APPLICANT_ONBOARDING_POST_FAILURE";
 
-export const REGISTER_POST_START = "REGISTER_POST_START";
-export const REGISTER_POST_SUCCESS = "REGISTER_POST_SUCCESS";
-export const REGISTER_POST_FAILURE = "REGISTER_POST_FAILURE";
-
-export const LOGOUT = "LOGOUT";
+export const WRITER_ONBOARDING_POST_START = "WRITER_ONBOARDING_POST_START";
+export const WRITER_ONBOARDING_POST_SUCCESS = "WRITER_ONBOARDING_POST_SUCCESS";
+export const WRITER_ONBOARDING_POST_FAILURE = "WRITER_ONBOARDING_POST_FAILURE";
 
 export const postApplicantOnboarding = (value) => (dispatch) => {
   dispatch({ type: APPLICANT_ONBOARDING_POST_START });
@@ -31,21 +29,20 @@ export const postApplicantOnboarding = (value) => (dispatch) => {
   // });
 };
 
-export const postRegister = (value) => async (dispatch) => {
-  dispatch({ type: REGISTER_POST_START });
-  return axiosWithAuth()
-    .post(`/auth/register`, value)
-    .then((res) => {
-      dispatch({
-        type: REGISTER_POST_SUCCESS,
-        payload: res.data,
-      });
-      localStorage.setItem("token", res.data.token);
-    })
-    .catch((err) => {
-      dispatch({
-        type: REGISTER_POST_FAILURE,
-        payload: { error: err.message },
-      });
-    });
+export const postWriterOboarding = (value) => async (dispatch) => {
+  dispatch({ type: WRITER_ONBOARDING_POST_START });
+  // return axiosWithAuth()
+  //   .post(`/ENDPOINT TBD`, value)
+  //   .then((res) => {
+  dispatch({
+    type: WRITER_ONBOARDING_POST_SUCCESS,
+    payload: value,
+  });
+  // })
+  // .catch((err) => {
+  //   dispatch({
+  //     type: WRITER_ONBOARDING_POST_FAILURE,
+  //     payload: { error: err.message },
+  //   });
+  // });
 };

@@ -2,10 +2,9 @@ import {
   APPLICANT_ONBOARDING_POST_START,
   APPLICANT_ONBOARDING_POST_SUCCESS,
   APPLICANT_ONBOARDING_POST_FAILURE,
-  REGISTER_POST_START,
-  REGISTER_POST_SUCCESS,
-  REGISTER_POST_FAILURE,
-  LOGOUT,
+  WRITER_ONBOARDING_POST_START,
+  WRITER_ONBOARDING_POST_SUCCESS,
+  WRITER_ONBOARDING_POST_FAILURE,
 } from "../actions/onboardingActions";
 
 const initialState = {
@@ -23,7 +22,6 @@ const onboardingReducer = (state = initialState, action) => {
     case APPLICANT_ONBOARDING_POST_SUCCESS:
       return {
         user: action.payload,
-
         isLoading: false,
       };
     case APPLICANT_ONBOARDING_POST_FAILURE:
@@ -32,28 +30,20 @@ const onboardingReducer = (state = initialState, action) => {
         error: action.payload,
         isLoading: false,
       };
-    case REGISTER_POST_START:
+    case WRITER_ONBOARDING_POST_START:
       return {
         ...state,
         isLoading: true,
       };
-    case REGISTER_POST_SUCCESS:
+    case WRITER_ONBOARDING_POST_SUCCESS:
       return {
-        user: { id: action.payload.id, firstName: action.payload.firstName },
-        loggedIn: true,
-
+        user: action.payload,
         isLoading: false,
       };
-    case REGISTER_POST_FAILURE:
+    case WRITER_ONBOARDING_POST_FAILURE:
       return {
         ...state,
         error: action.payload,
-        isLoading: false,
-      };
-    case LOGOUT:
-      localStorage.clear();
-      window.location.href = "/";
-      return {
         isLoading: false,
       };
     default:

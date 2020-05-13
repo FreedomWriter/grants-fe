@@ -6,6 +6,7 @@ import loginReducer from "./loginReducer";
 import HomePageReducer from "./HomePageReducer";
 import applicantReducer from "./applicantReducer";
 import onboardingReducer from "./onboardingReducer";
+import collegesReducer from "./collegesReducer";
 
 const persistConfig = {
   key: "root",
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   homePage: HomePageReducer,
   profileInfo: applicantReducer,
   onboarding: onboardingReducer,
+  collegeList: collegesReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
