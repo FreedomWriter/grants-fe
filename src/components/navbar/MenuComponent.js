@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { useSelector } from "react-redux";
@@ -14,7 +14,7 @@ export default function MenuComponent({
 
   /* ************************ TEMPORARY USERTYPE ASSIGNMENT ************************ */
   const user = useSelector((state) => {
-    return state.homePage.userInfo;
+    return state.onboarding.user;
   });
   return (
     <>
