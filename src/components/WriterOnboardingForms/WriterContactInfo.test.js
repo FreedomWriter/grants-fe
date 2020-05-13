@@ -1,5 +1,5 @@
 import React, { useState as useStateMock } from "react";
-import { render as rtlRender, fireEvent } from "@testing-library/react";
+import { render as rtlRender } from "@testing-library/react";
 import { axe } from "jest-axe";
 import userEvent from "@testing-library/user-event";
 import { initialState as initialReducerState } from "../../store/reducers/collegesReducer";
@@ -31,12 +31,10 @@ const setContactFormStateMock = jest.fn(function () {
     lastName: "Fiasco",
     city: "Metropolis",
     state: "Chaos",
-    zip: 90210,
+    zip: "90210",
     country: "No Country for Blue Men",
   });
 });
-
-// let enableButton = false;
 
 const setDisableWorkHistorySubmitButtonMock = jest.fn(function () {
   return true;
@@ -205,6 +203,7 @@ test("Review form reflects user Contact Info input", () => {
       },
     }
   );
+
   const firstNameLabelText = getByLabelText(/first name/i);
   const lastNameLabelText = getByLabelText(/last Name/i);
   const cityLabelText = getByLabelText(/city/i);
@@ -212,10 +211,21 @@ test("Review form reflects user Contact Info input", () => {
   const zipLabelText = getByLabelText(/Zip/i);
   const countryLabelText = getByLabelText(/country/i);
 
-  expect(firstNameLabelText.value).toBe("Blupe");
-  expect(lastNameLabelText.value).toBe("Fiasco");
-  expect(cityLabelText.value).toBe("Metropolis");
-  expect(stateLabelText.value).toBe("Chaos");
-  expect(zipLabelText.value).toBe("90210");
-  expect(countryLabelText.value).toBe("No Country for Blue Men");
+  userEvent.type(firstNameLabelText, { target: { value: "Blupe" } });
+  userEvent.type(lastNameLabelText, { target: { value: "Fiasco" } });
+  userEvent.type(cityLabelText, { target: { value: "Metropolis" } });
+  userEvent.type(stateLabelText, { target: { value: "Chaos" } });
+  userEvent.type(zipLabelText, { target: { value: "90210" } });
+  userEvent.type(countryLabelText, {
+    target: { value: "No Country for Blue Men" },
+  });
+
+  expect(contactFormState).toEqual({
+    firstName: firstNameLabelText.value,
+    lastName: lastNameLabelText.value,
+    city: cityLabelText.value,
+    state: stateLabelText.value,
+    zip: zipLabelText.value,
+    country: countryLabelText.value,
+  });
 });

@@ -1,4 +1,4 @@
-import React, { useState as useStateMock } from "react";
+import React from "react";
 import { axe } from "jest-axe";
 import { render } from "@testing-library/react";
 import WriterProfileForm from "./WriterProfileForm.js";
