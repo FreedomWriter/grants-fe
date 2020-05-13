@@ -9,7 +9,7 @@ import {
 } from "../actions/onboardingActions";
 
 const initialState = {
-  user: "",
+  user: {},
   isLoading: false,
 };
 
@@ -23,7 +23,6 @@ const onboardingReducer = (state = initialState, action) => {
     case APPLICANT_ONBOARDING_POST_SUCCESS:
       return {
         user: action.payload,
-        loggedIn: true,
 
         isLoading: false,
       };

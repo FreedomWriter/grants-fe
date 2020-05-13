@@ -1,8 +1,11 @@
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
-export const APPLICANT_ONBOARDING_START = "APPLICANT_ONBOARDING_START";
-export const APPLICANT_ONBOARDING_SUCCESS = "APPLICANT_ONBOARDING_SUCCESS";
-export const APPLICANT_ONBOARDING_FAILURE = "APPLICANT_ONBOARDING_FAILURE";
+export const APPLICANT_ONBOARDING_POST_START =
+  "APPLICANT_ONBOARDING_POST_START";
+export const APPLICANT_ONBOARDING_POST_SUCCESS =
+  "APPLICANT_ONBOARDING_POST_SUCCESS";
+export const APPLICANT_ONBOARDING_POST_FAILURE =
+  "APPLICANT_ONBOARDING_POST_FAILURE";
 
 export const REGISTER_POST_START = "REGISTER_POST_START";
 export const REGISTER_POST_SUCCESS = "REGISTER_POST_SUCCESS";
@@ -11,18 +14,18 @@ export const REGISTER_POST_FAILURE = "REGISTER_POST_FAILURE";
 export const LOGOUT = "LOGOUT";
 
 export const postApplicantOnboarding = (value) => (dispatch) => {
-  dispatch({ type: APPLICANT_ONBOARDING_START });
+  dispatch({ type: APPLICANT_ONBOARDING_POST_START });
   //   return axiosWithAuth()
   //     .post(`/ENDPOINT TBD`, value)
   //     .then((res) => {
   dispatch({
-    type: APPLICANT_ONBOARDING_SUCCESS,
+    type: APPLICANT_ONBOARDING_POST_SUCCESS,
     payload: value,
   });
   // })
   // .catch((err) => {
   // dispatch({
-  //   type: APPLICANT_ONBOARDING_FAILURE,
+  //   type: APPLICANT_ONBOARDING_POST_FAILURE,
   //   payload: { error: err.message },
   // });
   // });

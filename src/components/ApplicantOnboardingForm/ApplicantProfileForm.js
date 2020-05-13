@@ -68,7 +68,9 @@ export default function ApplicantProfileForm() {
   const handleSubmit = async () => {
     try {
       console.log(`Sumbit form values: `, formState);
-      await dispatch(postApplicantOnboarding(formState));
+      await dispatch(
+        postApplicantOnboarding({ ...formState, type: "applicant" })
+      );
       return history.push("/ApplicantProfile");
     } catch (err) {
       alert(err);
