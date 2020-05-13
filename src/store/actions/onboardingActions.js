@@ -21,10 +21,10 @@ export const postApplicantOnboarding = (value) => (dispatch) => {
   });
   // })
   // .catch((err) => {
-  dispatch({
-    type: APPLICANT_ONBOARDING_FAILURE,
-    payload: { error: "err.message" },
-  });
+  // dispatch({
+  //   type: APPLICANT_ONBOARDING_FAILURE,
+  //   payload: { error: err.message },
+  // });
   // });
 };
 
