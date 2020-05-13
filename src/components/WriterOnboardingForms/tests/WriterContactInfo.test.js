@@ -2,13 +2,13 @@ import React, { useState as useStateMock } from "react";
 import { render as rtlRender } from "@testing-library/react";
 import { axe } from "jest-axe";
 import userEvent from "@testing-library/user-event";
-import { initialState as initialReducerState } from "../../store/reducers/collegesReducer";
-import reducer from "../../store/reducers/collegesReducer";
+import { initialState as initialReducerState } from "../../../store/reducers/collegesReducer";
+import reducer from "../../../store/reducers/collegesReducer";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import WriterContactInfo from "./WriterContactInfoForm.js";
-import WriterProfileForm from "./WriterProfileForm.js";
-import WriterReviewForm from "./WriterReviewForm.js";
+import WriterContactInfo from "../WriterContactInfoForm.js";
+import WriterProfileForm from "../WriterProfileForm.js";
+import WriterReviewForm from "../WriterReviewForm.js";
 
 let contactFormState = {
   firstName: "",

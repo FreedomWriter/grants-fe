@@ -1,7 +1,7 @@
 import React from "react";
 import { axe } from "jest-axe";
 import { render } from "@testing-library/react";
-import WriterProfileForm from "./WriterProfileForm.js";
+import WriterProfileForm from "../WriterProfileForm.js";
 
 test("accessible -  WriterProfileForm pass axe", async () => {
   const { container } = render(<WriterProfileForm />);

@@ -2,8 +2,8 @@ import React, { useState as useStateMock } from "react";
 import { axe } from "jest-axe";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import WriterWorkHistoryForm from "./WriterWorkHistoryForm.js";
-import WriterWorkCard from "./WriterWorkCard";
+import WriterWorkHistoryForm from "../WriterWorkHistoryForm.js";
+import WriterWorkCard from "../WriterWorkCard";
 
 const enableButton = jest.fn(() => {});
 const setDisableWorkHistorySubmitButtonMock = jest.fn(() => {});
