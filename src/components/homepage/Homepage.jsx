@@ -26,10 +26,9 @@ const Homepage = () => {
   //=====================
 
   //======Access state from reducer for Homepage======
-  // const grants = useSelector((state) => {
-  //   return state.homePage.grantsInfo;
-  // });
-  const grants = [];
+  const grants = useSelector((state) => {
+    return state.homePage.grantsInfo;
+  });
   const user = useSelector((state) => {
     return state.homePage.userInfo;
   });
@@ -48,7 +47,6 @@ const Homepage = () => {
 
   const classes = useStyles();
 
-  console.log("user.type:", user.type === "writer");
   return (
     <div className={classes.container}>
       {/* StylesProvider */}
@@ -59,12 +57,11 @@ const Homepage = () => {
         ) : (
           <UserCardApplicant details={user} />
         )}
-        {/*  */}
+
         {!grants ? (
           <h4>Loading....</h4>
         ) : (
           grants.map((grant) => {
-            // console.log(grant);
             return (
               <div className="Card-display" key={grant.id}>
                 <br />
