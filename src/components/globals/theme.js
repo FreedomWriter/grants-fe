@@ -1,4 +1,6 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import {
+  createMuiTheme
+} from "@material-ui/core/styles";
 
 const blue = "#3A539B";
 const darkBlue = "#33658A";
@@ -17,5 +19,6 @@ export default createMuiTheme({
     secondary: {
       main: golden,
     },
+
   },
 });
