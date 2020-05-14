@@ -5,13 +5,22 @@ import {
 } from "../actions/writerProfileAction.js";
 
 const initialState = {
-  writer: "",
+  writerProfile: {
+    id: null,
+    first_name: null,
+    last_name: null,
+    website: null,
+    biography: null,
+    education: null,
+    work_history: null,
+    portfolio: null,
+  },
   isLoading: false,
 };
 
 const writerReducer = (
   state = {
-    ...initialState.writer,
+    ...initialState.writerProfile,
   },
   action
 ) => {
@@ -26,7 +35,7 @@ const writerReducer = (
       return {
         ...state,
         isFetching: false,
-        list: [...state.list, ...action.payload],
+        writerProfile: action.payload.writerProfile,
       };
     case FETCH_WRITER_FAILURE:
       return {
