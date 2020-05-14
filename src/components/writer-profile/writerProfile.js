@@ -79,15 +79,7 @@ export default function WriterProfile() {
             classes={{ root: classes.rootIcon }}
             fontSize="large"
           />
-          <Typography
-            variant="subtitle2"
-            classes={{
-              root: classes.rootUserName,
-            }}
-          >
-            {" "}
-            John Doe
-          </Typography>
+          <div className={classes.userName}> John Doe</div>
           <Button
             classes={{ root: classes.rootButton, label: classes.labelButton }}
             variant="contained"
@@ -107,27 +99,28 @@ export default function WriterProfile() {
         </div>
         <h3 className={classes.userEducation}>
           Bio:
-          <Typography variant="body1">
+          <div className={classes.bodyText}>
             {" "}
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
             blanditiis tenetur unde suscipit, quam beatae rerum inventore
             consectetur, neque doloribus, cupiditate numquam dignissimos laborum
             fugiat deleniti? Eum quasi quidem quibusdam.
-          </Typography>
+          </div>
         </h3>
         <div></div>
-        <h3>
+        <h3 className={classes.userEducation}>
           Background:
-          <Typography variant="subtitle2">
-            Education:<Typography variant="body1">USC 2010-2014</Typography>
-          </Typography>
-          <Typography variant="subtitle2">
-            Work History:<Typography variant="body1">DSC 2010-2014</Typography>
-          </Typography>
+          <div className={classes.educationText}>
+            Education:<div className={classes.bodyText}>USC 2010-2014</div>
+          </div>
+          <div className={classes.educationText}>
+            Work History:
+            <div className={classes.bodyText}>DSC 2010-2014</div>
+          </div>
         </h3>
         <div></div>
         <div className={classes.userServices}>
-          <h3>Services Offered:</h3>
+          <h3 className={classes.userEducation}>Services Offered:</h3>
           <Paper>
             <Tabs
               orientation="vertical"
