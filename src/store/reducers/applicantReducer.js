@@ -6,7 +6,16 @@ import {
 
 const initialState = {
   grants: [
-    {grant_id: 1, grant_name: 'grant 1', grant_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet venenatis urna cursus. Gravida neque convallis a cras semper. Habitasse platea dictumst quisque sagittis purus sit amet volutpat."},
+    {
+      id: null, 
+      applicant_profile_id: null, 
+      contact_name: null,
+      org_name: null,
+      grant_name: null,
+      due_date: null,
+      sector: null,
+      description: null
+    }
   ],
   applicantProfileDetails: {
     id: null,

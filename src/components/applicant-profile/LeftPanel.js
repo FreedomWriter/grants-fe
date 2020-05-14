@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function LetterAvatars() {
+export default function LeftPanel() {
   const classes = useStyles();
 
   return (
