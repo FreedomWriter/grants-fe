@@ -1,8 +1,12 @@
 import React from "react";
 import { axe } from "jest-axe";
-import { render } from "@testing-library/react";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { render as rtlRender } from "@testing-library/react";
 import ApplicantProfileForm from "../ApplicantProfileForm.js";
 import ApplicantContactInfo from "../ApplicantContactInfo";
+import { initialState as initialReducerState } from "../../../store/reducers/onboardingReducer";
+import reducer from "../../../store/reducers/onboardingReducer";
 
 beforeEach(() => {
   jest.spyOn(console, "error").mockImplementation(() => {});
@@ -16,15 +20,27 @@ let formStateMock = {};
 
 let formHelperTextMock = {};
 
-/* ********************** Figure out autocomplete a11y error issue ********************** */
+function render(
+  ui,
+  {
+    initialState = initialReducerState,
+    store = createStore(reducer, initialState),
+    ...renderOptions
+  } = {}
+) {
+  function Wrapper({ children }) {
+    return <Provider store={store}>{children}</Provider>;
+  }
+  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+}
 
-test("accessible -  WriterProfileForm pass axe", async () => {
+test("accessible -  ApplicantProfileForm pass axe", async () => {
   const { container } = render(<ApplicantProfileForm />);
   expect(await axe(container)).toHaveNoViolations();
 });
 
 test("Applicant Profile Form to be visible", () => {
-  const { container } = render(
+  const { container } = rtlRender(
     <ApplicantContactInfo
       formHelperText={formHelperTextMock}
       formState={formStateMock}
@@ -35,7 +51,12 @@ test("Applicant Profile Form to be visible", () => {
 });
 
 test("form header is visible", () => {
-  const { getByText } = render(<ApplicantProfileForm />);
+  const { getByText } = render(<ApplicantProfileForm />, {
+    initialState: {
+      user: {},
+      isLoading: false,
+    },
+  });
 
   const formHeader = getByText(/create profile/i);
 
@@ -43,7 +64,12 @@ test("form header is visible", () => {
 });
 
 test("Next Button is visible", () => {
-  const { getByText } = render(<ApplicantProfileForm />);
+  const { getByText } = render(<ApplicantProfileForm />, {
+    initialState: {
+      user: {},
+      isLoading: false,
+    },
+  });
   const nextButton = getByText(/next/i);
 
   expect(nextButton).toBeVisible();
@@ -52,7 +78,12 @@ test("Next Button is visible", () => {
 /* ********************** Button currently not disable FIX IT ********************** */
 
 test("Next Button is not disabled", () => {
-  const { getByText } = render(<ApplicantProfileForm />);
+  const { getByText } = render(<ApplicantProfileForm />, {
+    initialState: {
+      user: {},
+      isLoading: false,
+    },
+  });
   const nextButton = getByText(/next/i);
 
   expect(nextButton).not.toBeDisabled();

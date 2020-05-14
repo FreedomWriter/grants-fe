@@ -1,9 +1,13 @@
 import React, { useState as useStateMock } from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render as rtlRender, fireEvent } from "@testing-library/react";
 import { axe } from "jest-axe";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 import userEvent from "@testing-library/user-event";
 import ApplicantContactInfo from "../ApplicantContactInfo";
 import ApplicantProfileForm from "../ApplicantProfileForm";
+import { initialState as initialReducerState } from "../../../store/reducers/onboardingReducer";
+import reducer from "../../../store/reducers/onboardingReducer";
 
 let formState = {};
 const formHelperText = {};
@@ -25,6 +29,20 @@ const setFormStateMock = jest.fn(function () {
   });
 });
 
+function render(
+  ui,
+  {
+    initialState = initialReducerState,
+    store = createStore(reducer, initialState),
+    ...renderOptions
+  } = {}
+) {
+  function Wrapper({ children }) {
+    return <Provider store={store}>{children}</Provider>;
+  }
+  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+}
+
 beforeEach(() => {
   useStateMock.mockImplementation((init) => [init, setFormStateMock]);
   jest.spyOn(console, "error").mockImplementation(() => {});
@@ -36,7 +54,7 @@ afterEach(() => {
 });
 
 test("accessible -  ApplicantContactInfo pass axe", async () => {
-  const { container } = render(
+  const { container } = rtlRender(
     <ApplicantContactInfo
       formState={formState}
       formHelperText={formHelperText}
@@ -46,7 +64,7 @@ test("accessible -  ApplicantContactInfo pass axe", async () => {
 });
 
 test("contact information is visible", () => {
-  const { getByText } = render(
+  const { getByText } = rtlRender(
     <ApplicantContactInfo
       formState={formState}
       formHelperText={formHelperText}
@@ -57,7 +75,7 @@ test("contact information is visible", () => {
 });
 
 test("inputs are visible", () => {
-  const { getByLabelText } = render(
+  const { getByLabelText } = rtlRender(
     <ApplicantContactInfo
       formState={formState}
       formHelperText={formHelperText}
@@ -81,14 +99,20 @@ test("inputs are visible", () => {
   expect(countryLabelText).toBeVisible();
 });
 
-test("form submit adds contact info to state", () => {
-  const { getByLabelText } = render(
+test("form submit adds ApplicantContactInfo info to state", () => {
+  const { getByLabelText } = rtlRender(
     <ApplicantContactInfo
       formState={formState}
       formHelperText={formHelperText}
     />
   );
-  const { getByText } = render(<ApplicantProfileForm />);
+
+  const { getByText } = render(<ApplicantProfileForm />, {
+    initialState: {
+      user: {},
+      isLoading: false,
+    },
+  });
 
   const firstNameLabelText = getByLabelText(/first name/i);
   const lastNameLabelText = getByLabelText(/last Name/i);

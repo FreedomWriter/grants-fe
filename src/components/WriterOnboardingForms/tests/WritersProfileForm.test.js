@@ -1,14 +1,46 @@
 import React from "react";
 import { axe } from "jest-axe";
-import { render } from "@testing-library/react";
+import { render as rtlRender } from "@testing-library/react";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 import WriterProfileForm from "../WriterProfileForm.js";
 import WriterContactInfoForm from "../WriterContactInfoForm";
+
+import { initialState as initialReducerState } from "../../../store/reducers/onboardingReducer";
+import reducer from "../../../store/reducers/onboardingReducer";
 
 let contactFormStateMock = {};
 let formHelperTextMock = {};
 
+function render(
+  ui,
+  {
+    initialState = initialReducerState,
+    store = createStore(reducer, initialState),
+    ...renderOptions
+  } = {}
+) {
+  function Wrapper({ children }) {
+    return <Provider store={store}>{children}</Provider>;
+  }
+  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+}
+
+beforeEach(() => {
+  jest.spyOn(console, "error").mockImplementation(() => {});
+});
+
+afterEach(() => {
+  console.error.mockRestore();
+});
+
 test("accessible -  WriterProfileForm pass axe", async () => {
-  const { container } = render(<WriterProfileForm />);
+  const { container } = render(<WriterProfileForm />, {
+    initialState: {
+      user: {},
+      isLoading: false,
+    },
+  });
   expect(await axe(container)).toHaveNoViolations();
 });
 
