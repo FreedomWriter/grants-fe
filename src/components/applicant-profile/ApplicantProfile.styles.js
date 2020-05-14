@@ -14,14 +14,16 @@ export const useStyles = makeStyles(theme => ({
     gridTemplateRows: "1fr",
     gap: "1px 1px",
     "& h1": {
-      marginBlockEnd: "0.83em",
-      marginBlockStart: "0.4em",
+      fontSize: "2em",
+      marginBlockEnd: "0.5em",
       [theme.breakpoints.down("xs")]: {
         margin: "0"
       }
     },
     "& h2": {
-      fontWeight: "normal"
+      fontWeight: "normal",
+      marginBlockEnd: "0",
+      marginBlockStart: "1.2em"
     },
     [theme.breakpoints.down("xs")]: {
       gridTemplateColumns: "2fr",
