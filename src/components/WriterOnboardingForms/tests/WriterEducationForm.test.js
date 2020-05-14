@@ -2,9 +2,9 @@ import React, { useState as useStateMock } from "react";
 import { axe } from "jest-axe";
 import { createStore } from "redux";
 import { render as rtlRender, screen } from "@testing-library/react";
-import WriterEducationForm from "./WriterEducationForm.js";
-import { initialState as initialReducerState } from "../../store/reducers/collegesReducer";
-import reducer from "../../store/reducers/collegesReducer";
+import WriterEducationForm from "../WriterEducationForm.js";
+import { initialState as initialReducerState } from "../../../store/reducers/collegesReducer";
+import reducer from "../../../store/reducers/collegesReducer";
 
 import { Provider } from "react-redux";
 
@@ -33,20 +33,7 @@ const setEducationFormStateMock = jest.fn(function () {
   });
 });
 
-let formHelperTextMock = {
-  firstName: undefined,
-  lastName: undefined,
-  sector: undefined,
-  city: undefined,
-  state: undefined,
-  zip: undefined,
-  country: undefined,
-  website: undefined,
-  bio: undefined,
-  company: undefined,
-  postion: undefined,
-  responsibilites: undefined,
-};
+let formHelperTextMock = {};
 
 function render(
   ui,

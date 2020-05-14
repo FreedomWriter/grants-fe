@@ -2,23 +2,11 @@ import React, { useState as useStateMock } from "react";
 import { render, fireEvent } from "@testing-library/react";
 import { axe } from "jest-axe";
 import userEvent from "@testing-library/user-event";
-import ApplicantContactInfo from "./ApplicantContactInfo";
-import ApplicantProfileForm from "./ApplicantProfileForm";
+import ApplicantContactInfo from "../ApplicantContactInfo";
+import ApplicantProfileForm from "../ApplicantProfileForm";
 
-let formState = {
-  firstName: "",
-  lastName: "",
-  sector: "",
-  city: "",
-  state: "",
-  zip: "",
-  country: "",
-  org: false,
-  orgName: "",
-  foundingDate: "",
-  website: "",
-  bio: "",
-};
+let formState = {};
+const formHelperText = {};
 
 jest.mock("react", () => ({
   ...jest.requireActual("react"),
@@ -37,20 +25,6 @@ const setFormStateMock = jest.fn(function () {
   });
 });
 
-const formHelperText = {
-  firstName: undefined,
-  lastName: undefined,
-  sector: undefined,
-  city: undefined,
-  state: undefined,
-  zip: undefined,
-  country: undefined,
-  orgName: undefined,
-  foundingDate: undefined,
-  website: undefined,
-  bio: undefined,
-};
-
 beforeEach(() => {
   useStateMock.mockImplementation((init) => [init, setFormStateMock]);
   jest.spyOn(console, "error").mockImplementation(() => {});
@@ -59,6 +33,16 @@ beforeEach(() => {
 afterEach(() => {
   jest.clearAllMocks();
   console.error.mockRestore();
+});
+
+test("accessible -  ApplicantContactInfo pass axe", async () => {
+  const { container } = render(
+    <ApplicantContactInfo
+      formState={formState}
+      formHelperText={formHelperText}
+    />
+  );
+  expect(await axe(container)).toHaveNoViolations();
 });
 
 test("contact information is visible", () => {
@@ -102,7 +86,6 @@ test("form submit adds contact info to state", () => {
     <ApplicantContactInfo
       formState={formState}
       formHelperText={formHelperText}
-      //   setFormState={setFormStateMock}
     />
   );
   const { getByText } = render(<ApplicantProfileForm />);
