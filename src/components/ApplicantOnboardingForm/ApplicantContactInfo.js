@@ -17,7 +17,7 @@ export default function ApplicantContactInfo({
 
   return (
     <div className={classes.container}>
-      <Typography variant="h6" gutterBottom>
+      <Typography component="h2" variant="h6" gutterBottom>
         Contact Information
       </Typography>
       <Grid container spacing={3}>
@@ -33,7 +33,7 @@ export default function ApplicantContactInfo({
             value={formState.firstName}
             onChange={handleChanges}
             fullWidth
-            autoComplete="fname"
+            // autoComplete="fname"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -48,7 +48,7 @@ export default function ApplicantContactInfo({
             value={formState.lastName}
             onChange={handleChanges}
             fullWidth
-            autoComplete="lname"
+            // autoComplete="lname"
           />
         </Grid>
         <Grid item xs={12}>
@@ -78,7 +78,7 @@ export default function ApplicantContactInfo({
             value={formState.city}
             onChange={handleChanges}
             fullWidth
-            autoComplete="billing address-level2"
+            // autoComplete="billing address-level2"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -106,7 +106,7 @@ export default function ApplicantContactInfo({
             value={formState.zip}
             onChange={handleChanges}
             fullWidth
-            autoComplete="billing postal-code"
+            // autoComplete="billing postal-code"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -121,7 +121,7 @@ export default function ApplicantContactInfo({
             onChange={handleChanges}
             label="Country"
             fullWidth
-            autoComplete="billing country"
+            // autoComplete="billing country"
           />
         </Grid>
         <Grid item xs={12}>
