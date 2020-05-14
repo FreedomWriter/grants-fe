@@ -1,29 +1,15 @@
 import {
   GET_PROFILEINFO_START,
   GET_PROFILEINFO_SUCCESS,
-  GET_PROFILEINFO_ERROR
+  GET_PROFILEINFO_ERROR,
+  POST_APPLICANTGRANTS_START,
+  POST_APPLICANTGRANTS_SUCCESS,
+  POST_APPLICANTGRANTS_FAILURE
 } from '../actions/ApplicantActions';
 
 const initialState = {
-  grants: [
-    {
-      id: null, 
-      applicant_profile_id: null, 
-      contact_name: null,
-      org_name: null,
-      grant_name: null,
-      due_date: null,
-      sector: null,
-      description: null
-    }
-  ],
-  applicantProfileDetails: {
-    id: null,
-    name: null,
-    organization: null,
-    sector: null,
-    bio: null
-  },
+  grants: [],
+  applicantProfileDetails: {},
   isLoading: false
 };
 
@@ -38,8 +24,7 @@ const applicantReducer = (state = initialState, action) => {
     case GET_PROFILEINFO_SUCCESS:
       return {
         ...state,
-        grants: action.payload.grants,
-        applicantProfileDetails: action.payload.applicantProfileDetails,
+        applicantProfileDetails: action.payload,
         isLoading: false
       };
 
@@ -48,8 +33,45 @@ const applicantReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
         isLoading: false
-      };
+      }
 
+    case POST_APPLICANTGRANTS_START:
+    return {
+      ...state,
+      isLoading: true
+    };
+
+    case POST_APPLICANTGRANTS_SUCCESS:
+    return {
+      grants: [ ...state.grants, action.payload],
+      isLoading: false
+    };
+
+    case POST_APPLICANTGRANTS_FAILURE:
+    return {
+      ...state,
+      error: action.payload,
+      isLoading: false
+    };
+
+    case GET_APPLICANTGRANTS_START:
+    return {
+      ...state,
+      isLoading: true
+    };
+
+    case GET_APPLICANTGRANTS_SUCCESS:
+    return {
+      grants: action.payload,
+      isLoading: false
+    };
+
+    case GET_APPLICANTGRANTS_FAILURE:
+    return {
+      ...state,
+      error: action.payload,
+      isLoading: false
+    };
     default:
       return state;
   }
