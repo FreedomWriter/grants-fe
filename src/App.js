@@ -13,6 +13,8 @@ import WriterProfileForm from "./components/WriterOnboardingForms/WriterProfileF
 import RegisterForm from "./components/register/registerForm.js";
 import LoginForm from "./components/login/loginForm.js";
 import LandingPage from "./components/landingPage/LandingPage.js";
+import GrantsList from "./components/applicant-profile/GrantsList";
+import GrantsForm from "./components/applicant-profile/GrantsForm";
 
 function App() {
   return (
@@ -29,6 +31,12 @@ function App() {
         </div> */}
         <Switch>
           {/*  */}
+          <Route path="/GrantsForm">
+            <GrantsForm />
+          </Route>
+          <Route path="/GrantsList">
+            <GrantsList />
+          </Route>
           <Route path="/ApplicantProfile">
             <ApplicantProfile />
           </Route>

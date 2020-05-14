@@ -1,20 +1,15 @@
 import {
   GET_PROFILEINFO_START,
   GET_PROFILEINFO_SUCCESS,
-  GET_PROFILEINFO_ERROR
+  GET_PROFILEINFO_ERROR,
+  POST_APPLICANTGRANTS_START,
+  POST_APPLICANTGRANTS_SUCCESS,
+  POST_APPLICANTGRANTS_FAILURE
 } from '../actions/ApplicantActions';
 
 const initialState = {
-  grants: [
-    {grant_id: 1, grant_name: 'grant 1', grant_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet venenatis urna cursus. Gravida neque convallis a cras semper. Habitasse platea dictumst quisque sagittis purus sit amet volutpat."},
-  ],
-  applicantProfileDetails: {
-    id: null,
-    name: null,
-    organization: null,
-    sector: null,
-    biography: null
-  },
+  grants: [],
+  applicantProfileDetails: {},
   isLoading: false
 };
 
@@ -29,8 +24,7 @@ const applicantReducer = (state = initialState, action) => {
     case GET_PROFILEINFO_SUCCESS:
       return {
         ...state,
-        grants: action.payload.grants,
-        applicantProfileDetails: action.payload.applicantProfileDetails,
+        applicantProfileDetails: action.payload,
         isLoading: false
       };
 
@@ -39,8 +33,45 @@ const applicantReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
         isLoading: false
-      };
+      }
 
+    case POST_APPLICANTGRANTS_START:
+    return {
+      ...state,
+      isLoading: true
+    };
+
+    case POST_APPLICANTGRANTS_SUCCESS:
+    return {
+      grants: [ ...state.grants, action.payload],
+      isLoading: false
+    };
+
+    case POST_APPLICANTGRANTS_FAILURE:
+    return {
+      ...state,
+      error: action.payload,
+      isLoading: false
+    };
+
+    case GET_APPLICANTGRANTS_START:
+    return {
+      ...state,
+      isLoading: true
+    };
+
+    case GET_APPLICANTGRANTS_SUCCESS:
+    return {
+      grants: action.payload,
+      isLoading: false
+    };
+
+    case GET_APPLICANTGRANTS_FAILURE:
+    return {
+      ...state,
+      error: action.payload,
+      isLoading: false
+    };
     default:
       return state;
   }
