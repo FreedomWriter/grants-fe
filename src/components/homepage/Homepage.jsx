@@ -53,20 +53,25 @@ const Homepage = () => {
       {/* StylesProvider */}
       {/* GlobalStyles */}
       <Container className={classes.appHeader}>
-        {user.type === "writer" ? ( //this is always going following the true...
+        {user.type === "writer" ? (
           <UserCardWriter details={user} />
         ) : (
           <UserCardApplicant details={user} />
         )}
-        {grants.map((grant) => {
-          // console.log(grant);
-          return (
-            <div className="Card-display" key={grant.id}>
-              <br />
-              <GrantCard data={grant} />
-            </div>
-          );
-        })}
+        {/*  */}
+        {!grants ? (
+          <h4>Loading....</h4>
+        ) : (
+          grants.map((grant) => {
+            // console.log(grant);
+            return (
+              <div className="Card-display" key={grant.id}>
+                <br />
+                <GrantCard data={grant} />
+              </div>
+            );
+          })
+        )}
       </Container>
     </div>
   );
