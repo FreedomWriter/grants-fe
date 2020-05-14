@@ -62,11 +62,11 @@ export default function WriterBioForm({
         </Grid>
         <Grid item xs={12}>
           <FormControl className={classes.orgTextField}>
-            <InputLabel id="services-offered-labes">
+            <InputLabel id="services-offered-label" data-testid="services">
               Services Offered
             </InputLabel>
             <Select
-              labelId="services-offered-labes"
+              labelId="services-offered-label"
               id="servicesOffered"
               name="servicesOffered"
               value={

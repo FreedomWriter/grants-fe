@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { postWriterOboarding } from "../../store/actions/onboardingActions";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
 import Stepper from "@material-ui/core/Stepper";
@@ -12,8 +15,6 @@ import WriterWorkHistoryForm from "./WriterWorkHistoryForm";
 import WriterBioForm from "./WriterBioForm";
 import WriterReview from "./WriterReviewForm";
 
-import { handleValidation } from "./FormValidation";
-
 import { v4 as uuidv4 } from "uuid";
 
 import { useStyles } from "./WriterForm.styles";
@@ -21,6 +22,8 @@ import { useStyles } from "./WriterForm.styles";
 const steps = ["Contact", "Education", "Work History", "Bio", "Review"];
 
 export default function WriterProfileForm() {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const classes = useStyles();
   // active step keeps track of which child component will render
   const [activeStep, setActiveStep] = useState(0);
@@ -80,6 +83,8 @@ export default function WriterProfileForm() {
   /* because users may have attended more than one school, we are currently using a separate state to handle this. REFACTOR to use psuedo POST to global state */
   const [writersColleges, setWritersColleges] = useState([]);
 
+  const [writersWorkHistory, setWritersWorkHistory] = useState([]);
+
   /* state for handling error text when input validation is not met */
   const [formHelperText, setFormHelperText] = useState({
     firstName: undefined,
@@ -95,8 +100,6 @@ export default function WriterProfileForm() {
     postion: undefined,
     responsibilites: undefined,
   });
-
-  const [writersWorkHistory, setWritersWorkHistory] = useState([]);
 
   /* ********************* END FORM STATE AND SETTERS ********************* */
 
@@ -136,8 +139,21 @@ export default function WriterProfileForm() {
   /* ********************* BEGIN SUBMIT HANDLERS ********************* */
 
   /* submit all form values after rendering WriterReviewForm - handler is invoked dynamically based on which form user is currently viewing */
-  const handleSubmit = () => {
-    console.log(`Sumbit form values: `);
+  const handleSubmit = async () => {
+    try {
+      await dispatch(
+        postWriterOboarding({
+          ...contactFormState,
+          ...bioFormState,
+          writersColleges,
+          writersWorkHistory,
+          type: "writer",
+        })
+      );
+      return history.push("/WriterProfile");
+    } catch (err) {
+      alert(err);
+    }
   };
 
   const handleNext = () => {
@@ -407,6 +423,7 @@ export default function WriterProfileForm() {
             activeStep={activeStep}
             className={classes.stepper}
             alternativeLabel
+            data-testid="stepper"
           >
             {steps.map((label) => (
               <Step key={label}>
