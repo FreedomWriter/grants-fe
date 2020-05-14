@@ -13,7 +13,7 @@ const initialState = {
     name: null,
     organization: null,
     sector: null,
-    biography: null
+    bio: null
   },
   isLoading: false
 };
