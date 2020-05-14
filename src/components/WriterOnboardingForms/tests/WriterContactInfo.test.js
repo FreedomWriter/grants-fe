@@ -1,14 +1,13 @@
 import React, { useState as useStateMock } from "react";
-import { render as rtlRender, fireEvent } from "@testing-library/react";
+import { render as rtlRender } from "@testing-library/react";
 import { axe } from "jest-axe";
 import userEvent from "@testing-library/user-event";
-import { initialState as initialReducerState } from "../../store/reducers/collegesReducer";
-import reducer from "../../store/reducers/collegesReducer";
+import { initialState as initialReducerState } from "../../../store/reducers/collegesReducer";
+import reducer from "../../../store/reducers/collegesReducer";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import WriterContactInfo from "./WriterContactInfoForm.js";
-import WriterProfileForm from "./WriterProfileForm.js";
-import WriterReviewForm from "./WriterReviewForm.js";
+import WriterContactInfo from "../WriterContactInfoForm.js";
+import WriterReviewForm from "../WriterReviewForm.js";
 
 let contactFormState = {
   firstName: "",
@@ -23,20 +22,21 @@ jest.mock("react", () => ({
   ...jest.requireActual("react"),
   useState: jest.fn(),
 }));
-const enableButton = jest.fn(() => false);
-const setDisableCollegeSubmitButtonMock = jest.fn(() => true);
+
 const setContactFormStateMock = jest.fn(function () {
   return (contactFormState = {
     firstName: "Blupe",
     lastName: "Fiasco",
     city: "Metropolis",
     state: "Chaos",
-    zip: 90210,
+    zip: "90210",
     country: "No Country for Blue Men",
   });
 });
 
-// let enableButton = false;
+const enableButton = jest.fn(() => false);
+
+const setDisableCollegeSubmitButtonMock = jest.fn(() => true);
 
 const setDisableWorkHistorySubmitButtonMock = jest.fn(function () {
   return true;
@@ -153,9 +153,6 @@ test("form submit adds contact info to state", () => {
       enableButton={enableButton}
     />
   );
-  const { getByText } = rtlRender(
-    <WriterProfileForm contactFormState={contactFormState} />
-  );
 
   const firstNameLabelText = getByLabelText(/first name/i);
   const lastNameLabelText = getByLabelText(/last Name/i);
@@ -164,17 +161,23 @@ test("form submit adds contact info to state", () => {
   const zipLabelText = getByLabelText(/Zip/i);
   const countryLabelText = getByLabelText(/country/i);
 
-  expect(getByText(/next/i)).toBeDisabled();
-  // firstNameLabelText.value = "Nupe";
-  expect(firstNameLabelText.value).toBe("Blupe");
-  expect(lastNameLabelText.value).toBe("Fiasco");
-  expect(cityLabelText.value).toBe("Metropolis");
-  expect(stateLabelText.value).toBe("Chaos");
-  expect(zipLabelText.value).toBe("90210");
-  expect(countryLabelText.value).toBe("No Country for Blue Men");
+  userEvent.type(firstNameLabelText, { target: { value: "Blupe" } });
+  userEvent.type(lastNameLabelText, { target: { value: "Fiasco" } });
+  userEvent.type(cityLabelText, { target: { value: "Metropolis" } });
+  userEvent.type(stateLabelText, { target: { value: "Chaos" } });
+  userEvent.type(zipLabelText, { target: { value: "90210" } });
+  userEvent.type(countryLabelText, {
+    target: { value: "No Country for Blue Men" },
+  });
 
-  // expect(contactFormState).toEqual({ you: "thought" });
-  // expect(getByText(/next/i)).not.toBeDisabled();
+  expect(contactFormState).toEqual({
+    firstName: firstNameLabelText.value,
+    lastName: lastNameLabelText.value,
+    city: cityLabelText.value,
+    state: stateLabelText.value,
+    zip: zipLabelText.value,
+    country: countryLabelText.value,
+  });
 });
 
 test("Review form reflects user Contact Info input", () => {
@@ -208,6 +211,7 @@ test("Review form reflects user Contact Info input", () => {
       },
     }
   );
+
   const firstNameLabelText = getByLabelText(/first name/i);
   const lastNameLabelText = getByLabelText(/last Name/i);
   const cityLabelText = getByLabelText(/city/i);
@@ -215,10 +219,21 @@ test("Review form reflects user Contact Info input", () => {
   const zipLabelText = getByLabelText(/Zip/i);
   const countryLabelText = getByLabelText(/country/i);
 
-  expect(firstNameLabelText.value).toBe("Blupe");
-  expect(lastNameLabelText.value).toBe("Fiasco");
-  expect(cityLabelText.value).toBe("Metropolis");
-  expect(stateLabelText.value).toBe("Chaos");
-  expect(zipLabelText.value).toBe("90210");
-  expect(countryLabelText.value).toBe("No Country for Blue Men");
+  userEvent.type(firstNameLabelText, { target: { value: "Blupe" } });
+  userEvent.type(lastNameLabelText, { target: { value: "Fiasco" } });
+  userEvent.type(cityLabelText, { target: { value: "Metropolis" } });
+  userEvent.type(stateLabelText, { target: { value: "Chaos" } });
+  userEvent.type(zipLabelText, { target: { value: "90210" } });
+  userEvent.type(countryLabelText, {
+    target: { value: "No Country for Blue Men" },
+  });
+
+  expect(contactFormState).toEqual({
+    firstName: firstNameLabelText.value,
+    lastName: lastNameLabelText.value,
+    city: cityLabelText.value,
+    state: stateLabelText.value,
+    zip: zipLabelText.value,
+    country: countryLabelText.value,
+  });
 });

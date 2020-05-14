@@ -39,7 +39,7 @@ export default function OrgInformation({
             name="bio"
             value={formState.bio}
             placeholder="Tell us about yourself..."
-            aria-label="Organization Bio"
+            aria-label="Your Bio"
             rowsMin={6}
             className={classes.textArea}
           />

@@ -5,9 +5,8 @@ import "@testing-library/jest-dom/extend-expect";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
-import Homepage from "./Homepage.jsx";
-
 //
+import Homepage from "./Homepage.jsx";
 import { initialState as initialReducerState } from "../../store/reducers/HomePageReducer.js";
 import reducer from "../../store/reducers/HomePageReducer.js";
 

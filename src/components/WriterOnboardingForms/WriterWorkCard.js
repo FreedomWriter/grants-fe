@@ -14,13 +14,18 @@ export default function WriterEducationCard({ writersWork }) {
           className={classes.title}
           color="textSecondary"
           gutterBottom
+          data-testid="company-header"
         >
           Company
         </Typography>
         <Typography variant="h5" component="h2">
           {writersWork.company}
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
+        <Typography
+          className={classes.pos}
+          color="textSecondary"
+          data-testid="position-header"
+        >
           Position: {writersWork.position}
         </Typography>
         <Typography variant="body2" component="p">

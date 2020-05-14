@@ -26,9 +26,10 @@ const Homepage = () => {
   //=====================
 
   //======Access state from reducer for Homepage======
-  const grants = useSelector((state) => {
-    return state.homePage.grantsInfo;
-  });
+  // const grants = useSelector((state) => {
+  //   return state.homePage.grantsInfo;
+  // });
+  const grants = [];
   const user = useSelector((state) => {
     return state.homePage.userInfo;
   });
