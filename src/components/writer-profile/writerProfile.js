@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { StylesProvider, withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import { useStyles } from "./writerProfile.styles.js";
@@ -10,8 +11,6 @@ import Tab from "@material-ui/core/Tab";
 import Link from "@material-ui/core/Link";
 import PropTypes from "prop-types";
 import Box from "@material-ui/core/Box";
-import { connect } from "react-redux";
-import { fetchWriters } from "../../store/actions/writerProfileAction.js";
 
 const GlobalCSS = withStyles({
   "@global": {
