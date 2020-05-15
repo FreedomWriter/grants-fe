@@ -1,10 +1,13 @@
 import {
   GET_PROFILEINFO_START,
   GET_PROFILEINFO_SUCCESS,
-  GET_PROFILEINFO_ERROR,
+  GET_PROFILEINFO_FAILURE,
   POST_APPLICANTGRANTS_START,
   POST_APPLICANTGRANTS_SUCCESS,
   POST_APPLICANTGRANTS_FAILURE,
+  GET_APPLICANTGRANTS_START,
+  GET_APPLICANTGRANTS_SUCCESS,
+  GET_APPLICANTGRANTS_FAILURE,
 } from "../actions/ApplicantActions";
 
 const initialState = {
@@ -28,7 +31,7 @@ const applicantReducer = (state = initialState, action) => {
         isLoading: false,
       };
 
-    case GET_PROFILEINFO_ERROR:
+    case GET_PROFILEINFO_FAILURE:
       return {
         ...state,
         error: action.payload,
