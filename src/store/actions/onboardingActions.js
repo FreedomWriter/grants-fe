@@ -15,14 +15,14 @@ export const GET_PROFILEINFO_START = "GET_PROFILEINFO_START";
 export const GET_PROFILEINFO_SUCCESS = "GET_PROFILEINFO_SUCCESS";
 export const GET_PROFILEINFO_ERROR = "GET_PROFILEINFO_ERROR";
 
-export const postApplicantOnboarding = value => dispatch => {
+export const postApplicantOnboarding = (value) => (dispatch) => {
   dispatch({ type: APPLICANT_ONBOARDING_POST_START });
   //   return axiosWithAuth()
   //     .post(`/ENDPOINT TBD`, value)
   //     .then((res) => {
   dispatch({
     type: APPLICANT_ONBOARDING_POST_SUCCESS,
-    payload: value
+    payload: value,
   });
   // })
   // .catch((err) => {
@@ -33,14 +33,14 @@ export const postApplicantOnboarding = value => dispatch => {
   // });
 };
 
-export const postWriterOboarding = value => async dispatch => {
+export const postWriterOboarding = (value) => async (dispatch) => {
   dispatch({ type: WRITER_ONBOARDING_POST_START });
   // return axiosWithAuth()
   //   .post(`/ENDPOINT TBD`, value)
   //   .then((res) => {
   dispatch({
     type: WRITER_ONBOARDING_POST_SUCCESS,
-    payload: value
+    payload: value,
   });
   // })
   // .catch((err) => {
@@ -51,7 +51,7 @@ export const postWriterOboarding = value => async dispatch => {
   // });
 };
 
-export const getProfileInfo = applicant_id => dispatch => {
+export const getProfileInfo = (applicant_id) => (dispatch) => {
   dispatch({ type: GET_PROFILEINFO_START });
 
   // axiosWithAuth()
@@ -59,7 +59,7 @@ export const getProfileInfo = applicant_id => dispatch => {
   //   .then((res) => {
   dispatch({
     type: GET_PROFILEINFO_SUCCESS,
-    payload: res.data
+    payload: applicant_id,
   });
   // })
   // .catch((err) => {
