@@ -1,8 +1,18 @@
-import { combineReducers } from "redux";
-import { persistReducer } from "redux-persist";
+import {
+  combineReducers
+} from "redux";
+import {
+  persistReducer
+} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import loginReducer from "./loginReducer";
+import HomePageReducer from "./HomePageReducer";
+import applicantReducer from "./applicantReducer";
+import writerProfileReducer from "./writerProfileReducer.js";
+import onboardingReducer from "./onboardingReducer";
+import collegesReducer from "./collegesReducer";
+
 
 const persistConfig = {
   key: "root",
@@ -11,6 +21,11 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   login: loginReducer,
+  homePage: HomePageReducer,
+  profileInfo: applicantReducer,
+  writerprofile: writerProfileReducer,
+  onboarding: onboardingReducer,
+  collegeList: collegesReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

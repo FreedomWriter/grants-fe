@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { postApplicantOnboarding } from "../../store/actions/onboardingActions";
+
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
 import Stepper from "@material-ui/core/Stepper";
@@ -9,7 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import ApplicantContactInfo from "./ApplicantContactInfo";
 import OrgInformation from "./OrgInformation";
 import NonOrgInformation from "./NonOrgInformation";
-import Review from "./ReviewForm";
+import Review from "./ApplicantReviewForm";
 
 import { useStyles } from "./ApplicantForm.styles";
 
@@ -20,6 +24,8 @@ const steps = [
 ];
 
 export default function ApplicantProfileForm() {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const classes = useStyles();
   // active step keeps track of which child component will render
   const [activeStep, setActiveStep] = useState(0);
@@ -59,8 +65,16 @@ export default function ApplicantProfileForm() {
       [e.target.name]: e.target.value,
     });
   };
-  const handleSubmit = () => {
-    console.log(`Sumbit form values: `, formState);
+  const handleSubmit = async () => {
+    try {
+      console.log(`Sumbit form values: `, formState);
+      await dispatch(
+        postApplicantOnboarding({ ...formState, type: "applicant" })
+      );
+      return history.push("/ApplicantProfile");
+    } catch (err) {
+      alert(err);
+    }
   };
 
   const handleValidation = (e) => {
@@ -218,6 +232,7 @@ export default function ApplicantProfileForm() {
               <Button
                 variant="contained"
                 color="primary"
+                // dynamically rendering which submit handler is applied
                 onClick={
                   activeStep === steps.length - 1 ? handleSubmit : handleNext
                 }
