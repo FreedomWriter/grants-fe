@@ -8,11 +8,7 @@ import {
   GET_APPLICANTGRANTS_START,
   GET_APPLICANTGRANTS_SUCCESS,
   GET_APPLICANTGRANTS_FAILURE,
-<<<<<<< HEAD
-} from '../actions/ApplicantActions';
-=======
 } from "../actions/ApplicantActions";
->>>>>>> ed1db19b4ddc4c801383b331540793d1d94931de
 
 const initialState = {
   grants: [],
