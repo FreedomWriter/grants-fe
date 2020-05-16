@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+
+import { postLogin } from "../../store/actions/LoginActions";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = (props) => {
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -43,16 +45,7 @@ const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axiosWithAuth()
-      .post("api url", user)
-      .then((res) => {
-        console.log("login response", res.data);
-        localStorage.setItem("token", res.data.token);
-        props.history.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(postLogin(user));
   };
 
   const classes = useStyles();
