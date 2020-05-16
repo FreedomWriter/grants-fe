@@ -32,7 +32,7 @@ test("should handle LOGIN_POST_SUCCESS", () => {
       {},
       {
         type: types.LOGIN_POST_SUCCESS,
-        payload: action.payload,
+        payload: { id: action.payload.id, username: action.payload.username },
       }
     )
   ).toEqual({
@@ -72,7 +72,7 @@ test("should handle REGISTER_POST_SUCCESS", () => {
       {},
       {
         type: types.REGISTER_POST_SUCCESS,
-        payload: action.payload,
+        payload: { id: action.payload.id, username: action.payload.username },
       }
     )
   ).toEqual({
