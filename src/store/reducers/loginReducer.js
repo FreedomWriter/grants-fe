@@ -9,7 +9,7 @@ import {
 } from "../actions/LoginActions";
 
 const initialState = {
-  user: "",
+  user: {},
   isLoading: false,
 };
 
@@ -21,8 +21,9 @@ const loginReducer = (state = initialState, action) => {
         isLoading: true,
       };
     case LOGIN_POST_SUCCESS:
+      localStorage.setItem("token", action.payload);
       return {
-        user: action.payload,
+        ...state,
         loggedIn: true,
 
         isLoading: false,

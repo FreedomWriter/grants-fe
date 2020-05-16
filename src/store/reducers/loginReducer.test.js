@@ -12,7 +12,7 @@ const action = {
 
 test("should return the initial state", () => {
   expect(reducer(undefined, {})).toEqual({
-    user: "",
+    user: {},
     isLoading: false,
   });
 });
@@ -22,7 +22,7 @@ test("should handle LOGIN_POST_START", () => {
       type: types.LOGIN_POST_START,
     })
   ).toEqual({
-    user: "",
+    user: {},
     isLoading: true,
   });
 });
@@ -32,14 +32,10 @@ test("should handle LOGIN_POST_SUCCESS", () => {
       {},
       {
         type: types.LOGIN_POST_SUCCESS,
-        payload: { id: action.payload.id, username: action.payload.username },
+        payload: action.payload.token,
       }
     )
   ).toEqual({
-    user: {
-      id: 1,
-      username: "TestUser",
-    },
     loggedIn: true,
     isLoading: false,
   });
@@ -51,7 +47,7 @@ test("should handle LOGIN_POST_FAILURE", () => {
       payload: action.payload.error,
     })
   ).toEqual({
-    user: "",
+    user: {},
     isLoading: false,
     error: "Test Error",
   });
@@ -62,7 +58,7 @@ test("should handle REGISTER_POST_START", () => {
       type: types.REGISTER_POST_START,
     })
   ).toEqual({
-    user: "",
+    user: {},
     isLoading: true,
   });
 });
@@ -91,7 +87,7 @@ test("should handle REGISTER_POST_FAILURE", () => {
       payload: action.payload.error,
     })
   ).toEqual({
-    user: "",
+    user: {},
     isLoading: false,
     error: "Test Error",
   });
