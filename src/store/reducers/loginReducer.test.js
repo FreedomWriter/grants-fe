@@ -3,8 +3,6 @@ import * as types from "../actions/LoginActions";
 
 const action = {
   payload: {
-    userId: 1,
-    username: "TestUser",
     usertype: "applicant",
     token: "testToken",
     error: "Test Error",
@@ -65,10 +63,7 @@ test("should handle REGISTER_POST_SUCCESS", () => {
       {},
       {
         type: types.REGISTER_POST_SUCCESS,
-        payload: {
-          id: action.payload.userId,
-          username: action.payload.username,
-        },
+        payload: { id: 1, username: "TestUser" },
       }
     )
   ).toEqual({

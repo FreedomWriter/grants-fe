@@ -24,7 +24,7 @@ const loginReducer = (state = initialState, action) => {
       return {
         ...state,
         usertype: action.payload.userType,
-        userId: action.payload.userID,
+        userId: action.payload.userId,
         loggedIn: true,
 
         isLoading: false,
