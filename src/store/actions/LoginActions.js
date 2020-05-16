@@ -16,10 +16,10 @@ export const postLogin = (value) => (dispatch) => {
     .post(`/auth/login`, value)
     .then((res) => {
       console.log(res);
-      dispatch({
-        type: LOGIN_POST_SUCCESS,
-        payload: res.data.token,
-      });
+      // dispatch({
+      //   type: LOGIN_POST_SUCCESS,
+      //   payload: res.data.token,
+      // });
     })
     .catch((err) => {
       dispatch({

@@ -40,7 +40,7 @@ export default function ApplicantProfileForm() {
     org: false,
     org_name: "",
     foundingDate: "",
-    website_url: "",
+    website: "",
     bio: "",
   });
 
@@ -55,7 +55,7 @@ export default function ApplicantProfileForm() {
     country: undefined,
     org_name: undefined,
     foundingDate: undefined,
-    website_url: undefined,
+    website: undefined,
     bio: undefined,
   });
 
@@ -68,6 +68,7 @@ export default function ApplicantProfileForm() {
   const handleSubmit = async () => {
     try {
       console.log(`Sumbit form values: `, formState);
+
       await dispatch(postApplicantOnboarding(formState, 10));
       return history.push("/ApplicantProfile");
     } catch (err) {
@@ -130,14 +131,14 @@ export default function ApplicantProfileForm() {
           });
         }
         break;
-      case "website_url":
+      case "website":
         let validWeb = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/i.test(
-          formState.website_url
+          formState.website
         );
         if (!validWeb) {
           setFormHelperText({
             ...formHelperText,
-            [e.target.name]: "Please enter a valid website_url address",
+            [e.target.name]: "Please enter a valid website address",
           });
         } else {
           setFormHelperText({

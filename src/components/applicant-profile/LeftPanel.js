@@ -30,7 +30,7 @@ export default function LeftPanel() {
             Direct Message
           </Button>
         </div>
-        <div>Visit Our website_url:</div>
+        <div>Visit Our website:</div>
         <a href="#">www.writemygrants.net</a>
       </div>
     </>

@@ -9,7 +9,6 @@ import {
 } from "../actions/LoginActions";
 
 const initialState = {
-  user: {},
   isLoading: false,
 };
 
@@ -21,10 +20,11 @@ const loginReducer = (state = initialState, action) => {
         isLoading: true,
       };
     case LOGIN_POST_SUCCESS:
-      localStorage.setItem("token", action.payload);
+      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
-        usertype: "applicant",
+        usertype: action.payload.userType,
+        userId: action.payload.userID,
         loggedIn: true,
 
         isLoading: false,
@@ -43,7 +43,6 @@ const loginReducer = (state = initialState, action) => {
     case REGISTER_POST_SUCCESS:
       return {
         user: action.payload,
-        loggedIn: true,
 
         isLoading: false,
       };

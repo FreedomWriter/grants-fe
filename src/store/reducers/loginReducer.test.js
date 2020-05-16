@@ -3,8 +3,9 @@ import * as types from "../actions/LoginActions";
 
 const action = {
   payload: {
-    id: 1,
+    userId: 1,
     username: "TestUser",
+    usertype: "applicant",
     token: "testToken",
     error: "Test Error",
   },
@@ -12,7 +13,6 @@ const action = {
 
 test("should return the initial state", () => {
   expect(reducer(undefined, {})).toEqual({
-    user: {},
     isLoading: false,
   });
 });
@@ -22,7 +22,6 @@ test("should handle LOGIN_POST_START", () => {
       type: types.LOGIN_POST_START,
     })
   ).toEqual({
-    user: {},
     isLoading: true,
   });
 });
@@ -32,13 +31,12 @@ test("should handle LOGIN_POST_SUCCESS", () => {
       {},
       {
         type: types.LOGIN_POST_SUCCESS,
-        payload: action.payload.token,
+        payload: action.payload,
       }
     )
   ).toEqual({
-    loggedIn: true,
     isLoading: false,
-    usertype: "applicant",
+    loggedIn: true,
   });
 });
 test("should handle LOGIN_POST_FAILURE", () => {
@@ -48,7 +46,6 @@ test("should handle LOGIN_POST_FAILURE", () => {
       payload: action.payload.error,
     })
   ).toEqual({
-    user: {},
     isLoading: false,
     error: "Test Error",
   });
@@ -59,7 +56,6 @@ test("should handle REGISTER_POST_START", () => {
       type: types.REGISTER_POST_START,
     })
   ).toEqual({
-    user: {},
     isLoading: true,
   });
 });
@@ -69,7 +65,10 @@ test("should handle REGISTER_POST_SUCCESS", () => {
       {},
       {
         type: types.REGISTER_POST_SUCCESS,
-        payload: { id: action.payload.id, username: action.payload.username },
+        payload: {
+          id: action.payload.userId,
+          username: action.payload.username,
+        },
       }
     )
   ).toEqual({
@@ -77,7 +76,6 @@ test("should handle REGISTER_POST_SUCCESS", () => {
       id: 1,
       username: "TestUser",
     },
-    loggedIn: true,
     isLoading: false,
   });
 });
@@ -88,7 +86,6 @@ test("should handle REGISTER_POST_FAILURE", () => {
       payload: action.payload.error,
     })
   ).toEqual({
-    user: {},
     isLoading: false,
     error: "Test Error",
   });

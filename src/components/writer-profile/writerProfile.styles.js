@@ -48,7 +48,7 @@ export const useStyles = makeStyles((theme) => ({
   userServices: {
     width: "90%",
   },
-  writerwebsite_url: {
+  writerwebsite: {
     textAlign: "center",
   },
   rootButton: {

@@ -93,7 +93,7 @@ export default function WriterProfile() {
             href="#"
             onClick={preventDefault}
           >
-            Visit my website_url
+            Visit my website
           </Link>
         </div>
         <h3 className={classes.userEducation}>

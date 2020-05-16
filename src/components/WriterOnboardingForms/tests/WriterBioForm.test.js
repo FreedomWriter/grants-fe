@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import WriterBioForm from "../WriterBioForm.js";
 
 let writerBioFormStateMock = {
-  website_url: "",
+  website: "",
   bio: "",
   servicesOffered: "",
 };
@@ -19,7 +19,7 @@ jest.mock("react", () => ({
 
 const setWriterBioFormStateMock = jest.fn(function () {
   return (writerBioFormStateMock = {
-    website_url: "www.test.com",
+    website: "www.test.com",
     bio: "Just writing some tests",
     servicesOffered: "Writer and Researcher",
   });
@@ -57,11 +57,11 @@ test("inputs are visible", () => {
       enableButton={enableButtonMock}
     />
   );
-  const website_urlLabelText = getByLabelText(/your website_url/i);
+  const websiteLabelText = getByLabelText(/your website/i);
   const servicesOfferedLabelText = getAllByTestId("services")[0];
   const bioLabelText = getByPlaceholderText(/this is your chance to shine.../i);
 
-  expect(website_urlLabelText).toBeVisible();
+  expect(websiteLabelText).toBeVisible();
   expect(servicesOfferedLabelText).toBeVisible();
   expect(bioLabelText).toBeVisible();
 });
@@ -74,18 +74,18 @@ test("State changes values of inputs", () => {
       enableButton={enableButtonMock}
     />
   );
-  const website_urlLabelText = getByLabelText(/your website_url/i);
+  const websiteLabelText = getByLabelText(/your website/i);
   const servicesOfferedLabelText = getAllByTestId("services")[0];
   const bioLabelText = getByPlaceholderText(/this is your chance to shine.../i);
 
-  userEvent.type(website_urlLabelText, { target: { value: "www.test.com" } });
+  userEvent.type(websiteLabelText, { target: { value: "www.test.com" } });
   userEvent.type(servicesOfferedLabelText, {
     target: { value: "Just writing some tests" },
   });
   userEvent.type(bioLabelText, { target: { value: "Writer and Researcher" } });
 
   expect(writerBioFormStateMock).toEqual({
-    website_url: writerBioFormStateMock.website_url,
+    website: writerBioFormStateMock.website,
     bio: writerBioFormStateMock.bio,
     servicesOffered: writerBioFormStateMock.servicesOffered,
   });

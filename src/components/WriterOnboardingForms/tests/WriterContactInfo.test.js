@@ -43,7 +43,7 @@ const setDisableWorkHistorySubmitButtonMock = jest.fn(function () {
 });
 
 const bioFormStateMock = {
-  website_url: "",
+  website: "",
   bio: "",
   servicesOffered: "",
 };
