@@ -36,19 +36,19 @@ export default function OrgInformation({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.foundingDate ? true : undefined}
+            error={formHelperText.founding_date ? true : undefined}
             helperText={
-              formHelperText.foundingDate
-                ? formHelperText.foundingDate
+              formHelperText.founding_date
+                ? formHelperText.founding_date
                 : "Organizations Founding Date *"
             }
             onChange={handleChanges}
             className={classes.orgTextField}
             // type="date"
             required
-            id="foundingDate"
-            name="foundingDate"
-            value={formState.foundingDate}
+            id="founding_date"
+            name="founding_date"
+            value={formState.founding_date}
             label="Founding Date"
           />
         </Grid>

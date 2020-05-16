@@ -152,7 +152,7 @@ export default function WriterProfileForm() {
       );
       return history.push("/WriterProfile");
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
 

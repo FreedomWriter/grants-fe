@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postApplicantOnboarding } from "../../store/actions/onboardingActions";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -27,8 +27,10 @@ export default function ApplicantProfileForm() {
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
+  const userId = useSelector((state) => state.login.userId);
   // active step keeps track of which child component will render
   const [activeStep, setActiveStep] = useState(0);
+  const [orgStatus, setOrgStatus] = useState(false);
   const [formState, setFormState] = useState({
     first_name: "",
     last_name: "",
@@ -39,7 +41,7 @@ export default function ApplicantProfileForm() {
     country: "",
     org: false,
     org_name: "",
-    foundingDate: "",
+    founding_date: "",
     website: "",
     bio: "",
   });
@@ -54,10 +56,11 @@ export default function ApplicantProfileForm() {
     zip: undefined,
     country: undefined,
     org_name: undefined,
-    foundingDate: undefined,
+    founding_date: undefined,
     website: undefined,
     bio: undefined,
   });
+  const handleOrgStatusChange = () => setOrgStatus(!orgStatus);
 
   const handleChanges = (e) => {
     setFormState({
@@ -65,14 +68,15 @@ export default function ApplicantProfileForm() {
       [e.target.name]: e.target.value,
     });
   };
+  console.log({ userId });
   const handleSubmit = async () => {
     try {
       console.log(`Sumbit form values: `, formState);
 
-      await dispatch(postApplicantOnboarding(formState, 10));
+      await dispatch(postApplicantOnboarding(formState, Number(userId)));
       return history.push("/ApplicantProfile");
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
 
@@ -163,10 +167,12 @@ export default function ApplicantProfileForm() {
             setFormState={setFormState}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
+            orgStatus={orgStatus}
+            handleOrgStatusChange={handleOrgStatusChange}
           />
         );
       case 1:
-        return formState.org ? (
+        return orgStatus ? (
           <OrgInformation
             handleChanges={handleChanges}
             formState={formState}
@@ -190,6 +196,8 @@ export default function ApplicantProfileForm() {
             formHelperText={formHelperText}
             setFormState={setFormState}
             handleValidation={handleValidation}
+            orgStatus={orgStatus}
+            handleOrgStatusChange={handleOrgStatusChange}
           />
         );
       default:

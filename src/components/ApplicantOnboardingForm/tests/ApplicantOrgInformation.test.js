@@ -18,7 +18,7 @@ const setFormStateMock = jest.fn(function () {
     org_name: "AwesomeOrg",
     website: "www.test.com",
     bio: "Just writing some tests",
-    foundingDate: "Writer and Researcher",
+    founding_date: "Writer and Researcher",
   });
 });
 
@@ -52,13 +52,13 @@ test("inputs are visible", () => {
     />
   );
   const org_nameLabelText = getByLabelText(/organization name/i);
-  const foundingDateLabelText = getByLabelText(/founding date/i);
+  const founding_dateLabelText = getByLabelText(/founding date/i);
   const websiteLabelText = getByPlaceholderText(
     /tell us about your organization.../i
   );
 
   expect(org_nameLabelText).toBeVisible();
-  expect(foundingDateLabelText).toBeVisible();
+  expect(founding_dateLabelText).toBeVisible();
   expect(websiteLabelText).toBeVisible();
 });
 
@@ -70,7 +70,7 @@ test("State changes values of inputs", () => {
     />
   );
   const org_nameLabelText = getByLabelText(/organization name/i);
-  const foundingDateLabelText = getByLabelText(/founding date/i);
+  const founding_dateLabelText = getByLabelText(/founding date/i);
   const websiteLabelText = getByPlaceholderText(
     /tell us about your organization.../i
   );
@@ -79,7 +79,7 @@ test("State changes values of inputs", () => {
   );
 
   userEvent.type(org_nameLabelText, { target: { value: "AwesomeOrg" } });
-  userEvent.type(foundingDateLabelText, {
+  userEvent.type(founding_dateLabelText, {
     target: { value: "In the begining, she left it as a string" },
   });
   userEvent.type(websiteLabelText, { target: { value: "www.test.com" } });
@@ -91,6 +91,6 @@ test("State changes values of inputs", () => {
     website: formStateMock.website,
     org_name: formStateMock.org_name,
     bio: formStateMock.bio,
-    foundingDate: formStateMock.foundingDate,
+    founding_date: formStateMock.founding_date,
   });
 });

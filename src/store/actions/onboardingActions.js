@@ -17,20 +17,21 @@ export const GET_PROFILEINFO_ERROR = "GET_PROFILEINFO_ERROR";
 
 export const postApplicantOnboarding = (value, id) => (dispatch) => {
   dispatch({ type: APPLICANT_ONBOARDING_POST_START, payload: value });
-  // return axiosWithAuth()
-  //   .put(`/applicants/${id}`, value)
-  //   .then((res) => {
-  //     dispatch({
-  //       type: APPLICANT_ONBOARDING_POST_SUCCESS,
-  //       payload: value,
-  //     });
-  //   })
-  //   .catch((err) => {
-  //     dispatch({
-  //       type: APPLICANT_ONBOARDING_POST_FAILURE,
-  //       payload: { error: err.message },
-  //     });
-  //   });
+  return axiosWithAuth()
+    .put(`/applicants/${id}`, value)
+    .then((res) => {
+      console.log(res);
+      // dispatch({
+      //   type: APPLICANT_ONBOARDING_POST_SUCCESS,
+      //   payload: value,
+      // });
+    })
+    .catch((err) => {
+      dispatch({
+        type: APPLICANT_ONBOARDING_POST_FAILURE,
+        payload: { error: err.message },
+      });
+    });
 };
 
 export const postWriterOboarding = (value) => async (dispatch) => {

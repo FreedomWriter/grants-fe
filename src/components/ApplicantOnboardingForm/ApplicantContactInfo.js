@@ -12,6 +12,8 @@ export default function ApplicantContactInfo({
   setFormState,
   formHelperText,
   handleValidation,
+  orgStatus,
+  handleOrgStatusChange,
 }) {
   const classes = useStyles();
 
@@ -127,9 +129,9 @@ export default function ApplicantContactInfo({
         <Grid item xs={12}>
           <FormControlLabel
             control={
-              <Checkbox color="secondary" name="org" checked={formState.org} />
+              <Checkbox color="secondary" name="org" checked={orgStatus} />
             }
-            onClick={() => setFormState({ ...formState, org: !formState.org })}
+            onClick={() => handleOrgStatusChange}
             label="Are you part of an organization?"
           />
         </Grid>
