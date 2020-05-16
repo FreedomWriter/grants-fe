@@ -38,6 +38,7 @@ test("should handle LOGIN_POST_SUCCESS", () => {
   ).toEqual({
     loggedIn: true,
     isLoading: false,
+    usertype: "applicant",
   });
 });
 test("should handle LOGIN_POST_FAILURE", () => {
