@@ -24,13 +24,13 @@ export default function ApplicantContactInfo({
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.firstName && true}
-            helperText={formHelperText.firstName}
+            error={formHelperText.first_name && true}
+            helperText={formHelperText.first_name}
             required
-            id="firstName"
-            name="firstName"
+            id="first_name"
+            name="first_name"
             label="First name"
-            value={formState.firstName}
+            value={formState.first_name}
             onChange={handleChanges}
             fullWidth
             // autoComplete="fname"
@@ -39,13 +39,13 @@ export default function ApplicantContactInfo({
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.lastName && true}
-            helperText={formHelperText.lastName}
+            error={formHelperText.last_name && true}
+            helperText={formHelperText.last_name}
             required
-            id="lastName"
-            name="lastName"
+            id="last_name"
+            name="last_name"
             label="Last name"
-            value={formState.lastName}
+            value={formState.last_name}
             onChange={handleChanges}
             fullWidth
             // autoComplete="lname"

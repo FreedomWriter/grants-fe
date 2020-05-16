@@ -21,13 +21,13 @@ export default function OrgInformation({
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.website ? true : undefined}
-            helperText={formHelperText.website}
+            error={formHelperText.website_url ? true : undefined}
+            helperText={formHelperText.website_url}
             onChange={handleChanges}
-            id="website"
-            name="website"
-            label="Website"
-            value={formState.website}
+            id="website_url"
+            name="website_url"
+            label="website_url"
+            value={formState.website_url}
             className={classes.textArea}
           />
         </Grid>

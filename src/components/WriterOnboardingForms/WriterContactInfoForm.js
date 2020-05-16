@@ -16,16 +16,16 @@ export default function ApplicantContactInfo({
 
   useEffect(() => {
     /* once the user has filled out all required form, `Next` button will be enabled (button is rendered in WriterProfileForm.js. need to explore a more performant solution */
-    contactFormState.firstName &&
-      contactFormState.lastName &&
+    contactFormState.first_name &&
+      contactFormState.last_name &&
       contactFormState.city &&
       contactFormState.state &&
       contactFormState.zip &&
       contactFormState.country &&
       enableButton(false);
   }, [
-    contactFormState.firstName,
-    contactFormState.lastName,
+    contactFormState.first_name,
+    contactFormState.last_name,
     contactFormState.city,
     contactFormState.state,
     contactFormState.zip,
@@ -42,13 +42,13 @@ export default function ApplicantContactInfo({
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.firstName && true}
-            helperText={formHelperText.firstName}
+            error={formHelperText.first_name && true}
+            helperText={formHelperText.first_name}
             required
-            id="firstName"
-            name="firstName"
+            id="first_name"
+            name="first_name"
             label="First name"
-            value={contactFormState.firstName}
+            value={contactFormState.first_name}
             onChange={handleContactChanges}
             fullWidth
           />
@@ -56,13 +56,13 @@ export default function ApplicantContactInfo({
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.lastName && true}
-            helperText={formHelperText.lastName}
+            error={formHelperText.last_name && true}
+            helperText={formHelperText.last_name}
             required
-            id="lastName"
-            name="lastName"
+            id="last_name"
+            name="last_name"
             label="Last name"
-            value={contactFormState.lastName}
+            value={contactFormState.last_name}
             onChange={handleContactChanges}
             fullWidth
           />

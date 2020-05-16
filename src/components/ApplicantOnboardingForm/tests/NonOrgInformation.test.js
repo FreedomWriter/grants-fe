@@ -15,7 +15,7 @@ jest.mock("react", () => ({
 
 const setFormStateMock = jest.fn(function () {
   return (formStateMock = {
-    website: "www.test.com",
+    website_url: "www.test.com",
     bio: "Just writing some tests",
   });
 });
@@ -51,9 +51,9 @@ test("inputs are visible", () => {
   );
 
   const bioLabelText = getByPlaceholderText(/tell us about yourself.../i);
-  const websiteLabelText = getByLabelText(/website/i);
+  const website_urlLabelText = getByLabelText(/website_url/i);
 
-  expect(websiteLabelText).toBeVisible();
+  expect(website_urlLabelText).toBeVisible();
   expect(bioLabelText).toBeVisible();
 });
 
@@ -66,15 +66,15 @@ test("State changes values of inputs", () => {
   );
 
   const bioLabelText = getByPlaceholderText(/tell us about yourself.../i);
-  const websiteLabelText = getByLabelText(/website/i);
+  const website_urlLabelText = getByLabelText(/website_url/i);
 
-  userEvent.type(websiteLabelText, { target: { value: "www.test.com" } });
+  userEvent.type(website_urlLabelText, { target: { value: "www.test.com" } });
   userEvent.type(bioLabelText, {
     target: { value: "In the begining, she left it as a string" },
   });
 
   expect(formStateMock).toEqual({
-    website: websiteLabelText.value,
+    website_url: website_urlLabelText.value,
     bio: bioLabelText.value,
   });
 });

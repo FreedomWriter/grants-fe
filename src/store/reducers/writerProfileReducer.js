@@ -9,7 +9,7 @@ const initialState = {
     id: null,
     first_name: null,
     last_name: null,
-    website: null,
+    website_url: null,
     biography: null,
     education: null,
     work_history: null,

@@ -50,13 +50,13 @@ export default function WriterBioForm({
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.website ? true : undefined}
-            helperText={formHelperText.website}
+            error={formHelperText.website_url ? true : undefined}
+            helperText={formHelperText.website_url}
             onChange={handleBioChanges}
-            id="website"
-            name="website"
-            label="Your Website"
-            value={bioFormState.website}
+            id="website_url"
+            name="website_url"
+            label="Your website_url"
+            value={bioFormState.website_url}
             className={classes.textArea}
           />
         </Grid>

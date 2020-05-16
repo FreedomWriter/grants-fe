@@ -1,4 +1,4 @@
-// import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 export const APPLICANT_ONBOARDING_POST_START =
   "APPLICANT_ONBOARDING_POST_START";
@@ -15,22 +15,22 @@ export const GET_PROFILEINFO_START = "GET_PROFILEINFO_START";
 export const GET_PROFILEINFO_SUCCESS = "GET_PROFILEINFO_SUCCESS";
 export const GET_PROFILEINFO_ERROR = "GET_PROFILEINFO_ERROR";
 
-export const postApplicantOnboarding = (value) => (dispatch) => {
+export const postApplicantOnboarding = (value, id) => (dispatch) => {
   dispatch({ type: APPLICANT_ONBOARDING_POST_START });
-  //   return axiosWithAuth()
-  //     .post(`/ENDPOINT TBD`, value)
-  //     .then((res) => {
-  dispatch({
-    type: APPLICANT_ONBOARDING_POST_SUCCESS,
-    payload: value,
-  });
-  // })
-  // .catch((err) => {
-  // dispatch({
-  //   type: APPLICANT_ONBOARDING_POST_FAILURE,
-  //   payload: { error: err.message },
-  // });
-  // });
+  return axiosWithAuth()
+    .put(`/applicants/${id}`, value)
+    .then((res) => {
+      dispatch({
+        type: APPLICANT_ONBOARDING_POST_SUCCESS,
+        payload: value,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: APPLICANT_ONBOARDING_POST_FAILURE,
+        payload: { error: err.message },
+      });
+    });
 };
 
 export const postWriterOboarding = (value) => async (dispatch) => {

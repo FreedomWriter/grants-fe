@@ -3,17 +3,17 @@ import { makeStyles } from "@material-ui/core/styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Button from "@material-ui/core/Button";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     "& > *": {
-      margin: "0 auto"
-    }
+      margin: "0 auto",
+    },
   },
   large: {
     width: theme.spacing(20),
-    height: theme.spacing(20)
-  }
+    height: theme.spacing(20),
+  },
 }));
 
 export default function LeftPanel() {
@@ -30,7 +30,7 @@ export default function LeftPanel() {
             Direct Message
           </Button>
         </div>
-        <div>Visit Our Website:</div>
+        <div>Visit Our website_url:</div>
         <a href="#">www.writemygrants.net</a>
       </div>
     </>

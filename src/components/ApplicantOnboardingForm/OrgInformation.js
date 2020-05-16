@@ -21,14 +21,14 @@ export default function OrgInformation({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.orgName ? true : undefined}
-            helperText={formHelperText.orgName}
+            error={formHelperText.org_name ? true : undefined}
+            helperText={formHelperText.org_name}
             onChange={handleChanges}
             className={classes.orgTextField}
             required
-            id="orgName"
-            name="orgName"
-            value={formState.orgName}
+            id="org_name"
+            name="org_name"
+            value={formState.org_name}
             label="Organization Name"
             fullWidth
           />
@@ -55,13 +55,13 @@ export default function OrgInformation({
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.website ? true : undefined}
-            helperText={formHelperText.website}
+            error={formHelperText.website_url ? true : undefined}
+            helperText={formHelperText.website_url}
             onChange={handleChanges}
-            id="website"
-            name="website"
-            label="Organization Website"
-            value={formState.website}
+            id="website_url"
+            name="website_url"
+            label="Organization website_url"
+            value={formState.website_url}
             className={classes.textArea}
           />
         </Grid>

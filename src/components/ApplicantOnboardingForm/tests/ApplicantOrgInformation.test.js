@@ -15,8 +15,8 @@ jest.mock("react", () => ({
 
 const setFormStateMock = jest.fn(function () {
   return (formStateMock = {
-    orgName: "AwesomeOrg",
-    website: "www.test.com",
+    org_name: "AwesomeOrg",
+    website_url: "www.test.com",
     bio: "Just writing some tests",
     foundingDate: "Writer and Researcher",
   });
@@ -51,15 +51,15 @@ test("inputs are visible", () => {
       formHelperText={formHelperTextMock}
     />
   );
-  const orgNameLabelText = getByLabelText(/organization name/i);
+  const org_nameLabelText = getByLabelText(/organization name/i);
   const foundingDateLabelText = getByLabelText(/founding date/i);
-  const websiteLabelText = getByPlaceholderText(
+  const website_urlLabelText = getByPlaceholderText(
     /tell us about your organization.../i
   );
 
-  expect(orgNameLabelText).toBeVisible();
+  expect(org_nameLabelText).toBeVisible();
   expect(foundingDateLabelText).toBeVisible();
-  expect(websiteLabelText).toBeVisible();
+  expect(website_urlLabelText).toBeVisible();
 });
 
 test("State changes values of inputs", () => {
@@ -69,27 +69,27 @@ test("State changes values of inputs", () => {
       formHelperText={formHelperTextMock}
     />
   );
-  const orgNameLabelText = getByLabelText(/organization name/i);
+  const org_nameLabelText = getByLabelText(/organization name/i);
   const foundingDateLabelText = getByLabelText(/founding date/i);
-  const websiteLabelText = getByPlaceholderText(
+  const website_urlLabelText = getByPlaceholderText(
     /tell us about your organization.../i
   );
   const orgBioLabelText = getByPlaceholderText(
     /tell us about your organization.../i
   );
 
-  userEvent.type(orgNameLabelText, { target: { value: "AwesomeOrg" } });
+  userEvent.type(org_nameLabelText, { target: { value: "AwesomeOrg" } });
   userEvent.type(foundingDateLabelText, {
     target: { value: "In the begining, she left it as a string" },
   });
-  userEvent.type(websiteLabelText, { target: { value: "www.test.com" } });
+  userEvent.type(website_urlLabelText, { target: { value: "www.test.com" } });
   userEvent.type(orgBioLabelText, {
     target: { value: "In the begining, she left it as a string" },
   });
 
   expect(formStateMock).toEqual({
-    website: formStateMock.website,
-    orgName: formStateMock.orgName,
+    website_url: formStateMock.website_url,
+    org_name: formStateMock.org_name,
     bio: formStateMock.bio,
     foundingDate: formStateMock.foundingDate,
   });
