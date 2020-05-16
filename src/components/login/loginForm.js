@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
@@ -30,7 +31,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = (props) => {
+  const history = useHistory();
   const dispatch = useDispatch();
+  const userType = useSelector((state) => state.login.usertype);
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -43,9 +47,12 @@ const Login = (props) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(postLogin(user));
+    await dispatch(postLogin(user));
+    return userType === "applicant"
+      ? history.push("/ApplicantProfileForm")
+      : userType === "writer" && history.push("/WriterProfileForm");
   };
 
   const classes = useStyles();

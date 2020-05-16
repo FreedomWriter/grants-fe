@@ -24,6 +24,7 @@ const loginReducer = (state = initialState, action) => {
       localStorage.setItem("token", action.payload);
       return {
         ...state,
+        usertype: "applicant",
         loggedIn: true,
 
         isLoading: false,
