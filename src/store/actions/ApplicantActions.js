@@ -1,5 +1,6 @@
 import axios from "axios";
-import axiosWithAuth from "../../utils/axiosWithAuth";
+// import axiosWithAuth from "../../utils/axiosWithAuth";
+import {axiosWithAuth} from "../../utils/axiosWithAuth.js";
 
 export const GET_PROFILEINFO_START = "GET_PROFILEINFO_START";
 export const GET_PROFILEINFO_SUCCESS = "GET_PROFILEINFO_SUCCESS";
@@ -26,7 +27,7 @@ export const getProfileInfo = applicant_id => dispatch => {
     })
     .catch(err => {
       dispatch({
-        type: GET_PROFILE_ERROR,
+        type: GET_PROFILEINFO_FAILURE,
         payload: "Cannot load profile information"
       });
     });
@@ -63,7 +64,7 @@ export const getApplicantGrants = applicant_id => dispatch => {
     })
     .catch(err => {
       dispatch({
-        type: GET_APPLICANTGRANTS_ERROR,
+        type: GET_APPLICANTGRANTS_FAILURE,
         payload: { error: err.message }
       });
     });
