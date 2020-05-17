@@ -39,7 +39,6 @@ export default function ApplicantProfileForm() {
     state: "",
     zip: "",
     country: "",
-    org: false,
     org_name: "",
     founding_date: "",
     website: "",
@@ -68,11 +67,8 @@ export default function ApplicantProfileForm() {
       [e.target.name]: e.target.value,
     });
   };
-  console.log({ userId });
   const handleSubmit = async () => {
     try {
-      console.log(`Sumbit form values: `, formState);
-
       await dispatch(postApplicantOnboarding(formState, Number(userId)));
       return history.push("/ApplicantProfile");
     } catch (err) {

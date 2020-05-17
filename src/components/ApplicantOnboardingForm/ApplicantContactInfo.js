@@ -35,7 +35,6 @@ export default function ApplicantContactInfo({
             value={formState.first_name}
             onChange={handleChanges}
             fullWidth
-            // autoComplete="fname"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -50,7 +49,6 @@ export default function ApplicantContactInfo({
             value={formState.last_name}
             onChange={handleChanges}
             fullWidth
-            // autoComplete="lname"
           />
         </Grid>
         <Grid item xs={12}>
@@ -80,7 +78,6 @@ export default function ApplicantContactInfo({
             value={formState.city}
             onChange={handleChanges}
             fullWidth
-            // autoComplete="billing address-level2"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -108,7 +105,6 @@ export default function ApplicantContactInfo({
             value={formState.zip}
             onChange={handleChanges}
             fullWidth
-            // autoComplete="billing postal-code"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -123,15 +119,19 @@ export default function ApplicantContactInfo({
             onChange={handleChanges}
             label="Country"
             fullWidth
-            // autoComplete="billing country"
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
             control={
-              <Checkbox color="secondary" name="org" checked={orgStatus} />
+              <Checkbox
+                color="secondary"
+                name="org"
+                checked={orgStatus}
+                value={orgStatus}
+              />
             }
-            onClick={() => handleOrgStatusChange}
+            onClick={handleOrgStatusChange}
             label="Are you part of an organization?"
           />
         </Grid>
