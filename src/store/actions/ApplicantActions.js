@@ -1,5 +1,6 @@
 import axios from "axios";
-import axiosWithAuth from "../../utils/axiosWithAuth";
+// import axiosWithAuth from "../../utils/axiosWithAuth";
+import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
 
 export const GET_PROFILEINFO_START = "GET_PROFILEINFO_START";
 export const GET_PROFILEINFO_SUCCESS = "GET_PROFILEINFO_SUCCESS";

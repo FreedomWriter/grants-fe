@@ -1,51 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import { makeStyles } from '@material-ui/core/styles';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import { useStyles } from './registerForm.styles.js';
 
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        width: '100%',
-        marginTop: theme.spacing(3),
-    },
-    paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    submit: {
-            margin: theme.spacing(3, 0, 2),
-    },
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 395,
-    },
-    selectEmpty: {
-        marginTop: theme.spacing(2),
-    },
-}));
-
 
 export default function RegisterForm(props) {
 
     const classes = useStyles();
 
     const [ values, setValues ] = useState({
-            firstName: '',
-            lastName: '',
             email: '',
             userType: '',
             password: '',
@@ -56,7 +26,6 @@ export default function RegisterForm(props) {
     ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
         if(value !== values.password){
             return false;
-            // console.log(value)
         }
         return true
     });
@@ -97,37 +66,7 @@ export default function RegisterForm(props) {
                     </Typography>
                     <ValidatorForm className={classes.root} autoComplete="off" onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
-                            <TextValidator
-                                autoComplete="fname"
-                                name="firstName"
-                                variant="outlined"
-                                value={values.firstName}
-                                validators={['required']}
-                                errorMessages={['This field is required']}
-                                fullWidth
-                                label="First Name"
-                                autoFocus
-                                onChange={handleChange}
-                            />
-
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextValidator
-                                variant="outlined"
-                                fullWidth
-                                id="lastName"
-                                label="Last Name"
-                                name="lastName"
-                                value={values.lastName}
-                                validators={['required']}
-                                errorMessages={['This field is required']}
-                                autoComplete="lname"
-                                onChange={handleChange}
-                            />
-
-                        </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} >
                             <TextValidator
                                 variant="outlined"
                                 fullWidth
@@ -140,24 +79,24 @@ export default function RegisterForm(props) {
                             />
 
                         </Grid>
-                        <FormControl variant="outlined" className={classes.formControl}>
-                            <InputLabel id="user-type">User Type</InputLabel>
-                            <Select
-                                labelId="user-type"
-                                required
+                        <Grid item xs={12}>
+                            <TextValidator
+                                variant="outlined"
+                                className={classes.selectEmpty}
                                 value={values.userType}
                                 onChange={handleSelectChange}
                                 label="User Type"
-                                // validators={['required']}
-                                // errorMessages={['This field is required']}
+                                select
+                                validators={['required']}
+                                errorMessages={['This field is required']}
                             >
                                 <MenuItem value="">
                                     <em>Select User Type</em>
                                 </MenuItem>
-                                <MenuItem value="grantWriter">Grant Writer</MenuItem>
-                                <MenuItem value="grantApplicant">Grant Applicant</MenuItem>
-                            </Select>
-                        </FormControl>
+                                <MenuItem value="writer">Grant Writer</MenuItem>
+                                <MenuItem value="applicant">Grant Applicant</MenuItem>
+                            </TextValidator>
+                        </Grid>
                         <Grid item xs={12}>
                             <TextValidator
                                 variant="outlined"
