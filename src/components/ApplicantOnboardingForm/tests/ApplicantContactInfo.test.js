@@ -100,7 +100,7 @@ test("inputs are visible", () => {
 });
 
 test("form submit adds ApplicantContactInfo info to state", () => {
-  const { getByLabelText } = rtlRender(
+  const { getByLabelText } = render(
     <ApplicantContactInfo
       formState={formState}
       formHelperText={formHelperText}
@@ -110,6 +110,7 @@ test("form submit adds ApplicantContactInfo info to state", () => {
   const { getByText } = render(<ApplicantProfileForm />, {
     initialState: {
       user: {},
+      login: {},
       isLoading: false,
     },
   });
