@@ -12,6 +12,8 @@ export default function ApplicantContactInfo({
   setFormState,
   formHelperText,
   handleValidation,
+  orgStatus,
+  handleOrgStatusChange,
 }) {
   const classes = useStyles();
 
@@ -24,31 +26,29 @@ export default function ApplicantContactInfo({
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.firstName && true}
-            helperText={formHelperText.firstName}
+            error={formHelperText.first_name && true}
+            helperText={formHelperText.first_name}
             required
-            id="firstName"
-            name="firstName"
+            id="first_name"
+            name="first_name"
             label="First name"
-            value={formState.firstName}
+            value={formState.first_name}
             onChange={handleChanges}
             fullWidth
-            // autoComplete="fname"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.lastName && true}
-            helperText={formHelperText.lastName}
+            error={formHelperText.last_name && true}
+            helperText={formHelperText.last_name}
             required
-            id="lastName"
-            name="lastName"
+            id="last_name"
+            name="last_name"
             label="Last name"
-            value={formState.lastName}
+            value={formState.last_name}
             onChange={handleChanges}
             fullWidth
-            // autoComplete="lname"
           />
         </Grid>
         <Grid item xs={12}>
@@ -78,7 +78,6 @@ export default function ApplicantContactInfo({
             value={formState.city}
             onChange={handleChanges}
             fullWidth
-            // autoComplete="billing address-level2"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -106,7 +105,6 @@ export default function ApplicantContactInfo({
             value={formState.zip}
             onChange={handleChanges}
             fullWidth
-            // autoComplete="billing postal-code"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -121,15 +119,19 @@ export default function ApplicantContactInfo({
             onChange={handleChanges}
             label="Country"
             fullWidth
-            // autoComplete="billing country"
           />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
             control={
-              <Checkbox color="secondary" name="org" checked={formState.org} />
+              <Checkbox
+                color="secondary"
+                name="org"
+                checked={orgStatus}
+                value={orgStatus}
+              />
             }
-            onClick={() => setFormState({ ...formState, org: !formState.org })}
+            onClick={handleOrgStatusChange}
             label="Are you part of an organization?"
           />
         </Grid>

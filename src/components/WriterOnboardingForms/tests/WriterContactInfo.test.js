@@ -10,8 +10,8 @@ import WriterContactInfo from "../WriterContactInfoForm.js";
 import WriterReviewForm from "../WriterReviewForm.js";
 
 let contactFormState = {
-  firstName: "",
-  lastName: "",
+  first_name: "",
+  last_name: "",
   city: "",
   state: "",
   zip: "",
@@ -25,8 +25,8 @@ jest.mock("react", () => ({
 
 const setContactFormStateMock = jest.fn(function () {
   return (contactFormState = {
-    firstName: "Blupe",
-    lastName: "Fiasco",
+    first_name: "Blupe",
+    last_name: "Fiasco",
     city: "Metropolis",
     state: "Chaos",
     zip: "90210",
@@ -66,7 +66,7 @@ const educationFormStateMock = {
 };
 
 const formHelperText = {
-  firstName: undefined,
+  first_name: undefined,
   sector: undefined,
   city: undefined,
   state: undefined,
@@ -130,15 +130,15 @@ test("inputs are visible", () => {
     />
   );
 
-  const firstNameLabelText = getByLabelText(/first name/i);
-  const lastNameLabelText = getByLabelText(/last Name/i);
+  const first_nameLabelText = getByLabelText(/first name/i);
+  const last_nameLabelText = getByLabelText(/last Name/i);
   const cityLabelText = getByLabelText(/city/i);
   const stateLabelText = getByLabelText(/state/i);
   const zipLabelText = getByLabelText(/Zip/i);
   const countryLabelText = getByLabelText(/country/i);
 
-  expect(firstNameLabelText).toBeVisible();
-  expect(lastNameLabelText).toBeVisible();
+  expect(first_nameLabelText).toBeVisible();
+  expect(last_nameLabelText).toBeVisible();
   expect(cityLabelText).toBeVisible();
   expect(stateLabelText).toBeVisible();
   expect(zipLabelText).toBeVisible();
@@ -154,15 +154,15 @@ test("form submit adds contact info to state", () => {
     />
   );
 
-  const firstNameLabelText = getByLabelText(/first name/i);
-  const lastNameLabelText = getByLabelText(/last Name/i);
+  const first_nameLabelText = getByLabelText(/first name/i);
+  const last_nameLabelText = getByLabelText(/last Name/i);
   const cityLabelText = getByLabelText(/city/i);
   const stateLabelText = getByLabelText(/state/i);
   const zipLabelText = getByLabelText(/Zip/i);
   const countryLabelText = getByLabelText(/country/i);
 
-  userEvent.type(firstNameLabelText, { target: { value: "Blupe" } });
-  userEvent.type(lastNameLabelText, { target: { value: "Fiasco" } });
+  userEvent.type(first_nameLabelText, { target: { value: "Blupe" } });
+  userEvent.type(last_nameLabelText, { target: { value: "Fiasco" } });
   userEvent.type(cityLabelText, { target: { value: "Metropolis" } });
   userEvent.type(stateLabelText, { target: { value: "Chaos" } });
   userEvent.type(zipLabelText, { target: { value: "90210" } });
@@ -171,8 +171,8 @@ test("form submit adds contact info to state", () => {
   });
 
   expect(contactFormState).toEqual({
-    firstName: firstNameLabelText.value,
-    lastName: lastNameLabelText.value,
+    first_name: first_nameLabelText.value,
+    last_name: last_nameLabelText.value,
     city: cityLabelText.value,
     state: stateLabelText.value,
     zip: zipLabelText.value,
@@ -212,15 +212,15 @@ test("Review form reflects user Contact Info input", () => {
     }
   );
 
-  const firstNameLabelText = getByLabelText(/first name/i);
-  const lastNameLabelText = getByLabelText(/last Name/i);
+  const first_nameLabelText = getByLabelText(/first name/i);
+  const last_nameLabelText = getByLabelText(/last Name/i);
   const cityLabelText = getByLabelText(/city/i);
   const stateLabelText = getByLabelText(/state/i);
   const zipLabelText = getByLabelText(/Zip/i);
   const countryLabelText = getByLabelText(/country/i);
 
-  userEvent.type(firstNameLabelText, { target: { value: "Blupe" } });
-  userEvent.type(lastNameLabelText, { target: { value: "Fiasco" } });
+  userEvent.type(first_nameLabelText, { target: { value: "Blupe" } });
+  userEvent.type(last_nameLabelText, { target: { value: "Fiasco" } });
   userEvent.type(cityLabelText, { target: { value: "Metropolis" } });
   userEvent.type(stateLabelText, { target: { value: "Chaos" } });
   userEvent.type(zipLabelText, { target: { value: "90210" } });
@@ -229,8 +229,8 @@ test("Review form reflects user Contact Info input", () => {
   });
 
   expect(contactFormState).toEqual({
-    firstName: firstNameLabelText.value,
-    lastName: lastNameLabelText.value,
+    first_name: first_nameLabelText.value,
+    last_name: last_nameLabelText.value,
     city: cityLabelText.value,
     state: stateLabelText.value,
     zip: zipLabelText.value,

@@ -21,14 +21,14 @@ export default function OrgInformation({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.orgName ? true : undefined}
-            helperText={formHelperText.orgName}
+            error={formHelperText.org_name ? true : undefined}
+            helperText={formHelperText.org_name}
             onChange={handleChanges}
             className={classes.orgTextField}
             required
-            id="orgName"
-            name="orgName"
-            value={formState.orgName}
+            id="org_name"
+            name="org_name"
+            value={formState.org_name}
             label="Organization Name"
             fullWidth
           />
@@ -36,19 +36,19 @@ export default function OrgInformation({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.foundingDate ? true : undefined}
+            error={formHelperText.founding_date ? true : undefined}
             helperText={
-              formHelperText.foundingDate
-                ? formHelperText.foundingDate
+              formHelperText.founding_date
+                ? formHelperText.founding_date
                 : "Organizations Founding Date *"
             }
             onChange={handleChanges}
             className={classes.orgTextField}
             // type="date"
             required
-            id="foundingDate"
-            name="foundingDate"
-            value={formState.foundingDate}
+            id="founding_date"
+            name="founding_date"
+            value={formState.founding_date}
             label="Founding Date"
           />
         </Grid>
@@ -60,7 +60,7 @@ export default function OrgInformation({
             onChange={handleChanges}
             id="website"
             name="website"
-            label="Organization Website"
+            label="Organization website"
             value={formState.website}
             className={classes.textArea}
           />
