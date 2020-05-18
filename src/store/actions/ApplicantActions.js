@@ -1,6 +1,5 @@
 import axios from "axios";
-// import axiosWithAuth from "../../utils/axiosWithAuth";
-import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 export const GET_PROFILEINFO_START = "GET_PROFILEINFO_START";
 export const GET_PROFILEINFO_SUCCESS = "GET_PROFILEINFO_SUCCESS";
@@ -22,12 +21,12 @@ export const getProfileInfo = (applicant_id) => (dispatch) => {
     .then((res) => {
       dispatch({
         type: GET_PROFILEINFO_SUCCESS,
-        payload: res.data,
+        payload: "res.data",
       });
     })
     .catch((err) => {
       dispatch({
-        // type: GET_PROFILE_ERROR, //This isn't defined...
+        type: GET_PROFILEINFO_FAILURE,
         payload: "Cannot load profile information",
       });
     });
@@ -59,12 +58,12 @@ export const getApplicantGrants = (applicant_id) => (dispatch) => {
     .then((res) => {
       dispatch({
         type: GET_APPLICANTGRANTS_SUCCESS,
-        payload: res.data,
+        payload: "res.data",
       });
     })
     .catch((err) => {
       dispatch({
-        // type: GET_APPLICANTGRANTS_ERROR, // This isn't defined...
+        type: GET_APPLICANTGRANTS_FAILURE,
         payload: { error: err.message },
       });
     });

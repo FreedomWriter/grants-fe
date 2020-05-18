@@ -55,7 +55,7 @@ export default function WriterBioForm({
             onChange={handleBioChanges}
             id="website"
             name="website"
-            label="Your Website"
+            label="Your website"
             value={bioFormState.website}
             className={classes.textArea}
           />

@@ -47,8 +47,8 @@ export default function WriterProfileForm() {
 
   /* states for each form rendered from this component. rendered here in the parent so the final review form will have access */
   const [contactFormState, setContactFormState] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     city: "",
     state: "",
     zip: "",
@@ -87,8 +87,8 @@ export default function WriterProfileForm() {
 
   /* state for handling error text when input validation is not met */
   const [formHelperText, setFormHelperText] = useState({
-    firstName: undefined,
-    lastName: undefined,
+    first_name: undefined,
+    last_name: undefined,
     sector: undefined,
     city: undefined,
     state: undefined,
@@ -152,7 +152,7 @@ export default function WriterProfileForm() {
       );
       return history.push("/WriterProfile");
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
 
@@ -244,11 +244,11 @@ export default function WriterProfileForm() {
     };
     /* handling input validation based on input id and setting error message to be rendered via helperText*/
     switch (e.target.id) {
-      case "firstName":
-        validator(contactFormState.firstName);
+      case "first_name":
+        validator(contactFormState.first_name);
         break;
-      case "lastName":
-        validator(contactFormState.lastName);
+      case "last_name":
+        validator(contactFormState.last_name);
         break;
       case "city":
         validator(contactFormState.city);

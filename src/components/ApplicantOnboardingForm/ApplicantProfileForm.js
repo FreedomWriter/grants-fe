@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postApplicantOnboarding } from "../../store/actions/onboardingActions";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -27,37 +27,39 @@ export default function ApplicantProfileForm() {
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
+  const userId = useSelector((state) => state.login.userId);
   // active step keeps track of which child component will render
   const [activeStep, setActiveStep] = useState(0);
+  const [orgStatus, setOrgStatus] = useState(false);
   const [formState, setFormState] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     sector: "",
     city: "",
     state: "",
     zip: "",
     country: "",
-    org: false,
-    orgName: "",
-    foundingDate: "",
+    org_name: "",
+    founding_date: "",
     website: "",
     bio: "",
   });
 
   // state for handling error text when input validation is not met
   const [formHelperText, setFormHelperText] = useState({
-    firstName: undefined,
-    lastName: undefined,
+    first_name: undefined,
+    last_name: undefined,
     sector: undefined,
     city: undefined,
     state: undefined,
     zip: undefined,
     country: undefined,
-    orgName: undefined,
-    foundingDate: undefined,
+    org_name: undefined,
+    founding_date: undefined,
     website: undefined,
     bio: undefined,
   });
+  const handleOrgStatusChange = () => setOrgStatus(!orgStatus);
 
   const handleChanges = (e) => {
     setFormState({
@@ -67,13 +69,10 @@ export default function ApplicantProfileForm() {
   };
   const handleSubmit = async () => {
     try {
-      console.log(`Sumbit form values: `, formState);
-      await dispatch(
-        postApplicantOnboarding({ ...formState, type: "applicant" })
-      );
+      await dispatch(postApplicantOnboarding(formState, Number(userId)));
       return history.push("/ApplicantProfile");
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
 
@@ -97,11 +96,11 @@ export default function ApplicantProfileForm() {
     };
     // handling input validation
     switch (e.target.id) {
-      case "firstName":
-        validator(formState.firstName);
+      case "first_name":
+        validator(formState.first_name);
         break;
-      case "lastName":
-        validator(formState.lastName);
+      case "last_name":
+        validator(formState.last_name);
         break;
       case "sector":
         validator(formState.sector);
@@ -115,8 +114,8 @@ export default function ApplicantProfileForm() {
       case "country":
         validator(formState.country);
         break;
-      case "orgName":
-        validator(formState.orgName);
+      case "org_name":
+        validator(formState.org_name);
         break;
       case "zip":
         let valid = /(^\d{5}(?:[\s]?[-\s][\s]?\d{4})?$)/.test(formState.zip);
@@ -164,10 +163,12 @@ export default function ApplicantProfileForm() {
             setFormState={setFormState}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
+            orgStatus={orgStatus}
+            handleOrgStatusChange={handleOrgStatusChange}
           />
         );
       case 1:
-        return formState.org ? (
+        return orgStatus ? (
           <OrgInformation
             handleChanges={handleChanges}
             formState={formState}
@@ -191,6 +192,8 @@ export default function ApplicantProfileForm() {
             formHelperText={formHelperText}
             setFormState={setFormState}
             handleValidation={handleValidation}
+            orgStatus={orgStatus}
+            handleOrgStatusChange={handleOrgStatusChange}
           />
         );
       default:
