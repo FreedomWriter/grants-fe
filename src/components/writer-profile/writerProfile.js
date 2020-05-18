@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchWriters } from "../../store/actions/writerProfileAction.js";
 import { StylesProvider, withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import { useStyles } from "./writerProfile.styles.js";
@@ -57,8 +58,18 @@ function a11yProps(index) {
   };
 }
 
-export default function WriterProfile() {
+const WriterProfile = (props) => {
   const classes = useStyles();
+
+  //Redux
+  const writer = useSelector(({ writer }) => writer);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchWriters(writer));
+  }, [dispatch, writer]);
+
+  //
 
   const preventDefault = (event) => event.preventDefault();
 
@@ -98,13 +109,7 @@ export default function WriterProfile() {
         </div>
         <h3 className={classes.userEducation}>
           Bio:
-          <div className={classes.bodyText}>
-            {" "}
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-            blanditiis tenetur unde suscipit, quam beatae rerum inventore
-            consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-            fugiat deleniti? Eum quasi quidem quibusdam.
-          </div>
+          <div className={classes.bodyText}>{writer.bio}</div>
         </h3>
         <div></div>
         <h3 className={classes.userEducation}>
@@ -152,4 +157,6 @@ export default function WriterProfile() {
       </Paper>
     </StylesProvider>
   );
-}
+};
+
+export default WriterProfile;
