@@ -35,7 +35,13 @@ function render(
 }
 
 test("accessible -  ApplicantProfileForm pass axe", async () => {
-  const { container } = render(<ApplicantProfileForm />);
+  const { container } = render(<ApplicantProfileForm />, {
+    initialState: {
+      user: {},
+      login: {},
+      isLoading: false,
+    },
+  });
   expect(await axe(container)).toHaveNoViolations();
 });
 
@@ -54,6 +60,7 @@ test("form header is visible", () => {
   const { getByText } = render(<ApplicantProfileForm />, {
     initialState: {
       user: {},
+      login: {},
       isLoading: false,
     },
   });
@@ -67,6 +74,7 @@ test("Next Button is visible", () => {
   const { getByText } = render(<ApplicantProfileForm />, {
     initialState: {
       user: {},
+      login: {},
       isLoading: false,
     },
   });
@@ -81,6 +89,7 @@ test("Next Button is not disabled", () => {
   const { getByText } = render(<ApplicantProfileForm />, {
     initialState: {
       user: {},
+      login: {},
       isLoading: false,
     },
   });

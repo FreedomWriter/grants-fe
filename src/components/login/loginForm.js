@@ -1,16 +1,18 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+
+import { postLogin } from "../../store/actions/LoginActions";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,6 +31,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = (props) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const userType = useSelector((state) => state.login.usertype);
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -41,18 +47,12 @@ const Login = (props) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axiosWithAuth()
-      .post("api url", user)
-      .then((res) => {
-        console.log("login response", res.data);
-        localStorage.setItem("token", res.data.token);
-        props.history.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    await dispatch(postLogin(user));
+    return userType === "applicant"
+      ? history.push("/ApplicantProfileForm")
+      : userType === "writer" && history.push("/WriterProfileForm");
   };
 
   const classes = useStyles();
@@ -113,7 +113,7 @@ const Login = (props) => {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="/RegisterForm" variant="body2">
+              <Link href="#" variant="body2">
                 {"Don't have an account? Register here"}
               </Link>
             </Grid>

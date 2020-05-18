@@ -11,6 +11,8 @@ export default function ReviewForm({
   handleChanges,
   formHelperText,
   handleValidation,
+  orgStatus,
+  handleOrgStatusChange,
 }) {
   const classes = useStyles();
   return (
@@ -21,9 +23,10 @@ export default function ReviewForm({
         handleChanges={handleChanges}
         formHelperText={formHelperText}
         handleValidation={handleValidation}
+        handleOrgStatusChange={handleOrgStatusChange}
       />
-      {/* render appropariate additional information based on formState.org boolean */}
-      {formState.org ? (
+      {/* render appropariate additional information based on orgStatusboolean */}
+      {orgStatus ? (
         <OrgInformation
           formState={formState}
           setFormState={setFormState}
