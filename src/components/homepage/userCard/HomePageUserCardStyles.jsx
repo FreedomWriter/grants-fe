@@ -29,5 +29,13 @@ export const useStyles = makeStyles((theme) =>
     userRight: {
       width: "100%",
     },
+    userDisplay: {
+      margin: "10px auto",
+    },
+    userP: {
+      [theme.breakpoints.down("sm")]: {
+        display: "none",
+      },
+    },
   })
 );
