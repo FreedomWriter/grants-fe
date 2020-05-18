@@ -27,7 +27,7 @@ export const fetchFailure = (err) => {
 export const fetchWriters = (id) => async (dispatch) => {
   dispatch(fetchStart());
 
-  const endPoint = `https://grantedbackend.herokuapp.com//users/${id}`;
+  const endPoint = `/users/${id}`;
   try {
     const response = await axiosWithAuth().get(endPoint);
     dispatch(fetchSuccess(response.data));
