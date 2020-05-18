@@ -27,7 +27,7 @@ export const getProfileInfo = (applicant_id) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({
-        // type: GET_PROFILE_ERROR, //This isn't defined...
+        type: GET_PROFILE_FAILURE,
         payload: "Cannot load profile information",
       });
     });
@@ -64,7 +64,7 @@ export const getApplicantGrants = (applicant_id) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({
-        // type: GET_APPLICANTGRANTS_ERROR, // This isn't defined...
+        type: GET_APPLICANTGRANTS_FAILURE.
         payload: { error: err.message },
       });
     });
