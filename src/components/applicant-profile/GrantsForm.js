@@ -1,18 +1,17 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
 import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
 import { useStyles } from "./GrantsForm.styles";
 import Button from "@material-ui/core/Button";
-
 
 export default function GrantsForm() {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
-      <Typography variant="h6" gutterBottom >
+      <Typography variant="h6" gutterBottom>
         Adding a Grant
       </Typography>
       <Grid container spacing={3}>
@@ -28,8 +27,8 @@ export default function GrantsForm() {
         <Grid item xs={6}>
           <TextField
             required
-            id="orgName"
-            name="orgName"
+            id="org_name"
+            name="org_name"
             label="Organization Name"
             fullWidth
           />
@@ -66,7 +65,7 @@ export default function GrantsForm() {
           </form>
         </Grid>
         <Grid item xs={12}>
-        <TextAreaAutosize
+          <TextAreaAutosize
             required
             id="grantDescription"
             name="grantDescription"

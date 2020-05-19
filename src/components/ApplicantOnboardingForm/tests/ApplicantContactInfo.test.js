@@ -19,8 +19,8 @@ jest.mock("react", () => ({
 
 const setFormStateMock = jest.fn(function () {
   return (formState = {
-    firstName: "Blupe",
-    lastName: "Fiasco",
+    first_name: "Blupe",
+    last_name: "Fiasco",
     sector: "Disruption",
     city: "Metropolis",
     state: "Chaos",
@@ -82,16 +82,16 @@ test("inputs are visible", () => {
     />
   );
 
-  const firstNameLabelText = getByLabelText(/first name/i);
-  const lastNameLabelText = getByLabelText(/last Name/i);
+  const first_nameLabelText = getByLabelText(/first name/i);
+  const last_nameLabelText = getByLabelText(/last Name/i);
   const sectorLabelText = getByLabelText(/sector/i);
   const cityLabelText = getByLabelText(/city/i);
   const stateLabelText = getByLabelText(/state/i);
   const zipLabelText = getByLabelText(/Zip/i);
   const countryLabelText = getByLabelText(/country/i);
 
-  expect(firstNameLabelText).toBeVisible();
-  expect(lastNameLabelText).toBeVisible();
+  expect(first_nameLabelText).toBeVisible();
+  expect(last_nameLabelText).toBeVisible();
   expect(sectorLabelText).toBeVisible();
   expect(cityLabelText).toBeVisible();
   expect(stateLabelText).toBeVisible();
@@ -100,7 +100,7 @@ test("inputs are visible", () => {
 });
 
 test("form submit adds ApplicantContactInfo info to state", () => {
-  const { getByLabelText } = rtlRender(
+  const { getByLabelText } = render(
     <ApplicantContactInfo
       formState={formState}
       formHelperText={formHelperText}
@@ -110,20 +110,21 @@ test("form submit adds ApplicantContactInfo info to state", () => {
   const { getByText } = render(<ApplicantProfileForm />, {
     initialState: {
       user: {},
+      login: {},
       isLoading: false,
     },
   });
 
-  const firstNameLabelText = getByLabelText(/first name/i);
-  const lastNameLabelText = getByLabelText(/last Name/i);
+  const first_nameLabelText = getByLabelText(/first name/i);
+  const last_nameLabelText = getByLabelText(/last Name/i);
   const sectorLabelText = getByLabelText(/sector/i);
   const cityLabelText = getByLabelText(/city/i);
   const stateLabelText = getByLabelText(/state/i);
   const zipLabelText = getByLabelText(/Zip/i);
   const countryLabelText = getByLabelText(/country/i);
 
-  fireEvent.change(firstNameLabelText, { target: { value: "Blupe" } });
-  fireEvent.change(lastNameLabelText, { target: { value: "Fiasco" } });
+  fireEvent.change(first_nameLabelText, { target: { value: "Blupe" } });
+  fireEvent.change(last_nameLabelText, { target: { value: "Fiasco" } });
   fireEvent.change(sectorLabelText, {
     target: { value: "Disruption" },
   });
@@ -138,8 +139,8 @@ test("form submit adds ApplicantContactInfo info to state", () => {
   userEvent.click(getByText(/next/i));
 
   expect(formState).toEqual({
-    firstName: firstNameLabelText.value,
-    lastName: lastNameLabelText.value,
+    first_name: first_nameLabelText.value,
+    last_name: last_nameLabelText.value,
     sector: sectorLabelText.value,
     city: cityLabelText.value,
     state: stateLabelText.value,

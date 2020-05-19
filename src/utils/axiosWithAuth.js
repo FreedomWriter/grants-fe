@@ -1,13 +1,14 @@
 import axios from "axios";
 
 export const axiosWithAuth = () => {
-  // const token = JSON.parse(localStorage.getItem("token"));
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
   return axios.create({
-    baseURL: "https://grantedbackend.herokuapp.com/api",
+    baseURL: process.env.REACT_APP_GRANTED_API,
     headers: {
       Authorization: token,
     },
   });
 };
+
+export default axiosWithAuth;

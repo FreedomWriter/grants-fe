@@ -21,7 +21,7 @@ export default function OrgInformation({
         <Grid item xs={12} sm={6}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.website ? true : undefined}
+            error={formHelperText.website && true}
             helperText={formHelperText.website}
             onChange={handleChanges}
             id="website"
