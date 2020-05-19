@@ -47,3 +47,9 @@ export const postRegister = (value) => async (dispatch) => {
       });
     });
 };
+
+export const logout = () => (dispatch) => {
+  dispatch({
+    type: LOGOUT,
+  });
+};

@@ -11,17 +11,22 @@ const UserCardApplicant = (props) => {
   const user = props.details;
   const classes = useStyles();
 
-  console.log("UserCardApplicant....");
+  console.log("UserCardApplicant....", user.type);
+
   return (
     <Card className={`${classes.userInfo} ${classes.applicant}`}>
-      <CardMedia className={classes.media} image={user.image} alt="userImg" />
+      <div className={classes.userDisplay}>
+        <CardMedia className={classes.media} image={user.image} alt="userImg" />
+        <h2>{user.fullname}</h2>
+        <h4>username: {user.username}</h4>
+      </div>
       <CardContent className={classes.userRight}>
-        <h2>Name: {user.fullname}</h2>
-        <h3>username: {user.username}</h3>
+        {/* <h2>Name: {user.fullname}</h2>
+        <h3>username: {user.username}</h3> */}
         <h3>roles: {user.role} </h3>
         <h3>Sector/Focus: {user.sector}</h3>
         <h4>type: {user.type}</h4>
-        <p>{user.desc}</p>
+        <p className={classes.userP}>{user.desc}</p>
       </CardContent>
     </Card>
   );

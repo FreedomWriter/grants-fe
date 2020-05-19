@@ -91,7 +91,7 @@ export const getGrantsInfo = (info) => (dispatch) => {
       });
     })
     .catch((err) => {
-      // console.log("getGrantsInfo>err: ", err);
+      console.log("getGrantsInfo>err: ", err);
       dispatch({ type: GET_GRANTS_INFO_FAIL, payload: { error: err.message } });
     });
 };

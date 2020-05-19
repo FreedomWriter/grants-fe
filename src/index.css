@@ -13,8 +13,8 @@ code {
 }
 
 .top-container {
-  background-image: url(./images/laptop-background-unsplash.jpg);
-  background-size: cover;
+  background-image: url(./images/opaque-background.jpeg);
+  background-size: 100% 100%;
 }
 
 .top-container-info {
