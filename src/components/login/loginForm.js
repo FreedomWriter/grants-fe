@@ -50,13 +50,14 @@ const Login = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await dispatch(postLogin(user));
+    await userType;
     return userType === "applicant"
       ? history.push("/ApplicantProfileForm")
       : userType === "writer" && history.push("/WriterProfileForm");
   };
 
   const classes = useStyles();
-
+  console.log({ userType });
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
