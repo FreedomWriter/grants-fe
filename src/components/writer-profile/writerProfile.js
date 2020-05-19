@@ -62,13 +62,14 @@ const WriterProfile = (props) => {
   const classes = useStyles();
 
   //Redux
-  const writer = useSelector(({ writer }) => writer);
+  const writer = useSelector((state) => state.writerprofile);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchWriters(writer));
-  }, [dispatch, writer]);
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  console.log(writer);
   //
 
   const preventDefault = (event) => event.preventDefault();
@@ -89,7 +90,11 @@ const WriterProfile = (props) => {
             classes={{ root: classes.rootIcon }}
             fontSize="large"
           />
-          <div className={classes.userName}> John Doe</div>
+          <div className={classes.userName}>
+            {" "}
+            {writer.first_name}
+            {writer.last_name}
+          </div>
           <Button
             classes={{ root: classes.rootButton, label: classes.labelButton }}
             variant="contained"
@@ -104,7 +109,7 @@ const WriterProfile = (props) => {
             href="#"
             onClick={preventDefault}
           >
-            Visit my website
+            {writer.website}
           </Link>
         </div>
         <h3 className={classes.userEducation}>

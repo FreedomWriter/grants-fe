@@ -6,14 +6,17 @@ import {
 
 const initialState = {
   writerProfile: {
-    id: null,
-    first_name: null,
-    last_name: null,
-    website: null,
-    biography: null,
-    education: null,
-    work_history: null,
-    portfolio: null,
+    id: "",
+    writer_id: "",
+    bio: "",
+    website: "",
+    first_name: "",
+    last_name: "",
+    sector: "",
+    city: "",
+    state: "",
+    zip: "",
+    country: "",
   },
   isLoading: false,
 };
