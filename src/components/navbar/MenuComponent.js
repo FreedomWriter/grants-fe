@@ -12,9 +12,7 @@ export default function MenuComponent({
 }) {
   const history = useHistory();
 
-  const user = useSelector((state) => {
-    return state.onboarding.user;
-  });
+  const userType = useSelector((state) => state.login.usertype);
   return (
     <>
       <Menu
@@ -35,9 +33,10 @@ export default function MenuComponent({
           Home
         </MenuItem>
         <MenuItem
-          onClick={() => {
-            handleMenuClose();
-            return user.type === "writer"
+          onClick={async () => {
+            await handleMenuClose();
+            await userType;
+            return userType === "writer"
               ? history.push("/WriterProfile")
               : history.push("/ApplicantProfile");
           }}
