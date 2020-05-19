@@ -1,4 +1,9 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { postRegister } from '../../store/actions/LoginActions';
+import { loginReducer } from '../../store/reducers/loginReducer';
+
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -6,7 +11,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import MenuItem from '@material-ui/core/MenuItem';
-import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import { useStyles } from './registerForm.styles.js';
 
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
@@ -17,43 +21,43 @@ export default function RegisterForm(props) {
 
     const [ values, setValues ] = useState({
             email: '',
-            userType: '',
+            user_type: '',
             password: '',
-            confirmPassword: '',           
+            // confirmPassword: '',           
 
     })
+    const dispatch = useDispatch();
+    // useEffect(() => {
+    //     dispatch(postRegister())
+    // }, []);
 
-    ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
-        if(value !== values.password){
-            return false;
-        }
-        return true
-    });
+    // ValidatorForm.addValidationRule('isPasswordMatch', (user) => {
+    //     if(values !== values.password){
+    //         return false;
+    //     }
+    //     return true
+    // });
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         setValues({
             ...values,
-            [e.target.name]: e.target.value
-        });            
-        }
+            [e.target.name]: e.target.value,
+        })
+    }
 
     const handleSelectChange = (e) => {
         setValues({
             ...values,
-            userType: e.target.value 
+            user_type: e.target.value 
         })
     }
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axiosWithAuth()
-            .post('api url', values)
-            .then(res => {
-                props.history.push('/')
-            })
-            .catch(err => {
-                console.log(err);
-            })
-        console.log(values)
+
+    const handleSubmit = (props) => {
+        dispatch(
+                postRegister({
+                    ...setValues
+                })
+            );
     }
 
     return (
@@ -83,7 +87,7 @@ export default function RegisterForm(props) {
                             <TextValidator
                                 variant="outlined"
                                 className={classes.selectEmpty}
-                                value={values.userType}
+                                value={values.user_type}
                                 onChange={handleSelectChange}
                                 label="User Type"
                                 select
@@ -110,19 +114,19 @@ export default function RegisterForm(props) {
                                 onChange={handleChange}
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        {/* <Grid item xs={12}>
                             <TextValidator
                                 variant="outlined"
                                 fullWidth
                                 name="confirmPassword"
                                 label="Confirm Password"
                                 type="password"
-                                value={values.confirmPassword}
+                                value={user.confirmPassword}
                                 validators={['isPasswordMatch', 'required']}
                                 errorMessages={['Passwords do not match', 'This field is required']}
-                                onChange={handleChange}
+                                // onChange={handleChange}
                             />
-                        </Grid>
+                        </Grid> */}
                     </Grid>
                     <Button
                         type="submit"

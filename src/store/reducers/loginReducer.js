@@ -9,7 +9,7 @@ import {
 } from "../actions/LoginActions";
 
 const initialState = {
-  user: "",
+  user: [],
   isLoading: false,
 };
 
@@ -40,7 +40,7 @@ const loginReducer = (state = initialState, action) => {
       };
     case REGISTER_POST_SUCCESS:
       return {
-        user: { id: action.payload.id, username: action.payload.username },
+        user: { id: action.payload.id, email: action.payload.email, userType: action.payload.userType },
         loggedIn: true,
 
         isLoading: false,
