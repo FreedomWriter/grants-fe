@@ -58,7 +58,7 @@ function App() {
             <LoginForm />
           </Route>
 
-          <Route path="/LandingPage">
+          <Route exact path="/">
             <LandingPage />
           </Route>
           {/*  */}
