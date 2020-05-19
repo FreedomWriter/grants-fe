@@ -49,11 +49,11 @@ export const useStyles = makeStyles((theme) => ({
 
     paper: {
         height: 350,
-        width: 250,
-        // backgroundColor: 'rgba(58, 83, 155, 0.6)',
-        margin: theme.spacing(2),  
+        width: 250,  
+        // margin not taking for some reason
+        margin: '10% 70% 25% 69%',
         paddingTop: '10%',
-        textAlign: 'center'
+        textAlign: 'center',
     },
 
     userStoriesTitle: {

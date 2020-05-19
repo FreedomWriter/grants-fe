@@ -140,12 +140,12 @@ export default function LandingPage() {
       </Grid>
       <div>
         <Grid container className={classes.userStories}>
-          <h2 className={classes.userStoriesTitle}>Granted Stories</h2>
+          <h2 className={classes.userStoriesTitle}>Granted Users</h2>
           <Grid item xs={12}>
             <Grid container justify="center">
               <Grid item>
                 <Paper className={classes.paper}>
-                  <img src={User1} className={classes.users} />
+                  <img src={User1} alt="user-story-one" className={classes.users} />
                   <span>
                     <i>
                       Debra White
@@ -162,7 +162,7 @@ export default function LandingPage() {
               </Grid>
               <Grid item>
                 <Paper className={classes.paper}>
-                  <img src={User2} className={classes.users} />
+                  <img src={User2} alt="user-story-two" className={classes.users} />
                   <span>
                     <i>
                       Michael Gillam
@@ -179,7 +179,7 @@ export default function LandingPage() {
               </Grid>
               <Grid item>
                 <Paper className={classes.paper}>
-                  <img src={User3} className={classes.users} />
+                  <img src={User3} alt="user-story-three" className={classes.users} />
                   <span>
                     <i>
                       Kathleen Garcia
