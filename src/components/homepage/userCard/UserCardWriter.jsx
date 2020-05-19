@@ -14,7 +14,11 @@ const UserCardWriter = (props) => {
   console.log("UserCardWriter...");
   return (
     <Card className={`${classes.userInfo} ${classes.writer}`}>
-      <CardMedia className={classes.media} image={user.image} alt="userImg" />
+      <div className={classes.userDisplay}>
+        <CardMedia className={classes.media} image={user.image} alt="userImg" />
+        <h2>{user.fullname}</h2>
+        <h4>username: {user.username}</h4>
+      </div>
       <CardContent className={classes.userRight}>
         <h2>Name: {user.fullname}</h2>
         <h3>username: {user.username}</h3>

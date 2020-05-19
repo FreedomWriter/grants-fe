@@ -1,5 +1,4 @@
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { red } from "@material-ui/core/colors";
 
 export const useStyles = makeStyles((theme) =>
   createStyles({
@@ -28,6 +27,14 @@ export const useStyles = makeStyles((theme) =>
     },
     userRight: {
       width: "100%",
+    },
+    userDisplay: {
+      margin: "10px auto",
+    },
+    userP: {
+      [theme.breakpoints.down("sm")]: {
+        display: "none",
+      },
     },
   })
 );
