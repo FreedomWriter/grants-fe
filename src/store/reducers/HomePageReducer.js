@@ -10,7 +10,7 @@ import {
 const initialState = {
   error: "",
   userInfo: {},
-  grantsInfo: {},
+  grantsInfo: [],
   isLoadingUser: false,
   isLoadingGrants: false,
   reFetch: false,
