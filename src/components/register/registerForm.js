@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
@@ -45,12 +45,24 @@ export default function RegisterForm() {
 
   const history = useHistory();
 
+  const [isDisabled, setIsDisabled] = useState(true);
   const [values, setValues] = useState({
     email: "",
     userType: "",
     password: "",
     confirmPassword: "",
   });
+
+  useEffect(() => {
+    if (
+      values.email &&
+      values.userType &&
+      values.password &&
+      values.confirmPassword
+    ) {
+      return setIsDisabled(false);
+    }
+  }, [values.email, values.userType, values.password, values.confirmPassword]);
 
   ValidatorForm.addValidationRule("isPasswordMatch", (value) => {
     if (value !== values.password) {
@@ -82,9 +94,7 @@ export default function RegisterForm() {
       })
     );
     await postLogin({ email: values.email, password: values.password });
-    return values.userType === "applicant"
-      ? history.push("/ApplicantProfileForm")
-      : history.push("/WriterProfileForm");
+    return history.push("/onboarding");
   };
 
   return (
@@ -120,7 +130,6 @@ export default function RegisterForm() {
                 <InputLabel id="user-type">User Type</InputLabel>
                 <Select
                   labelId="user-type"
-                  required
                   value={values.userType}
                   onChange={handleSelectChange}
                   label="User Type"
@@ -168,6 +177,7 @@ export default function RegisterForm() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              disabled={isDisabled}
             >
               Sign Up
             </Button>

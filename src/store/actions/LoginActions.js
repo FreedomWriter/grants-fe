@@ -15,7 +15,6 @@ export const postLogin = (value) => (dispatch) => {
   return axiosWithAuth()
     .post(`/auth/login`, value)
     .then((res) => {
-      console.log(res);
       dispatch({
         type: LOGIN_POST_SUCCESS,
         payload: res.data,
@@ -38,7 +37,6 @@ export const postRegister = (value) => async (dispatch) => {
         type: REGISTER_POST_SUCCESS,
         payload: res.data,
       });
-      // localStorage.setItem("token", res.data.token);
     })
     .catch((err) => {
       dispatch({
