@@ -47,13 +47,13 @@ const Login = (props) => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await dispatch(postLogin(user));
-    await userType;
-    return userType === "applicant"
-      ? history.push("/ApplicantProfileForm")
-      : userType === "writer" && history.push("/WriterProfileForm");
+    dispatch(postLogin(user)).then(() => {
+      return userType === "applicant"
+        ? history.push("/ApplicantProfileForm")
+        : history.push("/WriterProfileForm");
+    });
   };
 
   const classes = useStyles();

@@ -11,9 +11,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
-import { postRegister } from "../../store/actions/LoginActions";
+import { postRegister, postLogin } from "../../store/actions/LoginActions";
 
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +43,8 @@ export default function RegisterForm() {
   const dispatch = useDispatch();
   const classes = useStyles();
 
+  const history = useHistory();
+
   const [values, setValues] = useState({
     email: "",
     userType: "",
@@ -69,15 +72,19 @@ export default function RegisterForm() {
       userType: e.target.value,
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(
+    await dispatch(
       postRegister({
         email: values.email,
         password: values.password,
         user_type: values.userType,
       })
     );
+    await postLogin({ email: values.email, password: values.password });
+    return values.userType === "applicant"
+      ? history.push("/ApplicantProfileForm")
+      : history.push("/WriterProfileForm");
   };
 
   return (

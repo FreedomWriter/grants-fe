@@ -9,7 +9,7 @@ const action = {
   payload: {
     error: "",
     userInfo: {},
-    grantsInfo: {},
+    grantsInfo: [],
     isLoadingUser: false,
     isLoadingGrants: false,
     reFetch: false,

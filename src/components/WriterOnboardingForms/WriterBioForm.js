@@ -70,9 +70,7 @@ export default function WriterBioForm({
               id="servicesOffered"
               name="servicesOffered"
               value={
-                bioFormState.servicesOffered
-                  ? bioFormState.servicesOffered
-                  : possibleSkills[possibleSkills.length - 1].skill
+                bioFormState.servicesOffered ? bioFormState.servicesOffered : ""
               }
               onChange={handleBioChanges}
             >
