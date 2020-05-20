@@ -10,6 +10,7 @@ export default function OrgInformation({
   formState,
   formHelperText,
   handleValidation,
+  setFormHelperText,
 }) {
   const classes = useStyles();
   return (
@@ -20,7 +21,9 @@ export default function OrgInformation({
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
-            onBlur={handleValidation}
+            onBlur={(e) =>
+              handleValidation(e, setFormHelperText, formHelperText, formState)
+            }
             error={formHelperText.website && true}
             helperText={formHelperText.website}
             onChange={handleChanges}

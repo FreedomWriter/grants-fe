@@ -13,6 +13,7 @@ export default function ReviewForm({
   handleValidation,
   orgStatus,
   handleOrgStatusChange,
+  setFormHelperText,
 }) {
   const classes = useStyles();
   return (

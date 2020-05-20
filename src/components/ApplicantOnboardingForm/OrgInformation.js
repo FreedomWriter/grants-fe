@@ -8,6 +8,7 @@ import { useStyles } from "./ApplicantForm.styles";
 export default function OrgInformation({
   handleChanges,
   formState,
+  setFormHelperText,
   formHelperText,
   handleValidation,
 }) {
@@ -20,7 +21,9 @@ export default function OrgInformation({
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
-            onBlur={handleValidation}
+            onBlur={(e) =>
+              handleValidation(e, setFormHelperText, formHelperText, formState)
+            }
             error={formHelperText.org_name ? true : undefined}
             helperText={formHelperText.org_name}
             onChange={handleChanges}
@@ -36,7 +39,9 @@ export default function OrgInformation({
         <Grid item xs={12}>
           <TextField
             InputLabelProps={{ shrink: true }}
-            onBlur={handleValidation}
+            onBlur={(e) =>
+              handleValidation(e, setFormHelperText, formHelperText, formState)
+            }
             error={formHelperText.founding_date && true}
             helperText={
               formHelperText.founding_date && formHelperText.founding_date
@@ -53,7 +58,9 @@ export default function OrgInformation({
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            onBlur={handleValidation}
+            onBlur={(e) =>
+              handleValidation(e, setFormHelperText, formHelperText, formState)
+            }
             error={formHelperText.website ? true : undefined}
             helperText={formHelperText.website}
             onChange={handleChanges}

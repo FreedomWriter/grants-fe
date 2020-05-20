@@ -9,7 +9,7 @@ import { useStyles } from "./ApplicantForm.styles";
 export default function ApplicantContactInfo({
   formState,
   handleChanges,
-  setFormState,
+  setFormHelperText,
   formHelperText,
   handleValidation,
   orgStatus,
@@ -25,7 +25,9 @@ export default function ApplicantContactInfo({
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
-            onBlur={handleValidation}
+            onBlur={(e) =>
+              handleValidation(e, setFormHelperText, formHelperText, formState)
+            }
             error={formHelperText.first_name && true}
             helperText={formHelperText.first_name}
             required
@@ -39,7 +41,9 @@ export default function ApplicantContactInfo({
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            onBlur={handleValidation}
+            onBlur={(e) =>
+              handleValidation(e, setFormHelperText, formHelperText, formState)
+            }
             error={formHelperText.last_name && true}
             helperText={formHelperText.last_name}
             required
@@ -53,7 +57,9 @@ export default function ApplicantContactInfo({
         </Grid>
         <Grid item xs={12}>
           <TextField
-            onBlur={handleValidation}
+            onBlur={(e) =>
+              handleValidation(e, setFormHelperText, formHelperText, formState)
+            }
             error={formHelperText.sector && true}
             helperText={formHelperText.sector}
             required
@@ -68,7 +74,9 @@ export default function ApplicantContactInfo({
 
         <Grid item xs={12} sm={6}>
           <TextField
-            onBlur={handleValidation}
+            onBlur={(e) =>
+              handleValidation(e, setFormHelperText, formHelperText, formState)
+            }
             error={formHelperText.city && true}
             helperText={formHelperText.city}
             required
@@ -82,7 +90,9 @@ export default function ApplicantContactInfo({
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            onBlur={handleValidation}
+            onBlur={(e) =>
+              handleValidation(e, setFormHelperText, formHelperText, formState)
+            }
             error={formHelperText.state && true}
             helperText={formHelperText.state}
             id="state"
@@ -95,7 +105,9 @@ export default function ApplicantContactInfo({
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            onBlur={handleValidation}
+            onBlur={(e) =>
+              handleValidation(e, setFormHelperText, formHelperText, formState)
+            }
             error={formHelperText.zip && true}
             helperText={formHelperText.zip}
             required
@@ -109,7 +121,9 @@ export default function ApplicantContactInfo({
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            onBlur={handleValidation}
+            onBlur={(e) =>
+              handleValidation(e, setFormHelperText, formHelperText, formState)
+            }
             error={formHelperText.country && true}
             helperText={formHelperText.country}
             required
