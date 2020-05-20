@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
@@ -11,9 +11,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
-import { postRegister } from "../../store/actions/LoginActions";
+import { postRegister, postLogin } from "../../store/actions/LoginActions";
 
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,12 +43,26 @@ export default function RegisterForm() {
   const dispatch = useDispatch();
   const classes = useStyles();
 
+  const history = useHistory();
+
+  const [isDisabled, setIsDisabled] = useState(true);
   const [values, setValues] = useState({
     email: "",
     userType: "",
     password: "",
     confirmPassword: "",
   });
+
+  useEffect(() => {
+    if (
+      values.email &&
+      values.userType &&
+      values.password &&
+      values.confirmPassword
+    ) {
+      return setIsDisabled(false);
+    }
+  }, [values.email, values.userType, values.password, values.confirmPassword]);
 
   ValidatorForm.addValidationRule("isPasswordMatch", (value) => {
     if (value !== values.password) {
@@ -69,15 +84,17 @@ export default function RegisterForm() {
       userType: e.target.value,
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(
+    await dispatch(
       postRegister({
         email: values.email,
         password: values.password,
         user_type: values.userType,
       })
     );
+    await postLogin({ email: values.email, password: values.password });
+    return history.push("/onboarding");
   };
 
   return (
@@ -113,7 +130,6 @@ export default function RegisterForm() {
                 <InputLabel id="user-type">User Type</InputLabel>
                 <Select
                   labelId="user-type"
-                  required
                   value={values.userType}
                   onChange={handleSelectChange}
                   label="User Type"
@@ -161,6 +177,7 @@ export default function RegisterForm() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              disabled={isDisabled}
             >
               Sign Up
             </Button>

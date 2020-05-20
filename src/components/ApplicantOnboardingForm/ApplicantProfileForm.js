@@ -27,7 +27,7 @@ export default function ApplicantProfileForm() {
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
-  const userId = useSelector((state) => state.login.userId);
+  const userId = useSelector((state) => state.login.user.id);
   // active step keeps track of which child component will render
   const [activeStep, setActiveStep] = useState(0);
   const [orgStatus, setOrgStatus] = useState(false);
@@ -40,11 +40,10 @@ export default function ApplicantProfileForm() {
     zip: "",
     country: "",
     org_name: "",
-    founding_date: "",
+    founding_date: null,
     website: "",
     bio: "",
   });
-
   // state for handling error text when input validation is not met
   const [formHelperText, setFormHelperText] = useState({
     first_name: undefined,
@@ -59,6 +58,7 @@ export default function ApplicantProfileForm() {
     website: undefined,
     bio: undefined,
   });
+
   const handleOrgStatusChange = () => setOrgStatus(!orgStatus);
 
   const handleChanges = (e) => {
@@ -70,7 +70,7 @@ export default function ApplicantProfileForm() {
   const handleSubmit = async () => {
     try {
       await dispatch(postApplicantOnboarding(formState, Number(userId)));
-      return history.push("/ApplicantProfile");
+      return history.push("/profile");
     } catch (err) {
       console.log(err);
     }

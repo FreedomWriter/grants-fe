@@ -41,6 +41,9 @@ test("search field is visible", () => {
         onboarding: {
           user: {},
         },
+        login: {
+          usertype: "",
+        },
         isLoading: false,
       },
     }
@@ -60,6 +63,9 @@ test("'Granted' homepage link is visible", () => {
       initialState: {
         onboarding: {
           user: {},
+        },
+        login: {
+          usertype: "",
         },
         isLoading: false,
       },

@@ -1,9 +1,9 @@
 import React from "react";
 // import "./App.css";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./components/globals/theme";
-
+import { useSelector } from "react-redux";
 import ApplicantProfile from "./components/applicant-profile/ApplicantProfile";
 import Navbar from "./components/navbar/Navbar";
 import WriterProfile from "./components/writer-profile/writerProfile.js";
@@ -17,58 +17,47 @@ import GrantsList from "./components/applicant-profile/GrantsList";
 import GrantsForm from "./components/applicant-profile/GrantsForm";
 
 function App() {
+  const loggedIn = useSelector((state) => state.login.loggedIn);
+  const user = useSelector((state) => state.login.user);
+  const userType = useSelector((state) => state.login.usertype);
+
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <Navbar />
-        {/* <div>
-          <Link to="/WriterProfile">WriterProfile</Link>
-          <Link to="/ApplicantProfileForm">ApplicantProfileForm</Link>
-          <Link to="/WriterProfileForm">WriterProfileForm</Link>
-          <Link to="/LoginForm">LoginForm</Link>
-          <Link to="/RegisterForm">RegisterForm</Link>
-          <Link to="/LandingPage">LandingPage</Link>
-        </div> */}
+        <Route exact path="/">
+          <LandingPage />
+        </Route>
+        {loggedIn && <Navbar />}
         <Switch>
-          {/*  */}
           <Route path="/GrantsForm">
             <GrantsForm />
           </Route>
           <Route path="/GrantsList">
             <GrantsList />
           </Route>
-          <Route path="/ApplicantProfile">
-            <ApplicantProfile />
+          <Route path="/profile">
+            {userType && userType === "applicant" ? (
+              <ApplicantProfile />
+            ) : (
+              <WriterProfile />
+            )}
           </Route>
-
-          <Route path="/WriterProfile">
-            <WriterProfile />
-          </Route>
-
           <Route path="/Homepage">
             <Homepage />
           </Route>
-
-          <Route path="/ApplicantProfileForm">
-            <ApplicantProfileForm />
+          <Route path="/onboarding">
+            {user && user.user_type === "applicant" ? (
+              <ApplicantProfileForm />
+            ) : (
+              <WriterProfileForm />
+            )}
           </Route>
-
-          <Route path="/WriterProfileForm">
-            <WriterProfileForm />
-          </Route>
-
           <Route path="/RegisterForm">
             <RegisterForm />
           </Route>
-
           <Route path="/LoginForm">
             <LoginForm />
           </Route>
-
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
-          {/*  */}
         </Switch>
       </ThemeProvider>
     </Router>

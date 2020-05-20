@@ -44,6 +44,7 @@ const loginReducer = (state = initialState, action) => {
       return {
         user: action.payload,
 
+        loggedIn: true,
         isLoading: false,
       };
     case REGISTER_POST_FAILURE:
