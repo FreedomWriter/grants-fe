@@ -15,6 +15,7 @@ import LoginForm from "./components/login/loginForm.js";
 import LandingPage from "./components/landingPage/LandingPage.js";
 import GrantsList from "./components/applicant-profile/GrantsList";
 import GrantsForm from "./components/applicant-profile/GrantsForm";
+import GrantsPage from "./components/grantsPage/GrantsPage.jsx";
 
 function App() {
   const loggedIn = useSelector((state) => state.login.loggedIn);
@@ -57,6 +58,9 @@ function App() {
           </Route>
           <Route path="/LoginForm">
             <LoginForm />
+          </Route>
+          <Route exact path="/Grants">
+            <GrantsPage />
           </Route>
         </Switch>
       </ThemeProvider>
