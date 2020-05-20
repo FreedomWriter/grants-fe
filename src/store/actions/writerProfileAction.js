@@ -24,10 +24,10 @@ export const fetchFailure = (err) => {
   };
 };
 
-export const fetchWriters = () => async (dispatch) => {
+export const fetchWriters = (id) => async (dispatch) => {
   dispatch(fetchStart());
 
-  const endPoint = "/writers";
+  const endPoint = `auth/writers/${id}`;
   try {
     const response = await axiosWithAuth().get(endPoint);
     dispatch(fetchSuccess(response.data));

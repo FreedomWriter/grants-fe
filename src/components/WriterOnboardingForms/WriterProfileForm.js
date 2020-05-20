@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postWriterOboarding } from "../../store/actions/onboardingActions";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
@@ -25,6 +25,8 @@ export default function WriterProfileForm() {
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
+
+  const userId = useSelector((state) => state.login.user.id);
   // active step keeps track of which child component will render
   const [activeStep, setActiveStep] = useState(0);
 
@@ -142,15 +144,16 @@ export default function WriterProfileForm() {
   const handleSubmit = async () => {
     try {
       await dispatch(
-        postWriterOboarding({
-          ...contactFormState,
-          ...bioFormState,
-          writersColleges,
-          writersWorkHistory,
-          type: "writer",
-        })
+        postWriterOboarding(
+          {
+            ...contactFormState,
+            website: bioFormState.website,
+            bio: bioFormState.bio,
+          },
+          Number(userId)
+        )
       );
-      return history.push("/WriterProfile");
+      return history.push("/profile");
     } catch (err) {
       console.log(err);
     }

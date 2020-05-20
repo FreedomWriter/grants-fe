@@ -110,7 +110,9 @@ test("form submit adds ApplicantContactInfo info to state", () => {
   const { getByText } = render(<ApplicantProfileForm />, {
     initialState: {
       user: {},
-      login: {},
+      login: {
+        user: "",
+      },
       isLoading: false,
     },
   });

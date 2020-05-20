@@ -38,7 +38,9 @@ test("accessible -  ApplicantProfileForm pass axe", async () => {
   const { container } = render(<ApplicantProfileForm />, {
     initialState: {
       user: {},
-      login: {},
+      login: {
+        user: "",
+      },
       isLoading: false,
     },
   });
@@ -60,7 +62,9 @@ test("form header is visible", () => {
   const { getByText } = render(<ApplicantProfileForm />, {
     initialState: {
       user: {},
-      login: {},
+      login: {
+        user: "",
+      },
       isLoading: false,
     },
   });
@@ -74,7 +78,9 @@ test("Next Button is visible", () => {
   const { getByText } = render(<ApplicantProfileForm />, {
     initialState: {
       user: {},
-      login: {},
+      login: {
+        user: "",
+      },
       isLoading: false,
     },
   });
@@ -89,7 +95,9 @@ test("Next Button is not disabled", () => {
   const { getByText } = render(<ApplicantProfileForm />, {
     initialState: {
       user: {},
-      login: {},
+      login: {
+        user: "",
+      },
       isLoading: false,
     },
   });

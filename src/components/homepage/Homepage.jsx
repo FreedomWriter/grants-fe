@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Container } from "@material-ui/core";
 
 // import Card1 from "./grantCards/Card1.jsx";
 import GrantCard from "./grantCards/GrantCard.jsx";
 import UserCardWriter from "./userCard/UserCardWriter.jsx";
 import UserCardApplicant from "./userCard/UserCardApplicant.jsx";
-
-import { Container } from "@material-ui/core";
 
 import { useStyles } from "./HomepageStyles.jsx";
 
@@ -14,7 +13,6 @@ import {
   getUserInfo,
   getGrantsInfo,
 } from "../../store/actions/HomepageActions.js";
-import HomePageReducer from "../../store/reducers/HomePageReducer.js";
 
 const Homepage = () => {
   //======Access necessary actions for Homepage======
@@ -58,7 +56,7 @@ const Homepage = () => {
           <UserCardApplicant details={user} />
         )}
 
-        {!grants ? (
+        {!grants || grants.length < 1 ? (
           <h4>Loading....</h4>
         ) : (
           grants.map((grant) => {
