@@ -17,10 +17,10 @@ export const postApplicantOnboarding = (value, id) => (dispatch) => {
     .put(`/applicants/${id}`, value)
     .then((res) => {
       console.log(res);
-      // dispatch({
-      //   type: APPLICANT_ONBOARDING_POST_SUCCESS,
-      //   payload: value,
-      // });
+      dispatch({
+        type: APPLICANT_ONBOARDING_POST_SUCCESS,
+        payload: value,
+      });
     })
     .catch((err) => {
       dispatch({
@@ -30,20 +30,20 @@ export const postApplicantOnboarding = (value, id) => (dispatch) => {
     });
 };
 
-export const postWriterOboarding = (value) => async (dispatch) => {
+export const postWriterOboarding = (id, value) => async (dispatch) => {
   dispatch({ type: WRITER_ONBOARDING_POST_START });
-  // return axiosWithAuth()
-  //   .post(`/ENDPOINT TBD`, value)
-  //   .then((res) => {
-  dispatch({
-    type: WRITER_ONBOARDING_POST_SUCCESS,
-    payload: value,
-  });
-  // })
-  // .catch((err) => {
-  //   dispatch({
-  //     type: WRITER_ONBOARDING_POST_FAILURE,
-  //     payload: { error: err.message },
-  //   });
-  // });
+  return axiosWithAuth()
+    .put(`/writers/${id}`, value)
+    .then((res) => {
+      dispatch({
+        type: WRITER_ONBOARDING_POST_SUCCESS,
+        payload: res.status,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: WRITER_ONBOARDING_POST_FAILURE,
+        payload: { error: err.message },
+      });
+    });
 };

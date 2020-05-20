@@ -145,6 +145,7 @@ export default function WriterProfileForm() {
     try {
       await dispatch(
         postWriterOboarding(
+          userId,
           {
             ...contactFormState,
             website: bioFormState.website,

@@ -93,7 +93,9 @@ export default function RegisterForm() {
         user_type: values.userType,
       })
     );
-    await postLogin({ email: values.email, password: values.password });
+    await dispatch(
+      postLogin({ email: values.email, password: values.password })
+    );
     return history.push("/onboarding");
   };
 
