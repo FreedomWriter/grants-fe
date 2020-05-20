@@ -6,42 +6,12 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
-// import Link from "@material-ui/core/Link";
-import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import { makeStyles } from "@material-ui/core/styles";
 import { postRegister, postLogin } from "../../store/actions/LoginActions";
-
+import { useStyles } from './registerForm.styles';
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { useHistory } from "react-router-dom";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    marginTop: theme.spacing(3),
-  },
-  paper: {
-    marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 395,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-  link: {
-    textDecoration: 'none',
-  },
-}));
 
 export default function RegisterForm() {
   const dispatch = useDispatch();
@@ -183,7 +153,7 @@ export default function RegisterForm() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              // disabled={isDisabled}
+              disabled={isDisabled}
             >
               Sign Up
             </Button>

@@ -7,28 +7,10 @@ import Typography from "@material-ui/core/Typography";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
-// import Link from "@material-ui/core/Link";
-import { makeStyles } from "@material-ui/core/styles";
+import { useStyles } from "./loginForm.styles";
 import { Button } from "@material-ui/core";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-
 import { postLogin } from "../../store/actions/LoginActions";
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  form: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
 
 const Login = () => {
   const history = useHistory();
@@ -104,12 +86,12 @@ const Login = () => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link href="#" variant="body2" className={classes.links}>
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link to="/RegisterForm" variant="body2">
+              <Link to="/RegisterForm" variant="body2" className={classes.links}>
                 Don't have an account? Register here
               </Link>
             </Grid>
