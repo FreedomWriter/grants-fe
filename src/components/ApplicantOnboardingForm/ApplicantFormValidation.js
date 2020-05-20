@@ -1,6 +1,7 @@
 const handleValidation = (e, setFormHelperText, formHelperText, formState) => {
   // validation function handles all inputs where the only validation is that the string must be greater than 2
   const validator = async (formValue) => {
+    console.log(e);
     //persisting the event to ensure it makes it to validation
     e.persist();
     let valid = /(?=(?:.*?[a-z]){2})/i.test(formValue);
