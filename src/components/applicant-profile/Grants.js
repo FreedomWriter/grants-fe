@@ -1,55 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getGrantsInfo } from '../../store/actions/GrantsPageActions';
 
 import Paper from "@material-ui/core/Paper";
 import { useStyles } from "./ApplicantProfile.styles";
 
-const Grants = () => {
+const Grants = (/*grants*/) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
-  // const dispatch = useDispatch();
-  // const user = useSelector((state) => state.login.user)
+  // const applicant_id = useSelector(state => state.user.userId)
 
-  // useEffect(() => {
-  //   if(user) {
-  //     const { id } = user;
-  //     dispatch(getProfileInfo(id))
-  //   }
-  // },[dispatch, user])
+  useEffect(() => {
+    dispatch(getGrantsInfo());
+  }, [dispatch])  
 
-  // const grants = useSelector((state) => state.profileInfo.grants)
+  const grants = useSelector((state) => state.grantsPage.grantsInfo)
 
   return (
     <>
       <h3>Grants We'd Like to Apply For:</h3>
       <Paper className={classes.profilepaper}>
-        <h4>Insert grant name here</h4>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet
-          venenatis urna cursus. Gravida neque convallis a cras semper.
-          Habitasse platea dictumst quisque sagittis purus sit amet volutpat.
-        </p>
-        <h4>Insert grant name here</h4>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet
-          venenatis urna cursus. Gravida neque convallis a cras semper.
-          Habitasse platea dictumst quisque sagittis purus sit amet volutpat.
-        </p>
-        <h4>Insert grant name here</h4>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet
-          venenatis urna cursus. Gravida neque convallis a cras semper.
-          Habitasse platea dictumst quisque sagittis purus sit amet volutpat.
-        </p>
-        {/* {grants.map((grant) => {
-          <div key={grant.grant_id}>
-            <h3>{grants.grant_name}</h3> 
-            <p>{grants.grant_description}</p>
-          </div>
-        })} */}
+        {grants.map((grant) => {
+          console.log(grant)
+          return (
+            <div className={classes.profilegrantcard} key={grant.grant_id}>
+              <h4>{grant.title}</h4> 
+              <p>{grant.detailMain}</p>
+            </div>
+          )
+        })}
       </Paper>
     </>
   );

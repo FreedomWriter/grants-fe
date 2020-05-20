@@ -1,4 +1,5 @@
 import React from "react";
+
 import { makeStyles } from "@material-ui/core/styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Button from "@material-ui/core/Button";
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LeftPanel() {
+export default function LeftPanel({ applicantDetails }) {
   const classes = useStyles();
 
   return (
@@ -31,7 +32,7 @@ export default function LeftPanel() {
           </Button>
         </div>
         <div>Visit Our website:</div>
-        <a href="#">www.writemygrants.net</a>
+        <a href="#">{applicantDetails.website}</a>
       </div>
     </>
   );

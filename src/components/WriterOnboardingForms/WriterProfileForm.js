@@ -14,39 +14,28 @@ import WriterEducationForm from "./WriterEducationForm";
 import WriterWorkHistoryForm from "./WriterWorkHistoryForm";
 import WriterBioForm from "./WriterBioForm";
 import WriterReview from "./WriterReviewForm";
-
 import { v4 as uuidv4 } from "uuid";
-
 import { useStyles } from "./WriterForm.styles";
-
 const steps = ["Contact", "Education", "Work History", "Bio", "Review"];
-
 export default function WriterProfileForm() {
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
-
   const userId = useSelector((state) => state.login.user.id);
   // active step keeps track of which child component will render
   const [activeStep, setActiveStep] = useState(0);
-
   /* change this value to `true` to disable the button until user completes form - currently set to false for development purposes */
   const [disableButton, setDisableButton] = useState(true);
-
   const [disableCollegeSubmitButton, setDisableCollegeSubmitButton] = useState(
     true
   );
-
   const [
     disableWorkHistorySubmitButton,
     setDisableWorkHistorySubmitButton,
   ] = useState(true);
-
   /* enableButton passed down as props to avoid `index.js:1 Warning: Cannot update a component (`ApplicantProfileForm`) while rendering a different component (`OrgInformation`). To locate the bad setState() call inside `OrgInformation`, follow the stack trace` when trying to enable the button in children forms by passing and invoking: `setDisableButton(false)` */
   const enableButton = () => setDisableButton(false);
-
   /* ********************* BEGIN FORM STATE AND SETTERS ********************* */
-
   /* states for each form rendered from this component. rendered here in the parent so the final review form will have access */
   const [contactFormState, setContactFormState] = useState({
     first_name: "",
@@ -56,7 +45,6 @@ export default function WriterProfileForm() {
     zip: "",
     country: "",
   });
-
   const [educationFormState, setEducationFormState] = useState({
     college: "",
     searchCollege: "",
@@ -66,7 +54,6 @@ export default function WriterProfileForm() {
     anticipatedGraduation: "",
     degree: "",
   });
-
   const [workHistoryFormState, setWorkHistoryFormState] = useState({
     company: "",
     position: "",
@@ -75,18 +62,14 @@ export default function WriterProfileForm() {
     currentPosition: true,
     responsibilites: "",
   });
-
   const [bioFormState, setBioFormState] = useState({
     website: "",
     bio: "",
     servicesOffered: "",
   });
-
   /* because users may have attended more than one school, we are currently using a separate state to handle this. REFACTOR to use psuedo POST to global state */
   const [writersColleges, setWritersColleges] = useState([]);
-
   const [writersWorkHistory, setWritersWorkHistory] = useState([]);
-
   /* state for handling error text when input validation is not met */
   const [formHelperText, setFormHelperText] = useState({
     first_name: undefined,
@@ -102,11 +85,8 @@ export default function WriterProfileForm() {
     postion: undefined,
     responsibilites: undefined,
   });
-
   /* ********************* END FORM STATE AND SETTERS ********************* */
-
   /* ********************* BEGIN CHANGE HANDLERS ********************* */
-
   /* multiple change handlers because each one sets state for a different form. rendered here in the parent so the final review form will have access */
   const handleBioChanges = (e) => {
     setBioFormState({
@@ -114,32 +94,26 @@ export default function WriterProfileForm() {
       [e.target.name]: e.target.value,
     });
   };
-
   const handleContactChanges = (e) => {
     setContactFormState({
       ...contactFormState,
       [e.target.name]: e.target.value,
     });
   };
-
   const handleEducationChanges = (e) => {
     setEducationFormState({
       ...educationFormState,
       [e.target.name]: e.target.value,
     });
   };
-
   const handleWorkHistoryChanges = (e) => {
     setWorkHistoryFormState({
       ...workHistoryFormState,
       [e.target.name]: e.target.value,
     });
   };
-
   /* ********************* END CHANGE HANDLERS ********************* */
-
   /* ********************* BEGIN SUBMIT HANDLERS ********************* */
-
   /* submit all form values after rendering WriterReviewForm - handler is invoked dynamically based on which form user is currently viewing */
   const handleSubmit = async () => {
     try {
@@ -159,16 +133,13 @@ export default function WriterProfileForm() {
       console.log(err);
     }
   };
-
   const handleNext = () => {
     setActiveStep(activeStep + 1);
     setDisableButton(true);
   };
-
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
   /* currently sets users values to writersColleges state, which holds an array, allowing for multiple colleges per writer and clears educationFormState, REFACTOR ties into refactor in WriterProfileForm.js line 66  */
   const handleCollegeSubmit = () => {
     setWritersColleges([
@@ -192,10 +163,8 @@ export default function WriterProfileForm() {
       anticipatedGraduation: "",
       degree: "",
     });
-
     enableButton();
   };
-
   /* similar implementation to how multiple colleges are being handled - needs similar REFACTOR */
   const handleWorkHistorySubmit = () => {
     setWritersWorkHistory([
@@ -219,15 +188,11 @@ export default function WriterProfileForm() {
       responsibilites: "",
     });
   };
-
   const handleWriterBioSubmit = () => {
     console.log(`Bio submit!!!!!!!!!`);
   };
-
   /* ********************* END SUBMIT HANDLERS ********************* */
-
   /* ********************* BEGIN INPUT VALIDATION ********************* */
-
   const handleValidation = (e) => {
     // validation function handles all inputs where the only validation is that the string must be greater than 2
     const validator = (formValue) => {
@@ -308,11 +273,8 @@ export default function WriterProfileForm() {
         break;
     }
   };
-
   /* ********************* END INPUT VALIDATION ********************* */
-
   /* ********************* BEGIN STEP HANDLER ********************* */
-
   /* children components render different forms as user moves through the registration process. getStepContent is invoked in the return of this component and passed the activeStep slice of state which is being changed by the handle submit of the back and next buttons */
   function getStepContent(step) {
     switch (step) {
@@ -406,9 +368,7 @@ export default function WriterProfileForm() {
         throw new Error("Unknown step");
     }
   }
-
   /* ********************* END STEP HANDLER ********************* */
-
   return (
     <>
       <CssBaseline />
@@ -444,7 +404,6 @@ export default function WriterProfileForm() {
                   Back
                 </Button>
               )}
-
               <Button
                 variant="contained"
                 color="primary"

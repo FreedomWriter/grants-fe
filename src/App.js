@@ -16,12 +16,10 @@ import LandingPage from "./components/landingPage/LandingPage.js";
 import GrantsList from "./components/applicant-profile/GrantsList";
 import GrantsForm from "./components/applicant-profile/GrantsForm";
 import GrantsPage from "./components/grantsPage/GrantsPage.jsx";
-
 function App() {
   const loggedIn = useSelector((state) => state.login.loggedIn);
   const user = useSelector((state) => state.login.user);
   const userType = useSelector((state) => state.login.usertype);
-
   return (
     <Router>
       <ThemeProvider theme={theme}>
@@ -67,5 +65,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;
