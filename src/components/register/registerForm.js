@@ -38,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  link: {
+    textDecoration: 'none',
+  },
 }));
 
 export default function RegisterForm() {
@@ -128,19 +131,21 @@ export default function RegisterForm() {
                 />
               </Grid>
               <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="user-type">User Type</InputLabel>
-                <Select
-                  labelId="user-type"
+                <TextValidator
+                  select
+                  variant="outlined"
                   value={values.userType}
                   onChange={handleSelectChange}
                   label="User Type"
+                  validators={["required"]}
+                  errorMessages={["This field is required"]}
                 >
                   <MenuItem value="">
                     <em>Select User Type</em>
                   </MenuItem>
                   <MenuItem value="writer">Grant Writer</MenuItem>
                   <MenuItem value="applicant">Grant Applicant</MenuItem>
-                </Select>
+                </TextValidator>
               </FormControl>
               <Grid item xs={12}>
                 <TextValidator
@@ -178,13 +183,13 @@ export default function RegisterForm() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              disabled={isDisabled}
+              // disabled={isDisabled}
             >
               Sign Up
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <Link to="/LoginForm" variant="body2">
+                <Link to="/LoginForm" variant="body2" className={classes.link}>
                   Already have an account? Sign In
                 </Link>
               </Grid>
