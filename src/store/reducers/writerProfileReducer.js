@@ -5,19 +5,7 @@ import {
 } from "../actions/writerProfileAction.js";
 
 const initialState = {
-  writerProfile: {
-    id: "",
-    writer_id: "",
-    bio: "",
-    website: "",
-    first_name: "",
-    last_name: "",
-    sector: "",
-    city: "",
-    state: "",
-    zip: "",
-    country: "",
-  },
+  writerProfile: {},
   isLoading: false,
 };
 
@@ -38,7 +26,7 @@ const writerReducer = (
       return {
         ...state,
         isFetching: false,
-        writerProfile: action.payload.writerProfile,
+        writerProfile: action.payload,
       };
     case FETCH_WRITER_FAILURE:
       return {
