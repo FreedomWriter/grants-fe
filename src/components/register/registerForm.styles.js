@@ -22,4 +22,7 @@ export const useStyles = makeStyles((theme) => ({
         // marginTop: theme.spacing(2),
         width: "100%",
     },
+    link: {
+        textDecoration: 'none',
+    },
 }));
