@@ -30,6 +30,7 @@ export const postLogin = (value) => (dispatch) => {
 
 export const postRegister = (value) => async (dispatch) => {
   dispatch({ type: REGISTER_POST_START });
+  console.log(value);
   return axiosWithAuth()
     .post(`/auth/register`, value)
     .then((res) => {

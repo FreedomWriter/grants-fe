@@ -27,7 +27,7 @@ export const fetchFailure = (err) => {
 export const fetchWriters = (id) => async (dispatch) => {
   dispatch(fetchStart());
 
-  const endPoint = `auth/writers/${id}`;
+  const endPoint = `writers/${id}`;
   try {
     const response = await axiosWithAuth().get(endPoint);
     dispatch(fetchSuccess(response.data));
