@@ -63,12 +63,13 @@ const WriterProfile = (props) => {
 
   //Redux
   const writer = useSelector((state) => state.writerprofile);
+  const userId = useSelector((state) => state.login.userId);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchWriters(writer));
+    dispatch(fetchWriters(userId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [userId]);
   console.log(writer);
   //
 
