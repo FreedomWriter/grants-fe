@@ -1,4 +1,3 @@
-import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -50,8 +49,8 @@ export const useStyles = makeStyles((theme) => ({
     paper: {
         height: 350,
         width: 250,  
-        // margin not taking for some reason
-        margin: '10% 70% 25% 69%',
+        margin: theme.spacing(5),
+
         paddingTop: '10%',
         textAlign: 'center',
     },
