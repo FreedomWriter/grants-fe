@@ -1,4 +1,6 @@
-import { makeStyles } from "@material-ui/core/styles";
+import {
+  makeStyles
+} from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => ({
   userPicture: {
@@ -32,7 +34,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   userName: {
     textAlign: "center",
-    fontSize: "0.875rem",
+    fontSize: "0.850rem",
     fontFamily: "Roboto, Helvetica, Arial, sansSerif",
     fonWeight: "500",
     lineHeight: "1.57",
@@ -42,7 +44,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("lg")]: {
       fontSize: "1.2rem",
-      width: "87%",
+      width: "90%",
     },
   },
   userServices: {
@@ -124,7 +126,7 @@ export const useStyles = makeStyles((theme) => ({
       marginBottom: "2.5%",
     },
     [theme.breakpoints.up("lg")]: {
-      marginLeft: "20%",
+      marginLeft: "20.5%",
       width: "5em",
       height: "5em",
       marginTop: "12%",
@@ -143,6 +145,7 @@ export const useStyles = makeStyles((theme) => ({
       padding: "33.5%",
     },
     [theme.breakpoints.up("lg")]: {
+      width: "30%",
       padding: "30%",
       fontSize: "1rem",
     },
