@@ -62,7 +62,7 @@ const WriterProfile = (props) => {
   const classes = useStyles();
 
   //Redux
-  const writer = useSelector((state) => state.writerprofile);
+  const writer = useSelector((state) => state.writerprofile.writerProfile);
   const userId = useSelector((state) => state.login.userId);
   const dispatch = useDispatch();
 
@@ -91,11 +91,13 @@ const WriterProfile = (props) => {
             classes={{ root: classes.rootIcon }}
             fontSize="large"
           />
-          <div className={classes.userName}>
-            {" "}
-            {writer.first_name}
-            {writer.last_name}
-          </div>
+          {writer && (
+            <div className={classes.userName}>
+              {" "}
+              {writer.profile.first_name}
+              {writer.profile.last_name}
+            </div>
+          )}
           <Button
             classes={{ root: classes.rootButton, label: classes.labelButton }}
             variant="contained"
@@ -104,19 +106,22 @@ const WriterProfile = (props) => {
           >
             Direct Message
           </Button>
-
-          <Link
-            classes={{ root: classes.rootLink }}
-            href="#"
-            onClick={preventDefault}
-          >
-            {writer.website}
-          </Link>
+          {writer && (
+            <Link
+              classes={{ root: classes.rootLink }}
+              href="#"
+              onClick={preventDefault}
+            >
+              {writer.profile.website}
+            </Link>
+          )}
         </div>
-        <h3 className={classes.userEducation}>
-          Bio:
-          <div className={classes.bodyText}>{writer.bio}</div>
-        </h3>
+        {writer && (
+          <h3 className={classes.userEducation}>
+            Bio:
+            <div className={classes.bodyText}>{writer.profile.bio}</div>
+          </h3>
+        )}
         <div></div>
         <h3 className={classes.userEducation}>
           Background:
