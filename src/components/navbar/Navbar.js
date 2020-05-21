@@ -6,11 +6,10 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import InputBase from "@material-ui/core/InputBase";
 import Badge from "@material-ui/core/Badge";
-import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+import ChatIcon from "@material-ui/icons/Chat";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import MoreIcon from "@material-ui/icons/MoreVert";
 
 import { useStyles } from "./Navbar.styles";
@@ -25,8 +24,8 @@ export default function PrimarySearchAppBar() {
   const [searchTerm, setSearchTerm] = useState("");
 
   // should ultimately come from global state
-  const [notifications, setNotifications] = useState(15);
-  const [messages, setMessages] = useState(5);
+  const [favorites, setFavorites] = useState(15);
+  const [chats, setChats] = useState(5);
 
   const isMenuOpen = Boolean(anchorEl);
 
@@ -88,27 +87,24 @@ export default function PrimarySearchAppBar() {
           </div>
           <div className={classes.sectionDesktop}>
             <IconButton
-              aria-label={`show ${messages} new mails`}
+              aria-label={`show ${favorites} new Favorite`}
               color="inherit"
             >
               <Badge
-                data-testid="messageBadge"
-                badgeContent={messages}
-                color="secondary"
-              >
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              aria-label={`show ${notifications} new notifications`}
-              color="inherit"
-            >
-              <Badge
-                badgeContent={notifications}
+                badgeContent={favorites}
                 color="secondary"
                 data-testid="notificationBadge"
               >
-                <NotificationsIcon />
+                <FavoriteIcon />
+              </Badge>
+            </IconButton>
+            <IconButton aria-label={`show ${chats} new Chats`} color="inherit">
+              <Badge
+                data-testid="messageBadge"
+                badgeContent={chats}
+                color="secondary"
+              >
+                <ChatIcon />
               </Badge>
             </IconButton>
             <IconButton
@@ -140,8 +136,8 @@ export default function PrimarySearchAppBar() {
         mobileMenuId={mobileMenuId}
         handleMobileMenuClose={handleMobileMenuClose}
         handleProfileMenuOpen={handleProfileMenuOpen}
-        messages={messages}
-        notifications={notifications}
+        chats={chats}
+        Favorite={favorites}
       />
       <MenuComponent
         anchorEl={anchorEl}

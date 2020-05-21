@@ -275,7 +275,9 @@ export default function WriterProfileForm() {
   };
   /* ********************* END INPUT VALIDATION ********************* */
   /* ********************* BEGIN STEP HANDLER ********************* */
-  /* children components render different forms as user moves through the registration process. getStepContent is invoked in the return of this component and passed the activeStep slice of state which is being changed by the handle submit of the back and next buttons */
+
+  /* children components render different forms as user moves through the registration process. getStepContent is invoked in the return of this component and passed the activeStep slice of state which is being changed by the handle submit of the back and next buttons. All the prop drilling is because the Review form needs access to all the props, might be worth moving to global state to clean the code up */
+
   function getStepContent(step) {
     switch (step) {
       case 0:

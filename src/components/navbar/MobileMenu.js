@@ -3,16 +3,16 @@ import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+import ChatIcon from "@material-ui/icons/Chat";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 export default function MobileMenu({
   mobileMoreAnchorEl,
   mobileMenuId,
   handleMobileMenuClose,
   handleProfileMenuOpen,
-  messages,
-  notifications,
+  chats,
+  favorites,
 }) {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   return (
@@ -27,26 +27,23 @@ export default function MobileMenu({
         onClose={handleMobileMenuClose}
       >
         <MenuItem>
-          <IconButton
-            aria-label={`show ${messages} new messages`}
-            color="inherit"
-          >
-            <Badge badgeContent={messages} color="secondary">
-              <MailIcon />
+          <IconButton aria-label={`show ${chats} new chats`} color="inherit">
+            <Badge badgeContent={chats} color="secondary">
+              <ChatIcon />
             </Badge>
           </IconButton>
-          <p>Messages</p>
+          <p>chats</p>
         </MenuItem>
         <MenuItem>
           <IconButton
-            aria-label={`show ${notifications} new notifications`}
+            aria-label={`show ${favorites} new favorites`}
             color="inherit"
           >
-            <Badge badgeContent={notifications} color="secondary">
-              <NotificationsIcon />
+            <Badge badgeContent={favorites} color="secondary">
+              <FavoriteIcon />
             </Badge>
           </IconButton>
-          <p>Notifications</p>
+          <p>Favorites</p>
         </MenuItem>
         <MenuItem onClick={handleProfileMenuOpen}>
           <IconButton
@@ -54,9 +51,7 @@ export default function MobileMenu({
             aria-controls="primary-search-account-menu"
             aria-haspopup="true"
             color="inherit"
-          >
-            {/* <AccountCircle /> */}
-          </IconButton>
+          ></IconButton>
           <p>More Options</p>
         </MenuItem>
       </Menu>
