@@ -67,24 +67,18 @@ export const getUserInfo = (info) => (dispatch) => {
   axios
     .get(`${userInfo}`)
     .then((res) => {
-      // console.log("getUserInfo>res: ", res);
-      // console.log("getUserInfo>info: ", info);
       dispatch({ type: GET_USER_INFO_SUCCESS, payload: userDetails[1] });
     })
     .catch((err) => {
-      // console.log("getUserInfo>err: ", err);
       dispatch({ type: GET_USER_INFO_FAIL, payload: { error: err.message } });
     });
 };
 
 export const getGrantsInfo = (info) => (dispatch) => {
   dispatch({ type: GET_GRANTS_INFO_START });
-  // axiosWithAuth()
   axios
     .get(`${grantsInfo}`)
     .then((res) => {
-      // console.log("getGrantsInfo>res: ", res);
-      // console.log("getGrantsInfo>info: ", info);
       dispatch({
         type: GET_GRANTS_INFO_SUCCESS,
         payload: grantDetails.openGrants,

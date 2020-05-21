@@ -27,9 +27,23 @@ const Homepage = () => {
   const grants = useSelector((state) => {
     return state.homePage.grantsInfo;
   });
+  const state = useSelector((state) => {
+    return state;
+  });
   const user = useSelector((state) => {
     return state.homePage.userInfo;
   });
+  const testUser = useSelector((state) => {
+    console.log("Homepage>testUser:state: ", state);
+    if (state.login.usertype.toLowerCase() === "writer") {
+      return state.writerprofile;
+    } else if (state.login.usertype.toLowerCase() === "applicant") {
+      return state.profileInfo;
+    } else {
+      return "failed usertype test";
+    }
+  });
+
   const status = useSelector((state) => {
     return {
       isLoadingUser: state.homePage.isLoadingUser,
@@ -41,7 +55,9 @@ const Homepage = () => {
   //=====================
 
   console.log("Homepage: user, grants: ", user, grants);
-  console.log("Homepage: status: ", status);
+  console.log("Homepage: state: ", state.login.usertype);
+  // console.log("Homepage: state: ", state);
+  console.log("Homepage: testUser: ", testUser);
 
   const classes = useStyles();
 

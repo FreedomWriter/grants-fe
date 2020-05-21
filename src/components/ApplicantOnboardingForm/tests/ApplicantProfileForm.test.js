@@ -89,9 +89,7 @@ test("Next Button is visible", () => {
   expect(nextButton).toBeVisible();
 });
 
-/* ********************** Button currently not disable FIX IT ********************** */
-
-test("Next Button is not disabled", () => {
+test("Next Button is disabled", () => {
   const { getByText } = render(<ApplicantProfileForm />, {
     initialState: {
       user: {},
@@ -103,5 +101,5 @@ test("Next Button is not disabled", () => {
   });
   const nextButton = getByText(/next/i);
 
-  expect(nextButton).not.toBeDisabled();
+  expect(nextButton).toBeDisabled();
 });
