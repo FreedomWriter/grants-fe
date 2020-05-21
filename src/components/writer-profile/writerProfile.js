@@ -70,7 +70,6 @@ const WriterProfile = (props) => {
     dispatch(fetchWriters(userId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
-  console.log(writer);
   //
 
   const preventDefault = (event) => event.preventDefault();

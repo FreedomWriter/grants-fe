@@ -1,39 +1,41 @@
-import React, { useEffect }from "react";
+import React, { useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import BioCard from "./BioCard";
 import Grants from "./Grants";
 import LeftPanel from "./LeftPanel";
-import { useSelector, useDispatch} from 'react-redux'
-import { getProfileInfo } from '../../store/actions/ApplicantActions'
+import { useSelector, useDispatch } from "react-redux";
+import { getProfileInfo } from "../../store/actions/ApplicantActions";
 
 import { useStyles } from "./ApplicantProfile.styles";
 
 export default function ApplicantProfile() {
   const dispatch = useDispatch();
-  const applicant_id = useSelector(state => state.login.userId)
-  const applicantDetails = useSelector(state => state.profileInfo.applicantProfileDetails)
-  const grants = useSelector(state => state.grants)
+  const applicant_id = useSelector((state) => state.login.userId);
+  const applicantDetails = useSelector(
+    (state) => state.profileInfo.applicantProfileDetails
+  );
+  const grants = useSelector((state) => state.grants);
   const classes = useStyles();
 
-  console.log(applicantDetails)
+  console.log(applicantDetails);
 
   useEffect(() => {
     dispatch(getProfileInfo(applicant_id));
-  }, [dispatch])  
+  }, [dispatch]);
 
   return (
     <div className={classes.root}>
       <Grid className={classes.profile}>
         <div className={classes.leftpanel}>
-          <LeftPanel applicantDetails={applicantDetails}/>
+          <LeftPanel applicantDetails={applicantDetails} />
         </div>
         <div>
-          <BioCard applicantDetails={applicantDetails}/>
+          <BioCard applicantDetails={applicantDetails} />
         </div>
       </Grid>
       <Grid className={classes.grants}>
         <div>
-          <Grants grants={grants}/>
+          <Grants grants={grants} />
         </div>
       </Grid>
     </div>
