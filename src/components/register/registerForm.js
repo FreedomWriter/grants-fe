@@ -16,9 +16,7 @@ import { useHistory } from "react-router-dom";
 export default function RegisterForm() {
   const dispatch = useDispatch();
   const classes = useStyles();
-
   const history = useHistory();
-
   const [isDisabled, setIsDisabled] = useState(true);
   const [values, setValues] = useState({
     email: "",
@@ -26,7 +24,6 @@ export default function RegisterForm() {
     password: "",
     confirmPassword: "",
   });
-
   useEffect(() => {
     if (
       values.email &&
@@ -37,21 +34,18 @@ export default function RegisterForm() {
       return setIsDisabled(false);
     }
   }, [values.email, values.userType, values.password, values.confirmPassword]);
-
   ValidatorForm.addValidationRule("isPasswordMatch", (value) => {
     if (value !== values.password) {
       return false;
     }
     return true;
   });
-
   const handleChange = (e) => {
     setValues({
       ...values,
       [e.target.name]: e.target.value,
     });
   };
-
   const handleSelectChange = (e) => {
     setValues({
       ...values,
@@ -72,7 +66,6 @@ export default function RegisterForm() {
     );
     return history.push("/onboarding");
   };
-
   return (
     <div className="register">
       <Container component="main" maxWidth="xs">

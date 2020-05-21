@@ -11,30 +11,24 @@ import { useStyles } from "./loginForm.styles";
 import { Button } from "@material-ui/core";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { postLogin } from "../../store/actions/LoginActions";
-
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
-
   const handleChange = (e) => {
     setUser({
       ...user,
       [e.target.name]: e.target.value,
     });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(postLogin(user)).then(() => history.push("/profile"));
   };
-
   const classes = useStyles();
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -101,5 +95,4 @@ const Login = () => {
     </Container>
   );
 };
-
 export default Login;
