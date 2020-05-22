@@ -5,6 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import ChatIcon from "@material-ui/icons/Chat";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 
 export default function MobileMenu({
   mobileMoreAnchorEl,
@@ -15,6 +16,8 @@ export default function MobileMenu({
   favorites,
 }) {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  console.log(favorites);
+  // const favorites = useSelector((state) => state.favorites.favoritesCount);
   return (
     <>
       <Menu
@@ -40,7 +43,8 @@ export default function MobileMenu({
             color="inherit"
           >
             <Badge badgeContent={favorites} color="secondary">
-              <FavoriteIcon />
+              {/* if user has favorited a grant, the icon renders as a filled in heart with the number of favorties, if the user has not faved agrant, the icon is a heart border  */}
+              {favorites === 0 ? <FavoriteBorderIcon /> : <FavoriteIcon />}
             </Badge>
           </IconButton>
           <p>Favorites</p>

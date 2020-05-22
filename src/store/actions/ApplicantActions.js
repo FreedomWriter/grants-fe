@@ -1,4 +1,3 @@
-import axios from "axios";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 export const GET_PROFILEINFO_START = "GET_PROFILEINFO_START";
@@ -19,7 +18,6 @@ export const getProfileInfo = (applicant_id) => (dispatch) => {
   axiosWithAuth()
     .get(`/applicants/${applicant_id}`)
     .then((res) => {
-      console.log(res)
       dispatch({
         type: GET_PROFILEINFO_SUCCESS,
         payload: res.data.profile,

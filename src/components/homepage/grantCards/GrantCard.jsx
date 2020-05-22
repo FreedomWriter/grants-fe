@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
@@ -18,11 +17,6 @@ import ChatRoundedIcon from "@material-ui/icons/ChatRounded";
 
 import { useStyles } from "./GrantCardStyles.jsx";
 
-import { connect } from "react-redux";
-import {
-  getUserInfo,
-  getGrantsInfo,
-} from "../../../store/actions/HomepageActions.js";
 import {
   postFavorite,
   deleteFavorite,
@@ -31,7 +25,6 @@ import {
 export default function GrantCard(props) {
   const dispatch = useDispatch();
   const grant = props.data;
-  // console.log("GrantCard: ", grant);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [faved, setFaved] = React.useState(false);

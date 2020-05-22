@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
@@ -11,7 +11,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import ChatIcon from "@material-ui/icons/Chat";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 
 import MoreIcon from "@material-ui/icons/MoreVert";
@@ -30,7 +29,7 @@ export default function PrimarySearchAppBar() {
   const favorites = useSelector((state) => state.favorites.favoritesCount);
   // should ultimately come from global state
   // const [favorites, setFavorites] = useState(15);
-  const [chats, setChats] = useState(5);
+  const [chats] = useState(5);
 
   const isMenuOpen = Boolean(anchorEl);
 
@@ -92,7 +91,6 @@ export default function PrimarySearchAppBar() {
           </div>
           <div className={classes.sectionDesktop}>
             <IconButton
-
               aria-label={`show ${favorites} new Favorite`}
               color="inherit"
             >
@@ -109,7 +107,6 @@ export default function PrimarySearchAppBar() {
               <Badge
                 data-testid="messageBadge"
                 badgeContent={chats}
-
                 color="secondary"
               >
                 <ChatIcon />
@@ -145,7 +142,7 @@ export default function PrimarySearchAppBar() {
         handleMobileMenuClose={handleMobileMenuClose}
         handleProfileMenuOpen={handleProfileMenuOpen}
         chats={chats}
-        Favorite={favorites}
+        favorites={favorites}
       />
       <MenuComponent
         anchorEl={anchorEl}

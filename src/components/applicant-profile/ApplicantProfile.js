@@ -21,7 +21,7 @@ export default function ApplicantProfile() {
 
   useEffect(() => {
     dispatch(getProfileInfo(applicant_id));
-  }, [dispatch]);
+  }, [dispatch, applicant_id]);
 
   return (
     <div className={classes.root}>
