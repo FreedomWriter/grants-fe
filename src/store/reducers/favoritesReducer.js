@@ -23,8 +23,6 @@ const favoritesReducer = (state = initialState, action) => {
         isLoading: true,
       };
     case FAVORITE_POST_SUCCESS:
-      console.log(`STATE.FAVORITES`, state.favorites);
-      console.log(action.payload);
       return {
         ...state,
         favoritesCount: state.favoritesCount + 1,

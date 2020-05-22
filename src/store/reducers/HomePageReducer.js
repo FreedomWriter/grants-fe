@@ -17,7 +17,6 @@ const initialState = {
 };
 
 export const HomePageReducer = (state = initialState, { type, payload }) => {
-  // console.log("HomePageReducer:type, payload ", type, payload);
   switch (type) {
     case GET_USER_INFO_START:
       return {
@@ -26,7 +25,6 @@ export const HomePageReducer = (state = initialState, { type, payload }) => {
         isLoadingUser: true,
       };
     case GET_USER_INFO_SUCCESS:
-      console.log("getUserInfoSuccess");
       return {
         ...state,
         error: "",

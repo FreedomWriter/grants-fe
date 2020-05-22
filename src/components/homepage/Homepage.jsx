@@ -31,20 +31,20 @@ const Homepage = () => {
   const user = useSelector((state) => {
     return state.homePage.userInfo;
   });
-  const testUser = useSelector((state) => {
-    if (state.login) {
-      const userType = state.login.usertype.toLowerCase();
-      switch (userType) {
-        case "writer":
-          return state.writerprofile;
-        case "applicant":
-          return state.profileInfo;
-        default:
-          console.log("userType error");
-          break;
-      }
-    }
-  });
+  // const testUser = useSelector((state) => {
+  //   if (state.login) {
+  //     const userType = state.login.usertype.toLowerCase();
+  //     switch (userType) {
+  //       case "writer":
+  //         return state.writerprofile;
+  //       case "applicant":
+  //         return state.profileInfo;
+  //       default:
+  //         console.log("userType error");
+  //         break;
+  //     }
+  //   }
+  // });
 
   // const status = useSelector((state) => {
   //   return {
@@ -55,8 +55,6 @@ const Homepage = () => {
   //   };
   // });
   //=====================
-
-  console.log("Homepage: testUser: ", testUser);
 
   const classes = useStyles();
 

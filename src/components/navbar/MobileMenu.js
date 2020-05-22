@@ -16,8 +16,7 @@ export default function MobileMenu({
   favorites,
 }) {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  console.log(favorites);
-  // const favorites = useSelector((state) => state.favorites.favoritesCount);
+
   return (
     <>
       <Menu
