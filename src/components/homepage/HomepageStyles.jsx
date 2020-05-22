@@ -1,5 +1,4 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { red } from "@material-ui/core/colors";
 
 //These can be imported via globals...
 const color = {
