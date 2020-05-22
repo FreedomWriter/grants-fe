@@ -11,7 +11,9 @@ import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import ChatIcon from "@material-ui/icons/Chat";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+
 import MoreIcon from "@material-ui/icons/MoreVert";
 
 import { useStyles } from "./Navbar.styles";
@@ -90,6 +92,7 @@ export default function PrimarySearchAppBar() {
           </div>
           <div className={classes.sectionDesktop}>
             <IconButton
+
               aria-label={`show ${favorites} new Favorite`}
               color="inherit"
             >
@@ -106,6 +109,7 @@ export default function PrimarySearchAppBar() {
               <Badge
                 data-testid="messageBadge"
                 badgeContent={chats}
+
                 color="secondary"
               >
                 <ChatIcon />
