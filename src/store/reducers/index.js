@@ -9,6 +9,7 @@ import writerProfileReducer from "./writerProfileReducer.js";
 import onboardingReducer from "./onboardingReducer";
 import collegesReducer from "./collegesReducer";
 import grantsPageReducer from "./GrantsPageReducer.js";
+import favoritesReducer from "./favoritesReducer";
 
 const persistConfig = {
   key: "root",
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   onboarding: onboardingReducer,
   collegeList: collegesReducer,
   grantsPage: grantsPageReducer,
+  favorites: favoritesReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

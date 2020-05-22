@@ -11,7 +11,7 @@ const UserCardApplicant = (props) => {
   const user = props.details;
   const classes = useStyles();
 
-  console.log("UserCardApplicant....", user.type);
+  // console.log("UserCardApplicant....", user.type);
 
   return (
     <Card className={`${classes.userInfo} ${classes.applicant}`}>

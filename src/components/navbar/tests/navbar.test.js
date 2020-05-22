@@ -45,6 +45,9 @@ test("search field is visible", () => {
           usertype: "",
         },
         isLoading: false,
+        favorites: {
+          favortiesCount: 0,
+        },
       },
     }
   );
@@ -66,6 +69,9 @@ test("'Granted' homepage link is visible", () => {
         },
         login: {
           usertype: "",
+        },
+        favorites: {
+          favortiesCount: 0,
         },
         isLoading: false,
       },
