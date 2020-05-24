@@ -1,14 +1,17 @@
+// import libraries
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container } from "@material-ui/core";
 
-// import Card1 from "./grantCards/Card1.jsx";
-import GrantCard from "./grantCards/GrantCard.jsx";
+// import components
+import GrantCard from "../grantsPage/grantCards/GrantCard.jsx";
 import UserCardWriter from "./userCard/UserCardWriter.jsx";
 import UserCardApplicant from "./userCard/UserCardApplicant.jsx";
 
+// import styling
 import { useStyles } from "./HomepageStyles.jsx";
 
+// import actions
 import {
   getUserInfo,
   getGrantsInfo,
@@ -60,7 +63,6 @@ const Homepage = () => {
     };
   });
   //=====================
-
 
   console.log("Homepage: testUser: ", testUser);
 

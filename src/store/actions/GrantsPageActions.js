@@ -44,12 +44,9 @@ const grantsInfo = `${apiBase}/posts`;
 export const getGrantsInfo = (info) => (dispatch) => {
   console.log("GrantsPageActions.js>grantsInfo: ", grantDetails);
   dispatch({ type: GET_GRANTS_INFO_START });
-  // axiosWithAuth()
   axios
     .get(`${grantsInfo}`)
     .then((res) => {
-      // console.log("getGrantsInfo>res: ", res);
-      // console.log("getGrantsInfo>info: ", info);
       dispatch({
         type: GET_GRANTS_INFO_SUCCESS,
         payload: grantDetails.openGrants,

@@ -1,7 +1,8 @@
+// import libraries
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-
+// import components
 import loginReducer from "./loginReducer";
 import HomePageReducer from "./HomePageReducer";
 import applicantReducer from "./applicantReducer";

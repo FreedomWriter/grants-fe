@@ -19,10 +19,10 @@ export const getProfileInfo = (applicant_id) => (dispatch) => {
   axiosWithAuth()
     .get(`/applicants/${applicant_id}`)
     .then((res) => {
-      console.log(res)
+      console.log(res);
       dispatch({
         type: GET_PROFILEINFO_SUCCESS,
-        payload: res.data.profile,
+        payload: res.data,
       });
     })
     .catch((err) => {

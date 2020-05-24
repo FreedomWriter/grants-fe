@@ -4,21 +4,22 @@ import { useStyles } from "./ApplicantProfile.styles";
 import Grid from "@material-ui/core/Grid";
 
 const BioCard = ({ applicantDetails }) => {
+  console.log("asldkfj: ", applicantDetails);
   const classes = useStyles();
   return (
     <>
       <Grid className={classes.biosection}>
         {applicantDetails.org_name === "" ? (
-            <h1>{applicantDetails.first_name} {applicantDetails.last_name} </h1>
-          ) : (
-            <h1>{applicantDetails.org_name}</h1>
-          )}
+          <h1>
+            {applicantDetails.first_name} {applicantDetails.last_name}{" "}
+          </h1>
+        ) : (
+          <h1>{applicantDetails.org_name}</h1>
+        )}
         <h2>Sector: {applicantDetails.sector}</h2>
       </Grid>
       <Paper className={classes.profilepaper}>
-        <p>
-          {applicantDetails.bio}
-        </p>
+        <p>{applicantDetails.bio}</p>
       </Paper>
     </>
   );

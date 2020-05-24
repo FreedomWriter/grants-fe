@@ -1,9 +1,10 @@
+// import libraries
 import React from "react";
-// import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./components/globals/theme";
 import { useSelector } from "react-redux";
+// import components
 import ApplicantProfile from "./components/applicant-profile/ApplicantProfile";
 import Navbar from "./components/navbar/Navbar";
 import WriterProfile from "./components/writer-profile/writerProfile.js";
@@ -16,6 +17,7 @@ import LandingPage from "./components/landingPage/LandingPage.js";
 import GrantsList from "./components/applicant-profile/GrantsList";
 import GrantsForm from "./components/applicant-profile/GrantsForm";
 import GrantsPage from "./components/grantsPage/GrantsPage.jsx";
+//
 function App() {
   const loggedIn = useSelector((state) => state.login.loggedIn);
   const user = useSelector((state) => state.login.user);
