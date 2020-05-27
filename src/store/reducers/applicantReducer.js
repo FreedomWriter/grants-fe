@@ -2,12 +2,12 @@ import {
   GET_PROFILEINFO_START,
   GET_PROFILEINFO_SUCCESS,
   GET_PROFILEINFO_FAILURE,
-  POST_APPLICANTGRANTS_START,
-  POST_APPLICANTGRANTS_SUCCESS,
-  POST_APPLICANTGRANTS_FAILURE,
-  GET_APPLICANTGRANTS_START,
-  GET_APPLICANTGRANTS_SUCCESS,
-  GET_APPLICANTGRANTS_FAILURE,
+  POST_GRANTS_START,
+  POST_GRANTS_SUCCESS,
+  POST_GRANTS_FAILURE,
+  PUT_GRANTS_START,
+  PUT_GRANTS_SUCCESS,
+  PUT_GRANTS_FAILURE,
 } from "../actions/ApplicantActions";
 
 const initialState = {
@@ -38,38 +38,38 @@ const applicantReducer = (state = initialState, action) => {
         isLoading: false,
       };
 
-    case POST_APPLICANTGRANTS_START:
+    case POST_GRANTS_START:
       return {
         ...state,
         isLoading: true,
       };
 
-    case POST_APPLICANTGRANTS_SUCCESS:
+    case POST_GRANTS_SUCCESS:
       return {
         grants: [...state.grants, action.payload],
         isLoading: false,
       };
 
-    case POST_APPLICANTGRANTS_FAILURE:
+    case POST_GRANTS_FAILURE:
       return {
         ...state,
         error: action.payload,
         isLoading: false,
       };
 
-    case GET_APPLICANTGRANTS_START:
+    case PUT_GRANTS_START:
       return {
         ...state,
         isLoading: true,
       };
 
-    case GET_APPLICANTGRANTS_SUCCESS:
+    case PUT_GRANTS_SUCCESS:
       return {
         grants: action.payload,
         isLoading: false,
       };
 
-    case GET_APPLICANTGRANTS_FAILURE:
+    case PUT_GRANTS_FAILURE:
       return {
         ...state,
         error: action.payload,

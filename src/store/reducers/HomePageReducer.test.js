@@ -58,10 +58,10 @@ describe("HomePageReducer", () => {
       error: "Test Error",
     });
   });
-  test("should handle GET_GRANTS_INFO_START", () => {
+  test("should handle GET_GRANTS_START", () => {
     expect(
       reducer(undefined, {
-        type: types.GET_GRANTS_INFO_START,
+        type: types.GET_GRANTS_START,
       })
     ).toEqual({
       ...action.payload,

@@ -11,9 +11,9 @@ export const GET_USER_INFO_START = "GET_USER_INFO_START";
 export const GET_USER_INFO_SUCCESS = "GET_USER_INFO_SUCCESS";
 export const GET_USER_INFO_FAIL = "GET_USER_INFO_FAIL";
 
-export const GET_GRANTS_INFO_START = "GET_GRANTS_INFO_START";
-export const GET_GRANTS_INFO_SUCCESS = "GET_GRANTS_INFO_SUCCESS";
-export const GET_GRANTS_INFO_FAIL = "GET_GRANTS_INFO_FAIL";
+export const GET_GRANTS_START = "GET_GRANTS_START";
+export const GET_GRANTS_SUCCESS = "GET_GRANTS_SUCCESS";
+export const GET_GRANTS_FAILURE = "GET_GRANTS_FAILURE";
 
 //==================UNCOMMENT THE SECTION BELOW===============================
 /*
@@ -37,16 +37,16 @@ export const getUserInfo = (info) => (dispatch) => {
 };
 
 export const getGrantsInfo = (info) => (dispatch) => {
-  dispatch({ type: GET_GRANTS_INFO_START });
+  dispatch({ type: GET_GRANTS_START });
   axiosWithAuth()
     .get(`${grantsInfo}`)
     .then((res) => {
       console.log("getGrantsInfo>res: ", res);
-      dispatch({ type: GET_GRANTS_INFO_SUCCESS, payload: res.data });
+      dispatch({ type: GET_GRANTS_SUCCESS, payload: res.data });
     })
     .catch((err) => {
       console.log("getGrantsInfo>err: ", err);
-      dispatch({ type: GET_GRANTS_INFO_FAIL, payload: { error: err.message } });
+      dispatch({ type: GET_GRANTS_FAILURE, payload: { error: err.message } });
     });
 };
 */
@@ -75,18 +75,18 @@ export const getUserInfo = (info) => (dispatch) => {
 };
 
 export const getGrantsInfo = (info) => (dispatch) => {
-  dispatch({ type: GET_GRANTS_INFO_START });
+  dispatch({ type: GET_GRANTS_START });
   axios
     .get(`${grantsInfo}`)
     .then((res) => {
       dispatch({
-        type: GET_GRANTS_INFO_SUCCESS,
+        type: GET_GRANTS_SUCCESS,
         payload: grantDetails.openGrants,
       });
     })
     .catch((err) => {
       console.log("getGrantsInfo>err: ", err);
-      dispatch({ type: GET_GRANTS_INFO_FAIL, payload: { error: err.message } });
+      dispatch({ type: GET_GRANTS_FAILURE, payload: { error: err.message } });
     });
 };
 //==============REMOVE ABOVE ONCE BACKEND IS WORKING================

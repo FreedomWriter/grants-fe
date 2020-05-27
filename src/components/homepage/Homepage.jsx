@@ -18,8 +18,8 @@ const Homepage = () => {
   //======Access necessary actions for Homepage======
   const dispatch = useDispatch(); //can use all actions.
   useEffect(() => {
-    dispatch(getUserInfo()); //should get loaded from global due to login.
-    dispatch(getGrantsInfo());
+    // dispatch(getUserInfo()); //should get loaded from global due to login.
+    // dispatch(getGrantsInfo());
   }, [dispatch]);
   //=====================
 
@@ -72,7 +72,7 @@ const Homepage = () => {
         ) : (
           grants.map((grant) => {
             return (
-              <div className="Card-display" key={grant.id}>
+              <div key={grant.id}>
                 <br />
                 <GrantCard data={grant} />
               </div>
