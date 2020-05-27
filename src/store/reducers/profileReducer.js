@@ -28,14 +28,14 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         profileDetails: action.payload,
-        isLoading: false,
+          isLoading: false,
       };
 
     case GET_PROFILE_FAILURE:
       return {
         ...state,
         error: action.payload,
-        isLoading: false,
+          isLoading: false,
       };
 
     case POST_APPLICANTGRANTS_START:
@@ -47,14 +47,14 @@ const profileReducer = (state = initialState, action) => {
     case POST_APPLICANTGRANTS_SUCCESS:
       return {
         grants: [...state.grants, action.payload],
-        isLoading: false,
+          isLoading: false,
       };
 
     case POST_APPLICANTGRANTS_FAILURE:
       return {
         ...state,
         error: action.payload,
-        isLoading: false,
+          isLoading: false,
       };
 
     case GET_APPLICANTGRANTS_START:
@@ -66,14 +66,14 @@ const profileReducer = (state = initialState, action) => {
     case GET_APPLICANTGRANTS_SUCCESS:
       return {
         grants: action.payload,
-        isLoading: false,
+          isLoading: false,
       };
 
     case GET_APPLICANTGRANTS_FAILURE:
       return {
         ...state,
         error: action.payload,
-        isLoading: false,
+          isLoading: false,
       };
     default:
       return state;
