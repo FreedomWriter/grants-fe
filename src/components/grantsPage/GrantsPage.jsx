@@ -12,35 +12,28 @@ const GrantsPage = () => {
   //======Access necessary actions for GrantsPage======
   const dispatch = useDispatch(); //can use all actions.
   useEffect(() => {
-    console.log("GrantsPage.jsx>dispatch(getGranstInfo) ");
     dispatch(getGrantsInfo());
-  }, []);
+  }, [dispatch]);
   //=====================
 
   //======Access state from reducer for GrantsPage======
   const grants = useSelector((state) => {
     return state.grantsPage.grantsInfo;
   });
-  const status = useSelector((state) => {
-    return {
-      isLoadingGrants: state.grantsPage.isLoadingGrants,
-      error: state.grantsPage.error,
-      reFetch: state.grantsPage.reFetch,
-    };
-  });
+  // const status = useSelector((state) => {
+  //   return {
+  //     isLoadingGrants: state.grantsPage.isLoadingGrants,
+  //     error: state.grantsPage.error,
+  //     reFetch: state.grantsPage.reFetch,
+  //   };
+  // });
   //=====================
-
-  console.log("GrantsPage: user, grants: ", grants);
-  console.log("GrantsPage: status: ", status);
 
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
-      {/* StylesProvider */}
-      {/* GlobalStyles */}
       <Container className={classes.appHeader}>
-        {/* {!grants || grants.length === 0 ? ( */}
         {!grants || grants.length < 1 ? (
           <h4>Loading....</h4>
         ) : (

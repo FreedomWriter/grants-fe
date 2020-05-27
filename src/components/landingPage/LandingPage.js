@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import "../../index.css";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
-import { useStyles } from './LandingPage.styles.js';
+
+import { useStyles } from "./LandingPage.styles.js";
 import SupervisedUserCircleRoundedIcon from "@material-ui/icons/SupervisedUserCircleRounded";
 import MenuBookRoundedIcon from "@material-ui/icons/MenuBookRounded";
 import Grid from "@material-ui/core/Grid";
@@ -72,9 +73,13 @@ export default function LandingPage() {
           <h2 className={classes.userStoriesTitle}>Granted Users</h2>
           <Grid item xs={12}>
             <Grid container justify="center">
-              <Grid item >
+              <Grid item>
                 <Paper className={classes.paper}>
-                  <img src={User1} alt="user-story-one" className={classes.users} />
+                  <img
+                    src={User1}
+                    alt="user-story-one"
+                    className={classes.users}
+                  />
                   <span>
                     <i>
                       Debra White
@@ -89,9 +94,13 @@ export default function LandingPage() {
                   </p>
                 </Paper>
               </Grid>
-              <Grid item >
+              <Grid item>
                 <Paper className={classes.paper}>
-                  <img src={User2} alt="user-story-two" className={classes.users} />
+                  <img
+                    src={User2}
+                    alt="user-story-two"
+                    className={classes.users}
+                  />
                   <span>
                     <i>
                       Michael Gillam
@@ -106,9 +115,13 @@ export default function LandingPage() {
                   </p>
                 </Paper>
               </Grid>
-              <Grid item >
+              <Grid item>
                 <Paper className={classes.paper}>
-                  <img src={User3} alt="user-story-three" className={classes.users} />
+                  <img
+                    src={User3}
+                    alt="user-story-three"
+                    className={classes.users}
+                  />
                   <span>
                     <i>
                       Kathleen Garcia

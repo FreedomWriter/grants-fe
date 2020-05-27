@@ -20,56 +20,46 @@ const Homepage = () => {
   useEffect(() => {
     dispatch(getUserInfo()); //should get loaded from global due to login.
     dispatch(getGrantsInfo());
-  }, []);
+  }, [dispatch]);
   //=====================
 
   //======Access state from reducer for Homepage======
   const grants = useSelector((state) => {
     return state.homePage.grantsInfo;
   });
-  const state = useSelector((state) => {
-    return state;
-  });
+
   const user = useSelector((state) => {
     return state.homePage.userInfo;
   });
-  const testUser = useSelector((state) => {
-    // console.log("Homepage>testUser:state: ", state);
-    if (state.login) {
-      const userType = state.login.usertype.toLowerCase();
-      switch (userType) {
-        case "writer":
-          // console.log("userType = writer");
-          return state.writerprofile;
-        case "applicant":
-          // console.log("userType = applicant");
-          return state.profileInfo;
-        default:
-          console.log("userType error");
-          break;
-      }
-    }
-  });
+  // const testUser = useSelector((state) => {
+  //   if (state.login) {
+  //     const userType = state.login.usertype.toLowerCase();
+  //     switch (userType) {
+  //       case "writer":
+  //         return state.writerprofile;
+  //       case "applicant":
+  //         return state.profileInfo;
+  //       default:
+  //         console.log("userType error");
+  //         break;
+  //     }
+  //   }
+  // });
 
-  const status = useSelector((state) => {
-    return {
-      isLoadingUser: state.homePage.isLoadingUser,
-      isLoadingGrants: state.homePage.isLoadingGrants,
-      error: state.homePage.error,
-      reFetch: state.homePage.reFetch,
-    };
-  });
+  // const status = useSelector((state) => {
+  //   return {
+  //     isLoadingUser: state.homePage.isLoadingUser,
+  //     isLoadingGrants: state.homePage.isLoadingGrants,
+  //     error: state.homePage.error,
+  //     reFetch: state.homePage.reFetch,
+  //   };
+  // });
   //=====================
-
-
-  console.log("Homepage: testUser: ", testUser);
 
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
-      {/* StylesProvider */}
-      {/* GlobalStyles */}
       <Container className={classes.appHeader}>
         {user.type === "writer" ? (
           <UserCardWriter details={user} />
