@@ -1,14 +1,14 @@
 import {
-  GET_PROFILEINFO_START,
-  GET_PROFILEINFO_SUCCESS,
-  GET_PROFILEINFO_FAILURE,
+  GET_PROFILE_START,
+  GET_PROFILE_SUCCESS,
+  GET_PROFILE_FAILURE,
   POST_APPLICANTGRANTS_START,
   POST_APPLICANTGRANTS_SUCCESS,
   POST_APPLICANTGRANTS_FAILURE,
   GET_APPLICANTGRANTS_START,
   GET_APPLICANTGRANTS_SUCCESS,
   GET_APPLICANTGRANTS_FAILURE,
-} from "../actions/ApplicantActions";
+} from "../actions/profileActions";
 
 const initialState = {
   grants: [],
@@ -16,22 +16,22 @@ const initialState = {
   isLoading: false,
 };
 
-const applicantReducer = (state = initialState, action) => {
+const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_PROFILEINFO_START:
+    case GET_PROFILE_START:
       return {
         ...state,
         isLoading: true,
       };
 
-    case GET_PROFILEINFO_SUCCESS:
+    case GET_PROFILE_SUCCESS:
       return {
         ...state,
         profileDetails: action.payload,
         isLoading: false,
       };
 
-    case GET_PROFILEINFO_FAILURE:
+    case GET_PROFILE_FAILURE:
       return {
         ...state,
         error: action.payload,
@@ -80,4 +80,4 @@ const applicantReducer = (state = initialState, action) => {
   }
 };
 
-export default applicantReducer;
+export default profileReducer;
