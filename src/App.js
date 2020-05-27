@@ -1,6 +1,7 @@
 // import libraries
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PrivateRoute from "./utils/PrivateRoute";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./components/globals/theme";
 import { useSelector } from "react-redux";
@@ -30,38 +31,28 @@ function App() {
         </Route>
         {loggedIn && <Navbar />}
         <Switch>
-          <Route path="/GrantsForm">
-            <GrantsForm />
-          </Route>
-          <Route path="/GrantsList">
-            <GrantsList />
-          </Route>
-          <Route path="/profile">
-            {userType && userType === "applicant" ? (
-              <ApplicantProfile />
-            ) : (
-              <WriterProfile />
-            )}
-          </Route>
-          <Route path="/Homepage">
-            <Homepage />
-          </Route>
-          <Route path="/onboarding">
-            {user && user.user_type === "applicant" ? (
-              <ApplicantProfileForm />
-            ) : (
-              <WriterProfileForm />
-            )}
-          </Route>
+          <PrivateRoute path="/GrantsForm" component={GrantsForm} />
+          <PrivateRoute path="/GrantsList" component={GrantsList} />
+          {userType && userType === "applicant" ? (
+            <PrivateRoute path="/profile" component={ApplicantProfile} />
+          ) : (
+            <PrivateRoute path="/profile" component={WriterProfile} />
+          )}
+          />
+          <PrivateRoute path="/Homepage" component={Homepage} />
+          {user && user.user_type === "applicant" ? (
+            <PrivateRoute path="/onboarding" component={ApplicantProfileForm} />
+          ) : (
+            <PrivateRoute path="/onboarding" component={WriterProfileForm} />
+          )}
+          />
           <Route path="/RegisterForm">
             <RegisterForm />
           </Route>
           <Route path="/LoginForm">
             <LoginForm />
           </Route>
-          <Route exact path="/Grants">
-            <GrantsPage />
-          </Route>
+          <PrivateRoute exact path="/Grants" component={GrantsPage} />
         </Switch>
       </ThemeProvider>
     </Router>
