@@ -17,9 +17,9 @@ export default function LandingPage() {
 
   return (
     <div className="full-container">
-      <div className="top-container">
-        <div className="top-container-info">
-          <h1>Get help with your grant today!</h1>
+      <div className={classes.topContainer}>
+        <div className={classes.topContainerInfo}>
+          <h1 className={classes.title}>Get help with your grant today!</h1>
           <h3>
             An online platform that connects applicants and organizations with
             skilled writers eager to help with your grant proposals.
