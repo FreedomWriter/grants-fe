@@ -3,13 +3,14 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 // import components
-import loginReducer from "./loginReducer";
-import HomePageReducer from "./HomePageReducer";
-import profileReducer from "./profileReducer";
+import loginReducer from "./loginReducer.js";
+import HomePageReducer from "./HomePageReducer.js";
+import profileReducer from "./profileReducer.js";
 import onboardingReducer from "./onboardingReducer";
-import collegesReducer from "./collegesReducer";
+import collegesReducer from "./collegesReducer.js";
 import grantsPageReducer from "./GrantsPageReducer.js";
-import favoritesReducer from "./favoritesReducer";
+import favoritesReducer from "./favoritesReducer.js";
+import grantsReducer from "./grantsReducer.js";
 
 const persistConfig = {
   key: "root",
@@ -18,12 +19,13 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   login: loginReducer,
-  homePage: HomePageReducer,
+  // homePage: HomePageReducer,
   profileInfo: profileReducer,
   onboarding: onboardingReducer,
   collegeList: collegesReducer,
-  grantsPage: grantsPageReducer,
+  // grantsPage: grantsPageReducer,
   favorites: favoritesReducer,
+  grants: grantsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
