@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { logout } from "../../store/actions/LoginActions";
 

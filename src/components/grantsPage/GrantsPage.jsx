@@ -1,24 +1,19 @@
-// import libraries
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container } from "@material-ui/core";
 
-// import components
 import GrantCard from "./grantCards/GrantCard.jsx";
 
-// import styling
 import { useStyles } from "./GrantsPageStyles.jsx";
 
-// import actions
 import { getGrantsInfo } from "../../store/actions/GrantsPageActions.js";
 
 const GrantsPage = () => {
   //======Access necessary actions for GrantsPage======
   const dispatch = useDispatch(); //can use all actions.
   useEffect(() => {
-    // console.log("GrantsPage.jsx>dispatch(getGranstInfo) ");
     dispatch(getGrantsInfo());
-  }, []);
+  }, [dispatch]);
   //=====================
 
   //======Access state from reducer for GrantsPage======
@@ -39,7 +34,6 @@ const GrantsPage = () => {
   return (
     <div className={classes.container}>
       <Container className={classes.appHeader}>
-        {/* {!grants || grants.length === 0 ? ( */}
         {!grants || grants.length < 1 ? (
           <h4>Loading....</h4>
         ) : (

@@ -1,4 +1,4 @@
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+// import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 export const FAVORITE_POST_START = "FAVORITE_POST_START";
 export const FAVORITE_POST_SUCCESS = "FAVORITE_POST_SUCCESS";
@@ -14,7 +14,6 @@ export const FAVORITE_DELETE_FAILURE = "FAVORITE_DELETE_FAILURE";
 
 export const postFavorite = (value) => (dispatch) => {
   dispatch({ type: FAVORITE_POST_SUCCESS, payload: value });
-  console.log(`POSTFAV: VALUE: `, value);
   //   dispatch({ type: FAVORITE_POST_START });
   //   return axiosWithAuth()
   //     .post(`/TBD`, value)

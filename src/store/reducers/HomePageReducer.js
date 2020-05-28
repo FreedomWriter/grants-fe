@@ -2,9 +2,9 @@ import {
   GET_USER_INFO_START,
   GET_USER_INFO_SUCCESS,
   GET_USER_INFO_FAIL,
-  GET_GRANTS_INFO_START,
-  GET_GRANTS_INFO_SUCCESS,
-  GET_GRANTS_INFO_FAIL,
+  GET_GRANTS_START,
+  GET_GRANTS_SUCCESS,
+  GET_GRANTS_FAILURE,
 } from "../actions/HomepageActions.js";
 
 const initialState = {
@@ -17,7 +17,6 @@ const initialState = {
 };
 
 export const HomePageReducer = (state = initialState, { type, payload }) => {
-  // console.log("HomePageReducer:type, payload ", type, payload);
   switch (type) {
     case GET_USER_INFO_START:
       return {
@@ -26,7 +25,6 @@ export const HomePageReducer = (state = initialState, { type, payload }) => {
         isLoadingUser: true,
       };
     case GET_USER_INFO_SUCCESS:
-      console.log("getUserInfoSuccess");
       return {
         ...state,
         error: "",
@@ -39,20 +37,20 @@ export const HomePageReducer = (state = initialState, { type, payload }) => {
         error: payload,
         isLoadingUser: false,
       };
-    case GET_GRANTS_INFO_START:
+    case GET_GRANTS_START:
       return {
         ...state,
         error: "",
         isLoadingGrants: true,
       };
-    case GET_GRANTS_INFO_SUCCESS:
+    case GET_GRANTS_SUCCESS:
       return {
         ...state,
         error: "",
         grantsInfo: payload,
         isLoadingGrants: false,
       };
-    case GET_GRANTS_INFO_FAIL:
+    case GET_GRANTS_FAILURE:
       return {
         ...state,
         error: payload,

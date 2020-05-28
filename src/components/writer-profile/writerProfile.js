@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchWriters } from "../../store/actions/writerProfileAction.js";
 import { StylesProvider, withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import { useStyles } from "./writerProfile.styles.js";
@@ -12,6 +11,7 @@ import Tab from "@material-ui/core/Tab";
 import Link from "@material-ui/core/Link";
 import PropTypes from "prop-types";
 import Box from "@material-ui/core/Box";
+import { getApplicantInfo } from "../../store/actions/profileActions.js";
 
 const GlobalCSS = withStyles({
   "@global": {
@@ -62,12 +62,12 @@ const WriterProfile = (props) => {
   const classes = useStyles();
 
   //Redux
-  const writer = useSelector((state) => state.writerprofile.writerProfile);
+  const writer = useSelector((state) => state.profileInfo.profileDetails);
   const userId = useSelector((state) => state.login.userId);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchWriters(userId));
+    dispatch(getApplicantInfo(userId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
   //
@@ -93,8 +93,8 @@ const WriterProfile = (props) => {
           {writer && (
             <div className={classes.userName}>
               {" "}
-              {writer.profile.first_name}
-              {writer.profile.last_name}
+              {writer.first_name}
+              {writer.last_name}
             </div>
           )}
           <Button
@@ -111,14 +111,14 @@ const WriterProfile = (props) => {
               href="#"
               onClick={preventDefault}
             >
-              {writer.profile.website}
+              {writer.website}
             </Link>
           )}
         </div>
         {writer && (
           <h3 className={classes.userEducation}>
             Bio:
-            <div className={classes.bodyText}>{writer.profile.bio}</div>
+            <div className={classes.bodyText}>{writer.bio}</div>
           </h3>
         )}
         <div></div>
