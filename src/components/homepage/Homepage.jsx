@@ -32,6 +32,9 @@ const Homepage = () => {
   const user = useSelector((state) => {
     return state.homePage.userInfo;
   });
+  const userProfile = useSelector((state) => {
+    return state.profileInfo;
+  });
   const status = useSelector((state) => {
     return {
       isLoadingUser: state.homePage.isLoadingUser,
@@ -42,8 +45,8 @@ const Homepage = () => {
   });
   //=====================
 
-  console.log("Homepage: user, grants: ", user, grants);
-  console.log("Homepage: status: ", status);
+  // console.log("Homepage: user, grants: ", user, grants);
+  console.log("Homepage: userProfile: ", userProfile);
 
   const classes = useStyles();
 
