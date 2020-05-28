@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StylesProvider, withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -11,6 +11,7 @@ import Tab from "@material-ui/core/Tab";
 import Link from "@material-ui/core/Link";
 import PropTypes from "prop-types";
 import Box from "@material-ui/core/Box";
+import { getApplicantInfo } from "../../store/actions/profileActions.js";
 
 const GlobalCSS = withStyles({
   "@global": {
@@ -57,8 +58,19 @@ function a11yProps(index) {
   };
 }
 
-export default function WriterProfile() {
+const WriterProfile = (props) => {
   const classes = useStyles();
+
+  //Redux
+  const writer = useSelector((state) => state.profileInfo.profileDetails);
+  const userId = useSelector((state) => state.login.userId);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getApplicantInfo(userId));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]);
+  //
 
   const preventDefault = (event) => event.preventDefault();
 
@@ -78,7 +90,13 @@ export default function WriterProfile() {
             classes={{ root: classes.rootIcon }}
             fontSize="large"
           />
-          <div className={classes.userName}> John Doe</div>
+          {writer && (
+            <div className={classes.userName}>
+              {" "}
+              {writer.first_name}
+              {writer.last_name}
+            </div>
+          )}
           <Button
             classes={{ root: classes.rootButton, label: classes.labelButton }}
             variant="contained"
@@ -87,25 +105,22 @@ export default function WriterProfile() {
           >
             Direct Message
           </Button>
-
-          <Link
-            classes={{ root: classes.rootLink }}
-            href="#"
-            onClick={preventDefault}
-          >
-            Visit my website
-          </Link>
+          {writer && (
+            <Link
+              classes={{ root: classes.rootLink }}
+              href="#"
+              onClick={preventDefault}
+            >
+              {writer.website}
+            </Link>
+          )}
         </div>
-        <h3 className={classes.userEducation}>
-          Bio:
-          <div className={classes.bodyText}>
-            {" "}
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-            blanditiis tenetur unde suscipit, quam beatae rerum inventore
-            consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-            fugiat deleniti? Eum quasi quidem quibusdam.
-          </div>
-        </h3>
+        {writer && (
+          <h3 className={classes.userEducation}>
+            Bio:
+            <div className={classes.bodyText}>{writer.bio}</div>
+          </h3>
+        )}
         <div></div>
         <h3 className={classes.userEducation}>
           Background:
@@ -152,4 +167,6 @@ export default function WriterProfile() {
       </Paper>
     </StylesProvider>
   );
-}
+};
+
+export default WriterProfile;

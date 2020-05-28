@@ -7,26 +7,20 @@
 
 🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
-# 1️⃣ Title of project goes here
+# 1️⃣ Granted
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+1️⃣ You can find the deployed project at [Granted](https://prod-granted.herokuapp.com/).
 
 ## 4️⃣ Contributors
 
 🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
 
-| [Natalie Davis](https://github.com/)
-| [Aleesha Wood](https://github.com/)
-| [Blupe](https://github.com/)
-| [Danica](https://github.com/)
-| [Brett Karr](https://github.com/)
-| [Cory Murray](https://github.com/)
-| [Toosdai Otte](https://github.com/)
-| [Eva](https://github.com/)
-| :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) |
-| [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah) |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+|                                                [Natalie Davis](https://github.com/FreedomWriter)                                                                       |                                          [Aleesha Wood](https://github.com/LeeWood)                                                                              |                                       [Blupe](https://github.com/JorgeLuisFlores)                                                  |                                             [Danica Valdez](https://github.com/danicavaldez)                                             |                                      [Brett Karr](https://github.com/bwkarr77)                                                                                    |                                          [Toosdai Otte](https://github.com/ToosdaiOtte)                                                                              |                                                                         [Eva](https://github.com/EvaGurtovaia)                                                        |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [<img src="https://avatars3.githubusercontent.com/u/50391354?s=460&u=de69d8dd0b258edc2f505dd94f1be5cfefc9eea3&v=4" width = "200" />](https://github.com/FreedomWriter) | [<img src="https://avatars3.githubusercontent.com/u/50416443?s=460&u=e8378afea987c11f6fe35353ec495b0d95c1ace9&v=4" width = "200" />](https://github.com/LeeWood) | [<img src="https://ca.slack-edge.com/ESZCHB482-W012JPXVC9Z-c3a1c9b62907-512" width = "200" />](https://github.com/JorgeLuisFlores) | [<img src="https://ca.slack-edge.com/ESZCHB482-W012BRL40TG-6ab102c6f609-512" width = "200" />](https://github.com/danicavaldez)          | [<img src="https://avatars1.githubusercontent.com/u/52165192?s=460&u=a31a648f89dc0669b701455c0ec1371abb573432&v=4" width = "200" />](https://github.com/bwkarr77) | [<img src="https://avatars2.githubusercontent.com/u/46979151?s=460&u=d491afdbcd54aa137f2b8438b61e3ccf238dc20b&v=4" width = "200" />](https://github.com/ToosdaiOtte) | [<img src="https://avatars0.githubusercontent.com/u/34386254?s=460&u=1c092474c5ad0202ad00ed4da4a8604cde0f19be&v=4" width = "200" />](https://github.com/EvaGurtovaia) |
+|                            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/FreedomWriter)                                                  |                            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/LeeWood)                                                  |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JorgeLuisFlores)              |                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/danicavaldez)                                 |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/bwkarr77)                                                    |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ToosdaiOtte)                                                    |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/EvaGurtovaia)                                                    |
+|       [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/natalie-davis-64111595/)                          |          [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/leemwood/)                               | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jorgeluis-flores/)  | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/danica-valdez-b676761a6/) |                           [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]                                                      | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/toosdai-otte/)                                        |           [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/eva-gurtovaya-586baa124/)                    |
+
 
 <br>
 <br>
@@ -43,42 +37,31 @@
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+1️⃣ [Trello Board](https://trello.com/b/ry8wjYUz/granted)
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+1️⃣ [Product Canvas](https://www.notion.so/Granted-4e7631ec63c04ef98f41dbf1235cbab5)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
-
-🚫 Replace lorem ipsum with a description of your project
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Connecting grant writers with individuals and organizations looking for a grant writer for their RFPs and grant applications. 
 
 ### 4️⃣ Key Features
 
-- feature one
-- feature two
-- feature three
-- feature four
-- feature five
+- Dashboard with available grant listings
+- User Profiles (Grantees / Grant Writers)
 
 ## 1️⃣ Tech Stack
 
 ### Front end built using:
 
-#### _Front end framework goes here_
 
-🚫 Why did you choose this framework?
+#### - React
 
-- point one
-- point two
-- point three
-- point four
+- Scalable and lightweight
+- Healthy ecosystem of libraries
+- React uses JavaScript which is robust , making it: simple, focused, and consistent
+- Ability to use Redux for state management
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
 
-#### Front end deployed to `🚫insert service here`
+#### Front end deployed to `Heroku`
 
 #### [Back end](🚫link to back end repo here) built using:
 

@@ -1,9 +1,11 @@
+// import libraries
 import React from "react";
-// import "./App.css";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PrivateRoute from "./utils/PrivateRoute";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./components/globals/theme";
-
+import { useSelector } from "react-redux";
+// import components
 import ApplicantProfile from "./components/applicant-profile/ApplicantProfile";
 import Navbar from "./components/navbar/Navbar";
 import WriterProfile from "./components/writer-profile/writerProfile.js";
@@ -15,57 +17,45 @@ import LoginForm from "./components/login/loginForm.js";
 import LandingPage from "./components/landingPage/LandingPage.js";
 import GrantsList from "./components/applicant-profile/GrantsList";
 import GrantsForm from "./components/applicant-profile/GrantsForm";
-
+import GrantsPage from "./components/grantsPage/GrantsPage.jsx";
+//
 function App() {
+  const loggedIn = useSelector((state) => state.login.loggedIn);
+  const user = useSelector((state) => state.login.user);
+  const userType = useSelector((state) => state.login.usertype);
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <Navbar />
-
+        <Route exact path="/">
+          <LandingPage />
+        </Route>
+        {loggedIn && <Navbar />}
         <Switch>
-          {/*  */}
-          <Route path="/GrantsForm">
-            <GrantsForm />
-          </Route>
-          <Route path="/GrantsList">
-            <GrantsList />
-          </Route>
-          <Route path="/ApplicantProfile">
-            <ApplicantProfile />
-          </Route>
-
-          <Route path="/WriterProfile">
-            <WriterProfile />
-          </Route>
-
-          <Route path="/Homepage">
-            <Homepage />
-          </Route>
-
-          <Route path="/ApplicantProfileForm">
-            <ApplicantProfileForm />
-          </Route>
-
-          <Route path="/WriterProfileForm">
-            <WriterProfileForm />
-          </Route>
-
+          <PrivateRoute path="/GrantsForm" component={GrantsForm} />
+          <PrivateRoute path="/GrantsList" component={GrantsList} />
+          {userType && userType === "applicant" ? (
+            <PrivateRoute path="/profile" component={ApplicantProfile} />
+          ) : (
+            <PrivateRoute path="/profile" component={WriterProfile} />
+          )}
+          />
+          <PrivateRoute path="/Homepage" component={Homepage} />
+          {user && user.user_type === "applicant" ? (
+            <PrivateRoute path="/onboarding" component={ApplicantProfileForm} />
+          ) : (
+            <PrivateRoute path="/onboarding" component={WriterProfileForm} />
+          )}
+          />
           <Route path="/RegisterForm">
             <RegisterForm />
           </Route>
-
           <Route path="/LoginForm">
             <LoginForm />
           </Route>
-
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
-          {/*  */}
+          <PrivateRoute exact path="/Grants" component={GrantsPage} />
         </Switch>
       </ThemeProvider>
     </Router>
   );
 }
-
 export default App;

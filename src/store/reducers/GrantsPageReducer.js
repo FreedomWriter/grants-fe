@@ -1,37 +1,38 @@
 import {
-  GET_PROFILEINFO_START,
-  GET_PROFILEINFO_SUCCESS,
-  GET_PROFILEINFO_FAILURE,
+  GET_GRANTS_START,
+  GET_GRANTS_SUCCESS,
+  GET_GRANTS_FAILURE,
   POST_GRANTS_START,
   POST_GRANTS_SUCCESS,
   POST_GRANTS_FAILURE,
   PUT_GRANTS_START,
   PUT_GRANTS_SUCCESS,
   PUT_GRANTS_FAILURE,
-} from "../actions/ApplicantActions";
+} from "../actions/GrantsPageActions.js";
 
 const initialState = {
   grants: [],
-  profileDetails: {},
   isLoading: false,
+  error: undefined,
 };
 
-const applicantReducer = (state = initialState, action) => {
+export const GrantsPageReducer = (state = initialState, action) => {
+  // console.log("GrantsPageReducer:type, payload ", type, payload);
   switch (action.type) {
-    case GET_PROFILEINFO_START:
+    case GET_GRANTS_START:
       return {
         ...state,
+        error: "",
         isLoading: true,
       };
-
-    case GET_PROFILEINFO_SUCCESS:
+    case GET_GRANTS_SUCCESS:
       return {
         ...state,
-        profileDetails: action.payload,
+        error: "",
+        grantsInfo: action.payload,
         isLoading: false,
       };
-
-    case GET_PROFILEINFO_FAILURE:
+    case GET_GRANTS_FAILURE:
       return {
         ...state,
         error: action.payload,
@@ -80,4 +81,4 @@ const applicantReducer = (state = initialState, action) => {
   }
 };
 
-export default applicantReducer;
+export default GrantsPageReducer;

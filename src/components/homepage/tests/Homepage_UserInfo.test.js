@@ -1,12 +1,11 @@
 import React, { useState as useStateMock } from "react";
-// import { BrowserRouter as Router } from "react-router-dom";
 import { render as rtlRender } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 //
-import Homepage from "../Homepage.jsx";
+// import Homepage from "../Homepage.jsx";
 import { initialState as initialReducerState } from "../../../store/reducers/HomePageReducer.js";
 import reducer from "../../../store/reducers/HomePageReducer.js";
 import UserCardApplicant from "../userCard/UserCardApplicant.jsx";
@@ -49,12 +48,12 @@ describe("HomePage Testing...", () => {
   test("test to return true", () => {
     expect(true).toBeTruthy();
   });
-  test("Homepage renders something...", () => {
-    const { container, debug } = rtlRender(
-      <UserCardApplicant details={userMock} />
-    );
-    debug(container);
+  test("UserCardApplicant component renders ", () => {
+    const { container } = rtlRender(<UserCardApplicant details={userMock} />);
     expect(container).toBeVisible();
-    // expect(true).toBeTruthy();
+  });
+  test("UserCardWriter component renders ", () => {
+    const { container } = rtlRender(<UserCardWriter details={userMock} />);
+    expect(container).toBeVisible();
   });
 });

@@ -11,19 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.top-container {
-  background-image: url(./images/laptop-background-unsplash.jpg);
-  background-size: cover;
-}
-
-.top-container-info {
-  width: 50%;
-  text-align: center;
-  display: inline-block;
-  margin: 5% 0 12% 40%;
-}
-
-h1 {
-  font-size: 3.9em;
-}

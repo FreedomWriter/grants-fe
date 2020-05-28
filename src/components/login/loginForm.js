@@ -1,63 +1,34 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
-import { makeStyles } from "@material-ui/core/styles";
+import { useStyles } from "./loginForm.styles";
 import { Button } from "@material-ui/core";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-
 import { postLogin } from "../../store/actions/LoginActions";
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  form: {
-    width: "100%",
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
-const Login = (props) => {
+const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const userType = useSelector((state) => state.login.usertype);
-
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
-
   const handleChange = (e) => {
     setUser({
       ...user,
       [e.target.name]: e.target.value,
     });
   };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await dispatch(postLogin(user));
-    await userType;
-    return userType === "applicant"
-      ? history.push("/ApplicantProfileForm")
-      : userType === "writer" && history.push("/WriterProfileForm");
+    dispatch(postLogin(user)).then(() => history.push("/profile"));
   };
-
   const classes = useStyles();
-  console.log({ userType });
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -109,13 +80,13 @@ const Login = (props) => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link to="#" variant="body2" className={classes.links}>
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Register here"}
+              <Link to="/RegisterForm" variant="body2" className={classes.links}>
+                Don't have an account? Register here
               </Link>
             </Grid>
           </Grid>
@@ -124,5 +95,4 @@ const Login = (props) => {
     </Container>
   );
 };
-
 export default Login;

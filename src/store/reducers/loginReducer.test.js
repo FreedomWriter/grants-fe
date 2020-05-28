@@ -72,6 +72,7 @@ test("should handle REGISTER_POST_SUCCESS", () => {
       username: "TestUser",
     },
     isLoading: false,
+    loggedIn: true,
   });
 });
 test("should handle REGISTER_POST_FAILURE", () => {

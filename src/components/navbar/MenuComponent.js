@@ -2,7 +2,9 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
+import { logout } from "../../store/actions/LoginActions";
 
 export default function MenuComponent({
   anchorEl,
@@ -11,8 +13,8 @@ export default function MenuComponent({
   handleMenuClose,
 }) {
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const userType = useSelector((state) => state.login.usertype);
   return (
     <>
       <Menu
@@ -35,10 +37,7 @@ export default function MenuComponent({
         <MenuItem
           onClick={async () => {
             await handleMenuClose();
-            await userType;
-            return userType === "writer"
-              ? history.push("/WriterProfile")
-              : history.push("/ApplicantProfile");
+            return history.push("/profile");
           }}
         >
           Profile
@@ -50,6 +49,13 @@ export default function MenuComponent({
           }}
         >
           Grants
+        </MenuItem>{" "}
+        <MenuItem
+          onClick={() => {
+            dispatch(logout());
+          }}
+        >
+          Log Out
         </MenuItem>
       </Menu>
     </>

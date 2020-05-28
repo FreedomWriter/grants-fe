@@ -1,7 +1,6 @@
 import React from "react";
 import "./user.scss";
 import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 
