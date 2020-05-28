@@ -8,23 +8,25 @@ import { useStyles } from "./HomePageUserCardStyles.jsx";
 
 const UserCardWriter = (props) => {
   const user = props.details;
+  //bio, city, country, first_name, id, last_name, sector, state, website, writer_id, zip
   const classes = useStyles();
 
-  console.log("UserCardWriter...");
   return (
     <Card className={`${classes.userInfo} ${classes.writer}`}>
       <div className={classes.userDisplay}>
-        <CardMedia className={classes.media} image={user.image} alt="userImg" />
-        <h2>{user.fullname}</h2>
-        <h4>username: {user.username}</h4>
+        <CardMedia
+          className={classes.media}
+          image="https://image.shutterstock.com/image-photo/young-scientist-looking-through-microscope-600w-524351890.jpg"
+          alt="userImg"
+        />
+        <h2>
+          {user.first_name} {user.last_name}
+        </h2>
       </div>
       <CardContent className={classes.userRight}>
-        <h2>Name: {user.fullname}</h2>
-        <h3>username: {user.username}</h3>
         <h3>roles: {user.role} </h3>
         <h3>Sector/Focus: {user.sector}</h3>
-        <h4>type: {user.type}</h4>
-        <p>{user.desc}</p>
+        <p>{user.bio}</p>
       </CardContent>
     </Card>
   );

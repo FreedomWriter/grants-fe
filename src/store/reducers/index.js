@@ -19,11 +19,11 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   login: loginReducer,
-  homePage: HomePageReducer,
+  // homePage: HomePageReducer,
   profileInfo: profileReducer,
   onboarding: onboardingReducer,
   collegeList: collegesReducer,
-  grantsPage: grantsPageReducer,
+  // grantsPage: grantsPageReducer,
   favorites: favoritesReducer,
   grants: grantsReducer,
 });

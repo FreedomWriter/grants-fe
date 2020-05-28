@@ -9,36 +9,24 @@ import UserCardApplicant from "./userCard/UserCardApplicant.jsx";
 
 import { useStyles } from "./HomepageStyles.jsx";
 
-import {
-  getUserInfo,
-  getGrantsInfo,
-} from "../../store/actions/HomepageActions.js";
-
 const Homepage = () => {
-  //======Access necessary actions for Homepage======
-  const dispatch = useDispatch(); //can use all actions.
-  useEffect(() => {
-    // dispatch(getUserInfo()); //should get loaded from global due to login.
-    // dispatch(getGrantsInfo());
-  }, [dispatch]);
-  //=====================
-
   //======Access state from reducer for Homepage======
   const grants = useSelector((state) => {
-    return state.homePage.grantsInfo;
+    console.log("Homepage>grants Selector: ", state, state.grants);
+    return state.grants.grantsInfo;
+  });
+
+  const userType = useSelector((state) => {
+    return state.login.usertype.toLowerCase();
   });
 
   const user = useSelector((state) => {
-    return state.homePage.userInfo;
-  });
-  const testUser = useSelector((state) => {
     if (state.login) {
-      const userType = state.login.usertype.toLowerCase();
       switch (userType) {
         case "writer":
-          return state.writerprofile;
+          return state.profileInfo.profileDetails;
         case "applicant":
-          return state.profileInfo;
+          return state.profileInfo.profileDetails;
         default:
           console.log("userType error");
           break;
@@ -61,14 +49,14 @@ const Homepage = () => {
   return (
     <div className={classes.container}>
       <Container className={classes.appHeader}>
-        {user.type === "writer" ? (
+        {userType === "writer" ? (
           <UserCardWriter details={user} />
         ) : (
           <UserCardApplicant details={user} />
         )}
 
         {!grants || grants.length < 1 ? (
-          <h4>Loading....</h4>
+          <h4>Loading Grants....</h4>
         ) : (
           grants.map((grant) => {
             return (

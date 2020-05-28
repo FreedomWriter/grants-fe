@@ -11,9 +11,9 @@ import { getGrantsInfo } from "../../store/actions/GrantsPageActions.js";
 const GrantsPage = () => {
   //======Access necessary actions for GrantsPage======
   const dispatch = useDispatch(); //can use all actions.
-  useEffect(() => {
-    dispatch(getGrantsInfo());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getGrantsInfo());
+  // }, [dispatch]);
   //=====================
 
   //======Access state from reducer for GrantsPage======

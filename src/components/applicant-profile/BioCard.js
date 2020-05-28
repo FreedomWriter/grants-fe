@@ -4,7 +4,6 @@ import { useStyles } from "./ApplicantProfile.styles";
 import Grid from "@material-ui/core/Grid";
 
 const BioCard = ({ applicantDetails }) => {
-  console.log("asldkfj: ", applicantDetails);
   const classes = useStyles();
   return (
     <>
