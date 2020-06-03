@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getGrantsInfo } from "../../store/actions/grantsActions";
+import Loader from "../loader/Loader.js";
 
 import Paper from "@material-ui/core/Paper";
 import { useStyles } from "./ApplicantProfile.styles";
@@ -22,7 +23,7 @@ const Grants = (/*grants*/) => {
       <h3>Grants We'd Like to Apply For:</h3>
       <Paper className={classes.profilepaper}>
         {!grants || grants.length < 1 ? (
-          <h4>Loading Grants....</h4>
+          <Loader />
         ) : (
           grants.map((grant) => {
             console.log(grant);

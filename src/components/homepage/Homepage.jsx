@@ -6,6 +6,7 @@ import { Container } from "@material-ui/core";
 import GrantCard from "./grantCards/GrantCard.jsx";
 import UserCardWriter from "./userCard/UserCardWriter.jsx";
 import UserCardApplicant from "./userCard/UserCardApplicant.jsx";
+import Loader from "../loader/Loader.js";
 
 import { useStyles } from "./HomepageStyles.jsx";
 
@@ -56,7 +57,7 @@ const Homepage = () => {
         )}
 
         {!grants || grants.length < 1 ? (
-          <h4>Loading Grants....</h4>
+          <Loader />
         ) : (
           grants.map((grant) => {
             return (
