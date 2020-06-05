@@ -33,7 +33,7 @@ export default function WriterEducationCard({ writersWork }) {
           <br />
           {writersWork.current_position
             ? `Current Position`
-            : `Start Date: ${writersWork.endDate}`}
+            : `End Date: ${writersWork.end_date}`}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           responsibilities: {writersWork.responsibilities}

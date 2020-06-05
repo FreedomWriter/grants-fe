@@ -169,31 +169,43 @@ export default function WriterProfileForm() {
   };
   /* similar implementation to how multiple colleges are being handled - needs similar REFACTOR */
   const handleWorkHistorySubmit = async () => {
-    await dispatch(postWorkHistory(userId, workHistoryFormState));
-    // setWritersWorkHistory([
-    //   ...writersWorkHistory,
-    //   {
-    //     id: uuidv4(),
-    //     company: workHistoryFormState.company,
-    //     start_date: workHistoryFormState.start_date,
-    //     end_date: workHistoryFormState.end_date,
-    //     position: workHistoryFormState.position,
-    //     current_position: workHistoryFormState.current_position,
-    //     responsibilities: workHistoryFormState.responsibilities,
-    //   },
-    // ]);
+    /* ensures no keys with the value of "" get sent to the back end as that will cause it to error out, this would be a problem in the event that a position is a current one, so the user would not update the intial state of workHistoryFormState.end_date*/
+
+    let data = {};
+    for (const property in workHistoryFormState) {
+      if (workHistoryFormState[property] !== "") {
+        data[property] = workHistoryFormState[property];
+      }
+    }
+
+    await dispatch(postWorkHistory(userId, data));
+    setWritersWorkHistory([
+      ...writersWorkHistory,
+      {
+        id: uuidv4(),
+        company: workHistoryFormState.company,
+        start_date: workHistoryFormState.start_date,
+        end_date: workHistoryFormState.end_date,
+        position: workHistoryFormState.position,
+        current_position: workHistoryFormState.current_position,
+        responsibilities: workHistoryFormState.responsibilities,
+      },
+    ]);
     return setWorkHistoryFormState({
       company: "",
       position: "",
-      startDate: "",
-      endDate: "",
-      current_position: false,
+      start_date: "",
+      end_date: "",
+      current_position: true,
       responsibilities: "",
+      writer_id: userId,
     });
   };
-  const handleWriterBioSubmit = () => {
-    console.log(`Bio submit!!!!!!!!!`);
-  };
+
+  /* THIS SUMBIT HANDLER MAY NOT BE NEEDED */
+  // const handleWriterBioSubmit = () => {
+  //   console.log(`Bio submit!!!!!!!!!`);
+  // };
   /* ********************* END SUBMIT HANDLERS ********************* */
   /* ********************* BEGIN INPUT VALIDATION ********************* */
   const handleValidation = (e) => {
@@ -336,7 +348,7 @@ export default function WriterProfileForm() {
             formHelperText={formHelperText}
             handleValidation={handleValidation}
             enableButton={enableButton}
-            handleWriterBioSubmit={handleWriterBioSubmit}
+            // // handleWriterBioSubmit={handleWriterBioSubmit}
           />
         );
       case 4:
@@ -363,7 +375,7 @@ export default function WriterProfileForm() {
             bioFormState={bioFormState}
             setBioFormState={setBioFormState}
             handleBioChanges={handleBioChanges}
-            handleWriterBioSubmit={handleWriterBioSubmit}
+            // // handleWriterBioSubmit={handleWriterBioSubmit}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
             enableButton={enableButton}

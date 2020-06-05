@@ -62,7 +62,7 @@ export default function ApplicantContactInfo({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.company ? true : undefined}
+            error={formHelperText.company && true}
             onChange={handleWorkHistoryChanges}
             className={classes.orgTextField}
             required
@@ -75,7 +75,7 @@ export default function ApplicantContactInfo({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.position ? true : undefined}
+            error={formHelperText.position && true}
             onChange={handleWorkHistoryChanges}
             className={classes.orgTextField}
             required
@@ -104,7 +104,7 @@ export default function ApplicantContactInfo({
             <TextField
               InputLabelProps={{ shrink: true }}
               onBlur={handleValidation}
-              error={formHelperText.end_date ? true : undefined}
+              error={formHelperText.end_date && true}
               onChange={handleWorkHistoryChanges}
               className={classes.orgTextField}
               type="date"

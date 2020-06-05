@@ -7,6 +7,12 @@ import {
   WRITER_ONBOARDING_POST_FAILURE,
 } from "../actions/onboardingActions";
 
+import {
+  WORK_POST_START,
+  WORK_POST_SUCCESS,
+  WORK_POST_FAILURE,
+} from "../actions/workActions";
+
 const initialState = {
   user: {},
   isLoading: false,
@@ -41,6 +47,22 @@ const onboardingReducer = (state = initialState, action) => {
         isLoading: false,
       };
     case WRITER_ONBOARDING_POST_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false,
+      };
+    case WORK_POST_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case WORK_POST_SUCCESS:
+      return {
+        user: { workHistory: action.payload },
+        isLoading: false,
+      };
+    case WORK_POST_FAILURE:
       return {
         ...state,
         error: action.payload,
