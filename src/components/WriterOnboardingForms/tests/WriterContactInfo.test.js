@@ -50,10 +50,10 @@ const bioFormStateMock = {
 const workHistoryFormStateMock = {
   company: "",
   position: "",
-  workStartDate: "",
-  workEndDate: "",
-  currentPosition: true,
-  responsibilites: "",
+  start_date: "",
+  end_date: "",
+  current_position: true,
+  responsibilities: "",
 };
 const educationFormStateMock = {
   college: "",

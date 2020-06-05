@@ -29,14 +29,14 @@ export default function WriterEducationCard({ writersWork }) {
           Position: {writersWork.position}
         </Typography>
         <Typography variant="body2" component="p">
-          Start Date: {writersWork.workStartDate}
+          Start Date: {writersWork.start_date}
           <br />
-          {writersWork.currentPosition
+          {writersWork.current_position
             ? `Current Position`
             : `Start Date: ${writersWork.endDate}`}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          Responsibilites: {writersWork.responsibilites}
+          responsibilities: {writersWork.responsibilities}
         </Typography>
       </CardContent>
     </Card>

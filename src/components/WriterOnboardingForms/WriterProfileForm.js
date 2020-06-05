@@ -16,6 +16,7 @@ import WriterBioForm from "./WriterBioForm";
 import WriterReview from "./WriterReviewForm";
 import { v4 as uuidv4 } from "uuid";
 import { useStyles } from "./WriterForm.styles";
+import { postWorkHistory } from "../../store/actions/workActions";
 const steps = ["Contact", "Education", "Work History", "Bio", "Review"];
 export default function WriterProfileForm() {
   const history = useHistory();
@@ -57,10 +58,11 @@ export default function WriterProfileForm() {
   const [workHistoryFormState, setWorkHistoryFormState] = useState({
     company: "",
     position: "",
-    workStartDate: "",
-    workEndDate: "",
-    currentPosition: true,
-    responsibilites: "",
+    start_date: "",
+    end_date: "",
+    current_position: true,
+    responsibilities: "",
+    writer_id: userId,
   });
   const [bioFormState, setBioFormState] = useState({
     website: "",
@@ -83,7 +85,7 @@ export default function WriterProfileForm() {
     bio: undefined,
     company: undefined,
     postion: undefined,
-    responsibilites: undefined,
+    responsibilities: undefined,
   });
   /* ********************* END FORM STATE AND SETTERS ********************* */
   /* ********************* BEGIN CHANGE HANDLERS ********************* */
@@ -166,26 +168,27 @@ export default function WriterProfileForm() {
     enableButton();
   };
   /* similar implementation to how multiple colleges are being handled - needs similar REFACTOR */
-  const handleWorkHistorySubmit = () => {
-    setWritersWorkHistory([
-      ...writersWorkHistory,
-      {
-        id: uuidv4(),
-        company: workHistoryFormState.company,
-        workStartDate: workHistoryFormState.workStartDate,
-        workEndDate: workHistoryFormState.workEndDate,
-        position: workHistoryFormState.position,
-        currentPosition: workHistoryFormState.currentPosition,
-        responsibilites: workHistoryFormState.responsibilites,
-      },
-    ]);
-    setWorkHistoryFormState({
+  const handleWorkHistorySubmit = async () => {
+    await dispatch(postWorkHistory(userId, workHistoryFormState));
+    // setWritersWorkHistory([
+    //   ...writersWorkHistory,
+    //   {
+    //     id: uuidv4(),
+    //     company: workHistoryFormState.company,
+    //     start_date: workHistoryFormState.start_date,
+    //     end_date: workHistoryFormState.end_date,
+    //     position: workHistoryFormState.position,
+    //     current_position: workHistoryFormState.current_position,
+    //     responsibilities: workHistoryFormState.responsibilities,
+    //   },
+    // ]);
+    return setWorkHistoryFormState({
       company: "",
       position: "",
       startDate: "",
       endDate: "",
-      currentPosition: false,
-      responsibilites: "",
+      current_position: false,
+      responsibilities: "",
     });
   };
   const handleWriterBioSubmit = () => {
@@ -234,8 +237,8 @@ export default function WriterProfileForm() {
       case "position":
         validator(workHistoryFormState.position);
         break;
-      case "responsibilites":
-        validator(workHistoryFormState.responsibilites);
+      case "responsibilities":
+        validator(workHistoryFormState.responsibilities);
         break;
       case "zip":
         let valid = /(^\d{5}(?:[\s]?[-\s][\s]?\d{4})?$)/.test(

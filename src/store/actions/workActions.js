@@ -13,8 +13,8 @@ export const WORK_DELETE_SUCCESS = "WORK_DELETE_SUCCESS";
 export const WORK_DELETE_FAILURE = "WORK_DELETE_FAILURE";
 
 export const postWorkHistory = (id, value) => (dispatch) => {
-  dispatch({ type: WORK_POST_SUCCESS, payload: value, id: id });
-  dispatch({ type: WORK_POST_START });
+  dispatch({ type: WORK_POST_START, payload: value, id: id });
+
   return axiosWithAuth()
     .post(`/writers/work/${id}`, value)
     .then((res) => {
