@@ -22,7 +22,6 @@ export default function ReviewForm({
   setWritersColleges,
   handleCollegeSubmit,
   handleWorkHistorySubmit,
-  handleWriterBioSubmit,
   disableCollegeSubmitButton,
   setDisableCollegeSubmitButton,
   disableWorkHistorySubmitButton,
@@ -66,7 +65,6 @@ export default function ReviewForm({
         bioFormState={bioFormState}
         setBioFormState={setBioFormState}
         handleBioChanges={handleBioChanges}
-        handleWriterBioSubmit={handleWriterBioSubmit}
         formHelperText={formHelperText}
         handleValidation={handleValidation}
         enableButton={enableButton}

@@ -167,7 +167,7 @@ export default function WriterProfileForm() {
     });
     enableButton();
   };
-  /* similar implementation to how multiple colleges are being handled - needs similar REFACTOR */
+
   const handleWorkHistorySubmit = async () => {
     /* ensures no keys with the value of "" get sent to the back end as that will cause it to error out, this would be a problem in the event that a position is a current one, so the user would not update the intial state of workHistoryFormState.end_date*/
 
@@ -202,10 +202,6 @@ export default function WriterProfileForm() {
     });
   };
 
-  /* THIS SUMBIT HANDLER MAY NOT BE NEEDED */
-  // const handleWriterBioSubmit = () => {
-  //   console.log(`Bio submit!!!!!!!!!`);
-  // };
   /* ********************* END SUBMIT HANDLERS ********************* */
   /* ********************* BEGIN INPUT VALIDATION ********************* */
   const handleValidation = (e) => {
@@ -348,7 +344,6 @@ export default function WriterProfileForm() {
             formHelperText={formHelperText}
             handleValidation={handleValidation}
             enableButton={enableButton}
-            // // handleWriterBioSubmit={handleWriterBioSubmit}
           />
         );
       case 4:
@@ -375,7 +370,6 @@ export default function WriterProfileForm() {
             bioFormState={bioFormState}
             setBioFormState={setBioFormState}
             handleBioChanges={handleBioChanges}
-            // // handleWriterBioSubmit={handleWriterBioSubmit}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
             enableButton={enableButton}
