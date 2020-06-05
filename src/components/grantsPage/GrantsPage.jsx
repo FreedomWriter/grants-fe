@@ -8,6 +8,8 @@ import { useStyles } from "./GrantsPageStyles.jsx";
 
 import { getGrantsInfo } from "../../store/actions/GrantsPageActions.js";
 
+import Loader from "../loader/Loader.js";
+
 const GrantsPage = () => {
   //======Access necessary actions for GrantsPage======
   const dispatch = useDispatch(); //can use all actions.
@@ -35,7 +37,8 @@ const GrantsPage = () => {
     <div className={classes.container}>
       <Container className={classes.appHeader}>
         {!grants || grants.length < 1 ? (
-          <h4>Loading....</h4>
+          //<h4>Loading....</h4>
+          <Loader />
         ) : (
           grants.map((grant) => {
             return (

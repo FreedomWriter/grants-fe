@@ -1,5 +1,6 @@
 import React from "react";
 // import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -27,7 +28,12 @@ export default function GrantsList() {
       <Grid className={classes.grantslistheader}>
         <h2>Saved Grants</h2>
         <div>
-          <Button variant="contained" color="primary" href="#">
+          <Button
+            component={Link}
+            to="/GrantsForm"
+            variant="contained"
+            color="primary"
+          >
             Add a grant
           </Button>
         </div>

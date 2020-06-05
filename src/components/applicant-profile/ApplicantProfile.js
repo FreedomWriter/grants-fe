@@ -5,6 +5,7 @@ import Grants from "./Grants";
 import LeftPanel from "./LeftPanel";
 import { useSelector, useDispatch } from "react-redux";
 import { getProfileInfo } from "../../store/actions/profileActions";
+import Loader from "../loader/Loader.js";
 
 import { useStyles } from "./ApplicantProfile.styles";
 
@@ -42,7 +43,7 @@ export default function ApplicantProfile() {
           </Grid>
         </div>
       ) : (
-        <h2>loading...</h2>
+        <Loader />
       )}
     </div>
   );

@@ -1,86 +1,130 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
-import { useStyles } from "./GrantsForm.styles";
 import Button from "@material-ui/core/Button";
+import { ValidatorForm } from "react-material-ui-form-validator";
+import { postGrants } from "../../store/actions/grantsActions";
+
+import { useStyles } from "./GrantsForm.styles";
 
 export default function GrantsForm() {
   const classes = useStyles();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const [grant, setGrant] = useState({
+    grant_name: "",
+    org_name: "",
+    contact_name: "",
+    sector: "",
+    due_date: "",
+    description: ""
+  });
+  const handleChange = e => {
+    setGrant({
+      ...grant,
+      [e.target.name]: e.target.value
+    });
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    /*dispatch(postGrants(grant)).then(() => )*/
+    history.push("/GrantsList");
+    console.log(grant);
+  };
 
   return (
     <div className={classes.container}>
       <Typography variant="h6" gutterBottom>
         Adding a Grant
       </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="grantName"
-            name="grantName"
-            label="Grant Name"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            required
-            id="org_name"
-            name="org_name"
-            label="Organization Name"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            id="contactName"
-            name="ContactName"
-            label="Contact Name"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="sector"
-            name="sector"
-            label="Sector"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <form className={classes.datecontainer} noValidate>
+      <ValidatorForm
+        className={classes.form}
+        autoComplete="off"
+        onSubmit={handleSubmit}
+      >
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
             <TextField
-              id="dueDate"
+              required
+              id="grant_name"
+              name="grant_name"
+              label="Grant Name"
+              value={grant.grant_name}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              required
+              id="org_name"
+              name="org_name"
+              label="Organization Name"
+              value={grant.org_name}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              required
+              id="contact_name"
+              name="contact_name"
+              label="Contact Name"
+              value={grant.contact_name}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              id="sector"
+              name="sector"
+              label="Sector"
+              value={grant.sector}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              id="due_date"
               label="Due Date"
               type="date"
-              defaultValue="YYYY-MM-DD"
+              name="due_date"
               className={classes.textField}
+              value={grant.due_date}
+              onChange={handleChange}
               InputLabelProps={{
-                shrink: true,
+                shrink: true
               }}
             />
-          </form>
+          </Grid>
+          <Grid item xs={12}>
+            <TextAreaAutosize
+              required
+              id="grant_description"
+              name="description"
+              placeholder="Describe the grant.."
+              aria-label="Grant Description"
+              onChange={handleChange}
+              value={grant.description}
+              rowsMin={6}
+              className={classes.textarea}
+            />
+          </Grid>
+          <div className={classes.addbutton}>
+            <Button type="submit" variant="contained" color="primary">
+              Add a grant
+            </Button>
+          </div>
         </Grid>
-        <Grid item xs={12}>
-          <TextAreaAutosize
-            required
-            id="grantDescription"
-            name="grantDescription"
-            placeholder="Describe the grant.."
-            aria-label="Grant Description"
-            rowsMin={6}
-            className={classes.textarea}
-          />
-        </Grid>
-        <div className={classes.addbutton}>
-          <Button variant="contained" color="primary" href="#">
-            Add a grant
-          </Button>
-        </div>
-      </Grid>
+      </ValidatorForm>
     </div>
   );
 }
