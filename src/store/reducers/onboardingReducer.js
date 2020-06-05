@@ -14,7 +14,7 @@ import {
 } from "../actions/workActions";
 
 const initialState = {
-  user: {},
+  workHistory: {},
   isLoading: false,
 };
 
@@ -43,7 +43,7 @@ const onboardingReducer = (state = initialState, action) => {
       };
     case WRITER_ONBOARDING_POST_SUCCESS:
       return {
-        user: action.payload,
+        ...state,
         isLoading: false,
       };
     case WRITER_ONBOARDING_POST_FAILURE:
@@ -59,7 +59,7 @@ const onboardingReducer = (state = initialState, action) => {
       };
     case WORK_POST_SUCCESS:
       return {
-        user: { workHistory: action.payload },
+        workHistory: action.payload,
         isLoading: false,
       };
     case WORK_POST_FAILURE:
