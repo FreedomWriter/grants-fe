@@ -16,7 +16,7 @@ export const postWorkHistory = (id, value) => (dispatch) => {
   dispatch({ type: WORK_POST_START, payload: value, id: id });
 
   return axiosWithAuth()
-    .post(`/writers/work/${id}`, value)
+    .post(`/writers/${id}/work/`, value)
     .then((res) => {
       dispatch({
         type: WORK_POST_SUCCESS,
@@ -31,40 +31,57 @@ export const postWorkHistory = (id, value) => (dispatch) => {
     });
 };
 
-export const getWorkHistory = () => (dispatch) => {
-  dispatch({ type: WORK_GET_SUCCESS });
-  //   dispatch({ type: WORK_GET_START });
-  //   return axiosWithAuth()
-  //     .get(`/TBD`)
-  //     .then((res) => {
-  //       dispatch({
-  //         type: WORK_GET_SUCCESS,
-  //         payload: res.data,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       dispatch({
-  //         type: WORK_GET_FAILURE,
-  //         payload: { error: err.message },
-  //       });
-  //     });
+export const updateWorkHistory = (id, value) => (dispatch) => {
+  dispatch({ type: WORK_POST_START, payload: value, id: id });
+
+  return axiosWithAuth()
+    .put(`/writers/${id}/work/${value.id}/`, value)
+    .then((res) => {
+      dispatch({
+        type: WORK_POST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: WORK_POST_FAILURE,
+        payload: { error: err.message },
+      });
+    });
 };
 
-export const deleteWorkHistory = (value) => (dispatch) => {
-  dispatch({ type: WORK_DELETE_SUCCESS, payload: value });
-  //     dispatch({ type: WORK_POST_START });
-  //   return axiosWithAuth()
-  //     .delete(`/TBD`)
-  //     .then((res) => {
-  //       dispatch({
-  //         type: WORK_DELETE_SUCCESS,
-  //         payload: res.data,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       dispatch({
-  //         type: WORK_DELETE_FAILURE,
-  //         payload: { error: err.message },
-  //       });
-  //     });
+export const getWorkHistory = (writerId) => (dispatch) => {
+  dispatch({ type: WORK_GET_START, payload: writerId });
+  return axiosWithAuth()
+    .get(`/writers/${writerId}/work/`)
+    .then((res) => {
+      dispatch({
+        type: WORK_GET_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: WORK_GET_FAILURE,
+        payload: { error: err.message },
+      });
+    });
+};
+
+export const deleteWorkHistory = (id, workHistoryId) => (dispatch) => {
+  dispatch({ type: WORK_POST_START, id: id, workHistoryId: workHistoryId });
+  return axiosWithAuth()
+    .delete(`/writers/${id}/work/${workHistoryId}/`)
+    .then((res) => {
+      dispatch({
+        type: WORK_DELETE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: WORK_DELETE_FAILURE,
+        payload: { error: err.message },
+      });
+    });
 };
