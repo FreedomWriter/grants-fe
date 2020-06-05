@@ -23,6 +23,7 @@ export default function WriterProfileForm() {
   const dispatch = useDispatch();
   const classes = useStyles();
   const userId = useSelector((state) => state.login.user.id);
+  const workHistory = useSelector((state) => state.onboarding.workHistory);
   // active step keeps track of which child component will render
   const [activeStep, setActiveStep] = useState(0);
   /* change this value to `true` to disable the button until user completes form - currently set to false for development purposes */
@@ -179,18 +180,7 @@ export default function WriterProfileForm() {
     }
 
     await dispatch(postWorkHistory(userId, data));
-    setWritersWorkHistory([
-      ...writersWorkHistory,
-      {
-        id: uuidv4(),
-        company: workHistoryFormState.company,
-        start_date: workHistoryFormState.start_date,
-        end_date: workHistoryFormState.end_date,
-        position: workHistoryFormState.position,
-        current_position: workHistoryFormState.current_position,
-        responsibilities: workHistoryFormState.responsibilities,
-      },
-    ]);
+    setWritersWorkHistory(workHistory);
     return setWorkHistoryFormState({
       company: "",
       position: "",
