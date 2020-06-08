@@ -25,19 +25,25 @@ export default function ApplicantProfile() {
 
   return (
     <div className={classes.root}>
-      <Grid className={classes.profile}>
-        <div className={classes.leftpanel}>
-          <LeftPanel applicantDetails={applicantDetails} />
-        </div>
+      {applicantDetails ? (
         <div>
-          <BioCard applicantDetails={applicantDetails} />
+          <Grid className={classes.profile}>
+            <div className={classes.leftpanel}>
+              <LeftPanel applicantDetails={applicantDetails} />
+            </div>
+            <div>
+              <BioCard applicantDetails={applicantDetails} />
+            </div>
+          </Grid>
+          <Grid className={classes.grants}>
+            <div>
+              <Grants grants={grants} />
+            </div>
+          </Grid>
         </div>
-      </Grid>
-      <Grid className={classes.grants}>
-        <div>
-          <Grants grants={grants} />
-        </div>
-      </Grid>
+      ) : (
+        <h2>loading...</h2>
+      )}
     </div>
   );
 }

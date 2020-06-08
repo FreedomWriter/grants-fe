@@ -2,9 +2,9 @@ import {
   GET_USER_INFO_START,
   GET_USER_INFO_SUCCESS,
   GET_USER_INFO_FAIL,
-  GET_GRANTS_INFO_START,
-  GET_GRANTS_INFO_SUCCESS,
-  GET_GRANTS_INFO_FAIL,
+  GET_GRANTS_START,
+  GET_GRANTS_SUCCESS,
+  GET_GRANTS_FAILURE,
 } from "../actions/HomepageActions.js";
 
 const initialState = {
@@ -37,20 +37,20 @@ export const HomePageReducer = (state = initialState, { type, payload }) => {
         error: payload,
         isLoadingUser: false,
       };
-    case GET_GRANTS_INFO_START:
+    case GET_GRANTS_START:
       return {
         ...state,
         error: "",
         isLoadingGrants: true,
       };
-    case GET_GRANTS_INFO_SUCCESS:
+    case GET_GRANTS_SUCCESS:
       return {
         ...state,
         error: "",
         grantsInfo: payload,
         isLoadingGrants: false,
       };
-    case GET_GRANTS_INFO_FAIL:
+    case GET_GRANTS_FAILURE:
       return {
         ...state,
         error: payload,
