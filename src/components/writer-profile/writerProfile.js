@@ -12,6 +12,7 @@ import Link from "@material-ui/core/Link";
 import PropTypes from "prop-types";
 import Box from "@material-ui/core/Box";
 import { getApplicantInfo } from "../../store/actions/profileActions.js";
+import Loader from "../loader/Loader.js";
 
 const GlobalCSS = withStyles({
   "@global": {
@@ -83,6 +84,7 @@ const WriterProfile = (props) => {
   return (
     <StylesProvider>
       <GlobalCSS />
+      {writer ? (
       <Paper classes={{ root: classes.rootPaper }} elevation={3}>
         {" "}
         <div>
@@ -165,6 +167,9 @@ const WriterProfile = (props) => {
           <Paper elevation={2}>text here</Paper>
         </h3>
       </Paper>
+      ) : (
+        <Loader />
+      )}
     </StylesProvider>
   );
 };
