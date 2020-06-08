@@ -17,6 +17,8 @@ import WriterReview from "./WriterReviewForm";
 import { v4 as uuidv4 } from "uuid";
 import { useStyles } from "./WriterForm.styles";
 import { postWorkHistory } from "../../store/actions/workActions";
+
+/* this is the array of what will be the labels for each step in the process*/
 const steps = ["Contact", "Education", "Work History", "Bio", "Review"];
 export default function WriterProfileForm() {
   const history = useHistory();
