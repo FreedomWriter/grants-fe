@@ -40,6 +40,7 @@ export default function WriterEducationCard({ writersWork }) {
         <Typography className={classes.pos} color="textSecondary">
           responsibilities: {writersWork.responsibilities}
         </Typography>
+        {/* /* These buttons currently do nothing */ */}
         <Grid container justify="space-between">
           <Button
             variant="contained"
