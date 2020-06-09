@@ -49,8 +49,8 @@ export default function WriterEducationCard({ writersWork }) {
   };
   const body = (
     <div style={modalStyle} className={classes.modalPaper}>
-      <h2 id="simple-modal-title">Are you sure?</h2>
-      <p id="simple-modal-description">This is permanent.</p>
+      <h2 id="delete-job-modal-title">Are you sure?</h2>
+      <p id="delete-job-modal-description">This is permanent.</p>
       <Button
         justify="flex-end"
         variant="contained"
@@ -119,8 +119,8 @@ export default function WriterEducationCard({ writersWork }) {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
+        aria-labelledby="delete-job-modal-title"
+        aria-describedby="delete-job-modal-description"
       >
         {body}
       </Modal>
