@@ -167,6 +167,7 @@ export default function ApplicantContactInfo({
             writersWorkHistory.map((writersWork) => {
               return (
                 <WriterWorkCard
+                  handleWorkHistoryChanges={handleWorkHistoryChanges}
                   writersWork={writersWork}
                   key={writersWork.id}
                 />
