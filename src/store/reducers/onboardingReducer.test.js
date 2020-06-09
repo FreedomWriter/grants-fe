@@ -3,29 +3,14 @@ import * as types from "../actions/onboardingActions";
 
 const action = {
   payload: {
-    user: {
-      bio:
-        "jasdoiautoiaea ic jahv p8dsg [anb idog[a oiafgb[a8dg ar8halk ivjas dlnald g[au g[anjb [a9db8u[aih[aknbhb[ab",
-      city: "Chicago",
-      country: "United States",
-      first_name: "Natalie",
-      founding_date: "",
-      last_name: "Davis",
-      org: false,
-      org_name: "",
-      sector: "Never Make A Profit",
-      state: "Illinois",
-      type: "applicant",
-      website: "www.natalieldavis.com",
-      zip: "60619",
-    },
+    workHistory: {},
     error: "Test Error",
   },
 };
 
 test("should return the initial state", () => {
   expect(reducer(undefined, {})).toEqual({
-    user: {},
+    workHistory: {},
     isLoading: false,
   });
 });
@@ -36,7 +21,7 @@ test("should handle APPLICANT_ONBOARDING_POST_START", () => {
       type: types.APPLICANT_ONBOARDING_POST_START,
     })
   ).toEqual({
-    user: {},
+    workHistory: {},
     isLoading: true,
   });
 });
@@ -47,26 +32,11 @@ test("should handle APPLICANT_ONBOARDING_POST_SUCCESS", () => {
       {},
       {
         type: types.APPLICANT_ONBOARDING_POST_SUCCESS,
-        payload: action.payload.user,
+        payload: action.payload.workHistory,
       }
     )
   ).toEqual({
-    user: {
-      bio:
-        "jasdoiautoiaea ic jahv p8dsg [anb idog[a oiafgb[a8dg ar8halk ivjas dlnald g[au g[anjb [a9db8u[aih[aknbhb[ab",
-      city: "Chicago",
-      country: "United States",
-      first_name: "Natalie",
-      founding_date: "",
-      last_name: "Davis",
-      org: false,
-      org_name: "",
-      sector: "Never Make A Profit",
-      state: "Illinois",
-      type: "applicant",
-      website: "www.natalieldavis.com",
-      zip: "60619",
-    },
+    user: {},
     isLoading: false,
   });
 });
@@ -78,7 +48,7 @@ test("should handle APPLICANT_ONBOARDING_POST_FAILURE", () => {
       payload: action.payload.error,
     })
   ).toEqual({
-    user: {},
+    workHistory: {},
     isLoading: false,
     error: "Test Error",
   });
@@ -89,37 +59,18 @@ test("should handle WRITER_ONBOARDING_POST_START", () => {
       type: types.WRITER_ONBOARDING_POST_START,
     })
   ).toEqual({
-    user: {},
+    workHistory: {},
     isLoading: true,
   });
 });
 
 test("should handle WRITER_ONBOARDING_POST_SUCCESS", () => {
   expect(
-    reducer(
-      {},
-      {
-        type: types.WRITER_ONBOARDING_POST_SUCCESS,
-        payload: action.payload.user,
-      }
-    )
+    reducer(undefined, {
+      type: types.WRITER_ONBOARDING_POST_SUCCESS,
+    })
   ).toEqual({
-    user: {
-      bio:
-        "jasdoiautoiaea ic jahv p8dsg [anb idog[a oiafgb[a8dg ar8halk ivjas dlnald g[au g[anjb [a9db8u[aih[aknbhb[ab",
-      city: "Chicago",
-      country: "United States",
-      first_name: "Natalie",
-      founding_date: "",
-      last_name: "Davis",
-      org: false,
-      org_name: "",
-      sector: "Never Make A Profit",
-      state: "Illinois",
-      type: "applicant",
-      website: "www.natalieldavis.com",
-      zip: "60619",
-    },
+    workHistory: {},
     isLoading: false,
   });
 });
@@ -131,7 +82,7 @@ test("should handle WRITER_ONBOARDING_POST_FAILURE", () => {
       payload: action.payload.error,
     })
   ).toEqual({
-    user: {},
+    workHistory: {},
     isLoading: false,
     error: "Test Error",
   });

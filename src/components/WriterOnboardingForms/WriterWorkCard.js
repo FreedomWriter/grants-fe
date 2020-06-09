@@ -3,6 +3,8 @@ import { useStyles } from "./WriterForm.styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import { Grid } from "@material-ui/core";
 
 export default function WriterEducationCard({ writersWork }) {
   const classes = useStyles();
@@ -29,15 +31,32 @@ export default function WriterEducationCard({ writersWork }) {
           Position: {writersWork.position}
         </Typography>
         <Typography variant="body2" component="p">
-          Start Date: {writersWork.workStartDate}
+          Start Date: {writersWork.start_date}
           <br />
-          {writersWork.currentPosition
+          {writersWork.current_position
             ? `Current Position`
-            : `Start Date: ${writersWork.endDate}`}
+            : `End Date: ${writersWork.end_date}`}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          Responsibilites: {writersWork.responsibilites}
+          responsibilities: {writersWork.responsibilities}
         </Typography>
+        {/* /* These buttons currently do nothing */}
+        <Grid container justify="space-between">
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+          >
+            Delete
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+          >
+            Edit
+          </Button>
+        </Grid>
       </CardContent>
     </Card>
   );

@@ -16,12 +16,16 @@ import WriterBioForm from "./WriterBioForm";
 import WriterReview from "./WriterReviewForm";
 import { v4 as uuidv4 } from "uuid";
 import { useStyles } from "./WriterForm.styles";
+import { postWorkHistory } from "../../store/actions/workActions";
+
+/* this is the array of what will be the labels for each step in the process*/
 const steps = ["Contact", "Education", "Work History", "Bio", "Review"];
 export default function WriterProfileForm() {
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
   const userId = useSelector((state) => state.login.user.id);
+  const workHistory = useSelector((state) => state.onboarding.workHistory);
   // active step keeps track of which child component will render
   const [activeStep, setActiveStep] = useState(0);
   /* change this value to `true` to disable the button until user completes form - currently set to false for development purposes */
@@ -57,10 +61,11 @@ export default function WriterProfileForm() {
   const [workHistoryFormState, setWorkHistoryFormState] = useState({
     company: "",
     position: "",
-    workStartDate: "",
-    workEndDate: "",
-    currentPosition: true,
-    responsibilites: "",
+    start_date: "",
+    end_date: "",
+    current_position: true,
+    responsibilities: "",
+    writer_id: userId,
   });
   const [bioFormState, setBioFormState] = useState({
     website: "",
@@ -83,7 +88,7 @@ export default function WriterProfileForm() {
     bio: undefined,
     company: undefined,
     postion: undefined,
-    responsibilites: undefined,
+    responsibilities: undefined,
   });
   /* ********************* END FORM STATE AND SETTERS ********************* */
   /* ********************* BEGIN CHANGE HANDLERS ********************* */
@@ -165,32 +170,30 @@ export default function WriterProfileForm() {
     });
     enableButton();
   };
-  /* similar implementation to how multiple colleges are being handled - needs similar REFACTOR */
-  const handleWorkHistorySubmit = () => {
-    setWritersWorkHistory([
-      ...writersWorkHistory,
-      {
-        id: uuidv4(),
-        company: workHistoryFormState.company,
-        workStartDate: workHistoryFormState.workStartDate,
-        workEndDate: workHistoryFormState.workEndDate,
-        position: workHistoryFormState.position,
-        currentPosition: workHistoryFormState.currentPosition,
-        responsibilites: workHistoryFormState.responsibilites,
-      },
-    ]);
-    setWorkHistoryFormState({
+
+  const handleWorkHistorySubmit = async () => {
+    /* ensures no keys with the value of "" get sent to the back end as that will cause it to error out, this would be a problem in the event that a position is a current one, so the user would not update the intial state of workHistoryFormState.end_date*/
+
+    let data = {};
+    for (const property in workHistoryFormState) {
+      if (workHistoryFormState[property] !== "") {
+        data[property] = workHistoryFormState[property];
+      }
+    }
+
+    await dispatch(postWorkHistory(userId, data));
+    setWritersWorkHistory(workHistory);
+    return setWorkHistoryFormState({
       company: "",
       position: "",
-      startDate: "",
-      endDate: "",
-      currentPosition: false,
-      responsibilites: "",
+      start_date: "",
+      end_date: "",
+      current_position: true,
+      responsibilities: "",
+      writer_id: userId,
     });
   };
-  const handleWriterBioSubmit = () => {
-    console.log(`Bio submit!!!!!!!!!`);
-  };
+
   /* ********************* END SUBMIT HANDLERS ********************* */
   /* ********************* BEGIN INPUT VALIDATION ********************* */
   const handleValidation = (e) => {
@@ -234,8 +237,8 @@ export default function WriterProfileForm() {
       case "position":
         validator(workHistoryFormState.position);
         break;
-      case "responsibilites":
-        validator(workHistoryFormState.responsibilites);
+      case "responsibilities":
+        validator(workHistoryFormState.responsibilities);
         break;
       case "zip":
         let valid = /(^\d{5}(?:[\s]?[-\s][\s]?\d{4})?$)/.test(
@@ -333,7 +336,6 @@ export default function WriterProfileForm() {
             formHelperText={formHelperText}
             handleValidation={handleValidation}
             enableButton={enableButton}
-            handleWriterBioSubmit={handleWriterBioSubmit}
           />
         );
       case 4:
@@ -360,7 +362,6 @@ export default function WriterProfileForm() {
             bioFormState={bioFormState}
             setBioFormState={setBioFormState}
             handleBioChanges={handleBioChanges}
-            handleWriterBioSubmit={handleWriterBioSubmit}
             formHelperText={formHelperText}
             handleValidation={handleValidation}
             enableButton={enableButton}

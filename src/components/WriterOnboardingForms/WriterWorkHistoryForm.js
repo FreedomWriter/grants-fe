@@ -29,13 +29,13 @@ export default function ApplicantContactInfo({
     /* handles whether the button to submit a work history is disabled based on required fields */
     if (
       workHistoryFormState.company.length > 1 &&
-      workHistoryFormState.workStartDate.length > 1 &&
+      workHistoryFormState.start_date.length > 1 &&
       workHistoryFormState.position.length > 1 &&
-      workHistoryFormState.responsibilites.length > 1
+      workHistoryFormState.responsibilities.length > 1
     ) {
-      if (workHistoryFormState.currentPosition === true) {
+      if (workHistoryFormState.current_position === true) {
         return setDisableWorkHistorySubmitButton(false);
-      } else if (workHistoryFormState.workEndDate.length > 5) {
+      } else if (workHistoryFormState.end_date.length > 5) {
         return setDisableWorkHistorySubmitButton(false);
       } else {
         return setDisableWorkHistorySubmitButton(true);
@@ -46,11 +46,11 @@ export default function ApplicantContactInfo({
   }, [
     enableButton,
     workHistoryFormState.company,
-    workHistoryFormState.workStartDate,
+    workHistoryFormState.start_date,
     workHistoryFormState.position,
-    workHistoryFormState.responsibilites,
-    workHistoryFormState.workEndDate,
-    workHistoryFormState.currentPosition,
+    workHistoryFormState.responsibilities,
+    workHistoryFormState.end_date,
+    workHistoryFormState.current_position,
     setDisableWorkHistorySubmitButton,
   ]);
   return (
@@ -62,7 +62,7 @@ export default function ApplicantContactInfo({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.company ? true : undefined}
+            error={formHelperText.company && true}
             onChange={handleWorkHistoryChanges}
             className={classes.orgTextField}
             required
@@ -75,7 +75,7 @@ export default function ApplicantContactInfo({
         <Grid item xs={12}>
           <TextField
             onBlur={handleValidation}
-            error={formHelperText.position ? true : undefined}
+            error={formHelperText.position && true}
             onChange={handleWorkHistoryChanges}
             className={classes.orgTextField}
             required
@@ -93,25 +93,25 @@ export default function ApplicantContactInfo({
             className={classes.orgTextField}
             type="date"
             required
-            id="workStartDate"
-            name="workStartDate"
-            value={workHistoryFormState.workStartDate}
+            id="start_date"
+            name="start_date"
+            value={workHistoryFormState.start_date}
             label="Work Start Date"
           />
         </Grid>
-        {!workHistoryFormState.currentPosition && (
+        {!workHistoryFormState.current_position && (
           <Grid item xs={12}>
             <TextField
               InputLabelProps={{ shrink: true }}
               onBlur={handleValidation}
-              error={formHelperText.workEndDate ? true : undefined}
+              error={formHelperText.end_date && true}
               onChange={handleWorkHistoryChanges}
               className={classes.orgTextField}
               type="date"
               required
-              id="workEndDate"
-              name="workEndDate"
-              value={workHistoryFormState.workEndDate}
+              id="end_date"
+              name="end_date"
+              value={workHistoryFormState.end_date}
               label="Work End Date"
             />
           </Grid>
@@ -121,16 +121,16 @@ export default function ApplicantContactInfo({
             control={
               <Checkbox
                 color="secondary"
-                name="currentPosition"
+                name="current_position"
                 inputProps={{}}
-                checked={workHistoryFormState.currentPosition}
-                value={workHistoryFormState.currentPosition}
+                checked={workHistoryFormState.current_position}
+                value={workHistoryFormState.current_position}
               />
             }
             onChange={() =>
               setWorkHistoryFormState({
                 ...workHistoryFormState,
-                currentPosition: !workHistoryFormState.currentPosition,
+                current_position: !workHistoryFormState.current_position,
               })
             }
             label="Current?"
@@ -140,12 +140,12 @@ export default function ApplicantContactInfo({
           <TextAreaAutosize
             onChange={handleWorkHistoryChanges}
             required
-            data-testid="responsibilites"
-            id="responsibilites"
-            name="responsibilites"
-            value={workHistoryFormState.responsibilites}
-            placeholder="What were your responsibilites..."
-            aria-label="responsibilites"
+            data-testid="responsibilities"
+            id="responsibilities"
+            name="responsibilities"
+            value={workHistoryFormState.responsibilities}
+            placeholder="What were your responsibilities..."
+            aria-label="responsibilities"
             rowsMin={6}
             className={classes.textArea}
           />

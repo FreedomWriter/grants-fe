@@ -11,20 +11,20 @@ const setDisableWorkHistorySubmitButtonMock = jest.fn(() => {});
 let writerWorkFormStateMock = {
   company: "",
   position: "",
-  workStartDate: "",
-  workEndDate: "",
-  currentPosition: true,
-  responsibilites: "",
+  start_date: "",
+  end_date: "",
+  current_position: true,
+  responsibilities: "",
 };
 
 let setWriterWorkFormStateMock = jest.fn(function () {
   return (writerWorkFormStateMock = {
     company: "Life",
     position: "Human",
-    workStartDate: "1980-01-18",
-    workEndDate: "",
-    currentPosition: true,
-    responsibilites: "Just a human, doing human things.",
+    start_date: "1980-01-18",
+    end_date: "",
+    current_position: true,
+    responsibilities: "Just a human, doing human things.",
   });
 });
 
@@ -83,13 +83,13 @@ test("inputs are visible", () => {
 
   const companyLabelText = getByLabelText(/company/i);
   const positionLabelText = getByLabelText(/position/i);
-  const workStartDateLabelText = getByLabelText(/work start date/i);
-  const responsibilitiesLabelText = getByLabelText(/responsibilites/i);
-  //   const workEndDateLabelText = getByLabelText(/work end date/i);
+  const start_dateLabelText = getByLabelText(/work start date/i);
+  const responsibilitiesLabelText = getByLabelText(/responsibilities/i);
+  //   const end_dateLabelText = getByLabelText(/work end date/i);
 
   expect(companyLabelText).toBeVisible();
   expect(positionLabelText).toBeVisible();
-  expect(workStartDateLabelText).toBeVisible();
+  expect(start_dateLabelText).toBeVisible();
   expect(responsibilitiesLabelText).toBeVisible();
 });
 
@@ -105,9 +105,9 @@ test("form submit adds Current Position to state and renders that state to Write
 
   const companyLabelText = getByLabelText(/company/i);
   const positionLabelText = getByLabelText(/position/i);
-  const workStartDateLabelText = getByLabelText(/work start date/i);
-  const responsibilitiesLabelText = getByLabelText(/responsibilites/i);
-  const workEndDateLabelText = queryByLabelText(/work end date/i);
+  const start_dateLabelText = getByLabelText(/work start date/i);
+  const responsibilitiesLabelText = getByLabelText(/responsibilities/i);
+  const end_dateLabelText = queryByLabelText(/work end date/i);
 
   userEvent.type(companyLabelText, {
     target: { value: "Life" },
@@ -115,21 +115,21 @@ test("form submit adds Current Position to state and renders that state to Write
   userEvent.type(positionLabelText, {
     target: { value: "Human" },
   });
-  userEvent.selectOptions(workStartDateLabelText, {
+  userEvent.selectOptions(start_dateLabelText, {
     target: { value: "1980-01-18" },
   });
   userEvent.type(responsibilitiesLabelText, {
     target: { value: "Just a human, doing human things." },
   });
 
-  expect(workEndDateLabelText).toBeNull();
+  expect(end_dateLabelText).toBeNull();
   expect(writerWorkFormStateMock).toEqual({
     company: companyLabelText.value,
     position: positionLabelText.value,
-    workStartDate: workStartDateLabelText.value,
-    workEndDate: "",
-    currentPosition: true,
-    responsibilites: responsibilitiesLabelText.value,
+    start_date: start_dateLabelText.value,
+    end_date: "",
+    current_position: true,
+    responsibilities: responsibilitiesLabelText.value,
   });
 
   const { getByTestId, getByText } = render(
