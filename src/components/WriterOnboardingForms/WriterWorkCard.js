@@ -32,8 +32,6 @@ export default function WriterEducationCard({ writersWork }) {
     };
   }
 
-  // function DeleteModal() {
-  //     const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -65,15 +63,6 @@ export default function WriterEducationCard({ writersWork }) {
     </div>
   );
 
-  // return (
-  //   <div>
-  //     <button >
-  //       Open Modal
-  //     </button>
-
-  //     </div>
-  //   );
-  // }
   /* ****************** END MODAL FOR CONFIRMING DELETE ****************** */
   return (
     <>
