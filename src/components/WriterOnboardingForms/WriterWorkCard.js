@@ -21,7 +21,7 @@ import {
   updateWorkHistory,
 } from "../../store/actions/workActions";
 
-export default function WriterEducationCard({ writersWork }) {
+export default function WriterWorkCard({ writersWork }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const writerId = useSelector((state) => state.login.user.id);
@@ -106,11 +106,12 @@ export default function WriterEducationCard({ writersWork }) {
     return `${year}-${formattedMonth()}-${formattedDay()}`;
   };
   const start_date =
-    writersWork.start_date !== null
-      ? writersWork.start_date.length === 2
-        ? writersWork.start_date
-        : dateFormatter(writersWork.start_date)
-      : writersWork.start_date;
+    // writersWork.start_date !== null
+    // ?
+    writersWork.start_date.length === 2
+      ? writersWork.start_date
+      : dateFormatter(writersWork.start_date);
+  // : writersWork.start_date;
   const end_date =
     writersWork.end_date !== null
       ? writersWork.end_date.length === 2
@@ -316,7 +317,7 @@ export default function WriterEducationCard({ writersWork }) {
           </Button>
         </DialogActions>
       </Dialog>
-      {/*  ****************** BEGIN DIALOG FOR EDITING ****************** */}
+      {/*  ****************** END DIALOG FOR EDITING ****************** */}
     </>
   );
 }

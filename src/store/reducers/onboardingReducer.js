@@ -20,7 +20,7 @@ import {
 } from "../actions/workActions";
 
 const initialState = {
-  workHistory: {},
+  workHistory: [],
   isLoading: false,
 };
 
@@ -106,7 +106,6 @@ const onboardingReducer = (state = initialState, action) => {
         error: action.payload,
         isLoading: false,
       };
-
     default:
       return state;
   }

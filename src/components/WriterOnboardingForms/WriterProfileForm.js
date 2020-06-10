@@ -362,6 +362,7 @@ export default function WriterProfileForm() {
             formHelperText={formHelperText}
             handleValidation={handleValidation}
             enableButton={enableButton}
+            writersWorkHistory={workHistory}
           />
         );
       default:
