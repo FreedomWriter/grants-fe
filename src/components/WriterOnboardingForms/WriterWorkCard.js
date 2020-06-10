@@ -90,6 +90,7 @@ export default function WriterEducationCard({ writersWork }) {
 
   const [openEditDialog, setOpenEditDialog] = useState(false);
 
+  /******************* DATE FORMATTER START **** This code exists to handle the date as it comes from the back end and format it in a way that will correctly populate the start_date and end_date fields if the user has already selected either option. *******************/
   const dateFormatter = (form_date) => {
     const date = new Date(form_date);
     const year = date.getFullYear();
@@ -116,9 +117,11 @@ export default function WriterEducationCard({ writersWork }) {
         ? writersWork.end_date
         : dateFormatter(writersWork.end_date)
       : writersWork.end_date;
+  /* ****************** DATE FORMATTER END ****************** */
 
   const [writersWorkFormState, setWritersWorkFormState] = useState({
     ...writersWork,
+    /* replacing the start_date and end_date from the back end with formatted dates*/
     start_date,
     end_date,
   });
@@ -168,11 +171,11 @@ export default function WriterEducationCard({ writersWork }) {
             Position: {writersWork.position}
           </Typography>
           <Typography variant="body2" component="p">
-            Start Date: {writersWork.start_date}
+            Start Date: {dateFormatter(writersWork.start_date)}
             <br />
             {writersWork.current_position === "true"
               ? `Current Position`
-              : `End Date: ${writersWork.end_date}`}
+              : `End Date: ${dateFormatter(writersWork.end_date)}`}
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
             responsibilities: {writersWork.responsibilities}
@@ -197,6 +200,7 @@ export default function WriterEducationCard({ writersWork }) {
           </Grid>
         </CardContent>
       </Card>
+      {/*  ****************** BEGIN MODAL FOR CONFIRMING DELETE ****************** */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -204,6 +208,8 @@ export default function WriterEducationCard({ writersWork }) {
       >
         {body}
       </Modal>
+      {/*  ****************** END MODAL FOR CONFIRMING DELETE ****************** */}
+      {/*  ****************** BEGIN DIALOG FOR EDITING ****************** */}
       <Dialog
         open={openEditDialog}
         onClose={handleCloseEditDialog}
@@ -212,21 +218,11 @@ export default function WriterEducationCard({ writersWork }) {
         <DialogTitle id="form-dialog-title">Edit Position</DialogTitle>
         <DialogContent>
           <DialogContentText>Make changes.</DialogContentText>
-          {/* <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-          /> */}
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <TextField
                 autoFocus
                 margin="dense"
-                // onBlur={handleValidation}
-                // error={formHelperText.company && true}
                 onChange={handleWorkHistoryChanges}
                 className={classes.orgTextField}
                 required
@@ -238,8 +234,6 @@ export default function WriterEducationCard({ writersWork }) {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                // onBlur={handleValidation}
-                // error={formHelperText.position && true}
                 onChange={handleWorkHistoryChanges}
                 className={classes.orgTextField}
                 required
@@ -252,7 +246,6 @@ export default function WriterEducationCard({ writersWork }) {
             <Grid item xs={12}>
               <TextField
                 InputLabelProps={{ shrink: true }}
-                // onBlur={handleValidation}
                 onChange={handleWorkHistoryChanges}
                 className={classes.orgTextField}
                 type="date"
@@ -267,8 +260,6 @@ export default function WriterEducationCard({ writersWork }) {
               <Grid item xs={12}>
                 <TextField
                   InputLabelProps={{ shrink: true }}
-                  // onBlur={handleValidation}
-                  // error={formHelperText.end_date && true}
                   onChange={handleWorkHistoryChanges}
                   className={classes.orgTextField}
                   type="date"
@@ -325,6 +316,7 @@ export default function WriterEducationCard({ writersWork }) {
           </Button>
         </DialogActions>
       </Dialog>
+      {/*  ****************** BEGIN DIALOG FOR EDITING ****************** */}
     </>
   );
 }
