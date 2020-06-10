@@ -14,7 +14,7 @@ const Homepage = () => {
   //======Access state from reducer for Homepage======
   const grants = useSelector((state) => {
     console.log("Homepage>grants Selector: ", state, state.grants);
-    return state.grants.grantsInfo;
+    return state.grants.grants;
   });
 
   const userType = useSelector((state) => {
@@ -34,16 +34,6 @@ const Homepage = () => {
       }
     }
   });
-
-  // const status = useSelector((state) => {
-  //   return {
-  //     isLoadingUser: state.homePage.isLoadingUser,
-  //     isLoadingGrants: state.homePage.isLoadingGrants,
-  //     error: state.homePage.error,
-  //     reFetch: state.homePage.reFetch,
-  //   };
-  // });
-  //=====================
 
   const classes = useStyles();
 

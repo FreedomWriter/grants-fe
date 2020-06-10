@@ -10,7 +10,7 @@ import {
 const initialState = {
   error: "",
   userInfo: {},
-  grantsInfo: [],
+  grants: [],
   isLoadingUser: false,
   isLoadingGrants: false,
   reFetch: false,
@@ -47,7 +47,7 @@ export const HomePageReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         error: "",
-        grantsInfo: payload,
+        grants: payload,
         isLoadingGrants: false,
       };
     case GET_GRANTS_FAILURE:
