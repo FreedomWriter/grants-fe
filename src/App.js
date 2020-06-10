@@ -26,7 +26,7 @@ function App() {
   const userType = useSelector((state) => state.login.usertype);
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(getGrants()), []);
+  useEffect(() => dispatch(getGrants()));
   return (
     <Router>
       <ThemeProvider theme={theme}>
