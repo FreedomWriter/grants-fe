@@ -42,7 +42,7 @@ test("accessible -  WriterProfileForm pass axe", async () => {
       login: {
         user: "",
       },
-      onboarding: { workHistory: {} },
+      onboarding: { workHistory: [] },
     },
   });
   expect(await axe(container)).toHaveNoViolations();
@@ -56,7 +56,7 @@ test("Create profile header is visible", () => {
       login: {
         user: "",
       },
-      onboarding: { workHistory: {} },
+      onboarding: { workHistory: [] },
     },
   });
   const createProfileHeader = getByText(/create profile/i);
@@ -72,7 +72,7 @@ test("Stepper is visible", () => {
       login: {
         user: "",
       },
-      onboarding: { workHistory: {} },
+      onboarding: { workHistory: [] },
     },
   });
   const stepper = getByTestId("stepper");
@@ -88,7 +88,7 @@ test("Next Button is visible", () => {
       login: {
         user: "",
       },
-      onboarding: { workHistory: {} },
+      onboarding: { workHistory: [] },
     },
   });
   const nextButton = getByText(/next/i);
@@ -104,7 +104,7 @@ test("Next Button is disabled", () => {
       login: {
         user: "",
       },
-      onboarding: { workHistory: {} },
+      onboarding: { workHistory: [] },
     },
   });
   const nextButton = getByText(/next/i);

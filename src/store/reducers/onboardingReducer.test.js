@@ -3,14 +3,14 @@ import * as types from "../actions/onboardingActions";
 
 const action = {
   payload: {
-    workHistory: {},
+    workHistory: [],
     error: "Test Error",
   },
 };
 
 test("should return the initial state", () => {
   expect(reducer(undefined, {})).toEqual({
-    workHistory: {},
+    workHistory: [],
     isLoading: false,
   });
 });
@@ -21,7 +21,7 @@ test("should handle APPLICANT_ONBOARDING_POST_START", () => {
       type: types.APPLICANT_ONBOARDING_POST_START,
     })
   ).toEqual({
-    workHistory: {},
+    workHistory: [],
     isLoading: true,
   });
 });
@@ -36,7 +36,7 @@ test("should handle APPLICANT_ONBOARDING_POST_SUCCESS", () => {
       }
     )
   ).toEqual({
-    user: {},
+    user: [],
     isLoading: false,
   });
 });
@@ -48,7 +48,7 @@ test("should handle APPLICANT_ONBOARDING_POST_FAILURE", () => {
       payload: action.payload.error,
     })
   ).toEqual({
-    workHistory: {},
+    workHistory: [],
     isLoading: false,
     error: "Test Error",
   });
@@ -59,7 +59,7 @@ test("should handle WRITER_ONBOARDING_POST_START", () => {
       type: types.WRITER_ONBOARDING_POST_START,
     })
   ).toEqual({
-    workHistory: {},
+    workHistory: [],
     isLoading: true,
   });
 });
@@ -70,7 +70,7 @@ test("should handle WRITER_ONBOARDING_POST_SUCCESS", () => {
       type: types.WRITER_ONBOARDING_POST_SUCCESS,
     })
   ).toEqual({
-    workHistory: {},
+    workHistory: [],
     isLoading: false,
   });
 });
@@ -82,7 +82,7 @@ test("should handle WRITER_ONBOARDING_POST_FAILURE", () => {
       payload: action.payload.error,
     })
   ).toEqual({
-    workHistory: {},
+    workHistory: [],
     isLoading: false,
     error: "Test Error",
   });

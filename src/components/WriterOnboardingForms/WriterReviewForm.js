@@ -29,10 +29,11 @@ export default function ReviewForm({
   disableWorkHistorySubmitButton,
   setDisableWorkHistorySubmitButton,
   setBioFormState,
+  writersWorkHistory,
 }) {
-  const writersWorkHistory = useSelector(
-    (state) => state.onboarding.workHistory
-  );
+  // const writersWorkHistory = useSelector(
+  //   (state) => state.onboarding.workHistory
+  // );
   return (
     <>
       <WriterContactInfoForm
@@ -51,6 +52,17 @@ export default function ReviewForm({
         handleCollegeSubmit={handleCollegeSubmit}
         setDisableCollegeSubmitButton={setDisableCollegeSubmitButton}
         disableCollegeSubmitButton={disableCollegeSubmitButton}
+        formHelperText={formHelperText}
+        handleValidation={handleValidation}
+        enableButton={enableButton}
+      />
+      <WriterWorkHistoryForm
+        workHistoryFormState={workHistoryFormState}
+        setWorkHistoryFormState={setWorkHistoryFormState}
+        handleWorkHistoryChanges={handleWorkHistoryChanges}
+        handleWorkHistorySubmit={handleWorkHistorySubmit}
+        disableWorkHistorySubmitButton={disableWorkHistorySubmitButton}
+        setDisableWorkHistorySubmitButton={setDisableWorkHistorySubmitButton}
         formHelperText={formHelperText}
         handleValidation={handleValidation}
         enableButton={enableButton}
