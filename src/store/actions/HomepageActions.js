@@ -17,9 +17,7 @@ export const GET_GRANTS_FAILURE = "GET_GRANTS_FAILURE";
 
 //==================UNCOMMENT THE SECTION BELOW===============================
 /*
-const apiBase = 'https://<>.herokuapp.com/api'
-const userInfo = `${apiBase}/userInfo`;
-const grantsInfo = `${apiBase}/grantsInfo`;
+
 
 
 export const getUserInfo = (info) => (dispatch) => {
@@ -36,19 +34,6 @@ export const getUserInfo = (info) => (dispatch) => {
     });
 };
 
-export const getGrantsInfo = (info) => (dispatch) => {
-  dispatch({ type: GET_GRANTS_START });
-  axiosWithAuth()
-    .get(`${grantsInfo}`)
-    .then((res) => {
-      console.log("getGrantsInfo>res: ", res);
-      dispatch({ type: GET_GRANTS_SUCCESS, payload: res.data });
-    })
-    .catch((err) => {
-      console.log("getGrantsInfo>err: ", err);
-      dispatch({ type: GET_GRANTS_FAILURE, payload: { error: err.message } });
-    });
-};
 */
 //
 
@@ -74,7 +59,7 @@ export const getUserInfo = (info) => (dispatch) => {
     });
 };
 
-export const getGrantsInfo = (info) => (dispatch) => {
+export const getGrants = (info) => (dispatch) => {
   dispatch({ type: GET_GRANTS_START });
   axios
     .get(`${grantsInfo}`)
@@ -85,7 +70,7 @@ export const getGrantsInfo = (info) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log("getGrantsInfo>err: ", err);
+      console.log("getGrants>err: ", err);
       dispatch({ type: GET_GRANTS_FAILURE, payload: { error: err.message } });
     });
 };

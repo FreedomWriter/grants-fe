@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -9,23 +10,38 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 //contact icons...
 import ChatRoundedIcon from "@material-ui/icons/ChatRounded";
 
 import { useStyles } from "./GrantCardStyles.jsx";
 
+import {
+  postFavorite,
+  deleteFavorite,
+} from "../../../store/actions/favoritesActions";
+
 export default function GrantCard(props) {
+  const dispatch = useDispatch();
   const grant = props.data;
-  // console.log("GrantCard: ", grant);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [faved, setFaved] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  console.log("GrantCard(props): ", props);
+  const addFavClickHandler = async (grant) => {
+    await dispatch(postFavorite(grant));
+    return setFaved(true);
+  };
+
+  const removeFavClickHandler = async (grant) => {
+    await dispatch(deleteFavorite(grant));
+    return setFaved(false);
+  };
 
   return (
     <Card className={classes.root}>
@@ -33,17 +49,29 @@ export default function GrantCard(props) {
         className={classes.header}
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            {grant.title[0]}
+            {grant.grant_name[0]}
           </Avatar>
         }
         action={
           <CardActions className={classes.actionTop}>
-            <IconButton
-              aria-label="add to favorites"
-              className={classes.buttons}
-            >
-              <FavoriteIcon />
-            </IconButton>
+            {/* if user has favorited a grant, the icon renders as a filled in heart and the click handler is set to remove it, if the user has not faved the grant, the icon is a heart border and the click handler is set to add it  */}
+            {!faved ? (
+              <IconButton
+                aria-label="add to favorites"
+                className={classes.buttons}
+                onClick={() => addFavClickHandler(grant)}
+              >
+                <FavoriteBorderIcon />
+              </IconButton>
+            ) : (
+              <IconButton
+                aria-label="remove from favorites"
+                className={classes.buttons}
+                onClick={() => removeFavClickHandler(grant)}
+              >
+                <FavoriteIcon />
+              </IconButton>
+            )}
             <IconButton aria-label="direct message" className={classes.buttons}>
               <ChatRoundedIcon />
             </IconButton>
@@ -68,7 +96,7 @@ export default function GrantCard(props) {
                 component="p"
                 className={classes.title}
               >
-                {grant.title}
+                {grant.grant_name}
               </Typography>
             </div>
             <div className={classes.boxInfo}>
@@ -88,10 +116,7 @@ export default function GrantCard(props) {
       />
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Grant Details:</Typography>
-          {grant.detailContent.map((detail) => {
-            return <Typography key={grant.title}>{detail}</Typography>;
-          })}
+          <Typography paragraph>{grant.description}</Typography>
         </CardContent>
       </Collapse>
     </Card>

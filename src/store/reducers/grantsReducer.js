@@ -35,7 +35,7 @@ const grantsReducer = (state = initialState, action) => {
       return {
         ...state,
         error: "",
-        grantsInfo: action.payload,
+        grants: action.payload,
         isLoading: false,
       };
     case GET_GRANTS_FAILURE:
@@ -54,7 +54,7 @@ const grantsReducer = (state = initialState, action) => {
       return {
         ...state,
         error: "",
-        grantsInfo: action.payload,
+        grants: action.payload,
         isLoading: false,
       };
     case GET_APPLICANT_GRANTS_FAILURE:

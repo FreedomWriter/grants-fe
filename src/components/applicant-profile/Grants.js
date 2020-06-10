@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getGrantsInfo } from "../../store/actions/grantsActions";
+import { getGrants } from "../../store/actions/grantsActions";
 import { Link } from "react-router-dom";
 import Loader from "../loader/Loader.js";
 
@@ -19,7 +19,7 @@ const Grants = (/*grants*/) => {
   const viewerId = useSelector((state) => state.login.userId);
 
   useEffect(() => {
-    dispatch(getGrantsInfo());
+    dispatch(getGrants());
   }, [dispatch]);
 
   const grants = useSelector((state) => state.grants.grantsInfo);
@@ -41,9 +41,9 @@ const Grants = (/*grants*/) => {
           grants.map((grant) => {
             console.log(grant);
             return (
-              <div className={classes.profilegrantcard} key={grant.grant_id}>
-                <h4>{grant.title}</h4>
-                <p>{grant.detailMain}</p>
+              <div className={classes.profilegrantcard} key={grant.id}>
+                <h4>{grant.grant_name}</h4>
+                <p>{grant.description}</p>
               </div>
             );
           })

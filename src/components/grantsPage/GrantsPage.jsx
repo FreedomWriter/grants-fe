@@ -6,30 +6,18 @@ import GrantCard from "./grantCards/GrantCard.jsx";
 
 import { useStyles } from "./GrantsPageStyles.jsx";
 
-import { getGrantsInfo } from "../../store/actions/GrantsPageActions.js";
-
 import Loader from "../loader/Loader.js";
 
 const GrantsPage = () => {
   //======Access necessary actions for GrantsPage======
   const dispatch = useDispatch(); //can use all actions.
-  // useEffect(() => {
-  //   dispatch(getGrantsInfo());
-  // }, [dispatch]);
   //=====================
 
   //======Access state from reducer for GrantsPage======
   const grants = useSelector((state) => {
-    return state.grants.grantsInfo;
+    console.log("state.grants: ", state.grants);
+    return state.grants.grants;
   });
-  // const status = useSelector((state) => {
-  //   return {
-  //     isLoadingGrants: state.grantsPage.isLoadingGrants,
-  //     error: state.grantsPage.error,
-  //     reFetch: state.grantsPage.reFetch,
-  //   };
-  // });
-  //=====================
 
   const classes = useStyles();
 

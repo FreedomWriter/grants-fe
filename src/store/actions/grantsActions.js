@@ -29,71 +29,17 @@ export const DELETE_GRANTS_FAILURE = "DELETE_PROFILE_FAILURE";
 // /*
 const apiBase = "https://<>.herokuapp.com/api";
 
-const grantsInfo = `${apiBase}/grantsInfo`;
-
-export const getGrantsInfo = (info) => (dispatch) => {
+export const getGrants = (info) => (dispatch) => {
   dispatch({ type: GET_GRANTS_START });
   axiosWithAuth()
-    .get(`${grantsInfo}`)
+    .get("/grants/")
     .then((res) => {
-      console.log("getGrantsInfo>res: ", res);
+      console.log("getGrants>res: ", res);
       dispatch({ type: GET_GRANTS_SUCCESS, payload: res.data });
     })
     .catch((err) => {
-      console.log("getGrantsInfo>err: ", err);
+      console.log("getGrants>err: ", err);
       dispatch({ type: GET_GRANTS_FAILURE, payload: { error: err.message } });
-    });
-};
-// */
-// //
-
-// //
-// //==============REMOVE THIS SECTION WHEN THIS TO THE CORRECT LINK=============
-// // console.log(
-// //   "================\n-API DUMMY FOR TESTING HOMPAGE-\n================\n",
-// //   "===============\n-REMOVE SECTION WHEN BACKEND IS UP-\n================"
-// // );
-// const apiBase = "https://jsonplaceholder.typicode.com";
-// const grantsInfo = `${apiBase}/posts`;
-// //
-
-// export const getGrantsInfo = (info) => (dispatch) => {
-//   dispatch({ type: GET_GRANTS_START });
-//   // axiosWithAuth()
-//   axios
-//     .get(`${grantsInfo}`)
-//     .then((res) => {
-//       // console.log("getGrantsInfo>res: ", res);
-//       // console.log("getGrantsInfo>info: ", info);
-//       dispatch({
-//         type: GET_GRANTS_SUCCESS,
-//         payload: grantDetails.openGrants,
-//       });
-//     })
-//     .catch((err) => {
-//       console.log("getGrantsInfo>err: ", err);
-//       dispatch({ type: GET_GRANTS_FAILURE, payload: { error: err.message } });
-//     });
-// };
-// //==============REMOVE ABOVE ONCE BACKEND IS WORKING================
-//
-
-export const getGrants = (id) => (dispatch) => {
-  dispatch({ type: PUT_GRANTS_START });
-
-  axiosWithAuth()
-    .get(`/grants/`)
-    .then((res) => {
-      dispatch({
-        type: PUT_GRANTS_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      dispatch({
-        type: PUT_GRANTS_FAILURE,
-        payload: { error: err.message },
-      });
     });
 };
 
@@ -117,10 +63,12 @@ export const getGrantsByApplicantId = (id) => (dispatch) => {
 };
 
 /* MAY NEED TO BE REFACTORED TO POST TO A PARTICULAR USER */
+// applicant_profile_id = profile:id (not profile:applicant_id) //
 export const postGrants = (value) => (dispatch) => {
   dispatch({ type: POST_GRANTS_START });
+
   axiosWithAuth()
-    .post(`/grants`)
+    .post(`/grants/new`, value)
     .then((res) => {
       dispatch({
         type: POST_GRANTS_SUCCESS,

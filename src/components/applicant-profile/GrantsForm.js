@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -15,25 +15,27 @@ export default function GrantsForm() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
+  const applicant_id = useSelector((state) => state.profileInfo.profileDetails.id);
+
   const [grant, setGrant] = useState({
+    applicant_profile_id: applicant_id,
     grant_name: "",
-    org_name: "",
-    contact_name: "",
+    awarding_agency: "",
     sector: "",
     due_date: "",
     description: ""
   });
+
   const handleChange = e => {
     setGrant({
       ...grant,
       [e.target.name]: e.target.value
     });
   };
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    /*dispatch(postGrants(grant)).then(() => )*/
-    history.push("/GrantsList");
-    console.log(grant);
+    await dispatch(postGrants(grant))
+      return history.push("/GrantsList");
   };
 
   return (
@@ -47,7 +49,7 @@ export default function GrantsForm() {
         onSubmit={handleSubmit}
       >
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={10} sm={6}>
             <TextField
               required
               id="grant_name"
@@ -58,29 +60,7 @@ export default function GrantsForm() {
               fullWidth
             />
           </Grid>
-          <Grid item xs={6}>
-            <TextField
-              required
-              id="org_name"
-              name="org_name"
-              label="Organization Name"
-              value={grant.org_name}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              required
-              id="contact_name"
-              name="contact_name"
-              label="Contact Name"
-              value={grant.contact_name}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item sm={6}>
             <TextField
               required
               id="sector"
@@ -88,10 +68,20 @@ export default function GrantsForm() {
               label="Sector"
               value={grant.sector}
               onChange={handleChange}
+            />  
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              required
+              id="awarding_agency"
+              name="awarding_agency"
+              label="Awarding Agency"
+              value={grant.awarding_agency}
+              onChange={handleChange}
               fullWidth
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={10} sm={8}>
             <TextField
               id="due_date"
               label="Due Date"
@@ -105,7 +95,7 @@ export default function GrantsForm() {
               }}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={8}>
             <TextAreaAutosize
               required
               id="grant_description"
