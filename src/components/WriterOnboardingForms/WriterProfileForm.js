@@ -74,7 +74,6 @@ export default function WriterProfileForm() {
   });
   /* because users may have attended more than one school, we are currently using a separate state to handle this. REFACTOR to use psuedo POST to global state */
   const [writersColleges, setWritersColleges] = useState([]);
-  const [writersWorkHistory, setWritersWorkHistory] = useState([]);
   /* state for handling error text when input validation is not met */
   const [formHelperText, setFormHelperText] = useState({
     first_name: undefined,
@@ -182,7 +181,6 @@ export default function WriterProfileForm() {
     }
 
     await dispatch(postWorkHistory(userId, data));
-    setWritersWorkHistory(workHistory);
     return setWorkHistoryFormState({
       company: "",
       position: "",
@@ -319,8 +317,7 @@ export default function WriterProfileForm() {
             handleValidation={handleValidation}
             enableButton={enableButton}
             handleWorkHistorySubmit={handleWorkHistorySubmit}
-            writersWorkHistory={writersWorkHistory}
-            setWritersWorkHistory={setWritersWorkHistory}
+            writersWorkHistory={workHistory}
             disableWorkHistorySubmitButton={disableWorkHistorySubmitButton}
             setDisableWorkHistorySubmitButton={
               setDisableWorkHistorySubmitButton

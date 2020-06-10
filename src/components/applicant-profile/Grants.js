@@ -22,7 +22,8 @@ const Grants = (/*grants*/) => {
     dispatch(getGrantsInfo());
   }, [dispatch]);
 
-  const grants = useSelector((state) => state.grants.grants);
+
+  const grants = useSelector((state) => state.grants.grantsInfo);
 
   return (
     <>
