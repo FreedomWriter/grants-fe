@@ -1,6 +1,4 @@
-import {
-  makeStyles
-} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => ({
   userPicture: {
@@ -101,6 +99,7 @@ export const useStyles = makeStyles((theme) => ({
   finalGrid: {
     marginTop: "20%",
     marginLeft: "5%",
+    marginRight: "5%",
     gridColumnStart: "1",
     gridColumnEnd: "3",
     gridRowStart: "4",

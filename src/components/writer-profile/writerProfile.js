@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { StylesProvider, withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import { useStyles } from "./writerProfile.styles.js";
+import { useStyles as workStyles } from "../WriterOnboardingForms/WriterForm.styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -13,6 +14,8 @@ import PropTypes from "prop-types";
 import Box from "@material-ui/core/Box";
 import { getWriterInfo } from "../../store/actions/profileActions.js";
 import Loader from "../loader/Loader.js";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 
 const GlobalCSS = withStyles({
   "@global": {
@@ -61,12 +64,13 @@ function a11yProps(index) {
 
 const WriterProfile = (props) => {
   const classes = useStyles();
+  const workClasses = workStyles();
 
   //Redux
   const writer = useSelector((state) => state.profileInfo.profileDetails);
   const userId = useSelector((state) => state.login.userId);
   const dispatch = useDispatch();
-
+  console.log(writer);
   useEffect(() => {
     dispatch(getWriterInfo(userId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -129,10 +133,10 @@ const WriterProfile = (props) => {
             <div className={classes.educationText}>
               Education:<div className={classes.bodyText}>USC 2010-2014</div>
             </div>
-            <div className={classes.educationText}>
+            {/* <div className={classes.educationText}>
               Work History:
               <div className={classes.bodyText}>DSC 2010-2014</div>
-            </div>
+            </div> */}
           </h3>
           <div></div>
           <div className={classes.userServices}>
@@ -161,10 +165,45 @@ const WriterProfile = (props) => {
             </Paper>
           </div>
           <h3 className={classes.finalGrid}>
-            Portfolio:
-            <Paper elevation={2}>text here</Paper>
-            <Paper elevation={2}>text here</Paper>
-            <Paper elevation={2}>text here</Paper>
+            Work History:
+            {writer &&
+              writer.workHistory.map((writersWorkHistory) => (
+                <Card className={workClasses.cardRoot} variant="outlined">
+                  <CardContent>
+                    <Typography
+                      className={workClasses.title}
+                      color="textSecondary"
+                      gutterBottom
+                      data-testid="company-header"
+                    >
+                      Company
+                    </Typography>
+                    <Typography variant="h5" component="h2">
+                      {writersWorkHistory.company}
+                    </Typography>
+                    <Typography
+                      className={workClasses.pos}
+                      color="textSecondary"
+                      data-testid="position-header"
+                    >
+                      Position: {writersWorkHistory.position}
+                    </Typography>
+                    <Typography variant="body2" component="p">
+                      Start Date: {writersWorkHistory.start_date}
+                      <br />
+                      {writersWorkHistory.current_position === "true"
+                        ? `Current Position`
+                        : `End Date: ${writersWorkHistory.end_date}`}
+                    </Typography>
+                    <Typography
+                      className={workClasses.pos}
+                      color="textSecondary"
+                    >
+                      responsibilities: {writersWorkHistory.responsibilities}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              ))}
           </h3>
         </Paper>
       ) : (

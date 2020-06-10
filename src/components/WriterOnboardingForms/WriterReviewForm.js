@@ -31,9 +31,6 @@ export default function ReviewForm({
   setBioFormState,
   writersWorkHistory,
 }) {
-  // const writersWorkHistory = useSelector(
-  //   (state) => state.onboarding.workHistory
-  // );
   return (
     <>
       <WriterContactInfoForm
