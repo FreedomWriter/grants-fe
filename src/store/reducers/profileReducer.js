@@ -21,14 +21,14 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         profileDetails: action.payload,
-        isLoading: false,
+          isLoading: false,
       };
 
     case GET_PROFILE_FAILURE:
       return {
         ...state,
         error: action.payload,
-        isLoading: false,
+          isLoading: false,
       };
 
     default:

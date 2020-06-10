@@ -1,5 +1,5 @@
-import React from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
@@ -11,17 +11,11 @@ import { useStyles } from "./GrantsList.styles";
 export default function GrantsList() {
   const classes = useStyles();
 
-  // const dispatch = useDispatch();
-  // const user = useSelector((state) => state.login.user)
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.login.user)
 
-  // useEffect(() => {
-  //   if(user) {
-  //     const { id } = user;
-  //     dispatch(getProfileInfo(id))
-  //   }
-  // },[dispatch, user])
-
-  // const grants = useSelector((state) => state.profileInfo.grants)
+  const grants = useSelector((state) => state.grants.grants)
+  console.log(grants)
 
   return (
     <div className={classes.container}>
@@ -39,22 +33,14 @@ export default function GrantsList() {
         </div>
       </Grid>
       <Paper>
-        <List>
-          <ListItem>
-            <h4>Insert grant name here</h4>
-          </ListItem>
-          <ListItem>
-            <h4>Insert grant name here</h4>
-          </ListItem>
-          <ListItem>
-            <h4>Insert grant name here</h4>
-          </ListItem>
-          {/* {grants.map((grant) => {
-            <div key={grant.grant_id}>
-              <h3>{grants.grant_name}</h3> 
-            </div>
-          })} */}
-        </List>
+            {grants.map((grant) => {
+              return (
+                <div key={grant.id}>
+                  <h3>{grant.grant_name}</h3> 
+                  <p>{grant.description}</p>
+                </div>
+              )
+            })}
       </Paper>
     </div>
   );

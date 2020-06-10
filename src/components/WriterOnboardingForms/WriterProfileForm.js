@@ -181,7 +181,6 @@ export default function WriterProfileForm() {
     }
 
     await dispatch(postWorkHistory(userId, data));
-
     return setWorkHistoryFormState({
       company: "",
       position: "",
