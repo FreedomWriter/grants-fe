@@ -22,7 +22,7 @@ const Grants = (/*grants*/) => {
     dispatch(getGrantsInfo());
   }, [dispatch]);
 
-  const grants = useSelector((state) => state.grants.grantsInfo);
+  const grants = useSelector((state) => state.grants.grants);
 
   return (
     <>
@@ -41,9 +41,9 @@ const Grants = (/*grants*/) => {
           grants.map((grant) => {
             console.log(grant);
             return (
-              <div className={classes.profilegrantcard} key={grant.grant_id}>
-                <h4>{grant.title}</h4>
-                <p>{grant.detailMain}</p>
+              <div className={classes.profilegrantcard} key={grant.id}>
+                <h4>{grant.grant_name}</h4>
+                <p>{grant.description}</p>
               </div>
             );
           })

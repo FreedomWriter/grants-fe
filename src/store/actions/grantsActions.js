@@ -119,8 +119,9 @@ export const getGrantsByApplicantId = (id) => (dispatch) => {
 /* MAY NEED TO BE REFACTORED TO POST TO A PARTICULAR USER */
 export const postGrants = (value) => (dispatch) => {
   dispatch({ type: POST_GRANTS_START });
+  
   axiosWithAuth()
-    .post(`/grants`)
+    .post(`/grants/new`, value)
     .then((res) => {
       dispatch({
         type: POST_GRANTS_SUCCESS,
