@@ -16,35 +16,15 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Checkbox from "@material-ui/core/Checkbox";
 import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { deleteWorkHistory } from "../../store/actions/workActions";
+import {
+  deleteWorkHistory,
+  updateWorkHistory,
+} from "../../store/actions/workActions";
 
-export default function WriterEducationCard({
-  writersWork,
-  handleWorkHistoryChanges,
-}) {
+export default function WriterEducationCard({ writersWork }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const writerId = useSelector((state) => state.login.user.id);
-
-  const dateFormatter = (form_date) => {
-    const date = new Date(form_date);
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const day = date.getDate();
-    const formattedMonth = () => {
-      return month.length === 2 ? month : 0 + `${month}`;
-    };
-
-    return `${year}-${formattedMonth()}-${day}`;
-  };
-  const start_date = dateFormatter(writersWork.start_date);
-  const end_date = dateFormatter(writersWork.end_date);
-
-  const [writersWorkFormState, setWritersWorkFormState] = useState({
-    ...writersWork,
-    start_date,
-    end_date,
-  });
 
   /* ****************** BEGIN MODAL FOR CONFIRMING DELETE ****************** */
 
@@ -79,26 +59,69 @@ export default function WriterEducationCard({
     return setOpen(false);
   };
   const body = (
-    <div style={modalStyle} className={classes.modalPaper}>
+    <Grid container style={modalStyle} className={classes.modalPaper}>
       <h2 id="delete-job-modal-title">Are you sure?</h2>
-      <p id="delete-job-modal-description">This is permanent.</p>
-      <Button
-        justify="flex-end"
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        onClick={handleDelete}
-      >
-        Delete
-      </Button>
-    </div>
+      <Grid item container justify="space-evenly">
+        <Button
+          justify="flex-end"
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          onClick={handleDelete}
+        >
+          Delete
+        </Button>
+        <Button
+          justify="flex-end"
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          onClick={handleClose}
+        >
+          Cancel
+        </Button>
+      </Grid>
+    </Grid>
   );
 
   /* ****************** END MODAL FOR CONFIRMING DELETE ****************** */
 
-  /* ****************** BEGIN MODAL FOR EDITING ****************** */
+  /* ****************** BEGIN MODAL FOR EDITING STATE & HANDLERS ****************** */
 
-  const [openEditDialog, setOpenEditDialog] = React.useState(false);
+  const [openEditDialog, setOpenEditDialog] = useState(false);
+
+  const dateFormatter = (form_date) => {
+    const date = new Date(form_date);
+    const year = date.getFullYear();
+    let month = date.getMonth();
+    let day = date.getDate();
+    const formattedMonth = () => {
+      return month.length === 2 ? month + 1 : 0 + `${month + 1}`;
+    };
+    const formattedDay = () => {
+      return day.length === 2 ? day : 0 + `${day}`;
+    };
+
+    return `${year}-${formattedMonth()}-${formattedDay()}`;
+  };
+  const start_date =
+    writersWork.start_date !== null
+      ? writersWork.start_date.length === 2
+        ? writersWork.start_date
+        : dateFormatter(writersWork.start_date)
+      : writersWork.start_date;
+  const end_date =
+    writersWork.end_date !== null
+      ? writersWork.end_date.length === 2
+        ? writersWork.end_date
+        : dateFormatter(writersWork.end_date)
+      : writersWork.end_date;
+
+  const [writersWorkFormState, setWritersWorkFormState] = useState({
+    ...writersWork,
+    start_date,
+    end_date,
+  });
 
   const handleClickOpenEditDialog = () => {
     setOpenEditDialog(true);
@@ -108,7 +131,20 @@ export default function WriterEducationCard({
     setOpenEditDialog(false);
   };
 
-  /* ****************** END MODAL FOR EDITING ****************** */
+  const handleWorkHistoryChanges = (e) => {
+    setWritersWorkFormState({
+      ...writersWorkFormState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleUpdate = () => {
+    dispatch(updateWorkHistory(writerId, writersWorkFormState));
+
+    handleCloseEditDialog();
+  };
+
+  /* ****************** END MODAL FOR EDITING STATE & HANDLERS ****************** */
   return (
     <>
       <Card className={classes.cardRoot} variant="outlined">
@@ -165,7 +201,6 @@ export default function WriterEducationCard({
         open={open}
         onClose={handleClose}
         aria-labelledby="delete-job-modal-title"
-        aria-describedby="delete-job-modal-description"
       >
         {body}
       </Modal>
@@ -252,11 +287,7 @@ export default function WriterEducationCard({
                     color="secondary"
                     name="current_position"
                     inputProps={{}}
-                    checked={
-                      writersWorkFormState.current_position === "true"
-                        ? true
-                        : false
-                    }
+                    checked={writersWorkFormState.current_position}
                     value={writersWorkFormState.current_position}
                   />
                 }
@@ -289,10 +320,7 @@ export default function WriterEducationCard({
           <Button onClick={handleCloseEditDialog} color="primary">
             Cancel
           </Button>
-          <Button
-            onClick={() => console.log({ writersWorkFormState })}
-            color="primary"
-          >
+          <Button onClick={handleUpdate} color="primary">
             Update
           </Button>
         </DialogActions>
