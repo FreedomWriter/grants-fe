@@ -11,7 +11,7 @@ import Tab from "@material-ui/core/Tab";
 import Link from "@material-ui/core/Link";
 import PropTypes from "prop-types";
 import Box from "@material-ui/core/Box";
-import { getApplicantInfo } from "../../store/actions/profileActions.js";
+import { getWriterInfo } from "../../store/actions/profileActions.js";
 import Loader from "../loader/Loader.js";
 
 const GlobalCSS = withStyles({
@@ -68,7 +68,7 @@ const WriterProfile = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getApplicantInfo(userId));
+    dispatch(getWriterInfo(userId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
   //
@@ -85,88 +85,88 @@ const WriterProfile = (props) => {
     <StylesProvider>
       <GlobalCSS />
       {writer ? (
-      <Paper classes={{ root: classes.rootPaper }} elevation={3}>
-        {" "}
-        <div>
-          <AccountCircleIcon
-            classes={{ root: classes.rootIcon }}
-            fontSize="large"
-          />
-          {writer && (
-            <div className={classes.userName}>
-              {" "}
-              {writer.first_name}
-              {writer.last_name}
-            </div>
-          )}
-          <Button
-            classes={{ root: classes.rootButton, label: classes.labelButton }}
-            variant="contained"
-            color="primary"
-            href="#contained-buttons"
-          >
-            Direct Message
-          </Button>
-          {writer && (
-            <Link
-              classes={{ root: classes.rootLink }}
-              href="#"
-              onClick={preventDefault}
+        <Paper classes={{ root: classes.rootPaper }} elevation={3}>
+          {" "}
+          <div>
+            <AccountCircleIcon
+              classes={{ root: classes.rootIcon }}
+              fontSize="large"
+            />
+            {writer && (
+              <div className={classes.userName}>
+                {" "}
+                {writer.first_name}
+                {writer.last_name}
+              </div>
+            )}
+            <Button
+              classes={{ root: classes.rootButton, label: classes.labelButton }}
+              variant="contained"
+              color="primary"
+              href="#contained-buttons"
             >
-              {writer.website}
-            </Link>
+              Direct Message
+            </Button>
+            {writer && (
+              <Link
+                classes={{ root: classes.rootLink }}
+                href="#"
+                onClick={preventDefault}
+              >
+                {writer.website}
+              </Link>
+            )}
+          </div>
+          {writer && (
+            <h3 className={classes.userEducation}>
+              Bio:
+              <div className={classes.bodyText}>{writer.bio}</div>
+            </h3>
           )}
-        </div>
-        {writer && (
+          <div></div>
           <h3 className={classes.userEducation}>
-            Bio:
-            <div className={classes.bodyText}>{writer.bio}</div>
+            Background:
+            <div className={classes.educationText}>
+              Education:<div className={classes.bodyText}>USC 2010-2014</div>
+            </div>
+            <div className={classes.educationText}>
+              Work History:
+              <div className={classes.bodyText}>DSC 2010-2014</div>
+            </div>
           </h3>
-        )}
-        <div></div>
-        <h3 className={classes.userEducation}>
-          Background:
-          <div className={classes.educationText}>
-            Education:<div className={classes.bodyText}>USC 2010-2014</div>
+          <div></div>
+          <div className={classes.userServices}>
+            <h3 className={classes.userEducation}>Services Offered:</h3>
+            <Paper>
+              <Tabs
+                orientation="vertical"
+                variant="scrollable"
+                value={value}
+                onChange={handleChange}
+                aria-label="Vertical tabs example"
+                className={classes.tabs}
+              >
+                <Tab label="Grant Writing" {...a11yProps(0)} />
+                <Tab label="Grant Research" {...a11yProps(1)} />
+              </Tabs>
+              <TabPanel value={value} index={0}>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
+                blanditiis tenetur unde suscipit, quam beatae rerum inventore
+                consectetur, neque doloribus, cupiditate numquam dignissimos
+                laborum fugiat deleniti? Eum quasi quidem quibusdam.
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+                This is just here to show you this works.
+              </TabPanel>
+            </Paper>
           </div>
-          <div className={classes.educationText}>
-            Work History:
-            <div className={classes.bodyText}>DSC 2010-2014</div>
-          </div>
-        </h3>
-        <div></div>
-        <div className={classes.userServices}>
-          <h3 className={classes.userEducation}>Services Offered:</h3>
-          <Paper>
-            <Tabs
-              orientation="vertical"
-              variant="scrollable"
-              value={value}
-              onChange={handleChange}
-              aria-label="Vertical tabs example"
-              className={classes.tabs}
-            >
-              <Tab label="Grant Writing" {...a11yProps(0)} />
-              <Tab label="Grant Research" {...a11yProps(1)} />
-            </Tabs>
-            <TabPanel value={value} index={0}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-              blanditiis tenetur unde suscipit, quam beatae rerum inventore
-              consectetur, neque doloribus, cupiditate numquam dignissimos
-              laborum fugiat deleniti? Eum quasi quidem quibusdam.
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-              This is just here to show you this works.
-            </TabPanel>
-          </Paper>
-        </div>
-        <h3 className={classes.finalGrid}>
-          Portfolio:
-          <Paper elevation={2}>text here</Paper>
-          <Paper elevation={2}>text here</Paper>
-          <Paper elevation={2}>text here</Paper>
-        </h3>
-      </Paper>
+          <h3 className={classes.finalGrid}>
+            Portfolio:
+            <Paper elevation={2}>text here</Paper>
+            <Paper elevation={2}>text here</Paper>
+            <Paper elevation={2}>text here</Paper>
+          </h3>
+        </Paper>
       ) : (
         <Loader />
       )}

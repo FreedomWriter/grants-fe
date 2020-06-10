@@ -12,7 +12,7 @@ export const GET_PROFILE_FAILURE = "GET_PROFILE_FAILURE";
 // export const PUT_GRANTS_SUCCESS = "GET_PROFILE_SUCCESS";
 // export const PUT_GRANTS_FAILURE = "GET_PROFILE_FAILURE";
 
-export const getProfileInfo = (id) => (dispatch) => {
+export const getApplicantInfo = (id) => (dispatch) => {
   dispatch({ type: GET_PROFILE_START, payload: id });
 
   axiosWithAuth()
@@ -31,7 +31,7 @@ export const getProfileInfo = (id) => (dispatch) => {
     });
 };
 
-export const getApplicantInfo = (id) => (dispatch) => {
+export const getWriterInfo = (id) => (dispatch) => {
   dispatch({ type: GET_PROFILE_START, payload: id });
 
   axiosWithAuth()
