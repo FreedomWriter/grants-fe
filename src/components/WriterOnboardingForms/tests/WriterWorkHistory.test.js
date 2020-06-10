@@ -1,9 +1,14 @@
 import React, { useState as useStateMock } from "react";
 import { axe } from "jest-axe";
-import { render } from "@testing-library/react";
+import { render as rtlRender } from "@testing-library/react";
+import { createStore } from "redux";
+
+import { Provider } from "react-redux";
 import userEvent from "@testing-library/user-event";
 import WriterWorkHistoryForm from "../WriterWorkHistoryForm.js";
 import WriterWorkCard from "../WriterWorkCard";
+import { initialState as initialReducerState } from "../../../store/reducers/onboardingReducer";
+import reducer from "../../../store/reducers/onboardingReducer";
 
 const enableButton = jest.fn(() => {});
 const setDisableWorkHistorySubmitButtonMock = jest.fn(() => {});
@@ -46,8 +51,22 @@ afterEach(() => {
   console.error.mockRestore();
 });
 
+function render(
+  ui,
+  {
+    initialState = initialReducerState,
+    store = createStore(reducer, initialState),
+    ...renderOptions
+  } = {}
+) {
+  function Wrapper({ children }) {
+    return <Provider store={store}>{children}</Provider>;
+  }
+  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+}
+
 test("accessible -  WriterWorkHistoryForm pass axe", async () => {
-  const { container } = render(
+  const { container } = rtlRender(
     <WriterWorkHistoryForm
       workHistoryFormState={writerWorkFormStateMock}
       formHelperText={formHelperTextMock}
@@ -59,7 +78,7 @@ test("accessible -  WriterWorkHistoryForm pass axe", async () => {
 });
 
 test("Work History header displays", () => {
-  const { getByText } = render(
+  const { getByText } = rtlRender(
     <WriterWorkHistoryForm
       workHistoryFormState={writerWorkFormStateMock}
       formHelperText={formHelperTextMock}
@@ -72,7 +91,7 @@ test("Work History header displays", () => {
 });
 
 test("inputs are visible", () => {
-  const { getByLabelText, getByTestId } = render(
+  const { getByLabelText } = rtlRender(
     <WriterWorkHistoryForm
       workHistoryFormState={writerWorkFormStateMock}
       formHelperText={formHelperTextMock}
@@ -94,13 +113,24 @@ test("inputs are visible", () => {
 });
 
 test("form submit adds Current Position to state and renders that state to WritersWorkCard", () => {
-  const { getByLabelText, queryByLabelText, debug } = render(
+  const { getByLabelText, queryByLabelText } = render(
     <WriterWorkHistoryForm
       workHistoryFormState={writerWorkFormStateMock}
       formHelperText={formHelperTextMock}
       enableButton={enableButton}
       setDisableWorkHistorySubmitButton={setDisableWorkHistorySubmitButtonMock}
-    />
+    />,
+    {
+      initialState: {
+        user: {},
+        isLoading: false,
+        login: {
+          user: {
+            id: 1,
+          },
+        },
+      },
+    }
   );
 
   const companyLabelText = getByLabelText(/company/i);
@@ -133,7 +163,18 @@ test("form submit adds Current Position to state and renders that state to Write
   });
 
   const { getByTestId, getByText } = render(
-    <WriterWorkCard writersWork={writerWorkFormStateMock} />
+    <WriterWorkCard writersWork={writerWorkFormStateMock} />,
+    {
+      initialState: {
+        user: {},
+        isLoading: false,
+        login: {
+          user: {
+            id: 1,
+          },
+        },
+      },
+    }
   );
   const companyHeader = getByTestId(/company-header/i);
   const companyWorkedFor = getByText(/life/i);

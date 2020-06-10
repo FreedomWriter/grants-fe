@@ -11,6 +11,12 @@ import {
   WORK_POST_START,
   WORK_POST_SUCCESS,
   WORK_POST_FAILURE,
+  WORK_PUT_START,
+  WORK_PUT_SUCCESS,
+  WORK_PUT_FAILURE,
+  WORK_DELETE_START,
+  WORK_DELETE_SUCCESS,
+  WORK_DELETE_FAILURE,
 } from "../actions/workActions";
 
 const initialState = {
@@ -68,6 +74,39 @@ const onboardingReducer = (state = initialState, action) => {
         error: action.payload,
         isLoading: false,
       };
+    case WORK_PUT_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case WORK_PUT_SUCCESS:
+      return {
+        workHistory: action.payload,
+        isLoading: false,
+      };
+    case WORK_PUT_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false,
+      };
+    case WORK_DELETE_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case WORK_DELETE_SUCCESS:
+      return {
+        workHistory: action.payload,
+        isLoading: false,
+      };
+    case WORK_DELETE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false,
+      };
+
     default:
       return state;
   }
