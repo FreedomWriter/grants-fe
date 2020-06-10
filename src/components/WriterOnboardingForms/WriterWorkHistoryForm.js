@@ -10,7 +10,7 @@ import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
 import WriterWorkCard from "./WriterWorkCard";
 
 import { useStyles } from "./WriterForm.styles";
-export default function WriterWorkHistoryForm({
+export default function ApplicantContactInfo({
   handleWorkHistoryChanges,
   setWorkHistoryFormState,
   workHistoryFormState,
@@ -23,7 +23,7 @@ export default function WriterWorkHistoryForm({
   setDisableWorkHistorySubmitButton,
 }) {
   const classes = useStyles();
-
+  console.log({ writersWorkHistory });
   useEffect(() => {
     enableButton();
     /* handles whether the button to submit a work history is disabled based on required fields */

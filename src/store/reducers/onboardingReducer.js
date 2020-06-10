@@ -20,7 +20,7 @@ import {
 } from "../actions/workActions";
 
 const initialState = {
-  workHistory: {},
+  workHistory: [],
   isLoading: false,
 };
 
