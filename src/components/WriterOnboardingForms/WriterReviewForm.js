@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import WriterContactInfoForm from "./WriterContactInfoForm";
 import WriterEducationForm from "./WriterEducationForm";
 import WriterWorkHistoryForm from "./WriterWorkHistoryForm";
+import WriterWorkCard from "./WriterWorkCard";
 import WriterBioForm from "./WriterBioForm";
 
 export default function ReviewForm({
@@ -28,6 +30,9 @@ export default function ReviewForm({
   setDisableWorkHistorySubmitButton,
   setBioFormState,
 }) {
+  const writersWorkHistory = useSelector(
+    (state) => state.onboarding.workHistory
+  );
   return (
     <>
       <WriterContactInfoForm
@@ -50,17 +55,16 @@ export default function ReviewForm({
         handleValidation={handleValidation}
         enableButton={enableButton}
       />
-      <WriterWorkHistoryForm
-        workHistoryFormState={workHistoryFormState}
-        setWorkHistoryFormState={setWorkHistoryFormState}
-        handleWorkHistoryChanges={handleWorkHistoryChanges}
-        handleWorkHistorySubmit={handleWorkHistorySubmit}
-        disableWorkHistorySubmitButton={disableWorkHistorySubmitButton}
-        setDisableWorkHistorySubmitButton={setDisableWorkHistorySubmitButton}
-        formHelperText={formHelperText}
-        handleValidation={handleValidation}
-        enableButton={enableButton}
-      />
+      {writersWorkHistory &&
+        writersWorkHistory.map((writersWork) => {
+          return (
+            <WriterWorkCard
+              handleWorkHistoryChanges={handleWorkHistoryChanges}
+              writersWork={writersWork}
+              key={writersWork.id}
+            />
+          );
+        })}
       <WriterBioForm
         bioFormState={bioFormState}
         setBioFormState={setBioFormState}

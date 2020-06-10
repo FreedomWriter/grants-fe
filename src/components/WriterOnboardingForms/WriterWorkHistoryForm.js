@@ -10,7 +10,7 @@ import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
 import WriterWorkCard from "./WriterWorkCard";
 
 import { useStyles } from "./WriterForm.styles";
-export default function ApplicantContactInfo({
+export default function WriterWorkHistoryForm({
   handleWorkHistoryChanges,
   setWorkHistoryFormState,
   workHistoryFormState,
