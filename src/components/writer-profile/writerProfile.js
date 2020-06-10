@@ -168,7 +168,11 @@ const WriterProfile = (props) => {
             Work History:
             {writer &&
               writer.workHistory.map((writersWorkHistory) => (
-                <Card className={workClasses.cardRoot} variant="outlined">
+                <Card
+                  className={workClasses.cardRoot}
+                  key={writersWorkHistory.id}
+                  variant="outlined"
+                >
                   <CardContent>
                     <Typography
                       className={workClasses.title}
