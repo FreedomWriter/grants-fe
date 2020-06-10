@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getGrantsInfo } from "../../store/actions/grantsActions";
+import { getGrants } from "../../store/actions/grantsActions";
 import { Link } from "react-router-dom";
 import Loader from "../loader/Loader.js";
 
@@ -19,7 +19,7 @@ const Grants = (/*grants*/) => {
   const viewerId = useSelector((state) => state.login.userId);
 
   useEffect(() => {
-    dispatch(getGrantsInfo());
+    dispatch(getGrants());
   }, [dispatch]);
 
 

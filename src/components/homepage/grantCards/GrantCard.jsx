@@ -49,7 +49,7 @@ export default function GrantCard(props) {
         className={classes.header}
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            {grant.title[0]}
+            {grant.grant_name[0]}
           </Avatar>
         }
         action={
@@ -96,7 +96,7 @@ export default function GrantCard(props) {
                 component="p"
                 className={classes.title}
               >
-                {grant.title}
+                {grant.grant_name}
               </Typography>
             </div>
             <div className={classes.boxInfo}>
@@ -116,10 +116,7 @@ export default function GrantCard(props) {
       />
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Grant Details:</Typography>
-          {grant.detailContent.map((detail) => {
-            return <Typography key={grant.title}>{detail}</Typography>;
-          })}
+          <Typography paragraph>{grant.description}</Typography>
         </CardContent>
       </Collapse>
     </Card>

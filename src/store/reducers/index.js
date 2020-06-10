@@ -4,11 +4,9 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 // import components
 import loginReducer from "./loginReducer.js";
-import HomePageReducer from "./HomePageReducer.js";
 import profileReducer from "./profileReducer.js";
 import onboardingReducer from "./onboardingReducer";
 import collegesReducer from "./collegesReducer.js";
-import grantsPageReducer from "./GrantsPageReducer.js";
 import favoritesReducer from "./favoritesReducer.js";
 import grantsReducer from "./grantsReducer.js";
 
