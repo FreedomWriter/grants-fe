@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import WriterContactInfoForm from "./WriterContactInfoForm";
 import WriterEducationForm from "./WriterEducationForm";
 import WriterWorkHistoryForm from "./WriterWorkHistoryForm";

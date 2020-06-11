@@ -1,10 +1,10 @@
 // import libraries
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./components/globals/theme";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 // import components
 import ApplicantProfile from "./components/applicant-profile/ApplicantProfile";
 import Navbar from "./components/navbar/Navbar";
@@ -18,11 +18,15 @@ import LandingPage from "./components/landingPage/LandingPage.js";
 import GrantsList from "./components/applicant-profile/GrantsList";
 import GrantsForm from "./components/applicant-profile/GrantsForm";
 import GrantsPage from "./components/grantsPage/GrantsPage.jsx";
+import { getGrants } from "./store/actions/grantsActions";
 //
 function App() {
   const loggedIn = useSelector((state) => state.login.loggedIn);
   const user = useSelector((state) => state.login.user);
   const userType = useSelector((state) => state.login.usertype);
+  const dispatch = useDispatch();
+
+  useEffect(() => dispatch(getGrants()));
   return (
     <Router>
       <ThemeProvider theme={theme}>
