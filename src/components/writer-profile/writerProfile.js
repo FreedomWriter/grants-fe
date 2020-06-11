@@ -63,18 +63,20 @@ function a11yProps(index) {
 }
 
 const WriterProfile = (props) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const workClasses = workStyles();
-
-  //Redux
-  const writer = useSelector((state) => state.profileInfo.profileDetails);
   const userId = useSelector((state) => state.login.userId);
-  const dispatch = useDispatch();
-  console.log(writer);
   useEffect(() => {
     dispatch(getWriterInfo(userId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userId]);
+  }, []);
+
+  //Redux
+  const writer = useSelector((state) => state.profileInfo.profileDetails);
+
+  console.log(writer);
+
   //
 
   const preventDefault = (event) => event.preventDefault();
@@ -167,6 +169,7 @@ const WriterProfile = (props) => {
           <h3 className={classes.finalGrid}>
             Work History:
             {writer &&
+              writer.workHistory &&
               writer.workHistory.map((writersWorkHistory) => (
                 <Card
                   className={workClasses.cardRoot}
