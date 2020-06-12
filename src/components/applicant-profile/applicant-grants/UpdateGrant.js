@@ -1,21 +1,29 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
 import Button from "@material-ui/core/Button";
 import { ValidatorForm } from "react-material-ui-form-validator";
-import { postGrants } from "../../store/actions/grantsActions";
-
+import { useHistory } from "react-router-dom";
 import { useStyles } from "./GrantsForm.styles";
 
+import {
+  putGrants,
+  getGrantsByApplicantId
+} from "../../../store/actions/grantsActions";
+
 export default function GrantsForm() {
-  const classes = useStyles();
-  const history = useHistory();
   const dispatch = useDispatch();
-  const applicant_id = useSelector((state) => state.profileInfo.profileDetails.id);
+  const history = useHistory();
+  const classes = useStyles();
+  const applicant_id = useSelector(
+    state => state.profileInfo.profileDetails.id
+  );
+  const grants = useSelector(state => state.grants.grants);
+  const { id } = useParams();
 
   const [grant, setGrant] = useState({
     applicant_profile_id: applicant_id,
@@ -26,23 +34,27 @@ export default function GrantsForm() {
     description: ""
   });
 
+  useEffect(() => {
+    setGrant({ ...grants.filter(grant => grant.id == id)[0] });
+  }, [grant.id, id, grants]);
+
   const handleChange = e => {
+    e.preventDefault();
     setGrant({
       ...grant,
       [e.target.name]: e.target.value
     });
   };
+
   const handleSubmit = async e => {
     e.preventDefault();
-    await dispatch(postGrants(grant))
-      return history.push("/GrantsList");
+    dispatch(putGrants(id, grant));
+    dispatch(getGrantsByApplicantId(applicant_id));
+    await history.push("/GrantsList");
   };
 
   return (
-    <div className={classes.container}>
-      <Typography variant="h6" gutterBottom>
-        Adding a Grant
-      </Typography>
+    <div>
       <ValidatorForm
         className={classes.form}
         autoComplete="off"
@@ -68,7 +80,7 @@ export default function GrantsForm() {
               label="Sector"
               value={grant.sector}
               onChange={handleChange}
-            />  
+            />
           </Grid>
           <Grid item xs={6}>
             <TextField
@@ -110,7 +122,7 @@ export default function GrantsForm() {
           </Grid>
           <div className={classes.addbutton}>
             <Button type="submit" variant="contained" color="primary">
-              Add a grant
+              Update Grant
             </Button>
           </div>
         </Grid>

@@ -15,9 +15,10 @@ import WriterProfileForm from "./components/WriterOnboardingForms/WriterProfileF
 import RegisterForm from "./components/register/registerForm.js";
 import LoginForm from "./components/login/loginForm.js";
 import LandingPage from "./components/landingPage/LandingPage.js";
-import GrantsList from "./components/applicant-profile/GrantsList";
-import GrantsForm from "./components/applicant-profile/GrantsForm";
+import GrantsList from "./components/applicant-profile/applicant-grants/GrantsList";
+import GrantsForm from "./components/applicant-profile/applicant-grants/GrantsForm";
 import GrantsPage from "./components/grantsPage/GrantsPage.jsx";
+import UpdateGrant from "./components/applicant-profile/applicant-grants/UpdateGrant"
 import { getGrants } from "./store/actions/grantsActions";
 //
 function App() {
@@ -35,6 +36,7 @@ function App() {
         </Route>
         {loggedIn && <Navbar />}
         <Switch>
+          <PrivateRoute path="/EditGrant/:id" component={UpdateGrant} />
           <PrivateRoute path="/GrantsForm" component={GrantsForm} />
           <PrivateRoute path="/GrantsList" component={GrantsList} />
           {userType && userType === "applicant" ? (

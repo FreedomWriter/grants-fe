@@ -1,11 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+<<<<<<< HEAD:src/components/applicant-profile/applicant-grants/Grants.js
+import {
+  getGrants,
+  getGrantsByApplicantId
+} from "../../../store/actions/grantsActions";
+=======
 import { getGrants } from "../../store/actions/grantsActions";
+>>>>>>> master:src/components/applicant-profile/Grants.js
 import { Link } from "react-router-dom";
-import Loader from "../loader/Loader.js";
+import Loader from "../../loader/Loader.js";
 
 import Paper from "@material-ui/core/Paper";
-import { useStyles } from "./ApplicantProfile.styles";
+import { useStyles } from "../ApplicantProfile.styles";
 import Button from "@material-ui/core/Button";
 
 const Grants = (/*grants*/) => {
@@ -13,16 +20,25 @@ const Grants = (/*grants*/) => {
   const dispatch = useDispatch();
 
   const profileId = useSelector(
-    (state) => state.profileInfo.profileDetails.applicant_id
+    state => state.profileInfo.profileDetails.applicant_id
   );
 
-  const viewerId = useSelector((state) => state.login.userId);
+  const viewerId = useSelector(state => state.login.userId);
+
+  const grants = useSelector(state => state.grants.grants);
+  console.log(grants);
+
+  const grantProfile = useSelector(
+    state => state.profileInfo.profileDetails.id
+  );
 
   useEffect(() => {
+<<<<<<< HEAD:src/components/applicant-profile/applicant-grants/Grants.js
+    dispatch(getGrantsByApplicantId(grantProfile));
+=======
     dispatch(getGrants());
+>>>>>>> master:src/components/applicant-profile/Grants.js
   }, [dispatch]);
-
-  const grants = useSelector((state) => state.grants.grantsInfo);
 
   return (
     <>
@@ -38,8 +54,7 @@ const Grants = (/*grants*/) => {
         {!grants || grants.length < 1 ? (
           <Loader />
         ) : (
-          grants.map((grant) => {
-            console.log(grant);
+          grants.map(grant => {
             return (
               <div className={classes.profilegrantcard} key={grant.id}>
                 <h4>{grant.grant_name}</h4>
