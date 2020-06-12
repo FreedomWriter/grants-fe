@@ -58,8 +58,10 @@ function App() {
             ) : (
               <PrivateRoute path="/onboarding" component={WriterProfileForm} />
             )
-          ) : (
+          ) : loggedIn ? (
             <Redirect to="Homepage" />
+          ) : (
+            <Redirect to="/" />
           )}
           />
           <Route path="/RegisterForm">
