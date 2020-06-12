@@ -1,11 +1,6 @@
 // import libraries
 import React, { useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./components/globals/theme";
@@ -49,20 +44,10 @@ function App() {
           )}
           />
           <PrivateRoute path="/Homepage" component={Homepage} />
-          {/* if the user is undefined but loggedIn is true, this means they are an existing user and can't access "/onboarding" and will be re-routed to "/Homepage". If they are not logged in they will be re-routed to the landingPage */}
-          {user !== undefined ? (
-            user && user.user_type === "applicant" ? (
-              <PrivateRoute
-                path="/onboarding"
-                component={ApplicantProfileForm}
-              />
-            ) : (
-              <PrivateRoute path="/onboarding" component={WriterProfileForm} />
-            )
-          ) : loggedIn ? (
-            <Redirect to="Homepage" />
+          {user && user.user_type === "applicant" ? (
+            <PrivateRoute path="/onboarding" component={ApplicantProfileForm} />
           ) : (
-            <Redirect to="/" />
+            <PrivateRoute path="/onboarding" component={WriterProfileForm} />
           )}
           />
           <Route path="/RegisterForm">
@@ -78,3 +63,19 @@ function App() {
   );
 }
 export default App;
+
+// {/* if the user is undefined but loggedIn is true, this means they are an existing user and can't access "/onboarding" and will be re-routed to "/Homepage". If they are not logged in they will be re-routed to the landingPage */}
+// {user !== undefined ? (
+//   user && user.user_type === "applicant" ? (
+//     <PrivateRoute
+//       path="/onboarding"
+//       component={ApplicantProfileForm}
+//     />
+//   ) : (
+//     <PrivateRoute path="/onboarding" component={WriterProfileForm} />
+//   )
+// ) : loggedIn ? (
+//   <Redirect to="Homepage" />
+// ) : (
+//   <Redirect to="/" />
+// )}
