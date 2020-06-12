@@ -1,6 +1,11 @@
 // import libraries
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./components/globals/theme";
@@ -25,7 +30,7 @@ function App() {
   const user = useSelector((state) => state.login.user);
   const userType = useSelector((state) => state.login.usertype);
   const dispatch = useDispatch();
-
+  console.log({ user });
   useEffect(() => dispatch(getGrants()));
   return (
     <Router>
@@ -44,10 +49,17 @@ function App() {
           )}
           />
           <PrivateRoute path="/Homepage" component={Homepage} />
-          {user && user.user_type === "applicant" ? (
-            <PrivateRoute path="/onboarding" component={ApplicantProfileForm} />
+          {user !== undefined ? (
+            user && user.user_type === "applicant" ? (
+              <PrivateRoute
+                path="/onboarding"
+                component={ApplicantProfileForm}
+              />
+            ) : (
+              <PrivateRoute path="/onboarding" component={WriterProfileForm} />
+            )
           ) : (
-            <PrivateRoute path="/onboarding" component={WriterProfileForm} />
+            <Redirect to="Homepage" />
           )}
           />
           <Route path="/RegisterForm">
