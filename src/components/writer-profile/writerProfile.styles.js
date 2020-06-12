@@ -31,7 +31,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   userName: {
-    width: "110%",
+    width: "95%",
     textAlign: "center",
     fontSize: "0.850rem",
     fontFamily: "Roboto, Helvetica, Arial, sansSerif",
@@ -54,7 +54,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   rootButton: {
     minWidth: "0",
-    marginLeft: "14%",
+    marginLeft: "16%",
     marginTop: "5%",
     [theme.breakpoints.up("md")]: {
       marginTop: "2.5%",
@@ -117,7 +117,7 @@ export const useStyles = makeStyles((theme) => ({
     margin: "20%",
     width: "2em",
     height: "2em",
-    marginLeft: "16.5%",
+    marginLeft: "20%",
     [theme.breakpoints.up("md")]: {
       marginLeft: "30%",
       width: "3em",
@@ -134,7 +134,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   rootLink: {
-    marginLeft: "15%",
+    marginLeft: "3%",
     padding: "0%",
     fontSize: "0.8rem",
     textAlign: "center",
@@ -144,7 +144,7 @@ export const useStyles = makeStyles((theme) => ({
       marginLeft: "35%",
     },
     [theme.breakpoints.up("lg")]: {
-      marginLeft: "30%",
+      marginLeft: "25%",
       padding: "0%",
       fontSize: "1rem",
     },
