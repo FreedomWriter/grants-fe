@@ -49,6 +49,7 @@ function App() {
           )}
           />
           <PrivateRoute path="/Homepage" component={Homepage} />
+          {/* if the user is undefined but loggedIn is true, this means they are an existing user and can't access "/onboarding" and will be re-routed to "/Homepage". If they are not logged in they will be re-routed to the landingPage */}
           {user !== undefined ? (
             user && user.user_type === "applicant" ? (
               <PrivateRoute
