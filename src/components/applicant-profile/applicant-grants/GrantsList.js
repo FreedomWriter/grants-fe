@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import { deleteGrant } from "../../../store/actions/grantsActions"
+import { deleteGrant } from "../../../store/actions/grantsActions";
 import { useStyles } from "./GrantsList.styles";
 
 export default function GrantsList() {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const grants = useSelector(state => state.grants.grants);
+  const grants = useSelector((state) => state.grants.grants);
 
   return (
     <div className={classes.container}>
@@ -29,7 +29,7 @@ export default function GrantsList() {
         </div>
       </Grid>
       <Paper>
-        {grants.map(grant => {
+        {grants.map((grant) => {
           return (
             <div key={grant.id}>
               <h3>{grant.grant_name}</h3>
@@ -38,7 +38,14 @@ export default function GrantsList() {
                 <Link to={`/EditGrant/${grant.id}`}>
                   <Button>Edit</Button>
                 </Link>
-                <Button type='submit' onClick={() => {dispatch(deleteGrant(grant.id));}}>Delete</Button>
+                <Button
+                  type="submit"
+                  onClick={() => {
+                    dispatch(deleteGrant(grant.id));
+                  }}
+                >
+                  Delete
+                </Button>
               </div>
             </div>
           );

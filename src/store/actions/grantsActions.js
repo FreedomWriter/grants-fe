@@ -4,6 +4,10 @@ export const GET_GRANTS_START = "GET_GRANTS_START";
 export const GET_GRANTS_SUCCESS = "GET_GRANTS_SUCCESS";
 export const GET_GRANTS_FAILURE = "GET_GRANTS_FAILURE";
 
+export const GET_APPLICANT_GRANTS_SUCCESS = "GET_APPLICANT_GRANTS_SUCCESS";
+export const GET_APPLICANT_GRANTS_FAILURE = "GET_APPLICANT_GRANTS_FAILURE";
+export const GET_APPLICANT_GRANTS_START = "GET_APPLICANT_GRANTS_START";
+
 export const POST_GRANTS_START = "POST_GRANTS_START";
 export const POST_GRANTS_SUCCESS = "POST_GRANTS_SUCCESS";
 export const POST_GRANTS_FAILURE = "POST_GRANTS_FAILURE";
@@ -15,7 +19,7 @@ export const PUT_GRANTS_FAILURE = "PUT_GRANTS_FAILURE";
 export const DELETE_GRANTS_START = "DELETE_GRANTS_START";
 export const DELETE_GRANTS_SUCCESS = "DELETE_GRANTS_SUCCESS";
 export const DELETE_GRANTS_FAILURE = "DELETE_GRANTS_FAILURE";
-  
+
 export const getGrants = () => (dispatch) => {
   dispatch({ type: GET_GRANTS_START });
   axiosWithAuth()
@@ -73,7 +77,6 @@ export const putGrants = (id, value) => (dispatch) => {
   axiosWithAuth()
     .put(`/grants/${id}`, value)
     .then((res) => {
-      console.log(res)
       dispatch({
         type: PUT_GRANTS_SUCCESS,
         payload: res.data,
