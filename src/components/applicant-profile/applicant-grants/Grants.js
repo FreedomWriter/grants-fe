@@ -1,13 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< HEAD:src/components/applicant-profile/applicant-grants/Grants.js
 import {
   getGrants,
   getGrantsByApplicantId
 } from "../../../store/actions/grantsActions";
-=======
-import { getGrants } from "../../store/actions/grantsActions";
->>>>>>> master:src/components/applicant-profile/Grants.js
 import { Link } from "react-router-dom";
 import Loader from "../../loader/Loader.js";
 
@@ -33,11 +29,7 @@ const Grants = (/*grants*/) => {
   );
 
   useEffect(() => {
-<<<<<<< HEAD:src/components/applicant-profile/applicant-grants/Grants.js
     dispatch(getGrantsByApplicantId(grantProfile));
-=======
-    dispatch(getGrants());
->>>>>>> master:src/components/applicant-profile/Grants.js
   }, [dispatch]);
 
   return (

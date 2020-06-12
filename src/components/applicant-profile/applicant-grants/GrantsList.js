@@ -38,7 +38,7 @@ export default function GrantsList() {
                 <Link to={`/EditGrant/${grant.id}`}>
                   <Button>Edit</Button>
                 </Link>
-                <Button type='danger'  type='submit' onClick={() => {dispatch(deleteGrant(grant.id));}}>Delete</Button>
+                <Button type='submit' onClick={() => {dispatch(deleteGrant(grant.id));}}>Delete</Button>
               </div>
             </div>
           );

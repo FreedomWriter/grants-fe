@@ -20,7 +20,7 @@ export default function ApplicantProfile() {
 
   useEffect(() => {
     dispatch(getApplicantInfo(applicant_id));
-  }, [dispatch, applicant_id]);
+  }, [dispatch]);
 
   return (
     <div className={classes.root}>
@@ -46,3 +46,4 @@ export default function ApplicantProfile() {
     </div>
   );
 }
+//This is a test
