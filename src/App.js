@@ -25,7 +25,6 @@ function App() {
   const user = useSelector((state) => state.login.user);
   const userType = useSelector((state) => state.login.usertype);
   const dispatch = useDispatch();
-  console.log({ user });
   useEffect(() => dispatch(getGrants()));
   return (
     <Router>
@@ -63,19 +62,3 @@ function App() {
   );
 }
 export default App;
-
-// {/* if the user is undefined but loggedIn is true, this means they are an existing user and can't access "/onboarding" and will be re-routed to "/Homepage". If they are not logged in they will be re-routed to the landingPage */}
-// {user !== undefined ? (
-//   user && user.user_type === "applicant" ? (
-//     <PrivateRoute
-//       path="/onboarding"
-//       component={ApplicantProfileForm}
-//     />
-//   ) : (
-//     <PrivateRoute path="/onboarding" component={WriterProfileForm} />
-//   )
-// ) : loggedIn ? (
-//   <Redirect to="Homepage" />
-// ) : (
-//   <Redirect to="/" />
-// )}
