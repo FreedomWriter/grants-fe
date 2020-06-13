@@ -18,6 +18,7 @@ import {
 
 const initialState = {
   grants: [],
+  profileGrants: [],
   isLoading: false,
   error: undefined,
 };
@@ -54,7 +55,7 @@ const grantsReducer = (state = initialState, action) => {
       return {
         ...state,
         error: "",
-        grants: action.payload,
+        profileGrants: action.payload,
         isLoading: false,
       };
     case GET_APPLICANT_GRANTS_FAILURE:
@@ -90,7 +91,7 @@ const grantsReducer = (state = initialState, action) => {
 
     case PUT_GRANTS_SUCCESS:
       return {
-        grants: action.payload,
+        ...state,
         isLoading: false,
       };
 
@@ -108,7 +109,8 @@ const grantsReducer = (state = initialState, action) => {
 
     case DELETE_GRANTS_SUCCESS:
       return {
-        grants: action.payload,
+        ...state,
+        grants: state.grants.filter((grant) => grant.id !== action.payload),
         isLoading: false,
       };
 

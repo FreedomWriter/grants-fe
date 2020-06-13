@@ -31,10 +31,11 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   userName: {
+    width: "95%",
     textAlign: "center",
     fontSize: "0.850rem",
     fontFamily: "Roboto, Helvetica, Arial, sansSerif",
-    fonWeight: "500",
+    fontWeight: "500",
     lineHeight: "1.57",
     letterSpacing: "0.00714em",
     [theme.breakpoints.up("md")]: {
@@ -53,7 +54,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   rootButton: {
     minWidth: "0",
-    marginLeft: "12.5%",
+    marginLeft: "16%",
     marginTop: "5%",
     [theme.breakpoints.up("md")]: {
       marginTop: "2.5%",
@@ -116,7 +117,7 @@ export const useStyles = makeStyles((theme) => ({
     margin: "20%",
     width: "2em",
     height: "2em",
-    marginLeft: "16.5%",
+    marginLeft: "20%",
     [theme.breakpoints.up("md")]: {
       marginLeft: "30%",
       width: "3em",
@@ -133,19 +134,18 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   rootLink: {
-    minWidth: "0",
-    marginLeft: "10%",
-    width: "125px",
-    padding: "10%",
+    marginLeft: "3%",
+    padding: "0%",
     fontSize: "0.8rem",
     textAlign: "center",
     whiteSpace: "nowrap",
     [theme.breakpoints.up("md")]: {
-      padding: "33.5%",
+      padding: "0%",
+      marginLeft: "35%",
     },
     [theme.breakpoints.up("lg")]: {
-      width: "30%",
-      padding: "30%",
+      marginLeft: "25%",
+      padding: "0%",
       fontSize: "1rem",
     },
   },
