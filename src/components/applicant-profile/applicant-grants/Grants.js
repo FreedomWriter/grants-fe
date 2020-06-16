@@ -15,28 +15,22 @@ const Grants = (/*grants*/) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const profileId = useSelector(
-    (state) => state.profileInfo.profileDetails.applicant_id
-  );
+  const userID = useSelector((state) => state.profileInfo.profileDetails);
 
   const viewerId = useSelector((state) => state.login.userId);
 
-  const grants = useSelector((state) => state.grants.grants);
-
-  const grantProfile = useSelector(
-    (state) => state.profileInfo.profileDetails.id
-  );
+  const grants = useSelector((state) => state.grants.profileGrants);
 
   useEffect(() => {
     dispatch(getGrants());
-    dispatch(getGrantsByApplicantId(grantProfile));
+    dispatch(getGrantsByApplicantId(userID.id));
   }, [dispatch]);
 
   return (
     <>
       <h3>Grants We'd Like to Apply For:</h3>
       <Paper className={classes.profilepaper}>
-        {Number(viewerId) === Number(profileId) ? (
+        {Number(viewerId) === Number(userID.applicant_id) ? (
           <Button component={Link} to="/GrantsList">
             Edit Grants
           </Button>
