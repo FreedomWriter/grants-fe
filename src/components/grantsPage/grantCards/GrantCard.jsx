@@ -34,8 +34,9 @@ export default function GrantCard(props) {
   };
 
   const addFavClickHandler = async (grant) => {
-    await dispatch(postFavorite(grant));
-    return setFaved(true);
+    console.log(`akldgjaiegjaig'aj:`, grant);
+    // await dispatch(postFavorite(grant));
+    // return setFaved(true);
   };
 
   const removeFavClickHandler = async (grant) => {
