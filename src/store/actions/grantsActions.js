@@ -37,6 +37,7 @@ export const getGrantsByApplicantId = (id) => (dispatch) => {
   axiosWithAuth()
     .get(`/grants/user/${id}`)
     .then((res) => {
+      console.log("getGrantsByapplicantIdSuccess");
       dispatch({
         type: GET_APPLICANT_GRANTS_SUCCESS,
         payload: res.data,

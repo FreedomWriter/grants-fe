@@ -13,7 +13,6 @@ import { useStyles } from "./HomepageStyles.jsx";
 const Homepage = () => {
   //======Access state from reducer for Homepage======
   const grants = useSelector((state) => {
-    console.log("Homepage>grants Selector: ", state, state.grants);
     return state.grants.grants;
   });
 

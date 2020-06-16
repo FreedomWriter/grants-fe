@@ -26,7 +26,7 @@ const Login = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postLogin(user)).then(() => history.push("/profile"));
+    dispatch(postLogin(user)).then(() => history.push("/Homepage"));
   };
   const classes = useStyles();
   return (
@@ -85,7 +85,11 @@ const Login = () => {
               </Link>
             </Grid>
             <Grid item>
-              <Link to="/RegisterForm" variant="body2" className={classes.links}>
+              <Link
+                to="/RegisterForm"
+                variant="body2"
+                className={classes.links}
+              >
                 Don't have an account? Register here
               </Link>
             </Grid>
