@@ -29,6 +29,7 @@ export default function PrimarySearchAppBar() {
   const favorites = useSelector((state) => state.favorites.favoritesCount);
   // should ultimately come from global state
   // const [favorites, setFavorites] = useState(15);
+  console.log({ favorites });
   const [chats] = useState(5);
 
   const isMenuOpen = Boolean(anchorEl);

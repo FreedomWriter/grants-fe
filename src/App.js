@@ -26,7 +26,6 @@ function App() {
   const user = useSelector((state) => state.login.user);
   const userType = useSelector((state) => state.login.usertype);
   const dispatch = useDispatch();
-
   useEffect(() => dispatch(getGrants()));
   return (
     <Router>

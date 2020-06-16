@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -20,6 +20,7 @@ import { useStyles } from "./GrantCardStyles.jsx";
 import {
   postFavorite,
   deleteFavorite,
+  getFavorite,
 } from "../../../store/actions/favoritesActions";
 
 export default function GrantCard(props) {
@@ -28,13 +29,14 @@ export default function GrantCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [faved, setFaved] = React.useState(false);
-
+  const userId = useSelector((state) => state.login.userId);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   const addFavClickHandler = async (grant) => {
     await dispatch(postFavorite(grant));
+    // await dispatch(getFavorite(userId));
     return setFaved(true);
   };
 
