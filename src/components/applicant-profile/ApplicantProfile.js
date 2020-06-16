@@ -4,21 +4,24 @@ import BioCard from "./BioCard";
 import Grants from "./applicant-grants/Grants";
 import LeftPanel from "./LeftPanel";
 import { useSelector, useDispatch } from "react-redux";
-import { getApplicantInfo, updateApplicantProfile } from "../../store/actions/profileActions";
+import {
+  getApplicantInfo,
+  updateApplicantProfile,
+} from "../../store/actions/profileActions";
 import Loader from "../loader/Loader.js";
-import { EditProfile } from "../editProfileForms/EditProfileForms.js";
+import { EditProfile } from "../EditProfileForms/EditProfileForms.js";
 
 import { useStyles } from "./ApplicantProfile.styles";
 
 export default function ApplicantProfile() {
   const dispatch = useDispatch();
-  const applicant_id = useSelector(state => state.login.userId);
+  const applicant_id = useSelector((state) => state.login.userId);
   const applicantDetails = useSelector(
-    state => state.profileInfo.profileDetails
+    (state) => state.profileInfo.profileDetails
   );
-  const grants = useSelector(state => state.grants);
+  const grants = useSelector((state) => state.grants);
   const classes = useStyles();
-  
+
   const [profile, setProfile] = useState({
     first_name: applicantDetails.first_name,
     last_name: applicantDetails.last_name,
@@ -30,13 +33,13 @@ export default function ApplicantProfile() {
     country: applicantDetails.country,
     sector: applicantDetails.sector,
     founding_date: applicantDetails.founding_date,
-    website: applicantDetails.website
+    website: applicantDetails.website,
   });
 
   const handleChange = (event) => {
     setProfile({
       ...profile,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -69,8 +72,8 @@ export default function ApplicantProfile() {
                   handleSubmit={handleSubmit}
                   userType={userType}
                 />
-              ): (
-              <BioCard applicantDetails={applicantDetails} />
+              ) : (
+                <BioCard applicantDetails={applicantDetails} />
               )}
             </div>
           </Grid>

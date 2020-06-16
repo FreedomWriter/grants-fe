@@ -9,25 +9,24 @@ import PropTypes from "prop-types";
 import Loader from "../loader/Loader.js";
 import {
   EditButton,
-  EditProfile
-} from "../editProfileForms/EditProfileForms.js";
+  EditProfile,
+} from "../EditProfileForms/EditProfileForms.js";
 
-import { 
-  Typography, 
+import {
+  Typography,
   Button,
   Tabs,
   Tab,
   Link,
   Box,
   Card,
-  CardContent 
-} from '@material-ui/core';
+  CardContent,
+} from "@material-ui/core";
 
-import { 
-  getWriterInfo, 
-  updateWriterProfile 
+import {
+  getWriterInfo,
+  updateWriterProfile,
 } from "../../store/actions/profileActions.js";
-
 
 const GlobalCSS = withStyles({
   "@global": {
@@ -86,9 +85,11 @@ const WriterProfile = (props) => {
     dispatch(getWriterInfo(userId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
-  const userType= useSelector((state) => state.login.usertype);
+  const userType = useSelector((state) => state.login.usertype);
   const isEditing = useSelector((state) => state.profileInfo.isEditing);
-  const profileId = useSelector((state) => state.profileInfo.profileDetails.writer_id);
+  const profileId = useSelector(
+    (state) => state.profileInfo.profileDetails.writer_id
+  );
   const viewerId = useSelector((state) => state.login.userId);
 
   const [value, setValue] = React.useState(0);
@@ -101,7 +102,7 @@ const WriterProfile = (props) => {
     zip: writer.zip,
     country: writer.country,
     sector: writer.sector,
-    website: writer.website
+    website: writer.website,
   });
 
   useEffect(() => {
@@ -112,7 +113,6 @@ const WriterProfile = (props) => {
 
   const preventDefault = (event) => event.preventDefault();
 
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -120,17 +120,15 @@ const WriterProfile = (props) => {
   const editHandleChange = (event) => {
     setProfile({
       ...profile,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(updateWriterProfile(userId, profile));
     dispatch(getWriterInfo(userId));
-
   };
-
 
   return (
     <StylesProvider>
@@ -146,9 +144,7 @@ const WriterProfile = (props) => {
             {writer && (
               <div className={classes.userName}>
                 {" "}
-                {writer.first_name}
-                {" "}
-                {writer.last_name}
+                {writer.first_name} {writer.last_name}
               </div>
             )}
             <Button
@@ -168,11 +164,8 @@ const WriterProfile = (props) => {
                 >
                   {writer.website}
                 </Link>
-                
-                <EditButton
-                  viewerId={viewerId}
-                  profileId={profileId}
-                />
+
+                <EditButton viewerId={viewerId} profileId={profileId} />
                 {/*This is only rendered if the viewerId matches the ProfileId...only the profile owner has the option to edit their profile.*/}
               </>
             )}
@@ -180,18 +173,17 @@ const WriterProfile = (props) => {
           {writer && (
             <>
               {isEditing === true ? (
-                <EditProfile 
+                <EditProfile
                   profile={profile}
                   editHandleChange={editHandleChange}
                   handleSubmit={handleSubmit}
                   userType={userType}
                 />
-              ):(
-
-              <h3 className={classes.userEducation}>
-                Bio:
-                <div className={classes.bodyText}>{writer.bio}</div>
-              </h3>
+              ) : (
+                <h3 className={classes.userEducation}>
+                  Bio:
+                  <div className={classes.bodyText}>{writer.bio}</div>
+                </h3>
               )}
             </>
           )}
