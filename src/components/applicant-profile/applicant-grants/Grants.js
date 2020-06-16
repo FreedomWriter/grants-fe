@@ -20,6 +20,7 @@ const Grants = (/*grants*/) => {
   const viewerId = useSelector((state) => state.login.userId);
 
   const grants = useSelector((state) => state.grants.profileGrants);
+  console.log("grants: ", grants, !grants);
 
   useEffect(() => {
     dispatch(getGrants());

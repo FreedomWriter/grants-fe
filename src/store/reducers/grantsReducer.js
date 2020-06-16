@@ -48,6 +48,7 @@ const grantsReducer = (state = initialState, action) => {
     case GET_APPLICANT_GRANTS_START:
       return {
         ...state,
+        profileGrants: [],
         error: "",
         isLoading: true,
       };
