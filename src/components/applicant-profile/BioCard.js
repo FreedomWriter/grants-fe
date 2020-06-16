@@ -5,8 +5,9 @@ import Grid from "@material-ui/core/Grid";
 
 const BioCard = ({ applicantDetails }) => {
   const classes = useStyles();
+
   return (
-    <>
+    <>  
       <Grid className={classes.biosection}>
         {applicantDetails.org_name === "" ? (
           <h1>

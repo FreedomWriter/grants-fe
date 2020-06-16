@@ -1,8 +1,9 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Button from "@material-ui/core/Button";
+import { EditButton } from "../editProfileForms/EditProfileForms.js"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LeftPanel({ applicantDetails }) {
   const classes = useStyles();
-
+  const profileId = applicantDetails.applicant_id;
+  const viewerId = useSelector((state) => state.login.userId);
   return (
     <>
       <div className={classes.leftpanel}>
@@ -34,6 +36,10 @@ export default function LeftPanel({ applicantDetails }) {
         <div>Visit Our website:</div>
         <a href={applicantDetails.website}>{applicantDetails.website}</a>
       </div>
+      <EditButton 
+        viewerId={viewerId}
+        profileId={profileId}  
+      />
     </>
   );
 }

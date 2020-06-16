@@ -1,21 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StylesProvider, withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import { useStyles } from "./writerProfile.styles.js";
 import { useStyles as workStyles } from "../WriterOnboardingForms/WriterForm.styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Link from "@material-ui/core/Link";
 import PropTypes from "prop-types";
-import Box from "@material-ui/core/Box";
-import { getWriterInfo } from "../../store/actions/profileActions.js";
 import Loader from "../loader/Loader.js";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+import {
+  EditButton,
+  EditProfile
+} from "../editProfileForms/EditProfileForms.js";
+
+import { 
+  Typography, 
+  Button,
+  Tabs,
+  Tab,
+  Link,
+  Box,
+  Card,
+  CardContent 
+} from '@material-ui/core';
+
+import { 
+  getWriterInfo, 
+  updateWriterProfile 
+} from "../../store/actions/profileActions.js";
+
 
 const GlobalCSS = withStyles({
   "@global": {
@@ -74,15 +86,51 @@ const WriterProfile = (props) => {
     dispatch(getWriterInfo(userId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
+  const userType= useSelector((state) => state.login.usertype);
+  const isEditing = useSelector((state) => state.profileInfo.isEditing);
+  const profileId = useSelector((state) => state.profileInfo.profileDetails.writer_id);
+  const viewerId = useSelector((state) => state.login.userId);
+
+  const [value, setValue] = React.useState(0);
+  const [profile, setProfile] = useState({
+    first_name: writer.first_name,
+    last_name: writer.last_name,
+    bio: writer.bio,
+    city: writer.city,
+    state: writer.state,
+    zip: writer.zip,
+    country: writer.country,
+    sector: writer.sector,
+    website: writer.website
+  });
+
+  useEffect(() => {
+    dispatch(getWriterInfo(userId));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]);
   //
 
   const preventDefault = (event) => event.preventDefault();
 
-  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const editHandleChange = (event) => {
+    setProfile({
+      ...profile,
+      [event.target.name]: event.target.value
+    });
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    dispatch(updateWriterProfile(userId, profile));
+    dispatch(getWriterInfo(userId));
+
+  };
+
 
   return (
     <StylesProvider>
@@ -99,6 +147,7 @@ const WriterProfile = (props) => {
               <div className={classes.userName}>
                 {" "}
                 {writer.first_name}
+                {" "}
                 {writer.last_name}
               </div>
             )}
@@ -111,20 +160,40 @@ const WriterProfile = (props) => {
               Direct Message
             </Button>
             {writer && (
-              <Link
-                classes={{ root: classes.rootLink }}
-                href="#"
-                onClick={preventDefault}
-              >
-                {writer.website}
-              </Link>
+              <>
+                <Link
+                  classes={{ root: classes.rootLink }}
+                  href="#"
+                  onClick={preventDefault}
+                >
+                  {writer.website}
+                </Link>
+                
+                <EditButton
+                  viewerId={viewerId}
+                  profileId={profileId}
+                />
+                {/*This is only rendered if the viewerId matches the ProfileId...only the profile owner has the option to edit their profile.*/}
+              </>
             )}
           </div>
           {writer && (
-            <h3 className={classes.userEducation}>
-              Bio:
-              <div className={classes.bodyText}>{writer.bio}</div>
-            </h3>
+            <>
+              {isEditing === true ? (
+                <EditProfile 
+                  profile={profile}
+                  editHandleChange={editHandleChange}
+                  handleSubmit={handleSubmit}
+                  userType={userType}
+                />
+              ):(
+
+              <h3 className={classes.userEducation}>
+                Bio:
+                <div className={classes.bodyText}>{writer.bio}</div>
+              </h3>
+              )}
+            </>
           )}
           <div></div>
           <h3 className={classes.userEducation}>
