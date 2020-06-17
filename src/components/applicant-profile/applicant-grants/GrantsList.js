@@ -26,6 +26,14 @@ export default function GrantsList() {
           >
             Add a grant
           </Button>
+          <Button
+            component={Link}
+            to="/profile"
+            variant="contained"
+            color="primary"
+          >
+            Profile Page
+          </Button>
         </div>
       </Grid>
       <Paper>
