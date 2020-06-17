@@ -12,25 +12,10 @@ import { useStyles } from "../ApplicantProfile.styles";
 import Button from "@material-ui/core/Button";
 
 const Grants = ({ applicantDetails }) => {
-  const { applicant_id, id } = applicantDetails;
+  const { applicant_id } = applicantDetails;
   const classes = useStyles();
-  const dispatch = useDispatch();
 
   const viewerId = useSelector((state) => state.login.userId);
-  /*
-  const grants = useSelector((state) => state.grants.profileGrants);
-
-  const getApplicantGrants = () => {
-    if (id !== undefined) {
-      dispatch(getGrantsByApplicantId(id));
-    }
-  };
-
-  useEffect(() => {
-    getApplicantGrants();
-    // dispatch(getGrantsByApplicantId(id));
-  }, [dispatch]);
-*/
 
   const grants = useSelector(
     (state) => state.profileInfo.profileDetails.grants

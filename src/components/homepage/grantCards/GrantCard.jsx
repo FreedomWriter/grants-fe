@@ -29,14 +29,15 @@ export default function GrantCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [faved, setFaved] = React.useState(false);
-  const userId = useSelector((state) => state.login.userId);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  const date = new Date(grant.due_date);
+  const due_date = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+
   const addFavClickHandler = async (grant) => {
     await dispatch(postFavorite(grant));
-    // await dispatch(getFavorite(userId));
     return setFaved(true);
   };
 
@@ -102,9 +103,9 @@ export default function GrantCard(props) {
               </Typography>
             </div>
             <div className={classes.boxInfo}>
-              <Typography className={classes.boxes}>Timeframe</Typography>
+              <Typography className={classes.boxes}>{due_date}</Typography>
               <Typography className={classes.boxes}>{grant.sector}</Typography>
-              <Typography className={classes.boxes}>Roles</Typography>
+              <Typography className={classes.boxes}>{grant.status}</Typography>
             </div>
           </div>
         }
