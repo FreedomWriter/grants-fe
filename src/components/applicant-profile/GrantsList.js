@@ -12,10 +12,10 @@ export default function GrantsList() {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.login.user)
+  const user = useSelector((state) => state.login.user);
 
-  const grants = useSelector((state) => state.grants.grants)
-  console.log(grants)
+  const grants = useSelector((state) => state.grants.grants);
+  console.log(grants);
 
   return (
     <div className={classes.container}>
@@ -30,17 +30,25 @@ export default function GrantsList() {
           >
             Add a grant
           </Button>
+          <Button
+            component={Link}
+            to="/profile"
+            variant="contained"
+            color="primary"
+          >
+            Profile Page
+          </Button>
         </div>
       </Grid>
       <Paper>
-            {grants.map((grant) => {
-              return (
-                <div key={grant.id}>
-                  <h3>{grant.grant_name}</h3> 
-                  <p>{grant.description}</p>
-                </div>
-              )
-            })}
+        {grants.map((grant) => {
+          return (
+            <div key={grant.id}>
+              <h3>{grant.grant_name}</h3>
+              <p>{grant.description}</p>
+            </div>
+          );
+        })}
       </Paper>
     </div>
   );

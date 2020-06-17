@@ -11,7 +11,7 @@ export default function GrantsList() {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const grants = useSelector((state) => state.grants.grants);
+  const grants = useSelector((state) => state.grants.applicantGrants);
 
   return (
     <div className={classes.container}>
@@ -26,6 +26,14 @@ export default function GrantsList() {
           >
             Add a grant
           </Button>
+          <Button
+            component={Link}
+            to="/profile"
+            variant="contained"
+            color="primary"
+          >
+            Profile Page
+          </Button>
         </div>
       </Grid>
       <Paper>
@@ -38,14 +46,6 @@ export default function GrantsList() {
                 <Link to={`/EditGrant/${grant.id}`}>
                   <Button>Edit</Button>
                 </Link>
-                <Button
-                  type="submit"
-                  onClick={() => {
-                    dispatch(deleteGrant(grant.id));
-                  }}
-                >
-                  Delete
-                </Button>
               </div>
             </div>
           );

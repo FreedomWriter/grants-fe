@@ -17,7 +17,7 @@ const Grants = ({ applicantDetails }) => {
   const dispatch = useDispatch();
 
   const viewerId = useSelector((state) => state.login.userId);
-
+  /*
   const grants = useSelector((state) => state.grants.profileGrants);
 
   const getApplicantGrants = () => {
@@ -30,15 +30,35 @@ const Grants = ({ applicantDetails }) => {
     getApplicantGrants();
     // dispatch(getGrantsByApplicantId(id));
   }, [dispatch]);
+*/
+
+  const grants = useSelector(
+    (state) => state.profileInfo.profileDetails.grants
+  );
 
   return (
     <>
       <h3>Grants We'd Like to Apply For:</h3>
       <Paper className={classes.profilepaper}>
         {Number(viewerId) === Number(applicant_id) ? (
-          <Button component={Link} to="/GrantsList">
-            Edit Grants
-          </Button>
+          <div>
+            <Button
+              component={Link}
+              to="/GrantsList"
+              variant="contained"
+              color="primary"
+            >
+              Edit Grants
+            </Button>
+            <Button
+              component={Link}
+              to="/GrantsForm"
+              variant="contained"
+              color="primary"
+            >
+              Add New Grant
+            </Button>
+          </div>
         ) : (
           <div> </div>
         )}
