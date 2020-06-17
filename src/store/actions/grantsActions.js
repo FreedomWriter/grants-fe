@@ -29,14 +29,14 @@ export const getGrants = () => (dispatch) => {
     })
     .catch((err) => {
       dispatch({ type: GET_GRANTS_FAILURE, payload: { error: err.message } });
-    });
+    })
 };
 
 export const getGrantsByApplicantId = (id) => (dispatch) => {
-  dispatch({ type: GET_APPLICANT_GRANTS_START });
+  dispatch({ type: GET_APPLICANT_GRANTS_START, payload: id });
 
   axiosWithAuth()
-    .get(`/grants/user/${id}`)
+    .get(`/applicants/${id}`)
     .then((res) => {
       dispatch({
         type: GET_APPLICANT_GRANTS_SUCCESS,
@@ -81,6 +81,7 @@ export const putGrants = (id, value) => (dispatch) => {
         type: PUT_GRANTS_SUCCESS,
         payload: res.data,
       });
+      
     })
     .catch((err) => {
       dispatch({

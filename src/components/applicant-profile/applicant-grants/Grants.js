@@ -19,12 +19,7 @@ const Grants = (/*grants*/) => {
 
   const viewerId = useSelector((state) => state.login.userId);
 
-  const grants = useSelector((state) => state.grants.profileGrants);
-
-  useEffect(() => {
-    dispatch(getGrants());
-    dispatch(getGrantsByApplicantId(userID.id));
-  }, [dispatch]);
+  const grants = useSelector((state) => state.profileInfo.profileDetails.grants);
 
   return (
     <>

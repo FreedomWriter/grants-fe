@@ -17,14 +17,6 @@ export const PUT_PROFILE_SUCCESS=
 export const PUT_PROFILE_FAILURE=
 "PUT_PROFILE_SUCCESS";
 
-// export const POST_GRANTS_START = "POST_GRANTS_START";
-// export const POST_GRANTS_SUCCESS = "POST_GRANTS_SUCCESS";
-// export const POST_GRANTS_FAILURE = "POST_GRANTS_FAILURE";
-
-// export const PUT_GRANTS_START = "GET_PROFILE_START";
-// export const PUT_GRANTS_SUCCESS = "GET_PROFILE_SUCCESS";
-// export const PUT_GRANTS_FAILURE = "GET_PROFILE_FAILURE";
-
 export const getApplicantInfo = (id) => (dispatch) => {
   dispatch({ type: GET_PROFILE_START, payload: id });
 

@@ -8,6 +8,7 @@ import {
   getApplicantInfo,
   updateApplicantProfile,
 } from "../../store/actions/profileActions";
+import { getGrantsByApplicantId } from '../../store/actions/grantsActions'
 import Loader from "../loader/Loader.js";
 import { EditProfile } from "../EditProfileForms/EditProfileForms.js";
 
@@ -20,6 +21,7 @@ export default function ApplicantProfile() {
     (state) => state.profileInfo.profileDetails
   );
   const grants = useSelector((state) => state.grants);
+  // const applicantGrants = useSelector((state) => state.grants.);
   const classes = useStyles();
 
   const [profile, setProfile] = useState({
@@ -54,6 +56,7 @@ export default function ApplicantProfile() {
 
   useEffect(() => {
     dispatch(getApplicantInfo(applicant_id));
+    dispatch(getGrantsByApplicantId(applicant_id));
   }, [dispatch]);
 
   return (
