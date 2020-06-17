@@ -8,7 +8,6 @@ import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
 import Button from "@material-ui/core/Button";
 import { ValidatorForm } from "react-material-ui-form-validator";
 import { useHistory } from "react-router-dom";
-import { useStyles } from "./GrantsForm.styles";
 import { deleteGrant } from "../../../store/actions/grantsActions";
 
 import {
@@ -16,6 +15,7 @@ import {
   getGrantsByApplicantId
 } from "../../../store/actions/grantsActions";
 
+import { useStyles } from "./GrantsForm.styles";
 export default function UpdateGrant() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -23,9 +23,7 @@ export default function UpdateGrant() {
   const applicant_id = useSelector(
     state => state.profileInfo.profileDetails.applicant_id
   );
-  const user_id = useSelector(
-    state => state.profileInfo.profileDetails.id
-  );
+  const user_id = useSelector(state => state.profileInfo.profileDetails.id);
   const grants = useSelector(state => state.profileInfo.profileDetails.grants);
   const { id } = useParams();
 
@@ -53,13 +51,13 @@ export default function UpdateGrant() {
   const handleSubmit = async e => {
     e.preventDefault();
     dispatch(putGrants(id, grant));
-    dispatch(getGrantsByApplicantId(applicant_id))
+    dispatch(getGrantsByApplicantId(applicant_id));
     await history.push("/GrantsList");
-    console.log(grant, id)
+    console.log(grant, id);
   };
 
   return (
-    <div>
+    <div className={classes.container}>
       <ValidatorForm
         className={classes.form}
         autoComplete="off"
@@ -125,15 +123,19 @@ export default function UpdateGrant() {
               className={classes.textarea}
             />
           </Grid>
-          <div className={classes.addbutton}>
+          <div className={classes.grantsbuttons}>
             <Button type="submit" variant="contained" color="primary">
               Update
             </Button>
-            <Button variant="contained" color="primary" onClick={() => {
-                    dispatch(deleteGrant(grant.id));
-                    dispatch(getGrantsByApplicantId(applicant_id))
-                    history.push("/GrantsList")
-                  }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                dispatch(deleteGrant(grant.id));
+                dispatch(getGrantsByApplicantId(applicant_id));
+                history.push("/GrantsList");
+              }}
+            >
               Delete
             </Button>
           </div>

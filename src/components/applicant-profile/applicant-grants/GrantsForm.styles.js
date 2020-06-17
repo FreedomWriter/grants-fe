@@ -15,5 +15,15 @@ export const useStyles = makeStyles(theme => ({
   },
   addbutton: {
     marginLeft: "75%"
+  },
+  grantsbuttons: {
+    width: "65%",
+    marginLeft: "5px",
+    justifyContent: "flex-end",
+    display: "flex",
+    flexDirection: "row",
+    "& button": {
+      marginLeft: "8px"
+    }
   }
 }));

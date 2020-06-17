@@ -1,9 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getGrants,
-  getGrantsByApplicantId,
-} from "../../../store/actions/grantsActions";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loader from "../../loader/Loader.js";
 
@@ -18,8 +14,7 @@ const Grants = ({ applicantDetails }) => {
   const viewerId = useSelector((state) => state.login.userId);
 
   const grants = useSelector(
-    (state) => state.profileInfo.profileDetails.grants
-  );
+    (state) => state.profileInfo.profileDetails.grants);
 
   return (
     <>
@@ -50,7 +45,7 @@ const Grants = ({ applicantDetails }) => {
         {!grants || grants.length < 1 ? (
           <Loader />
         ) : (
-          grants.map((grant) => {
+          grants.map(grant => {
             return (
               <div className={classes.profilegrantcard} key={grant.id}>
                 <h4>{grant.grant_name}</h4>
