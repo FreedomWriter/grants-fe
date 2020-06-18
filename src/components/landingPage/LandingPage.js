@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import "../../index.css";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
@@ -11,10 +12,18 @@ import Grid from "@material-ui/core/Grid";
 import User1 from "../../images/user-story-1.jpg";
 import User2 from "../../images/user-story-2.jpg";
 import User3 from "../../images/user-story-3.jpg";
+import { logout } from "../../store/actions/LoginActions";
 
 export default function LandingPage() {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    function clearStorage() {
+      token && dispatch(logout());
+    }
+    clearStorage();
+  }, [token]);
   return (
     <div className="full-container">
       <div className={classes.topContainer}>

@@ -27,7 +27,10 @@ const favoritesReducer = (state = initialState, action) => {
         ...state,
         favoritesCount: state.favoritesCount + 1,
 
-        favorites: [...state.favorites, action.payload],
+        favorites: [
+          ...state.favorites,
+          { ...action.payload, writer_favorite: true },
+        ],
       };
     case FAVORITE_POST_FAILURE:
       return {

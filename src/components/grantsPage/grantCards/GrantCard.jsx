@@ -1,5 +1,5 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -26,23 +26,27 @@ export default function GrantCard(props) {
   const dispatch = useDispatch();
   const grant = props.data;
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-  const [faved, setFaved] = React.useState(false);
+  const faveArr = useSelector((state) => state.favorites.favorites);
+  const [expanded, setExpanded] = useState(false);
+  const [faved, setFaved] = useState([]);
+
+  useEffect(() => {
+    setFaved(faveArr.includes(grant));
+  }, [faveArr, grant]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  const addFavClickHandler = async (grant) => {
-    console.log({ grant });
-    await dispatch(postFavorite(grant));
-    return setFaved(true);
+  const addFavClickHandler = (grant) => {
+    return dispatch(postFavorite(grant));
   };
 
-  const removeFavClickHandler = async (grant) => {
-    await dispatch(deleteFavorite(grant));
-    return setFaved(false);
+  const removeFavClickHandler = (grant) => {
+    return dispatch(deleteFavorite(grant));
   };
+
+  console.log(grant);
 
   return (
     <Card className={classes.root}>

@@ -13,14 +13,16 @@ import {
   PUT_GRANTS_FAILURE,
   DELETE_GRANTS_START,
   DELETE_GRANTS_SUCCESS,
-  DELETE_GRANTS_FAILURE
+  DELETE_GRANTS_FAILURE,
 } from "../actions/grantsActions.js";
+
+import { FAVORITE_POST_SUCCESS } from "../actions/favoritesActions";
 
 const initialState = {
   grants: [],
   applicantGrants: [],
   isLoading: false,
-  error: undefined
+  error: undefined,
 };
 
 const grantsReducer = (state = initialState, action) => {
@@ -30,98 +32,99 @@ const grantsReducer = (state = initialState, action) => {
       return {
         ...state,
         error: "",
-        isLoading: true
+        isLoading: true,
       };
     case GET_GRANTS_SUCCESS:
       return {
         ...state,
         error: "",
         grants: action.payload,
-        isLoading: false
+        isLoading: false,
       };
     case GET_GRANTS_FAILURE:
       return {
         ...state,
         error: action.payload,
-        isLoading: false
+        isLoading: false,
       };
     case GET_APPLICANT_GRANTS_START:
       return {
         ...state,
         error: "",
-        isLoading: true
+        isLoading: true,
       };
     case GET_APPLICANT_GRANTS_SUCCESS:
       return {
         ...state,
         error: "",
         applicantGrants: action.payload.profile.grants,
-        isLoading: false
+        isLoading: false,
       };
     case GET_APPLICANT_GRANTS_FAILURE:
       return {
         ...state,
         error: action.payload,
-        isLoading: false
+        isLoading: false,
       };
     case POST_GRANTS_START:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
 
     case POST_GRANTS_SUCCESS:
       return {
         applicantGrants: [...state.applicantGrants, action.payload],
-        isLoading: false
+        isLoading: false,
       };
 
     case POST_GRANTS_FAILURE:
       return {
         ...state,
         error: action.payload,
-        isLoading: false
+        isLoading: false,
       };
 
     case PUT_GRANTS_START:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
 
     case PUT_GRANTS_SUCCESS:
       return {
         ...state,
-        isLoading: false
+        isLoading: false,
       };
 
     case PUT_GRANTS_FAILURE:
       return {
         ...state,
         error: action.payload,
-        isLoading: false
+        isLoading: false,
       };
     case DELETE_GRANTS_START:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
 
     case DELETE_GRANTS_SUCCESS:
       return {
         ...state,
         applicantGrants: state.applicantGrants.filter(
-          grant => grant.id !== action.payload
+          (grant) => grant.id !== action.payload
         ),
-        isLoading: false
+        isLoading: false,
       };
 
     case DELETE_GRANTS_FAILURE:
       return {
         ...state,
         error: action.payload,
-        isLoading: false
+        isLoading: false,
       };
+
     default:
       return state;
   }

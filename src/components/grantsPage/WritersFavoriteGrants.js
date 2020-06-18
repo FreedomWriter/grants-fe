@@ -4,7 +4,7 @@ import GrantCard from "./grantCards/GrantCard.jsx";
 
 export default function WritersFavoriteGrants() {
   const favs = useSelector((state) => state.favorites.favorites);
-  console.log(favs);
+
   return (
     <div>
       {favs.map((grant) => {
