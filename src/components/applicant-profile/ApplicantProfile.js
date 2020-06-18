@@ -18,7 +18,7 @@ export default function ApplicantProfile() {
   const userType = useSelector(state => state.login.usertype);
   const isEditing = useSelector(state => state.profileInfo.isEditing);
   const applicantProfileId = useSelector(
-    state => state.profileInfo.profileDetails.applicant_id
+    state => state.login.userId
   );
   const applicantDetails = useSelector(
     state => state.profileInfo.profileDetails
