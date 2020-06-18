@@ -15,7 +15,6 @@ const GrantsPage = () => {
 
   //======Access state from reducer for GrantsPage======
   const grants = useSelector((state) => {
-    console.log("state.grants: ", state.grants);
     return state.grants.grants;
   });
 

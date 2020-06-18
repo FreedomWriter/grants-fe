@@ -1,5 +1,5 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -25,25 +25,22 @@ import {
 export default function GrantCard(props) {
   const dispatch = useDispatch();
   const grant = props.data;
+
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-  const [faved, setFaved] = React.useState(false);
+
+  const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  const addFavClickHandler = async (grant) => {
-    console.log(`akldgjaiegjaig'aj:`, grant);
-    // await dispatch(postFavorite(grant));
-    // return setFaved(true);
+  const addFavClickHandler = (grant) => {
+    return dispatch(postFavorite(grant));
   };
 
-  const removeFavClickHandler = async (grant) => {
-    await dispatch(deleteFavorite(grant));
-    return setFaved(false);
+  const removeFavClickHandler = (grant) => {
+    return dispatch(deleteFavorite(grant));
   };
-
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -56,7 +53,7 @@ export default function GrantCard(props) {
         action={
           <CardActions className={classes.actionTop}>
             {/* if user has favorited a grant, the icon renders as a filled in heart and the click handler is set to remove it, if the user has not faved the grant, the icon is a heart border and the click handler is set to add it  */}
-            {!faved ? (
+            {!grant.writer_favorite ? (
               <IconButton
                 aria-label="add to favorites"
                 className={classes.buttons}

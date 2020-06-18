@@ -1,5 +1,5 @@
 // import libraries
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
 import { ThemeProvider } from "@material-ui/core/styles";
@@ -20,13 +20,22 @@ import GrantsForm from "./components/applicant-profile/applicant-grants/GrantsFo
 import GrantsPage from "./components/grantsPage/GrantsPage.jsx";
 import UpdateGrant from "./components/applicant-profile/applicant-grants/UpdateGrant";
 import { getGrants } from "./store/actions/grantsActions";
+import WritersFavoriteGrants from "./components/grantsPage/WritersFavoriteGrants";
 //
 function App() {
   const loggedIn = useSelector((state) => state.login.loggedIn);
   const user = useSelector((state) => state.login.user);
   const userType = useSelector((state) => state.login.usertype);
+  const userId = useSelector((state) => state.login.userId);
+  const grants = useSelector((state) => state.grants.grants);
   const dispatch = useDispatch();
-  useEffect(() => dispatch(getGrants()));
+
+  useEffect(() => {
+    //only fetches grants if a userId exists and grants have not already been fetched
+    if (userId !== undefined && grants.length === 0) {
+      dispatch(getGrants());
+    }
+  }, [dispatch, userId, grants]);
   return (
     <Router>
       <ThemeProvider theme={theme}>
@@ -35,6 +44,10 @@ function App() {
         </Route>
         {loggedIn && <Navbar />}
         <Switch>
+          <PrivateRoute
+            path="/writer-favorites"
+            component={WritersFavoriteGrants}
+          />
           <PrivateRoute path="/EditGrant/:id" component={UpdateGrant} />
           <PrivateRoute path="/GrantsForm" component={GrantsForm} />
           <PrivateRoute path="/GrantsList" component={GrantsList} />

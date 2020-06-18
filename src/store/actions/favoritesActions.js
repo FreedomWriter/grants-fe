@@ -12,8 +12,8 @@ export const FAVORITE_DELETE_START = "FAVORITE_DELETE_START";
 export const FAVORITE_DELETE_SUCCESS = "FAVORITE_DELETE_SUCCESS";
 export const FAVORITE_DELETE_FAILURE = "FAVORITE_DELETE_FAILURE";
 
-export const postFavorite = (writer_id, grant_id) => (dispatch) => {
-  dispatch({ type: FAVORITE_POST_SUCCESS });
+export const postFavorite = (value) => (dispatch) => {
+  dispatch({ type: FAVORITE_POST_SUCCESS, payload: value });
   // dispatch({ type: FAVORITE_POST_START });
   // return axiosWithAuth()
   //   .post(`/writers/${writer_id}/saved-grants/${grant_id}`)
