@@ -104,6 +104,18 @@ const grantsReducer = (state = initialState, action) => {
         }),
         isLoading: false,
       };
+    case FAVORITE_DELETE_SUCCESS:
+      return {
+        ...state,
+        grants: state.grants.map((grant) => {
+          if (grant.id === action.payload.id) {
+            return { ...action.payload, writer_favorite: false };
+          } else {
+            return grant;
+          }
+        }),
+        isLoading: false,
+      };
     case POST_GRANTS_FAILURE:
       return {
         ...state,
