@@ -17,15 +17,8 @@ import {
 } from "../actions/grantsActions.js";
 
 import {
-  FAVORITE_POST_START,
   FAVORITE_POST_SUCCESS,
-  FAVORITE_POST_FAILURE,
-  FAVORITE_GET_START,
-  FAVORITE_GET_SUCCESS,
-  FAVORITE_GET_FAILURE,
-  FAVORITE_DELETE_START,
   FAVORITE_DELETE_SUCCESS,
-  FAVORITE_DELETE_FAILURE,
 } from "../actions/favoritesActions";
 
 const initialState = {
