@@ -9,6 +9,7 @@ test("should return the initial state", () => {
   expect(reducer(undefined, {})).toEqual({
     profileDetails: {},
     isLoading: false,
+    isEditing: false,
   });
 });
 
@@ -20,6 +21,7 @@ test("should handle GET_PROFILE_START", () => {
   ).toEqual({
     profileDetails: {},
     isLoading: true,
+    isEditing: false,
   });
 });
 
@@ -48,5 +50,6 @@ test("should handle GET_PROFILE_FAILURE", () => {
     profileDetails: {},
     isLoading: false,
     error: undefined,
+    isEditing: false,
   });
 });

@@ -372,67 +372,56 @@ export default function WriterProfileForm() {
   /* ********************* END STEP HANDLER ********************* */
   return (
     <>
-      {" "}
-      {userId !== undefined ? (
-        <>
-          <CssBaseline />
-          <main className={classes.layout}>
-            <Paper className={classes.paper}>
-              <Typography
-                component="h1"
-                variant="h4"
-                align="center"
+      <CssBaseline />
+      <main className={classes.layout}>
+        <Paper className={classes.paper}>
+          <Typography
+            component="h1"
+            variant="h4"
+            align="center"
+            color="primary"
+          >
+            Create Profile
+          </Typography>
+          {/* the stepper handles visual marker the user sees that shows them their progress in the process */}
+          <Stepper
+            activeStep={activeStep}
+            className={classes.stepper}
+            alternativeLabel
+            data-testid="stepper"
+          >
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+          <>
+            {/* switch statement controlling which child form component is rendering based on the activeStep state */}
+            {getStepContent(activeStep)}
+            <div className={classes.buttons}>
+              {activeStep !== 0 && (
+                <Button onClick={handleBack} className={classes.button}>
+                  Back
+                </Button>
+              )}
+              <Button
+                variant="contained"
                 color="primary"
+                disabled={disableButton}
+                /* dynamically rendering which submit handler is applied, as long as the user has more steps to complete the button will handle next. Once the user moves fully through the process the button will handle submitting the values */
+                onClick={
+                  activeStep === steps.length - 1 ? handleSubmit : handleNext
+                }
+                className={classes.button}
               >
-                Create Profile
-              </Typography>
-              {/* the stepper handles visual marker the user sees that shows them their progress in the process */}
-              <Stepper
-                activeStep={activeStep}
-                className={classes.stepper}
-                alternativeLabel
-                data-testid="stepper"
-              >
-                {steps.map((label) => (
-                  <Step key={label}>
-                    <StepLabel>{label}</StepLabel>
-                  </Step>
-                ))}
-              </Stepper>
-              <>
-                {/* switch statement controlling which child form component is rendering based on the activeStep state */}
-                {getStepContent(activeStep)}
-                <div className={classes.buttons}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={classes.button}>
-                      Back
-                    </Button>
-                  )}
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    disabled={disableButton}
-                    /* dynamically rendering which submit handler is applied, as long as the user has more steps to complete the button will handle next. Once the user moves fully through the process the button will handle submitting the values */
-                    onClick={
-                      activeStep === steps.length - 1
-                        ? handleSubmit
-                        : handleNext
-                    }
-                    className={classes.button}
-                  >
-                    {/* dynamically render button based on active steps */}
-                    {activeStep === steps.length - 1
-                      ? "Submit Profile"
-                      : "Next"}
-                  </Button>
-                </div>
-              </>
-            </Paper>
-          </main>
-        </>
-      ) : (
-        <Redirect to="home" />
-      )}
+                {/* dynamically render button based on active steps */}
+                {activeStep === steps.length - 1 ? "Submit Profile" : "Next"}
+              </Button>
+            </div>
+          </>
+        </Paper>
+      </main>
     </>
   );
 }
