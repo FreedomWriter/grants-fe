@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -20,7 +20,6 @@ import { useStyles } from "./GrantCardStyles.jsx";
 import {
   postFavorite,
   deleteFavorite,
-  getFavorite,
 } from "../../../store/actions/favoritesActions";
 
 export default function GrantCard(props) {
@@ -28,7 +27,6 @@ export default function GrantCard(props) {
   const grant = props.data;
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  const [faved, setFaved] = React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -36,14 +34,12 @@ export default function GrantCard(props) {
   const date = new Date(grant.due_date);
   const due_date = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
 
-  const addFavClickHandler = async (grant) => {
-    await dispatch(postFavorite(grant));
-    return setFaved(true);
+  const addFavClickHandler = (grant) => {
+    dispatch(postFavorite(grant));
   };
 
-  const removeFavClickHandler = async (grant) => {
-    await dispatch(deleteFavorite(grant));
-    return setFaved(false);
+  const removeFavClickHandler = (grant) => {
+    dispatch(deleteFavorite(grant));
   };
 
   return (
@@ -58,7 +54,7 @@ export default function GrantCard(props) {
         action={
           <CardActions className={classes.actionTop}>
             {/* if user has favorited a grant, the icon renders as a filled in heart and the click handler is set to remove it, if the user has not faved the grant, the icon is a heart border and the click handler is set to add it  */}
-            {!faved ? (
+            {!grant.writer_favorite ? (
               <IconButton
                 aria-label="add to favorites"
                 className={classes.buttons}

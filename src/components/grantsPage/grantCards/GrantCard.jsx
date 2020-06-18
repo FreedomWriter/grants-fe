@@ -25,14 +25,10 @@ import {
 export default function GrantCard(props) {
   const dispatch = useDispatch();
   const grant = props.data;
-  const classes = useStyles();
-  const faveArr = useSelector((state) => state.favorites.favorites);
-  const [expanded, setExpanded] = useState(false);
-  const [faved, setFaved] = useState([]);
 
-  useEffect(() => {
-    setFaved(faveArr.includes(grant));
-  }, [faveArr, grant]);
+  const classes = useStyles();
+
+  const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -45,9 +41,6 @@ export default function GrantCard(props) {
   const removeFavClickHandler = (grant) => {
     return dispatch(deleteFavorite(grant));
   };
-
-  console.log(grant);
-
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -60,7 +53,7 @@ export default function GrantCard(props) {
         action={
           <CardActions className={classes.actionTop}>
             {/* if user has favorited a grant, the icon renders as a filled in heart and the click handler is set to remove it, if the user has not faved the grant, the icon is a heart border and the click handler is set to add it  */}
-            {!faved ? (
+            {!grant.writer_favorite ? (
               <IconButton
                 aria-label="add to favorites"
                 className={classes.buttons}

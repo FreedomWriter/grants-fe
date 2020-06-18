@@ -16,7 +16,17 @@ import {
   DELETE_GRANTS_FAILURE,
 } from "../actions/grantsActions.js";
 
-import { FAVORITE_POST_SUCCESS } from "../actions/favoritesActions";
+import {
+  FAVORITE_POST_START,
+  FAVORITE_POST_SUCCESS,
+  FAVORITE_POST_FAILURE,
+  FAVORITE_GET_START,
+  FAVORITE_GET_SUCCESS,
+  FAVORITE_GET_FAILURE,
+  FAVORITE_DELETE_START,
+  FAVORITE_DELETE_SUCCESS,
+  FAVORITE_DELETE_FAILURE,
+} from "../actions/favoritesActions";
 
 const initialState = {
   grants: [],
@@ -38,7 +48,9 @@ const grantsReducer = (state = initialState, action) => {
       return {
         ...state,
         error: "",
-        grants: action.payload,
+        grants: action.payload.map((grant) => {
+          return { ...grant, writer_favorite: false };
+        }),
         isLoading: false,
       };
     case GET_GRANTS_FAILURE:
@@ -74,10 +86,24 @@ const grantsReducer = (state = initialState, action) => {
 
     case POST_GRANTS_SUCCESS:
       return {
-        applicantGrants: [...state.applicantGrants, action.payload],
+        applicantGrants: [
+          ...state.applicantGrants,
+          { ...action.payload, writer_favorite: false },
+        ],
         isLoading: false,
       };
-
+    case FAVORITE_POST_SUCCESS:
+      return {
+        ...state,
+        grants: state.grants.map((grant) => {
+          if (grant.id === action.payload.id) {
+            return { ...action.payload, writer_favorite: true };
+          } else {
+            return grant;
+          }
+        }),
+        isLoading: false,
+      };
     case POST_GRANTS_FAILURE:
       return {
         ...state,
