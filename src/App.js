@@ -20,6 +20,7 @@ import GrantsForm from "./components/applicant-profile/applicant-grants/GrantsFo
 import GrantsPage from "./components/grantsPage/GrantsPage.jsx";
 import UpdateGrant from "./components/applicant-profile/applicant-grants/UpdateGrant";
 import { getGrants } from "./store/actions/grantsActions";
+import WritersFavoriteGrants from "./components/grantsPage/WritersFavoriteGrants";
 //
 function App() {
   const loggedIn = useSelector((state) => state.login.loggedIn);
@@ -35,6 +36,10 @@ function App() {
         </Route>
         {loggedIn && <Navbar />}
         <Switch>
+          <PrivateRoute
+            path="/writer-favorites"
+            component={WritersFavoriteGrants}
+          />
           <PrivateRoute path="/EditGrant/:id" component={UpdateGrant} />
           <PrivateRoute path="/GrantsForm" component={GrantsForm} />
           <PrivateRoute path="/GrantsList" component={GrantsList} />

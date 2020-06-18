@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -21,6 +21,7 @@ import MenuComponent from "./MenuComponent";
 
 export default function PrimarySearchAppBar() {
   const classes = useStyles();
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
@@ -28,8 +29,6 @@ export default function PrimarySearchAppBar() {
 
   const favorites = useSelector((state) => state.favorites.favoritesCount);
   // should ultimately come from global state
-  // const [favorites, setFavorites] = useState(15);
-  console.log({ favorites });
   const [chats] = useState(5);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -101,7 +100,13 @@ export default function PrimarySearchAppBar() {
                 data-testid="notificationBadge"
               >
                 {/* if user has favorited a grant, the icon renders as a filled in heart with the number of favorties, if the user has not faved agrant, the icon is a heart border  */}
-                {favorites === 0 ? <FavoriteBorderIcon /> : <FavoriteIcon />}
+                {favorites === 0 ? (
+                  <FavoriteBorderIcon />
+                ) : (
+                  <FavoriteIcon
+                    onClick={() => history.push("/writer-favorites")}
+                  />
+                )}
               </Badge>
             </IconButton>
             <IconButton aria-label={`show ${chats} new Chats`} color="inherit">
