@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";

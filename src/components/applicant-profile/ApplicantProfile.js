@@ -6,7 +6,7 @@ import LeftPanel from "./LeftPanel";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getApplicantInfo,
-  updateApplicantProfile
+  updateApplicantProfile,
 } from "../../store/actions/profileActions";
 import { getGrantsByApplicantId } from "../../store/actions/grantsActions";
 import Loader from "../loader/Loader.js";
@@ -15,15 +15,12 @@ import { EditProfile } from "../EditProfileForms/EditProfileForms.js";
 import { useStyles } from "./ApplicantProfile.styles";
 
 export default function ApplicantProfile() {
-  const userType = useSelector(state => state.login.usertype);
-  const isEditing = useSelector(state => state.profileInfo.isEditing);
-  const applicantProfileId = useSelector(
-    state => state.login.userId
-  );
+  const userType = useSelector((state) => state.login.usertype);
+  const isEditing = useSelector((state) => state.profileInfo.isEditing);
+  const applicantProfileId = useSelector((state) => state.login.userId);
   const applicantDetails = useSelector(
-    state => state.profileInfo.profileDetails
+    (state) => state.profileInfo.profileDetails
   );
-  const grants = useSelector(state => state.grants);
 
   const dispatch = useDispatch();
 
@@ -40,17 +37,17 @@ export default function ApplicantProfile() {
     country: applicantDetails.country,
     sector: applicantDetails.sector,
     founding_date: applicantDetails.founding_date,
-    website: applicantDetails.website
+    website: applicantDetails.website,
   });
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setProfile({
       ...profile,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(updateApplicantProfile(applicantProfileId, profile));
     dispatch(getApplicantInfo(applicantProfileId));

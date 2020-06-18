@@ -12,7 +12,7 @@ import { deleteGrant } from "../../../store/actions/grantsActions";
 
 import {
   putGrants,
-  getGrantsByApplicantId
+  getGrantsByApplicantId,
 } from "../../../store/actions/grantsActions";
 
 import { useStyles } from "./GrantsForm.styles";
@@ -21,10 +21,12 @@ export default function UpdateGrant() {
   const history = useHistory();
   const classes = useStyles();
   const applicant_id = useSelector(
-    state => state.profileInfo.profileDetails.applicant_id
+    (state) => state.profileInfo.profileDetails.applicant_id
   );
-  const user_id = useSelector(state => state.profileInfo.profileDetails.id);
-  const grants = useSelector(state => state.profileInfo.profileDetails.grants);
+  const user_id = useSelector((state) => state.profileInfo.profileDetails.id);
+  const grants = useSelector(
+    (state) => state.profileInfo.profileDetails.grants
+  );
   const { id } = useParams();
 
   const [grant, setGrant] = useState({
@@ -33,22 +35,22 @@ export default function UpdateGrant() {
     awarding_agency: "",
     sector: "",
     due_date: "",
-    description: ""
+    description: "",
   });
 
   useEffect(() => {
-    setGrant({ ...grants.filter(grant => grant.id == id)[0] });
+    setGrant({ ...grants.filter((grant) => grant.id === id)[0] });
   }, [grant.id, id, grants]);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     e.preventDefault();
     setGrant({
       ...grant,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(putGrants(id, grant));
     dispatch(getGrantsByApplicantId(applicant_id));
@@ -106,7 +108,7 @@ export default function UpdateGrant() {
               value={grant.due_date}
               onChange={handleChange}
               InputLabelProps={{
-                shrink: true
+                shrink: true,
               }}
             />
           </Grid>

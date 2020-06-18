@@ -6,7 +6,6 @@ import storage from "redux-persist/lib/storage";
 import loginReducer from "./loginReducer.js";
 import profileReducer from "./profileReducer.js";
 import onboardingReducer from "./onboardingReducer";
-// import collegesReducer from "./collegesReducer.js";
 import favoritesReducer from "./favoritesReducer.js";
 import grantsReducer from "./grantsReducer.js";
 
@@ -17,11 +16,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   login: loginReducer,
-  // homePage: HomePageReducer,
   profileInfo: profileReducer,
   onboarding: onboardingReducer,
-  // collegeList: collegesReducer,
-  // grantsPage: grantsPageReducer,
   favorites: favoritesReducer,
   grants: grantsReducer,
 });
