@@ -24,7 +24,7 @@ export default function ApplicantProfile() {
     state => state.profileInfo.profileDetails
   );
   const grants = useSelector(state => state.grants);
-
+  const isLoading = useSelector((state) => state.profileInfo.isLoading);
   const dispatch = useDispatch();
 
   const classes = useStyles();
@@ -63,11 +63,11 @@ export default function ApplicantProfile() {
 
   return (
     <div className={classes.root}>
-      {applicantDetails ? (
+      {applicantDetails && !isLoading ? (
         <div>
           <Grid className={classes.profile}>
             <div className={classes.leftpanel}>
-              <LeftPanel applicantDetails={applicantDetails} />
+              <LeftPanel profileDetails={applicantDetails} />
             </div>
             <div>
               {isEditing === true ? (
@@ -78,7 +78,7 @@ export default function ApplicantProfile() {
                   userType={userType}
                 />
               ) : (
-                <BioCard applicantDetails={applicantDetails} />
+                <BioCard profileDetails={applicantDetails} />
               )}
             </div>
           </Grid>
@@ -93,4 +93,4 @@ export default function ApplicantProfile() {
       )}
     </div>
   );
-}
+};
