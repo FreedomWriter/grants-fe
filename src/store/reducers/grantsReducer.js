@@ -29,7 +29,6 @@ const initialState = {
 };
 
 const grantsReducer = (state = initialState, action) => {
-  // console.log("GrantsPageReducer:type, payload ", type, payload);
   switch (action.type) {
     case GET_GRANTS_START:
       return {

@@ -55,7 +55,6 @@ export default function UpdateGrant() {
     dispatch(putGrants(id, grant));
     dispatch(getGrantsByApplicantId(applicant_id));
     await history.push("/GrantsList");
-    console.log(grant, id);
   };
 
   return (

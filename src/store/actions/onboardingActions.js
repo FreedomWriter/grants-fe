@@ -16,7 +16,6 @@ export const postApplicantOnboarding = (value, id) => (dispatch) => {
   return axiosWithAuth()
     .put(`/applicants/${id}`, value)
     .then((res) => {
-      console.log(res);
       dispatch({
         type: APPLICANT_ONBOARDING_POST_SUCCESS,
         payload: value,
