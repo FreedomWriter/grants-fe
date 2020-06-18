@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
 
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -32,8 +31,6 @@ export default function WriterEducationForm({
 }) {
   const classes = useStyles();
 
-  const dispatch = useDispatch();
-
   /* used to render a drop down list of possible degrees */
   const possibleDegrees = [
     { id: uuidv4(), deg: "Associate degree" },
@@ -63,7 +60,6 @@ export default function WriterEducationForm({
       setDisableCollegeSubmitButton(true);
     }
   }, [
-    dispatch,
     educationFormState.searchCollege,
     educationFormState.college,
     educationFormState.startDate,
