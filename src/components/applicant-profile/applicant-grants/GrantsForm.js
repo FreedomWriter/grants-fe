@@ -91,9 +91,6 @@ export default function GrantsForm() {
               className={classes.textField}
               value={grant.due_date}
               onChange={handleChange}
-              InputLabelProps={{
-                shrink: true
-              }}
             />
           </Grid>
           <Grid item xs={8}>
