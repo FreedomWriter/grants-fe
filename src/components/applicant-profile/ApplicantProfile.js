@@ -22,7 +22,7 @@ export default function ApplicantProfile() {
     (state) => state.profileInfo.profileDetails
   );
 
-  const grants = useSelector(state => state.grants);
+  const grants = useSelector((state) => state.grants);
   const isLoading = useSelector((state) => state.profileInfo.isLoading);
   const dispatch = useDispatch();
 
@@ -58,7 +58,7 @@ export default function ApplicantProfile() {
   useEffect(() => {
     dispatch(getApplicantInfo(applicantProfileId));
     dispatch(getGrantsByApplicantId(applicantProfileId));
-  }, [dispatch, applicantProfileId]);
+  }, [dispatch]);
 
   return (
     <div className={classes.root}>
@@ -92,4 +92,4 @@ export default function ApplicantProfile() {
       )}
     </div>
   );
-};
+}
