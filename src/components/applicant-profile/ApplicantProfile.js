@@ -6,7 +6,7 @@ import LeftPanel from "./LeftPanel";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getApplicantInfo,
-  updateApplicantProfile
+  updateApplicantProfile,
 } from "../../store/actions/profileActions";
 import { getGrantsByApplicantId } from "../../store/actions/grantsActions";
 import Loader from "../loader/Loader.js";
@@ -15,16 +15,15 @@ import { EditProfile } from "../EditProfileForms/EditProfileForms.js";
 import { useStyles } from "./ApplicantProfile.styles";
 
 export default function ApplicantProfile() {
-  const userType = useSelector(state => state.login.usertype);
-  const isEditing = useSelector(state => state.profileInfo.isEditing);
-  const applicantProfileId = useSelector(
-    state => state.profileInfo.profileDetails.applicant_id
-  );
+  const userType = useSelector((state) => state.login.usertype);
+  const isEditing = useSelector((state) => state.profileInfo.isEditing);
+  const applicantProfileId = useSelector((state) => state.login.userId);
   const applicantDetails = useSelector(
-    state => state.profileInfo.profileDetails
+    (state) => state.profileInfo.profileDetails
   );
-  const grants = useSelector(state => state.grants);
 
+  const grants = useSelector(state => state.grants);
+  const isLoading = useSelector((state) => state.profileInfo.isLoading);
   const dispatch = useDispatch();
 
   const classes = useStyles();
@@ -40,17 +39,17 @@ export default function ApplicantProfile() {
     country: applicantDetails.country,
     sector: applicantDetails.sector,
     founding_date: applicantDetails.founding_date,
-    website: applicantDetails.website
+    website: applicantDetails.website,
   });
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setProfile({
       ...profile,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(updateApplicantProfile(applicantProfileId, profile));
     dispatch(getApplicantInfo(applicantProfileId));
@@ -63,11 +62,11 @@ export default function ApplicantProfile() {
 
   return (
     <div className={classes.root}>
-      {applicantDetails ? (
+      {applicantDetails && !isLoading ? (
         <div>
           <Grid className={classes.profile}>
             <div className={classes.leftpanel}>
-              <LeftPanel applicantDetails={applicantDetails} />
+              <LeftPanel profileDetails={applicantDetails} />
             </div>
             <div>
               {isEditing === true ? (
@@ -78,7 +77,7 @@ export default function ApplicantProfile() {
                   userType={userType}
                 />
               ) : (
-                <BioCard applicantDetails={applicantDetails} />
+                <BioCard profileDetails={applicantDetails} />
               )}
             </div>
           </Grid>
@@ -93,4 +92,4 @@ export default function ApplicantProfile() {
       )}
     </div>
   );
-}
+};

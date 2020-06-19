@@ -16,27 +16,73 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(20),
     height: theme.spacing(20),
   },
+  userName: {
+    width: "100%",
+    textAlign: "center",
+    fontSize: "0.850rem",
+    fontFamily: "Roboto, Helvetica, Arial, sansSerif",
+    fontWeight: "500",
+    lineHeight: "1.57",
+    letterSpacing: "0.00714em",
+    [theme.breakpoints.up("md")]: {
+      width: "100%",
+    },
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "1.2rem",
+    },
+  }
 }));
 
-export default function LeftPanel({ applicantDetails }) {
+export default function LeftPanel({ profileDetails }) {
   const classes = useStyles();
-  const profileId = applicantDetails.applicant_id;
+  const applicantProfileId = profileDetails.applicant_id;
+  const writerProfileId = profileDetails.writer_id;
   const viewerId = useSelector((state) => state.login.userId);
+  const userType = useSelector((state => state.login.usertype));
+  
   return (
     <>
       <div className={classes.leftpanel}>
         <div>
           <AccountCircleIcon className={classes.large} />
         </div>
+        {userType === "applicant" ? (
+          profileDetails.org_name === "" ? (
+            <div className={classes.userName}>
+              {profileDetails.first_name}{" "}{profileDetails.last_name}
+            </div>
+          ): (
+            <div className={classes.userName}>
+              {profileDetails.org_name}
+            </div>
+          ) 
+        ): (
+          <div clasName={classes.userName}>
+            {profileDetails.first_name}
+            {" "}
+            {profileDetails.last_name}
+          </div>
+        )}
         <div>
-          <Button variant="contained" color="primary" href="#">
+        <a href={`http://${profileDetails.website}`}>{profileDetails.website}</a>
+        </div>
+        <div>
+          <Button 
+            variant="contained" color="primary" href="#">
             Direct Message
           </Button>
         </div>
-        <div>Visit Our website:</div>
-        <a href={applicantDetails.website}>{applicantDetails.website}</a>
+        <div>
+          <EditButton 
+            viewerId={viewerId} 
+            profileId={applicantProfileId} 
+          />     
+          <EditButton
+            viewerId={viewerId}
+            profileId={writerProfileId}
+          />
+        </div>
       </div>
-      <EditButton viewerId={viewerId} profileId={profileId} />
     </>
   );
 }

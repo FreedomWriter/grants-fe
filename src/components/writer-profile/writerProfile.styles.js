@@ -98,9 +98,9 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   finalGrid: {
-    marginTop: "20%",
-    marginLeft: "5%",
-    marginRight: "5%",
+    width: "100%",
+    marginTop: "15%",
+    marginBottom: "10%",
     gridColumnStart: "1",
     gridColumnEnd: "3",
     gridRowStart: "4",
@@ -149,4 +149,68 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: "1rem",
     },
   },
+  leftpanel: {
+    padding: "25px 0",
+    textAlign: "center",
+    "& div": {
+      marginBottom: "5%"
+    }
+  },
+  root: {
+    display: "flex",
+    "& > *": {
+      margin: "0 auto",
+    },
+  },
+  profile: {
+    margin: "1rem auto",
+    width: "65%",
+    display: "grid",
+    gridTemplateColumns: "0.5fr 0.9fr",
+    gridTemplateRows: "1fr",
+    gap: "1px 75px",
+    [theme.breakpoints.down("xs")]: {
+      gridTemplateColumns: "2fr",
+      gridTemplateRows: "1fr",
+      width: "85%"
+    }
+  },
+  profilePaper: {
+    width: "100%",
+    backgroundColor: "#f5f5f5",
+    minHeight: "65%",
+    padding: theme.spacing(1),
+    [theme.breakpoints.down("xs")]: {
+      margin: "0",
+      padding: "2%"
+    },
+    "& p": {
+      lineHeight: "1.4rem",
+      margin: "0",
+      padding: "1%",
+      [theme.breakpoints.down("xs")]: {
+        margin: "0",
+        padding: "3%",
+      },
+      [theme.breakpoints.up("xs")]: {
+        textAlign: "justify",
+      }
+    },
+    "& h4": {
+      margin: "1% 2% 0",
+      [theme.breakpoints.down("xs")]: {
+        margin: "5% 0 0"
+      }
+    },
+  },
+  bottomGrid: {
+    width: "65%",
+    margin: "0px auto",
+    marginTop: "-40px",
+    [theme.breakpoints.down("xs")]: {
+      gridTemplateColumns: "2fr",
+      gridTemplateRows: "1fr",
+      width: "85%",
+    }
+  }
 }));

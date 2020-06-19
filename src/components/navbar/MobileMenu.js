@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -16,7 +17,7 @@ export default function MobileMenu({
   favorites,
 }) {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+  const history = useHistory();
   return (
     <>
       <Menu
@@ -43,7 +44,16 @@ export default function MobileMenu({
           >
             <Badge badgeContent={favorites} color="secondary">
               {/* if user has favorited a grant, the icon renders as a filled in heart with the number of favorties, if the user has not faved agrant, the icon is a heart border  */}
-              {favorites === 0 ? <FavoriteBorderIcon /> : <FavoriteIcon />}
+              {favorites === 0 ? (
+                <FavoriteBorderIcon />
+              ) : (
+                <FavoriteIcon
+                  onClick={() => {
+                    handleMobileMenuClose();
+                    history.push("/writer-favorites");
+                  }}
+                />
+              )}
             </Badge>
           </IconButton>
           <p>Favorites</p>

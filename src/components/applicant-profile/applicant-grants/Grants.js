@@ -10,15 +10,20 @@ import Button from "@material-ui/core/Button";
 const Grants = ({ applicantDetails }) => {
   const { applicant_id } = applicantDetails;
   const classes = useStyles();
-
+  const userProfile = useSelector((state) => state.profileInfo.profileDetails);
   const viewerId = useSelector((state) => state.login.userId);
-
+  
   const grants = useSelector(
     (state) => state.profileInfo.profileDetails.grants);
+  const isLoading = useSelector((state) => state.grants.isLoading);
 
   return (
     <>
-      <h3>Grants We'd Like to Apply For:</h3>
+      {userProfile.org_name === "" ? (
+        <h3>Grants I'd Like to Apply For:</h3>
+      ): (  
+        <h3>Grants We'd Like to Apply For:</h3>
+      )}
       <Paper className={classes.profilepaper}>
         {Number(viewerId) === Number(applicant_id) ? (
           <div>
@@ -42,7 +47,7 @@ const Grants = ({ applicantDetails }) => {
         ) : (
           <div> </div>
         )}
-        {!grants || grants.length < 1 ? (
+        {isLoading ? (
           <Loader />
         ) : (
           grants.map(grant => {
