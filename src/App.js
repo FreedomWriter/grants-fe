@@ -1,5 +1,5 @@
 // import libraries
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
 import { ThemeProvider } from "@material-ui/core/styles";

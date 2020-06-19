@@ -1,12 +1,9 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getColleges } from "../../store/actions/collegeActions";
 
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
-import InputBase from "@material-ui/core/InputBase";
 import Button from "@material-ui/core/Button";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -34,11 +31,6 @@ export default function WriterEducationForm({
 }) {
   const classes = useStyles();
 
-  const dispatch = useDispatch();
-
-  /* colleges pulled from state  (returned from api) */
-  const colleges = useSelector((state) => state.collegeList.colleges);
-
   /* used to render a drop down list of possible degrees */
   const possibleDegrees = [
     { id: uuidv4(), deg: "Associate degree" },
@@ -50,18 +42,6 @@ export default function WriterEducationForm({
   ];
   useEffect(() => {
     enableButton();
-    async function fetchData() {
-      try {
-        /* once user has typed 3 characters in, api request for colleges fires, rendering a list of known colleges which match the text the user has typed */
-        /* conditional ensures the user has typed at least 3 characters before sending - should be REFACTOR to pull an initial subset of the data and switch to filtering to avoid multiple api calls*/
-
-        educationFormState.searchCollege !== "" &&
-          educationFormState.searchCollege.length >= 3 &&
-          (await dispatch(getColleges(educationFormState.searchCollege)));
-      } catch (err) {
-        console.log(err);
-      }
-    }
 
     /* handles whether the button to submit a college is disabled based on required fields */
     if (
@@ -79,9 +59,7 @@ export default function WriterEducationForm({
     } else {
       setDisableCollegeSubmitButton(true);
     }
-    fetchData();
   }, [
-    dispatch,
     educationFormState.searchCollege,
     educationFormState.college,
     educationFormState.startDate,
@@ -100,59 +78,20 @@ export default function WriterEducationForm({
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Grid item xs={12}>
-            <FormControl className={classes.orgTextField}>
-              <InputBase
+            <Grid item xs={12}>
+              <TextField
                 data-testid="schoolname"
-                placeholder="Enter A School Name..."
                 onBlur={handleValidation}
                 error={formHelperText.searchCollege && true}
                 onChange={handleEducationChanges}
+                className={classes.orgTextField}
                 required
-                id="searchCollege"
-                name="searchCollege"
-                /* if the user has selected a college, this field will hold that value, if not but they have entered search text, it will hold the search text value. if neither exist, the field will be an empty string */
-                value={
-                  educationFormState.college
-                    ? educationFormState.college
-                    : educationFormState.searchCollege &&
-                      educationFormState.searchCollege
-                  // : ""
-                }
+                id="college"
+                name="college"
+                value={educationFormState.college}
                 label="Enter School Name"
-                inputProps={{ "aria-label": "search" }}
               />
-              {/* handles the edge case where a users school is not listed in the api rendering the list of schools */}
-              {educationFormState.searchCollege &&
-                colleges &&
-                colleges.length === 0 &&
-                setEducationFormState({
-                  ...educationFormState,
-                  college: educationFormState.searchCollege,
-                  searchCollege: "",
-                })}
-              {/* renders a list of options of colleges for the user to select from using data pulled from api */}
-              <Grid item data-testid="colleges-options">
-                {" "}
-                {educationFormState.searchCollege &&
-                  colleges &&
-                  colleges.map((college) => (
-                    <option
-                      key={college.id}
-                      arial-label={college.name}
-                      value={college.name}
-                      onClick={() => {
-                        setEducationFormState({
-                          ...educationFormState,
-                          college: college.name,
-                          searchCollege: "",
-                        });
-                      }}
-                    >
-                      {college.name}
-                    </option>
-                  ))}
-              </Grid>
-            </FormControl>
+            </Grid>
           </Grid>
         </Grid>
         <Grid item xs={12}>

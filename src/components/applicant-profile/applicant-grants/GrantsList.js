@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
@@ -10,8 +10,8 @@ import { useStyles } from "./GrantsList.styles";
 export default function GrantsList() {
   const classes = useStyles();
 
-  const grantsLoading = useSelector(state => state.grants.isLoading);
-  const grants = useSelector(state => state.grants.applicantGrants);
+  const grantsLoading = useSelector((state) => state.grants.isLoading);
+  const grants = useSelector((state) => state.grants.applicantGrants);
 
   return (
     <div className={classes.container}>
@@ -41,7 +41,7 @@ export default function GrantsList() {
           {grantsLoading === true ? (
             <Loader />
           ) : (
-            grants.map(grant => {
+            grants.map((grant) => {
               return (
                 <div className={classes.grantscard} key={grant.id}>
                   <div className={classes.grantscardheader}>

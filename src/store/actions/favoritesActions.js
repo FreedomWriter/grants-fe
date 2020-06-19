@@ -1,4 +1,4 @@
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+// import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 export const FAVORITE_POST_START = "FAVORITE_POST_START";
 export const FAVORITE_POST_SUCCESS = "FAVORITE_POST_SUCCESS";

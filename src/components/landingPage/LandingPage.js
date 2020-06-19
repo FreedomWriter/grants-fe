@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "../../index.css";
 import Button from "@material-ui/core/Button";
@@ -23,7 +23,7 @@ export default function LandingPage() {
       token && dispatch(logout());
     }
     clearStorage();
-  }, [token]);
+  }, [dispatch, token]);
   return (
     <div className="full-container">
       <div className={classes.topContainer}>

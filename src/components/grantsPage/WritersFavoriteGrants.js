@@ -15,8 +15,8 @@ export default function WritersFavoriteGrants() {
     <div>
       {faveArr.map((grant) => {
         return (
-          <div className={classes.container}>
-            <GrantCard key={grant.id} data={grant} />
+          <div key={grant.id} className={classes.container}>
+            <GrantCard data={grant} />
           </div>
         );
       })}

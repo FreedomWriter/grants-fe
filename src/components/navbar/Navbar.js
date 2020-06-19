@@ -55,7 +55,6 @@ export default function PrimarySearchAppBar() {
   };
 
   const handleSubmit = () => {
-    console.log({ searchTerm });
     setSearchTerm("");
   };
 

@@ -1,11 +1,7 @@
 import React, { useState as useStateMock } from "react";
-import { render as rtlRender } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { axe } from "jest-axe";
 import userEvent from "@testing-library/user-event";
-import { initialState as initialReducerState } from "../../../store/reducers/collegesReducer";
-import reducer from "../../../store/reducers/collegesReducer";
-import { createStore } from "redux";
-import { Provider } from "react-redux";
 import WriterContactInfo from "../WriterContactInfoForm.js";
 import WriterReviewForm from "../WriterReviewForm.js";
 
@@ -74,20 +70,6 @@ const formHelperText = {
   country: undefined,
 };
 
-function render(
-  ui,
-  {
-    initialState = initialReducerState,
-    store = createStore(reducer, initialState),
-    ...renderOptions
-  } = {}
-) {
-  function Wrapper({ children }) {
-    return <Provider store={store}>{children}</Provider>;
-  }
-  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
-}
-
 beforeEach(() => {
   useStateMock.mockImplementation((init) => [init, setContactFormStateMock]);
   jest.spyOn(console, "error").mockImplementation(() => {});
@@ -99,7 +81,7 @@ afterEach(() => {
 });
 
 test("accessible -  WriterContactInfo pass axe", async () => {
-  const { container } = rtlRender(
+  const { container } = render(
     <WriterContactInfo
       contactFormState={contactFormState}
       formHelperText={formHelperText}
@@ -110,7 +92,7 @@ test("accessible -  WriterContactInfo pass axe", async () => {
 });
 
 test("Contact Information Header is visible", () => {
-  const { getByText } = rtlRender(
+  const { getByText } = render(
     <WriterContactInfo
       contactFormState={contactFormState}
       formHelperText={formHelperText}
@@ -122,7 +104,7 @@ test("Contact Information Header is visible", () => {
 });
 
 test("inputs are visible", () => {
-  const { getByLabelText } = rtlRender(
+  const { getByLabelText } = render(
     <WriterContactInfo
       contactFormState={contactFormState}
       formHelperText={formHelperText}
@@ -146,7 +128,7 @@ test("inputs are visible", () => {
 });
 
 test("form submit adds contact info to state", () => {
-  const { getByLabelText } = rtlRender(
+  const { getByLabelText } = render(
     <WriterContactInfo
       contactFormState={contactFormState}
       formHelperText={formHelperText}
@@ -191,25 +173,7 @@ test("Review form reflects user Contact Info input", () => {
       educationFormState={educationFormStateMock}
       setDisableCollegeSubmitButton={setDisableCollegeSubmitButtonMock}
       setDisableWorkHistorySubmitButton={setDisableWorkHistorySubmitButtonMock}
-    />,
-    {
-      initialState: {
-        collegeList: {
-          colleges: [
-            { "school.name": "Howard College", id: 225520 },
-            { "school.name": "Howard University", id: 131520 },
-            { "school.name": "Howard Payne University", id: 225548 },
-            { "school.name": "Howard Community College", id: 162779 },
-            { "school.name": "Specs Howard School of Media Arts", id: 172325 },
-            {
-              "school.name": "Howell Cheney THS/CT Aero Tech School",
-              id: 417248,
-            },
-          ],
-        },
-        isLoading: false,
-      },
-    }
+    />
   );
 
   const first_nameLabelText = getByLabelText(/first name/i);

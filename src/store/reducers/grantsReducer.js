@@ -17,15 +17,8 @@ import {
 } from "../actions/grantsActions.js";
 
 import {
-  FAVORITE_POST_START,
   FAVORITE_POST_SUCCESS,
-  FAVORITE_POST_FAILURE,
-  FAVORITE_GET_START,
-  FAVORITE_GET_SUCCESS,
-  FAVORITE_GET_FAILURE,
-  FAVORITE_DELETE_START,
   FAVORITE_DELETE_SUCCESS,
-  FAVORITE_DELETE_FAILURE,
 } from "../actions/favoritesActions";
 
 const initialState = {
@@ -36,7 +29,6 @@ const initialState = {
 };
 
 const grantsReducer = (state = initialState, action) => {
-  // console.log("GrantsPageReducer:type, payload ", type, payload);
   switch (action.type) {
     case GET_GRANTS_START:
       return {
@@ -98,6 +90,18 @@ const grantsReducer = (state = initialState, action) => {
         grants: state.grants.map((grant) => {
           if (grant.id === action.payload.id) {
             return { ...action.payload, writer_favorite: true };
+          } else {
+            return grant;
+          }
+        }),
+        isLoading: false,
+      };
+    case FAVORITE_DELETE_SUCCESS:
+      return {
+        ...state,
+        grants: state.grants.map((grant) => {
+          if (grant.id === action.payload.id) {
+            return { ...action.payload, writer_favorite: false };
           } else {
             return grant;
           }
