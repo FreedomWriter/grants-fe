@@ -5,9 +5,9 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 //
-import { initialState as initialReducerState } from "../../../store/reducers/GrantsPageReducer.js";
-import reducer from "../../../store/reducers/GrantsPageReducer.js";
-import GrantsPage from "../GrantsPage.jsx";
+// import { initialState as initialReducerState } from "../../../store/reducers/GrantsPageReducer.js";
+// import reducer from "../../../store/reducers/GrantsPageReducer.js";
+// import GrantsPage from "../GrantsPage.jsx";
 import GrantCard from "../grantCards/GrantCard.jsx";
 
 const setMockGrantsPage = jest.fn(function () {
@@ -39,6 +39,7 @@ let grantMock = {
   roles: "",
 };
 
+/*
 function render(
   ui,
   {
@@ -52,6 +53,7 @@ function render(
   }
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
 }
+*/
 
 describe("GrantsPage Testing...", () => {
   test("GrantCard renders with data", () => {

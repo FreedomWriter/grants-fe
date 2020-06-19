@@ -4,16 +4,8 @@ import "@testing-library/jest-dom/extend-expect";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
-//
-// import Homepage from "../Homepage.jsx";
-import { initialState as initialReducerState } from "../../../store/reducers/HomePageReducer.js";
-import reducer from "../../../store/reducers/HomePageReducer.js";
 import UserCardApplicant from "../userCard/UserCardApplicant.jsx";
 import UserCardWriter from "../userCard/UserCardWriter.jsx";
-
-// const  = render(<Homepage />);
-
-// console.log("Homepage.test.js>render: ", result);
 
 const setMockHomePage = jest.fn(function () {
   return true;
@@ -30,6 +22,7 @@ afterEach(() => {
 
 let userMock = {};
 
+/*
 function render(
   ui,
   {
@@ -43,6 +36,7 @@ function render(
   }
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
 }
+*/
 
 describe("HomePage Testing...", () => {
   test("test to return true", () => {

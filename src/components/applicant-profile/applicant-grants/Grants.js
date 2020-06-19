@@ -12,16 +12,19 @@ const Grants = ({ applicantDetails }) => {
   const classes = useStyles();
   const userProfile = useSelector((state) => state.profileInfo.profileDetails);
   const viewerId = useSelector((state) => state.login.userId);
-  
+
   const grants = useSelector(
-    (state) => state.profileInfo.profileDetails.grants);
+    (state) => state.profileInfo.profileDetails.grants
+  );
   const isLoading = useSelector((state) => state.grants.isLoading);
+
+  console.log("grants: ", grants);
 
   return (
     <>
       {userProfile.org_name === "" ? (
         <h3>Grants I'd Like to Apply For:</h3>
-      ): (  
+      ) : (
         <h3>Grants We'd Like to Apply For:</h3>
       )}
       <Paper className={classes.profilepaper}>
@@ -49,8 +52,10 @@ const Grants = ({ applicantDetails }) => {
         )}
         {isLoading ? (
           <Loader />
+        ) : !grants ? (
+          <h3>No Grants Available for this user</h3>
         ) : (
-          grants.map(grant => {
+          grants.map((grant) => {
             return (
               <div className={classes.profilegrantcard} key={grant.id}>
                 <h4>{grant.grant_name}</h4>
