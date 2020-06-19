@@ -4,15 +4,13 @@ import { render as rtlRender } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+import { axe } from "jest-axe";
 
 //
-import Homepage from "../Homepage.jsx";
-import { initialState as initialReducerState } from "../../../store/reducers/HomePageReducer.js";
-import reducer from "../../../store/reducers/HomePageReducer.js";
-
-// const  = render(<Homepage />);
-
-// console.log("Homepage.test.js>render: ", result);
+import { initialState as initialReducerState } from "../../../store/reducers/grantsReducer.js";
+import reducer from "../../../store/reducers/grantsReducer.js";
+import HomePage from "../Homepage.jsx";
+import GrantCard from "../grantCards/GrantCard.jsx";
 
 const setMockHomePage = jest.fn(function () {
   return true;
@@ -26,10 +24,24 @@ afterEach(() => {
   //undo the functions done in beforeEach
 });
 
+const initialMockState = {
+  grants: [],
+  login: {
+    usertype: "writer",
+  },
+  profileInfo: {
+    profileDetails: [],
+  },
+  applicantGrants: [],
+  isLoading: false,
+  error: undefined,
+  workHistory: [],
+};
+
 function render(
   ui,
   {
-    initialState = initialReducerState,
+    initialState = initialMockState,
     store = createStore(reducer, initialState),
     ...renderOptions
   } = {}
@@ -40,14 +52,24 @@ function render(
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
 }
 
+let grantMock = {
+  due_date: "0000",
+  grant_name: "Mock name",
+  sector: "Test Sector",
+  status: "open",
+};
+let emptyGrant = [];
+
 describe("HomePage Testing...", () => {
   test("test to return true", () => {
     expect(true).toBeTruthy();
   });
-  test("Homepage renders something...", () => {
-    // const renderRes = render(<Homepage />);
-    // console.log("Homepage>renderTest: ", renderRes);
-    //
-    expect(true).toBeTruthy();
+  test("Grants won't render", () => {
+    const { container } = render(<HomePage />);
+    // console.log(container);
   });
+  // test("GrantCard component renders ", () => {
+  //   const { container } = render(<GrantCard />, grantMock);
+  //   expect(container).toBeVisible();
+  // });
 });

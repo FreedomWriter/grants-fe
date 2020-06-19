@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Container } from "@material-ui/core";
 
-// import Card1 from "./grantCards/Card1.jsx";
 import GrantCard from "./grantCards/GrantCard.jsx";
 import UserCardWriter from "./userCard/UserCardWriter.jsx";
 import UserCardApplicant from "./userCard/UserCardApplicant.jsx";
