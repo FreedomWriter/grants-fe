@@ -49,7 +49,7 @@ export default function GrantsForm() {
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-        <Grid container spacing={3}>
+        <Grid container spacing={3} className={classes.grantsform}>
           <Grid item xs={10} sm={6}>
             <TextField
               required
@@ -61,7 +61,7 @@ export default function GrantsForm() {
               fullWidth
             />
           </Grid>
-          <Grid item sm={6}>
+          <Grid item xs={10} sm={6}>
             <TextField
               required
               id="sector"
@@ -71,7 +71,7 @@ export default function GrantsForm() {
               onChange={handleChange}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={10} sm={6}>
             <TextField
               required
               id="awarding_agency"
@@ -82,7 +82,7 @@ export default function GrantsForm() {
               fullWidth
             />
           </Grid>
-          <Grid item xs={10} sm={8}>
+          <Grid item xs={10} sm={6}>
             <TextField
               id="due_date"
               label="Due Date"
@@ -91,9 +91,12 @@ export default function GrantsForm() {
               className={classes.textField}
               value={grant.due_date}
               onChange={handleChange}
+              InputLabelProps={{
+                shrink: true
+              }}
             />
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={10} sm={9}>
             <TextAreaAutosize
               required
               id="grant_description"
@@ -106,12 +109,10 @@ export default function GrantsForm() {
               className={classes.textarea}
             />
           </Grid>
-          <div className={classes.addbutton}>
+          <div className={classes.grantsbuttons}>
             <Button type="submit" variant="contained" color="primary">
               Add a Grant
             </Button>
-          </div>
-          <div>
             <Button
               type="submit"
               variant="contained"

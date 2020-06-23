@@ -107,7 +107,7 @@ export default function UpdateGrant() {
               value={grant.due_date}
               onChange={handleChange}
               InputLabelProps={{
-                shrink: true,
+                shrink: true
               }}
             />
           </Grid>
