@@ -42,8 +42,6 @@ export default function UpdateGrant() {
     setGrant({ ...grants.filter((grant) => grant.id === Number(id))[0] });
   }, [grant.id, id, grants]);
 
-  console.log(grant.id, id)
-
   const handleChange = (e) => {
     e.preventDefault();
     setGrant({
