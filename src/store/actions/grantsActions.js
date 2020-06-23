@@ -60,7 +60,7 @@ export const postGrants = (value) => (dispatch) => {
     .then((res) => {
       dispatch({
         type: POST_GRANTS_SUCCESS,
-        payload: value,
+        payload: res.data.grant_details,
       });
     })
     .catch((err) => {

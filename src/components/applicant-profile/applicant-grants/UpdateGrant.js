@@ -25,7 +25,7 @@ export default function UpdateGrant() {
   );
   const user_id = useSelector((state) => state.profileInfo.profileDetails.id);
   const grants = useSelector(
-    (state) => state.profileInfo.profileDetails.grants
+    (state) => state.grants.applicantGrants
   );
   const { id } = useParams();
 
@@ -107,7 +107,7 @@ export default function UpdateGrant() {
               value={grant.due_date}
               onChange={handleChange}
               InputLabelProps={{
-                shrink: true,
+                shrink: true
               }}
             />
           </Grid>
