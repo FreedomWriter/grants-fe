@@ -71,9 +71,6 @@ let grantMock = {
 let emptyGrant = [];
 
 describe("HomePage Testing...", () => {
-  test("test to return true", () => {
-    expect(true).toBeTruthy();
-  });
   test("Homepage will render", () => {
     const { container } = render(<HomePage />);
     expect(container).toBeVisible();
