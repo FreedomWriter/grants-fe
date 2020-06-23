@@ -106,5 +106,9 @@ export const useStyles = makeStyles(theme => ({
       gridTemplateRows: "1fr",
       width: "85%"
     }
+  },
+  profilebuttons: {
+    display: "flex",
+    justifyContent: "space-evenly"
   }
 }));

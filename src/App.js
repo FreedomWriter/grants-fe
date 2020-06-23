@@ -27,7 +27,7 @@ function App() {
   const user = useSelector((state) => state.login.user);
   const userType = useSelector((state) => state.login.usertype);
   const userId = useSelector((state) => state.login.userId);
-  const grants = useSelector((state) => state.grants.grants);
+  const grants = useSelector((state) => state.grants.applicantGrants);
   const dispatch = useDispatch();
 
   useEffect(() => {
