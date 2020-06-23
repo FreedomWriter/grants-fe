@@ -29,7 +29,7 @@ const Grants = ({ applicantDetails }) => {
       )}
       <Paper className={classes.profilepaper}>
         {Number(viewerId) === Number(applicant_id) ? (
-          <div>
+          <div className={classes.profilebuttons}>
             <Button
               component={Link}
               to="/GrantsList"
