@@ -25,7 +25,16 @@ afterEach(() => {
 });
 
 const initialMockState = {
-  grants: [],
+  grants: {
+    grants: [
+      {
+        due_date: "2020-12-31T00:00:00.000Z",
+        grant_name: "Mock name",
+        sector: "Test Sector",
+        status: "open",
+      },
+    ],
+  },
   login: {
     usertype: "writer",
   },
@@ -53,23 +62,26 @@ function render(
 }
 
 let grantMock = {
-  due_date: "0000",
-  grant_name: "Mock name",
+  due_date: "2020-12-31T00:00:00.000Z",
+  grant_name: "grantMock name",
   sector: "Test Sector",
   status: "open",
 };
+
 let emptyGrant = [];
 
 describe("HomePage Testing...", () => {
-  test("test to return true", () => {
-    expect(true).toBeTruthy();
-  });
-  test("Grants won't render", () => {
+  test("Homepage will render", () => {
     const { container } = render(<HomePage />);
-    // console.log(container);
+    expect(container).toBeVisible();
   });
-  // test("GrantCard component renders ", () => {
-  //   const { container } = render(<GrantCard />, grantMock);
-  //   expect(container).toBeVisible();
-  // });
+  test("Homepage with words", () => {
+    const { container, getByText } = render(<HomePage />);
+    // console.log("getbytext:", container);
+    // expect(container).toBeVisible();
+  });
+  test("GrantCard component renders ", () => {
+    const { container } = render(<GrantCard />);
+    expect(container).toBeVisible();
+  });
 });

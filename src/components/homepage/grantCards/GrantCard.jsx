@@ -31,8 +31,10 @@ export default function GrantCard(props) {
     setExpanded(!expanded);
   };
 
-  const date = new Date(grant.due_date);
-  const due_date = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+  const findDate = (dateIn) => {
+    const date = new Date(dateIn);
+    return `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+  };
 
   const addFavClickHandler = (grant) => {
     dispatch(postFavorite(grant));
@@ -42,6 +44,7 @@ export default function GrantCard(props) {
     dispatch(deleteFavorite(grant));
   };
 
+  console.log("grantcard: ", props.data);
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -99,7 +102,9 @@ export default function GrantCard(props) {
               </Typography>
             </div>
             <div className={classes.boxInfo}>
-              <Typography className={classes.boxes}>{due_date}</Typography>
+              <Typography className={classes.boxes}>
+                {findDate(grant.due_date)}
+              </Typography>
               <Typography className={classes.boxes}>{grant.sector}</Typography>
               <Typography className={classes.boxes}>{grant.status}</Typography>
             </div>
