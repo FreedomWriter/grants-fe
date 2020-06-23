@@ -44,7 +44,6 @@ export default function GrantCard(props) {
     dispatch(deleteFavorite(grant));
   };
 
-  // console.log("grantcard: ", props.data);
   return (
     <Card className={classes.root}>
       <CardHeader
