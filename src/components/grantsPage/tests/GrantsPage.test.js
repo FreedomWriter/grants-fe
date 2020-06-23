@@ -5,45 +5,39 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 //
-// import { initialState as initialReducerState } from "../../../store/reducers/GrantsPageReducer.js";
-// import reducer from "../../../store/reducers/GrantsPageReducer.js";
-// import GrantsPage from "../GrantsPage.jsx";
+import reducer from "../../../store/reducers/grantsReducer.js";
+import GrantsPage from "../GrantsPage.jsx";
 import GrantCard from "../grantCards/GrantCard.jsx";
+import Loader from "../../loader/Loader.js";
 
-const setMockGrantsPage = jest.fn(function () {
-  return true;
-});
-beforeEach(() => {
-  //insert any function that is repeated by multiple tests.
-  jest.spyOn(console, "error").mockImplementation(() => {});
-});
-
-afterEach(() => {
-  //undo the functions done in beforeEach
-  console.error.mockRestore();
-});
-
-let grantMock = {
-  id: 1,
-  title: "Test Title",
-  number: "1234TEST4321",
-  agency: "TEST-CO",
-  status: "posted",
-  postedDate: "01/01/2020",
-  closedDate: "12/31/2020",
-  image:
-    "https://image.shutterstock.com/image-photo/cropped-image-male-female-hands-600w-1510838900.jpg",
-  detailMain: "Test detail for detailMain",
-  detailContent: ["Test detail for detailContent"],
-  sector: "science",
-  roles: "",
+const initialMockState = {
+  grants: {
+    grants: [
+      {
+        due_date: "2020-12-31T00:00:00.000Z",
+        grant_name: "Mock name",
+        sector: "Test Sector",
+        status: "open",
+        id: 99999,
+      },
+    ],
+  },
+  login: {
+    usertype: "writer",
+  },
+  profileInfo: {
+    profileDetails: [],
+  },
+  applicantGrants: [],
+  isLoading: false,
+  error: undefined,
+  workHistory: [],
 };
 
-/*
 function render(
   ui,
   {
-    initialState = initialReducerState,
+    initialState = initialMockState,
     store = createStore(reducer, initialState),
     ...renderOptions
   } = {}
@@ -53,16 +47,30 @@ function render(
   }
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
 }
-*/
+
+let grantMock = {
+  due_date: "2020-12-31T00:00:00.000Z",
+  grant_name: "grantMock name",
+  sector: "Test Sector",
+  status: "open",
+};
 
 describe("GrantsPage Testing...", () => {
+  test("GrantsPage will render", () => {
+    const { container } = render(<GrantsPage />);
+    expect(container).toBeVisible();
+  });
   test("GrantCard renders with data", () => {
-    const { container, debug } = rtlRender(<GrantCard data={grantMock} />);
+    const { container } = render(<GrantCard data={grantMock} />);
     expect(container).toBeVisible();
   });
   test("GrantCard fails to render with no data", () => {
     expect(false).toBeFalsy();
     // expect(rtlRender(<GrantCard data={{}} />)).toThrow();
+  });
+  test("Loader component renders", () => {
+    const { container } = render(<Loader />);
+    expect(container).toBeVisible();
   });
   // below test is running into issues running dispatch.
   // test("GrantsPage renders", () => {
