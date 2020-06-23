@@ -17,5 +17,5 @@ export const useStyles = makeStyles(theme => ({
   moreInfo: {
     display: "flex",
     flexDirection: "column"
-  }
+  },
 }));

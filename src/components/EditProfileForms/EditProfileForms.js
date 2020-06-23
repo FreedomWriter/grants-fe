@@ -248,7 +248,4 @@ export const EditProfile = (props) => {
       </>
     );
   }
-  //if userType = writer return thing else return other thing...
 };
-
-//I want to refactor the above so that it renders differently based on the user type, accepting a prop in the component that tell it which user type the profile is. That way we can avoid repeating code for a few table differences.
