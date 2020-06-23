@@ -156,12 +156,6 @@ export const useStyles = makeStyles((theme) => ({
       marginBottom: "5%"
     }
   },
-  root: {
-    display: "flex",
-    "& > *": {
-      margin: "0 auto",
-    },
-  },
   profile: {
     margin: "1rem auto",
     width: "65%",
