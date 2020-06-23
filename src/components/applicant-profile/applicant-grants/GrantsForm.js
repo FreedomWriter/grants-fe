@@ -15,7 +15,7 @@ export default function GrantsForm() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  const profileId = useSelector(state => state.profileInfo.profileDetails.id);
+  const profileId = useSelector((state) => state.profileInfo.profileDetails.id);
 
   const [grant, setGrant] = useState({
     applicant_profile_id: profileId,
@@ -23,17 +23,17 @@ export default function GrantsForm() {
     awarding_agency: "",
     sector: "",
     due_date: "",
-    description: ""
+    description: "",
   });
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setGrant({
       ...grant,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     await dispatch(postGrants(grant));
     return history.push("/GrantsList");
@@ -109,8 +109,12 @@ export default function GrantsForm() {
               className={classes.textarea}
             />
           </Grid>
-          <div className={classes.grantsbuttons}>
-            <Button type="submit" variant="contained" color="primary">
+          <div className={classes.addbutton}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+            >
               Add a Grant
             </Button>
             <Button
