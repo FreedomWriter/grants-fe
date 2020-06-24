@@ -2,11 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Container } from "@material-ui/core";
 
+//import components
 import GrantCard from "./grantCards/GrantCard.jsx";
 import UserCardWriter from "./userCard/UserCardWriter.jsx";
 import UserCardApplicant from "./userCard/UserCardApplicant.jsx";
 import Loader from "../loader/Loader.js";
-
+//import styling
 import { useStyles } from "./HomepageStyles.jsx";
 
 const Homepage = () => {
@@ -14,11 +15,9 @@ const Homepage = () => {
   const grants = useSelector((state) => {
     return state.grants.grants;
   });
-
   const userType = useSelector((state) => {
     return state.login.usertype.toLowerCase();
   });
-
   const user = useSelector((state) => {
     if (state.login) {
       switch (userType) {
