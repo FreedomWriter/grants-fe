@@ -58,6 +58,7 @@ export const postGrants = (value) => (dispatch) => {
   axiosWithAuth()
     .post(`/grants/new`, value)
     .then((res) => {
+      console.log("postGrants: ", res);
       dispatch({
         type: POST_GRANTS_SUCCESS,
         payload: res.data.grant_details,
