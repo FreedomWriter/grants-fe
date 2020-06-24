@@ -88,7 +88,6 @@ export const useStyles = makeStyles((theme) =>
       justifyContent: "space-between",
       margin: "auto",
       [theme.breakpoints.between("sm", "md")]: {
-        // display: "block",
         flexDirection: "column",
       },
     },

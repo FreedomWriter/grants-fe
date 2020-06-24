@@ -8,7 +8,6 @@ import { useStyles } from "./HomePageUserCardStyles.jsx";
 
 const UserCardWriter = (props) => {
   const user = props.details;
-  //bio, city, country, first_name, id, last_name, sector, state, website, writer_id, zip
   const classes = useStyles();
 
   return (

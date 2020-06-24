@@ -20,7 +20,6 @@ const GrantsPage = () => {
     <div className={classes.container}>
       <Container className={classes.appHeader}>
         {!grants || grants.length < 1 ? (
-          //<h4>Loading....</h4>
           <Loader />
         ) : (
           grants.map((grant) => {
