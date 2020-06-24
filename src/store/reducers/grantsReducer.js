@@ -78,6 +78,7 @@ const grantsReducer = (state = initialState, action) => {
 
     case POST_GRANTS_SUCCESS:
       return {
+        ...state,
         applicantGrants: [
           ...state.applicantGrants,
           { ...action.payload, writer_favorite: false },
