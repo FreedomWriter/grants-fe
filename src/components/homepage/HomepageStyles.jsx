@@ -9,7 +9,7 @@ const color = {
 };
 //..........
 
-export const useStyles = makeStyles((theme: Theme) =>
+export const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       maxWidth: 1345,
