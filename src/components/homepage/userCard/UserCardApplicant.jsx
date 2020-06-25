@@ -26,7 +26,7 @@ const UserCardApplicant = (props) => {
         <h3>Organization: {user.org_name} </h3>
         <h3>Sector/Focus: {user.sector}</h3>
         <h4>Country: {user.country}</h4>
-        <p className={classes.userP}>{user.bio}</p>
+        <p className={classes.bio}>{user.bio}</p>
       </CardContent>
     </Card>
   );

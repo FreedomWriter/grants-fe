@@ -36,5 +36,8 @@ export const useStyles = makeStyles((theme) =>
         display: "none",
       },
     },
+    bio: {
+      lineHeight: 1.25,
+    },
   })
 );

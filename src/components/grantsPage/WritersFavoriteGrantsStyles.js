@@ -6,4 +6,9 @@ export const useStyles = makeStyles((theme) => ({
     width: "80%",
     margin: "auto",
   },
+  h3: {
+    color: theme.palette.common.darkBlue,
+    marginTop: "5%",
+    justifyContent: "center",
+  },
 }));

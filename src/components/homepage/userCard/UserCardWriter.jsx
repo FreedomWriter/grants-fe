@@ -25,7 +25,7 @@ const UserCardWriter = (props) => {
       <CardContent className={classes.userRight}>
         <h3>roles: {user.role} </h3>
         <h3>Sector/Focus: {user.sector}</h3>
-        <p>{user.bio}</p>
+        <p className={classes.bio}>{user.bio}</p>
       </CardContent>
     </Card>
   );

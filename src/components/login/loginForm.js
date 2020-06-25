@@ -26,7 +26,7 @@ const Login = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postLogin(user)).then(() => history.push("/Homepage"));
+    dispatch(postLogin(user)).then(() => history.push("/profile"));
   };
   const classes = useStyles();
   return (
