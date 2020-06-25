@@ -7,7 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import TextAreaAutosize from "@material-ui/core/TextareaAutosize";
 import Button from "@material-ui/core/Button";
 import { ValidatorForm } from "react-material-ui-form-validator";
-import { postGrants } from "../../../store/actions/grantsActions";
+import { postGrants, getGrants } from "../../../store/actions/grantsActions";
 
 import { useStyles } from "./GrantsForm.styles";
 
@@ -35,7 +35,9 @@ export default function GrantsForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("handlesubmit: ", e, grant);
     await dispatch(postGrants(grant));
+    await dispatch(getGrants());
     return history.push("/GrantsList");
   };
 
@@ -92,7 +94,7 @@ export default function GrantsForm() {
               value={grant.due_date}
               onChange={handleChange}
               InputLabelProps={{
-                shrink: true
+                shrink: true,
               }}
             />
           </Grid>
@@ -110,11 +112,7 @@ export default function GrantsForm() {
             />
           </Grid>
           <div className={classes.addbutton}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-            >
+            <Button type="submit" variant="contained" color="primary">
               Add a Grant
             </Button>
             <Button
