@@ -32,7 +32,7 @@ function App() {
 
   useEffect(() => {
     //only fetches grants if a userId exists and grants have not already been fetched
-    if (userId !== undefined && grants.length === 0) {
+    if (userId !== undefined && grants && grants.length === 0) {
       dispatch(getGrants());
     }
   }, [dispatch, userId, grants]);
