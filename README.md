@@ -1,11 +1,11 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/13f17f26b8dd33daa361/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/grants-fe/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/13f17f26b8dd33daa361/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/grants-fe/test_coverage)
 
-# 1️⃣ Granted
+# Granted
 
-1️⃣ You can find the deployed project at [Granted](https://prod-granted.herokuapp.com/).
+ You can find the deployed project at [Granted](https://prod-granted.herokuapp.com/).
 
-## 4️⃣ Contributors
+## Contributors
 
 |                                                [Natalie Davis](https://github.com/FreedomWriter)                                                                       |                                          [Lee Wood](https://github.com/LeeWood)                                                                              |                                       [Blupe](https://github.com/JorgeLuisFlores)                                                  |                                             [Danica Valdez](https://github.com/danicavaldez)                                             |                                      [Brett Karr](https://github.com/bwkarr77)                                                                                    |                                          [Toosdai Otte](https://github.com/ToosdaiOtte)                                                                              |                                                                         [Eva Gurtovaya](https://github.com/EvaGurtovaia)                                                        |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -34,7 +34,6 @@ Connecting grant writers with individuals and organizations looking for a grant 
 
 ### Front end built using:
 
-
 #### - React
 
 - Scalable and lightweight
@@ -43,35 +42,6 @@ Connecting grant writers with individuals and organizations looking for a grant 
 - Ability to use Redux for state management
 
 #### Material UI
-
-
-#### Front end deployed to [http://www.writemygrants.net/]["http://www.writemygrants.net/"]
-
-
-
-## 2️⃣ Payment API here
-
-🚫Replace text below with a description of the API
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
 
 # Environment Variables
 
@@ -83,8 +53,6 @@ Volunteering your time; it pays you and your whole community fantastic dividends
 ## RTL, jest-axe
  - npm test - runs tests
  - npm test coverage - runs test and generates coverage report
-
-
 
 ## Documentation
 
